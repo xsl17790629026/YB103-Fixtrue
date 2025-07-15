@@ -1,0 +1,552 @@
+#ifndef _LCD12864_ENUM_H_
+#define _LCD12864_ENUM_H_
+
+#include "main.h"
+
+typedef enum
+{
+    F1,
+    F2,
+    F3,
+    F4,
+    F5,
+    F6,
+    F7,
+    F8,
+    F9,
+    F10,
+    F11,
+    F12,
+    F13,
+    F14,
+    F15,
+    F16,
+    F17,
+    F18,
+    F19,
+    F20,
+    F21,
+    F22,
+    F23,
+    F24,
+    F25,
+    F26,
+    F27,
+    F28,
+    F29,
+    F30,
+    F31,
+    F32,
+    F33,
+    F34,
+    F35,
+    F36,
+    F37,
+    F38,
+    F39,
+    F40,
+    F41,
+    F42,
+    F43,
+    F44,
+    F45,
+    F46,
+    F47,
+    F48,
+    F49,
+    F50,
+    F51,
+    F52,
+    F53,
+    F54,
+    F55,
+    F56,
+    F57,
+    F58,
+    F59,
+    F60,
+    F61,
+    F62,
+    F63,
+    F64,
+    F65,
+    F66,
+    F67,
+    F68,
+    F69,
+    F70,
+    F71,
+    F72,
+    F73,
+    F74,
+    F75,
+    F76,
+    F77,
+    F78,
+    MENU_MAX
+} Pagedis_Func;
+
+typedef enum
+{
+	ABS_3_VehicleSpeed,
+	ABS_3_VehicleSpeedValid,
+	ABS_3_Timeout_Flag,
+	IC_DisplayVehicleSpeedUnit,
+	IC_DisplayVehicleSpeedValue,
+	F1_ITEM_MAX,
+} F1_ITEM;
+
+typedef enum
+{
+	EMS_2_EngineSpeed,
+	EMS_2_EngineSpeedValid,
+	EMS_2_Timeout_Flag,
+	F2_ITEM_MAX,
+} F2_ITEM;
+
+typedef enum
+{
+	F3_ABS_3_VehicleSpeed,
+	F3_ABS_3_VehicleSpeedValid,
+	F3_ABS_3_Timeout_Flag,
+	F3_EMS_2_EngineSpeed,
+	F3_EMS_2_EngineSpeedValid,
+	F3_EMS_2_Timeout_Flag,
+	IC_SurplusFuel,
+	IC_SurplusFuelValid,
+	IC_FuelSignalShortToGND,
+	IC_FuelSignalShortToBattery,
+	IC_FuelSignalOpen,
+    F3_ITEM_MAX,
+} F3_ITEM;
+
+typedef enum
+{
+	EMS_4_EngineCoolantTemp,
+	EMS_4_EngineCoolantTempValid,
+	EMS_4_Timeout_Flag,
+    F4_ITEM_MAX,
+} F4_ITEM;
+
+typedef enum
+{
+	F5_ABS_3_VehicleSpeed,
+	F5_ABS_3_VehicleSpeedValid,
+	F5_ABS_3_Timeout_Flag,
+	IC_OdoMeter,
+    F5_ITEM_MAX,
+} F5_ITEM;
+
+typedef enum
+{
+	F6_ABS_3_VehicleSpeed,
+	F6_ABS_3_VehicleSpeedValid,
+	F6_ABS_3_Timeout_Flag,
+	F6_EMS_2_EngineSpeed,
+	F6_EMS_2_EngineSpeedValid,
+	F6_EMS_2_Timeout_Flag,
+	EMS_4_FuelConsumption,
+	F6_EMS_4_Timeout_Flag,
+	IC_SurplusMileage,
+    F6_ITEM_MAX,
+} F6_ITEM;
+
+typedef enum
+{
+	F7_ABS_3_VehicleSpeed,
+	F7_ABS_3_VehicleSpeedValid,
+	F7_ABS_3_Timeout_Flag,
+	F7_EMS_2_EngineSpeed,
+	F7_EMS_2_EngineSpeedValid,
+	F7_EMS_2_Timeout_Flag,
+	F7_EMS_4_FuelConsumption,
+	F7_EMS_4_Timeout_Flag,
+	IC_LifeTimeAvgFuelConsRate,
+	IC_TripAvgFuelConsRate,
+    F7_ITEM_MAX,
+} F7_ITEM;
+
+typedef enum
+{
+	TPMS_SystemStatus,
+	TPMS_TireID,
+	TPMS_SensorLost,
+	TPMS_TireLeakage,
+	TPMS_LearningStatus,
+	TPMS_TirePressureStatus,
+	TPMS_TirePressure,
+    F8_ITEM_MAX,
+} F8_ITEM;
+
+typedef enum
+{
+	BCM_1_FrontLeftDoorSts,
+	BCM_1_FrontRightDoorSts,
+	BCM_1_RearLeftDoorSts,
+	BCM_1_RearRightDoorSts,
+	BCM_1_TailGateOpenSts,
+	BCM_1_HoodSts,
+	BCM_1_Timeout_Flag,
+    F9_ITEM_MAX,
+} F9_ITEM;
+
+typedef enum
+{
+	TCU_3_TargetGear,
+	TCU_3_TargetGearValid,
+	TCU_1_GearShiftPosition,
+	TCU_1_GearShiftPositionValid,
+	TCU_1_Timeout_Flag,
+	TCU_3_Timeout_Flag1,
+    F10_ITEM_MAX,
+} F10_ITEM;
+
+typedef enum
+{
+	EDL_1_RearDiffLockGreenLamp,
+	EDL_1_RearDiffLockYellowLamp,
+	EDL_1_FrontDiffLockGreenLamp,
+	EDL_1_FrontDiffLockYellowLamp,
+	EDL_1_Timeout_Flag,
+    F11_ITEM_MAX,
+} F11_ITEM;
+
+typedef enum
+{
+	AC_2_OutsideTemperatureValid,
+	AC_2_OutsideTemperatureValid,
+	AC_2_Timeout_Flag,
+    F12_ITEM_MAX,
+} F12_ITEM;
+
+typedef enum
+{
+    F13_ITEM_MAX,
+} F13_ITEM;
+
+typedef enum
+{
+    F14_ITEM_MAX,
+} F14_ITEM;
+
+typedef enum
+{
+    F15_ITEM_MAX,
+} F15_ITEM;
+
+typedef enum
+{
+    F16_ITEM_MAX,
+} F16_ITEM;
+
+typedef enum
+{
+    F17_ITEM_MAX,
+} F17_ITEM;
+
+typedef enum
+{
+    F18_ITEM_MAX,
+} F18_ITEM;
+
+typedef enum
+{
+    F19_ITEM_MAX,
+} F19_ITEM;
+
+typedef enum
+{
+    F20_ITEM_MAX,
+} F20_ITEM;
+
+typedef enum
+{
+    F21_ITEM_MAX,
+} F21_ITEM;
+
+typedef enum
+{
+    F22_ITEM_MAX,
+} F22_ITEM;
+
+typedef enum
+{
+    F23_ITEM_MAX,
+} F23_ITEM;
+
+typedef enum
+{
+    F24_ITEM_MAX,
+} F24_ITEM;
+
+typedef enum
+{
+    F25_ITEM_MAX,
+} F25_ITEM;
+
+typedef enum
+{
+    F26_ITEM_MAX,
+} F26_ITEM;
+
+typedef enum
+{
+    F27_ITEM_MAX,
+} F27_ITEM;
+
+typedef enum
+{
+    F28_ITEM_MAX,
+} F28_ITEM;
+
+typedef enum
+{
+    F29_ITEM_MAX,
+} F29_ITEM;
+
+typedef enum
+{
+    F30_ITEM_MAX,
+} F30_ITEM;
+
+typedef enum
+{
+    F31_ITEM_MAX,
+} F31_ITEM;
+
+typedef enum
+{
+    F32_ITEM_MAX,
+} F32_ITEM;
+
+typedef enum
+{
+    F33_ITEM_MAX,
+} F33_ITEM;
+
+typedef enum
+{
+    F34_ITEM_MAX,
+} F34_ITEM;
+
+typedef enum
+{
+    F35_ITEM_MAX,
+} F35_ITEM;
+
+typedef enum
+{
+    F36_ITEM_MAX,
+} F36_ITEM;
+
+typedef enum
+{
+    F37_ITEM_MAX,
+} F37_ITEM;
+
+typedef enum
+{
+    F38_ITEM_MAX,
+} F38_ITEM;
+
+typedef enum
+{
+    F39_ITEM_MAX,
+} F39_ITEM;
+
+typedef enum
+{
+    F40_ITEM_MAX,
+} F40_ITEM;
+
+typedef enum
+{
+    F41_ITEM_MAX,
+} F41_ITEM;
+
+typedef enum
+{
+    F42_ITEM_MAX,
+} F42_ITEM;
+
+typedef enum
+{
+    F43_ITEM_MAX,
+} F43_ITEM;
+
+typedef enum
+{
+    F44_ITEM_MAX,
+} F44_ITEM;
+
+typedef enum
+{
+    F45_ITEM_MAX,
+} F45_ITEM;
+
+typedef enum
+{
+    F46_ITEM_MAX,
+} F46_ITEM;
+
+typedef enum
+{
+    F47_ITEM_MAX,
+} F47_ITEM;
+
+typedef enum
+{
+    F48_ITEM_MAX,
+} F48_ITEM;
+
+typedef enum
+{
+    F49_ITEM_MAX,
+} F49_ITEM;
+
+typedef enum
+{
+    F50_ITEM_MAX,
+} F50_ITEM;
+
+typedef enum
+{
+    F51_ITEM_MAX,
+} F51_ITEM;
+
+typedef enum
+{
+    F52_ITEM_MAX,
+} F52_ITEM;
+
+typedef enum
+{
+    F53_ITEM_MAX,
+} F53_ITEM;
+
+typedef enum
+{
+    F54_ITEM_MAX,
+} F54_ITEM;
+
+typedef enum
+{
+    F55_ITEM_MAX,
+} F55_ITEM;
+
+typedef enum
+{
+    F56_ITEM_MAX,
+} F56_ITEM;
+
+typedef enum
+{
+    F57_ITEM_MAX,
+} F57_ITEM;
+
+typedef enum
+{
+    F58_ITEM_MAX,
+} F58_ITEM;
+
+typedef enum
+{
+    F59_ITEM_MAX,
+} F59_ITEM;
+
+typedef enum
+{
+    F60_ITEM_MAX,
+} F60_ITEM;
+
+typedef enum
+{
+    F61_ITEM_MAX,
+} F61_ITEM;
+
+typedef enum
+{
+    F62_ITEM_MAX,
+} F62_ITEM;
+
+typedef enum
+{
+    F63_ITEM_MAX,
+} F63_ITEM;
+
+typedef enum
+{
+    F64_ITEM_MAX,
+} F64_ITEM;
+
+typedef enum
+{
+    F65_ITEM_MAX,
+} F65_ITEM;
+
+typedef enum
+{
+    F66_ITEM_MAX,
+} F66_ITEM;
+
+typedef enum
+{
+    F67_ITEM_MAX,
+} F67_ITEM;
+
+typedef enum
+{
+    F68_ITEM_MAX,
+} F68_ITEM;
+
+typedef enum
+{
+    F69_ITEM_MAX,
+} F69_ITEM;
+
+typedef enum
+{
+    F70_ITEM_MAX,
+} F70_ITEM;
+
+typedef enum
+{
+    F71_ITEM_MAX,
+} F71_ITEM;
+
+typedef enum
+{
+    F72_ITEM_MAX,
+} F72_ITEM;
+
+typedef enum
+{
+    F73_ITEM_MAX,
+} F73_ITEM;
+
+typedef enum
+{
+    F74_ITEM_MAX,
+} F74_ITEM;
+
+typedef enum
+{
+    F75_ITEM_MAX,
+} F75_ITEM;
+
+typedef enum
+{
+    F76_ITEM_MAX,
+} F76_ITEM;
+
+typedef enum
+{
+    F77_ITEM_MAX,
+} F77_ITEM;
+
+typedef enum
+{
+    F78_ITEM_MAX,
+} F78_ITEM;
+
+#endif // _LCD12864_ENUM_H_

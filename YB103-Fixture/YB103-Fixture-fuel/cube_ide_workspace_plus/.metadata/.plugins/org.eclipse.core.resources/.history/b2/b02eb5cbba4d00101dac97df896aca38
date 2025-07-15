@@ -1,0 +1,644 @@
+#include <App_CAN_YB103_fuel_CanDbcSignal.h>
+#include "FreeRTOS.h"
+#include "task.h"
+#include "dbc_can_core.h"
+#include "can.h"
+#include "lcd12864.h"
+#include "Service_CanComm_il.h"
+
+
+extern const CanTransmitConfig_t *ilTxTable;
+extern uint8_t iBytesOfTxHandles;
+extern CanMsgTxStateBuffer_Struct * CanMsgTxStateBufferPtr;
+static uint8_t Svc_CanCommUpInf_TxConfigTableInit(CanTransmitConfig_t *p_TxTable)
+{
+   if(p_TxTable != NULL)
+   {
+      ilTxTable = p_TxTable;
+      return TRUE;
+   }
+   else
+   {
+      return FALSE;
+   }
+}
+
+static uint8_t Svc_CanCommUpInf_TxConfigTableLenInit(uint8_t TxTableLen)
+{
+   if(TxTableLen != 0)
+   {
+      iBytesOfTxHandles = TxTableLen;
+      return TRUE;
+   }
+   else
+   {
+      return FALSE;
+   }
+}
+
+static uint8_t Service_CanComm_CanMsgTxStateBufferInit(CanMsgTxStateBuffer_Struct * p_StateBuffer)
+{
+   if(p_StateBuffer != NULL)
+   {
+      CanMsgTxStateBufferPtr = p_StateBuffer;
+      return TRUE;
+   }
+   else
+   {
+      return FALSE;
+   }
+}
+
+void Can_SendSts_Control(uint8_t CanSendSts)
+{
+    if(E_CANSEND_OPEN == CanSendSts)
+    {
+        // Set_CanEventType_Cycle();
+        HAL_GPIO_WritePin(GPIOC,GPIO_PIN_6,GPIO_PIN_SET);
+        HAL_GPIO_WritePin(GPIOB,GPIO_PIN_15,GPIO_PIN_SET);
+    }
+    else
+    {
+        // Set_CanCycleType_Event();
+        HAL_GPIO_WritePin(GPIOC,GPIO_PIN_6,GPIO_PIN_RESET);
+        delay_us(100);
+        HAL_GPIO_WritePin(GPIOB,GPIO_PIN_15,GPIO_PIN_RESET);
+    }
+}
+
+void App_Init(void)
+{
+    Svc_CanCommUpInf_TxConfigTableInit(CanTransmitConfig_Table);
+    Svc_CanCommUpInf_TxConfigTableLenInit(CanTxMsgIndex_Max);
+    Service_CanComm_CanMsgTxStateBufferInit(&CanMsgTxStateBuffer[0]);
+}
+
+void CanGetMsgSignal(void)
+{
+	//F1
+	CanTx_SigSet_0x250_ABS_3_VehicleSpeed(GetF1Value(ABS_3_VehicleSpeed));
+	CanTx_SigSet_0x250_ABS_3_VehicleSpeedValid(GetF1Value(ABS_3_VehicleSpeedValid));
+	CanTx_SigSet_0x250_ABS_3_Timeout_Flag(GetF1Value(ABS_3_Timeout_Flag));
+	CanTx_SigSet_0x375_IC_DisplayVehicleSpeedUnit(GetF1Value(IC_DisplayVehicleSpeedUnit));
+	CanTx_SigSet_0x375_IC_DisplayVehicleSpeedValue(GetF1Value(IC_DisplayVehicleSpeedValue));
+	//F2
+	CanTx_SigSet_0x150_EMS_2_EngineSpeed(GetF2Value(EMS_2_EngineSpeed));
+	CanTx_SigSet_0x150_EMS_2_EngineSpeedValid(GetF2Value(EMS_2_EngineSpeedValid));
+	CanTx_SigSet_0x150_EMS_2_Timeout_Flag(GetF2Value(EMS_2_Timeout_Flag));
+	//F3
+	CanTx_SigSet_0x375_IC_SurplusFuel(GetF3Value(IC_SurplusFuel));
+	CanTx_SigSet_0x375_IC_SurplusFuelValid(GetF3Value(IC_SurplusFuelValid));
+	CanTx_SigSet_0x375_IC_FuelSignalShortToGND(GetF3Value(IC_FuelSignalShortToGND));
+    CanTx_SigSet_0x375_IC_FuelSignalShortToBattery(GetF3Value(IC_FuelSignalShortToBattery));
+	CanTx_SigSet_0x375_IC_FuelSignalOpen(GetF3Value(IC_FuelSignalOpen));
+	//F4
+	CanTx_SigSet_0x155_EMS_4_EngineCoolantTemp(GetF4Value(EMS_4_EngineCoolantTemp));
+	CanTx_SigSet_0x155_EMS_4_EngineCoolantTempValid(GetF4Value(EMS_4_EngineCoolantTempValid));
+	CanTx_SigSet_0x155_EMS_4_Timeout_Flag(GetF4Value(EMS_4_Timeout_Flag));
+	//F5
+	CanTx_SigSet_0x375_IC_OdoMeter(GetF5Value(IC_OdoMeter));
+	//F6
+	CanTx_SigSet_0x155_EMS_4_FuelConsumption(GetF6Value(EMS_4_FuelConsumption));
+	CanTx_SigSet_0x375_IC_SurplusMileage(GetF6Value(IC_SurplusMileage));
+	//F7
+	CanTx_SigSet_0x376_IC_TripAvgFuelConsRate(GetF7Value(IC_TripAvgFuelConsRate));
+	CanTx_SigSet_0x376_IC_LifeTimeAvgFuelConsRate(GetF7Value(IC_LifeTimeAvgFuelConsRate));
+	//F8
+	CanTx_SigSet_0x365_TPMS_SystemStatus(GetF8Value(TPMS_SystemStatus));
+	CanTx_SigSet_0x365_TPMS_TireID(GetF8Value(TPMS_TireID));
+    CanTx_SigSet_0x365_TPMS_SensorLost(GetF8Value(TPMS_SensorLost));
+    CanTx_SigSet_0x365_TPMS_TireLeakage(GetF8Value(TPMS_TireLeakage));
+	CanTx_SigSet_0x365_TPMS_LearningStatus(GetF8Value(TPMS_LearningStatus));
+	CanTx_SigSet_0x365_TPMS_TirePressureStatus(GetF8Value(TPMS_TirePressureStatus));
+	CanTx_SigSet_0x365_TPMS_TirePressure(GetF8Value(TPMS_TirePressure));
+	//F9
+	CanTx_SigSet_0x3A7_BCM_1_FrontLeftDoorSts(GetF9Value(BCM_1_FrontLeftDoorSts));
+	CanTx_SigSet_0x3A7_BCM_1_FrontRightDoorSts(GetF9Value(BCM_1_FrontRightDoorSts));
+    CanTx_SigSet_0x3A7_BCM_1_RearLeftDoorSts(GetF9Value(BCM_1_RearLeftDoorSts));
+	CanTx_SigSet_0x3A7_BCM_1_RearRightDoorSts(GetF9Value(BCM_1_RearRightDoorSts));
+	CanTx_SigSet_0x3A7_BCM_1_TailGateOpenSts(GetF9Value(BCM_1_TailGateOpenSts));
+    CanTx_SigSet_0x3A7_BCM_1_HoodSts(GetF9Value(BCM_1_HoodSts));
+    CanTx_SigSet_0x3A7_BCM_1_Timeout_Flag(GetF9Value(BCM_1_Timeout_Flag));
+    //F10
+    CanTx_SigSet_0x155_TCU_3_TargetGearValid(GetF10Value(TCU_3_TargetGearValid));
+	CanTx_SigSet_0x155_TCU_3_TargetGear(GetF10Value(TCU_3_TargetGear));
+	CanTx_SigSet_0x150_TCU_1_GearShiftPositionValid(GetF10Value(TCU_1_GearShiftPositionValid));
+	CanTx_SigSet_0x150_TCU_1_GearShiftPosition(GetF10Value(TCU_1_GearShiftPosition));
+	CanTx_SigSet_0x155_TCU_3_Timeout_Flag1(GetGW_PC_6Value(TCU_3_Timeout_Flag1));
+	CanTx_SigSet_0x150_TCU_1_Timeout_Flag(GetF10Value(TCU_1_Timeout_Flag));
+
+
+
+//	  CanTx_SigSet_0x150_TCU_3_Timeout_Flag(GetF10Value(TCU_3_Timeout_Flag1));
+//    CanTx_SigSet_0x90_IHU_LDWWarnVoiceSwtSet(GetIHU_3Value(IHU_LDWWarnVoiceSwtSet));
+//    CanTx_SigSet_0x90_IHU_FCWSwtSet(GetIHU_3Value(IHU_FCWSwtSet));
+//    CanTx_SigSet_0x90_IHU_FCWSnvtySet(GetIHU_3Value(IHU_FCWSnvtySet));
+//    CanTx_SigSet_0x90_IHU_AEBSwtSet(GetIHU_3Value(IHU_AEBSwtSet));
+//    CanTx_SigSet_0x90_IHU_IHBCSwtSet(GetIHU_3Value(IHU_IHBCSwtSet));
+//    CanTx_SigSet_0x90_IHU_TSRSwtSet(GetIHU_3Value(IHU_TSRSwtSet));
+//    CanTx_SigSet_0x90_IHU_LDWLDPSnvtySet(GetIHU_3Value(IHU_LDWLDPSnvtySet));
+//    CanTx_SigSet_0x90_IHU_LDWSwtSet(GetIHU_3Value(IHU_LDWSwtSet));
+//    CanTx_SigSet_0x90_IHU_AutoWshWipSet(GetIHU_3Value(IHU_AutoWshWipSet));
+//    CanTx_SigSet_0x90_IHU_FlaoutUnlockSet(GetIHU_3Value(IHU_FlaoutUnlockSet));
+//    CanTx_SigSet_0x90_IHU_TSROverSpeedAcousticSwSet(GetIHU_3Value(IHU_TSROverSpeedAcousticSwSet));
+//    CanTx_SigSet_0x90_IHU_TSROverSpeedSwSet(GetIHU_3Value(IHU_TSROverSpeedSwSet));
+//    CanTx_SigSet_0x90_IHU_WindowRemoteAutoDownSet(GetIHU_3Value(IHU_WindowRemoteAutoDownSet));
+//    CanTx_SigSet_0x90_IHU_HornAlertVolumeSet(GetIHU_3Value(IHU_HornAlertVolumeSet));
+//    CanTx_SigSet_0x90_IHU_SpeedLockSet(GetIHU_3Value(IHU_SpeedLockSet));
+//    CanTx_SigSet_0x90_IHU_SearchCarWarnModSet(GetIHU_3Value(IHU_SearchCarWarnModSet));
+//    CanTx_SigSet_0x90_IHU_WindowAutoUPbyLockSet(GetIHU_3Value(IHU_WindowAutoUPbyLockSet));
+//    CanTx_SigSet_0x90_IHU_exRearMirrorAutoFoldSet(GetIHU_3Value(IHU_exRearMirrorAutoFoldSet));
+//    CanTx_SigSet_0x90_IHU_AssistIlluminationSet(GetIHU_3Value(IHU_AssistIlluminationSet));
+//    CanTx_SigSet_0x90_IHU_FRSeatHeatLvlSet(GetIHU_3Value(IHU_FRSeatHeatLvlSet));
+//    CanTx_SigSet_0x90_IHU_FLSeatHeatLvlSet(GetIHU_3Value(IHU_FLSeatHeatLvlSet));
+//    CanTx_SigSet_0x90_IHU_FLSeatMassgModSet(GetIHU_3Value(IHU_FLSeatMassgModSet));
+//    CanTx_SigSet_0x90_IHU_FLSeatMassgLvlSet(GetIHU_3Value(IHU_FLSeatMassgLvlSet));
+//    CanTx_SigSet_0x90_IHU_Nozzleheatingset(GetIHU_3Value(IHU_Nozzleheatingset));
+//    CanTx_SigSet_0x90_IHU_Frontwindshieldheatingtset(GetIHU_3Value(IHU_Frontwindshieldheatingtset));
+//    CanTx_SigSet_0x90_IHU_ClsWinSpdSet(GetIHU_3Value(IHU_ClsWinSpdSet));
+//
+//    CanTx_SigSet_0x91_IHU_WindowPosFLCmd(GetIHU_6Value(IHU_WindowPosFLCmd));
+//    CanTx_SigSet_0x91_IHU_WindowPosFRCmd(GetIHU_6Value(IHU_WindowPosFRCmd));
+//    CanTx_SigSet_0x91_IHU_WindowPosRLCmd(GetIHU_6Value(IHU_WindowPosRLCmd));
+//    CanTx_SigSet_0x91_IHU_WindowPosRRCmd(GetIHU_6Value(IHU_WindowPosRRCmd));
+//    CanTx_SigSet_0x91_IHU_BackMirrorFoldCmd(GetIHU_6Value(IHU_BackMirrorFoldCmd));
+//    CanTx_SigSet_0x91_IHU_SunroofCmd(GetIHU_6Value(IHU_SunroofCmd));
+//
+//    CanTx_SigSet_0x92_IHU_AmbientLightLvlSet(GetIHU_10Value(IHU_AmbientLightLvlSet));
+//    CanTx_SigSet_0x92_IHU_AmbientLightSwtSet(GetIHU_10Value(IHU_AmbientLightSwtSet));
+//    CanTx_SigSet_0x92_IHU_SteeringWheelHeatingSWSet(GetIHU_10Value(IHU_SteeringWheelHeatingSWSet));
+//
+//    CanTx_SigSet_0x250_ESP_1_HDCControl(GetGW_PC_2Value(ESP_1_HDCControl));
+//    CanTx_SigSet_0x250_ESP_1_DVTSessionFlag(GetGW_PC_2Value(ESP_1_DVTSessionFlag));
+//    CanTx_SigSet_0x250_ESP_1_TCSFault(GetGW_PC_2Value(ESP_1_TCSFault));
+//    CanTx_SigSet_0x250_ESP_1_ESPFault(GetGW_PC_2Value(ESP_1_ESPFault));
+//    CanTx_SigSet_0x250_ESP_1_TCSActive(GetGW_PC_2Value(ESP_1_TCSActive));
+//    CanTx_SigSet_0x250_ESP_1_ESPActive(GetGW_PC_2Value(ESP_1_ESPActive));
+//    CanTx_SigSet_0x250_ESP_1_ESPOff(GetGW_PC_2Value(ESP_1_ESPOff));
+//    CanTx_SigSet_0x250_ABS_3_AbsActive(GetGW_PC_2Value(ABS_3_AbsActive));
+//    CanTx_SigSet_0x250_EPB_1_AutoholdValid(GetGW_PC_2Value(EPB_1_AutoholdValid));
+//    CanTx_SigSet_0x250_EPB_1_AutoholdActive(GetGW_PC_2Value(EPB_1_AutoholdActive));
+//    CanTx_SigSet_0x250_EPB_1_ActiveLamp(GetGW_PC_2Value(EPB_1_ActiveLamp));
+//    CanTx_SigSet_0x250_EPB_1_WarningLamp(GetGW_PC_2Value(EPB_1_WarningLamp));
+//    CanTx_SigSet_0x250_EPB_1_AutoHold_Standby(GetGW_PC_2Value(EPB_1_AutoHold_Standby));
+//    CanTx_SigSet_0x250_ESP_1_HDCFault(GetGW_PC_2Value(ESP_1_HDCFault));
+
+//    CanTx_SigSet_0x250_ABS_3_AbsFault(GetGW_PC_2Value(ABS_3_AbsFault));
+//    CanTx_SigSet_0x250_SAS_1_CalibratedSt(GetGW_PC_2Value(SAS_1_CalibratedSt));
+//    CanTx_SigSet_0x250_SAS_1_FailureSts(GetGW_PC_2Value(SAS_1_FailureSts));
+//    CanTx_SigSet_0x250_SAS_1_SteeringAngleValid(GetGW_PC_2Value(SAS_1_SteeringAngleValid));
+//    CanTx_SigSet_0x250_ABS_3_EbdFault(GetGW_PC_2Value(ABS_3_EbdFault));
+//    CanTx_SigSet_0x250_ABS_3_EbdActive(GetGW_PC_2Value(ABS_3_EbdActive));
+//    CanTx_SigSet_0x250_SAS_1_SteeringAngle(GetGW_PC_2Value(SAS_1_SteeringAngle));
+//    CanTx_SigSet_0x250_EPB_1_InhibitDriveOffNotice(GetGW_PC_2Value(EPB_1_InhibitDriveOffNotice));
+//    CanTx_SigSet_0x250_SAS_1_Timeout_Flag(GetGW_PC_2Value(SAS_1_Timeout_Flag));
+
+//    CanTx_SigSet_0x250_EPB_1_Timeout_Flag(GetGW_PC_2Value(EPB_1_Timeout_Flag));
+//    CanTx_SigSet_0x250_ESP_1_Timeout_Flag(GetGW_PC_2Value(ESP_1_Timeout_Flag));
+//
+//    CanTx_SigSet_0x255_AWD_1_DiagnosticLampRequest(GetGW_PC_7Value(AWD_1_DiagnosticLampRequest));
+//    CanTx_SigSet_0x255_AWD_1_ShiftSystemEncoderFault(GetGW_PC_7Value(AWD_1_ShiftSystemEncoderFault));
+//    CanTx_SigSet_0x255_AWD_1_ShiftSystemStuckinLow(GetGW_PC_7Value(AWD_1_ShiftSystemStuckinLow));
+//    CanTx_SigSet_0x255_AWD_1_ShiftSystemActuatorFault(GetGW_PC_7Value(AWD_1_ShiftSystemActuatorFault));
+//    CanTx_SigSet_0x255_AWD_1_SystemOperatingMode(GetGW_PC_7Value(AWD_1_SystemOperatingMode));
+//    CanTx_SigSet_0x255_AWD_1_Lamp4WDLow(GetGW_PC_7Value(AWD_1_Lamp4WDLow));
+//    CanTx_SigSet_0x255_AWD_1_Lamp4WDLock(GetGW_PC_7Value(AWD_1_Lamp4WDLock));
+//    CanTx_SigSet_0x255_AWD_1_Lamp2WD(GetGW_PC_7Value(AWD_1_Lamp2WD));
+//    CanTx_SigSet_0x255_AWD_1_ClutchCircuitFaultStatus(GetGW_PC_7Value(AWD_1_ClutchCircuitFaultStatus));
+//    CanTx_SigSet_0x255_EDL_1_FrontDiffLockYellowLamp(GetGW_PC_7Value(EDL_1_FrontDiffLockYellowLamp));
+//    CanTx_SigSet_0x255_EDL_1_FrontDiffLockGreenLamp(GetGW_PC_7Value(EDL_1_FrontDiffLockGreenLamp));
+//    CanTx_SigSet_0x255_AWD_1_OpreationNotice(GetGW_PC_7Value(AWD_1_OpreationNotice));
+//    CanTx_SigSet_0x255_EDL_1_StatusNotice(GetGW_PC_7Value(EDL_1_StatusNotice));
+//    CanTx_SigSet_0x255_EDL_1_RearDiffLockYellowLamp(GetGW_PC_7Value(EDL_1_RearDiffLockYellowLamp));
+//    CanTx_SigSet_0x255_EDL_1_RearDiffLockGreenLamp(GetGW_PC_7Value(EDL_1_RearDiffLockGreenLamp));
+//    CanTx_SigSet_0x255_EDL_1_Timeout_Flag(GetGW_PC_7Value(EDL_1_Timeout_Flag));
+//    CanTx_SigSet_0x255_AWD_1_Timeout_Flag(GetGW_PC_7Value(AWD_1_Timeout_Flag));
+//
+//    CanTx_SigSet_0x268_PEPS_ESCL_LearningStatus(GetPEPS_1Value(PEPS_ESCL_LearningStatus));
+//    CanTx_SigSet_0x268_PEPS_ESCL_FailStatus(GetPEPS_1Value(PEPS_ESCL_FailStatus));
+//    CanTx_SigSet_0x268_PEPS_SSB_FailStatus(GetPEPS_1Value(PEPS_SSB_FailStatus));
+//    CanTx_SigSet_0x268_PEPS_PIN_LearningStatus(GetPEPS_1Value(PEPS_PIN_LearningStatus));
+//    CanTx_SigSet_0x268_PEPS_PowerRelayOutputFail(GetPEPS_1Value(PEPS_PowerRelayOutputFail));
+//    CanTx_SigSet_0x268_PEPS_FailStatus(GetPEPS_1Value(PEPS_FailStatus));
+//    CanTx_SigSet_0x268_PEPS_NotPNWarning(GetPEPS_1Value(PEPS_NotPNWarning));
+//    CanTx_SigSet_0x268_PEPS_ESCL_NotLockWarning(GetPEPS_1Value(PEPS_ESCL_NotLockWarning));
+//    CanTx_SigSet_0x268_PEPS_ESCL_NotUnlockWarning(GetPEPS_1Value(PEPS_ESCL_NotUnlockWarning));
+//    CanTx_SigSet_0x268_PEPS_LockNotOFFWarning(GetPEPS_1Value(PEPS_LockNotOFFWarning));
+//    CanTx_SigSet_0x268_PEPS_KeyIntWarning1(GetPEPS_1Value(PEPS_KeyIntWarning1));
+//    CanTx_SigSet_0x268_PEPS_KeyBatteryWarning(GetPEPS_1Value(PEPS_KeyBatteryWarning));
+//    CanTx_SigSet_0x268_PEPS_KeyOutWarning1(GetPEPS_1Value(PEPS_KeyOutWarning1));
+//    CanTx_SigSet_0x268_PEPS_NoKeyFoundWarning(GetPEPS_1Value(PEPS_NoKeyFoundWarning));
+//    CanTx_SigSet_0x268_PEPS_KeyReminderWarning(GetPEPS_1Value(PEPS_KeyReminderWarning));
+//    CanTx_SigSet_0x268_PEPS_ClutchIndicationWarning(GetPEPS_1Value(PEPS_ClutchIndicationWarning));
+//    CanTx_SigSet_0x268_PEPS_BrakeIndicationWarning(GetPEPS_1Value(PEPS_BrakeIndicationWarning));
+//
+//    CanTx_SigSet_0x269_PEPS_RemoteControlSt(GetPEPS_3Value(PEPS_RemoteControlSt));
+//    CanTx_SigSet_0x269_PEPS_3_RollingCounter(GetPEPS_3Value(PEPS_3_RollingCounter));
+//    CanTx_SigSet_0x269_PEPS_3_Checksum(GetPEPS_3Value(PEPS_3_Checksum));
+//
+//    CanTx_SigSet_0x300_IHU_RearDefrostButtonSts(GetIHU_1Value(IHU_RearDefrostButtonSts));
+//    CanTx_SigSet_0x300_IHU_FrontDefrostButtonSts(GetIHU_1Value(IHU_FrontDefrostButtonSts));
+//    CanTx_SigSet_0x300_IHU_ACSelfCleanModeSet(GetIHU_1Value(IHU_ACSelfCleanModeSet));
+//    CanTx_SigSet_0x300_IHU_EPMModSet(GetIHU_1Value(IHU_EPMModSet));
+//    CanTx_SigSet_0x300_IHU_ACButtonSts(GetIHU_1Value(IHU_ACButtonSts));
+//    CanTx_SigSet_0x300_IHU_LeaveHome_Time(GetIHU_1Value(IHU_LeaveHome_Time));
+//    CanTx_SigSet_0x300_IHU_FollowMeHome_Time(GetIHU_1Value(IHU_FollowMeHome_Time));
+//    CanTx_SigSet_0x300_IHU_ACSystemOff(GetIHU_1Value(IHU_ACSystemOff));
+//    CanTx_SigSet_0x300_IHU_TemperatureAjust(GetIHU_1Value(IHU_TemperatureAjust));
+//    CanTx_SigSet_0x300_IHU_InteriorLightTimeAjust(GetIHU_1Value(IHU_InteriorLightTimeAjust));
+//    CanTx_SigSet_0x300_IHU_AirCirculationMode(GetIHU_1Value(IHU_AirCirculationMode));
+//    CanTx_SigSet_0x300_IHU_AirDistributeMode(GetIHU_1Value(IHU_AirDistributeMode));
+//    CanTx_SigSet_0x300_IHU_BlowerSpeedAjust(GetIHU_1Value(IHU_BlowerSpeedAjust));
+//    CanTx_SigSet_0x300_IHU_AUTOPassengerButtonSts(GetIHU_1Value(IHU_AUTOPassengerButtonSts));
+//    CanTx_SigSet_0x300_IHU_AUTOButtonSts(GetIHU_1Value(IHU_AUTOButtonSts));
+//    CanTx_SigSet_0x300_IHU_PTCButtonSts(GetIHU_1Value(IHU_PTCButtonSts));
+//    CanTx_SigSet_0x300_IHU_DriverSetTemperature(GetIHU_1Value(IHU_DriverSetTemperature));
+//    CanTx_SigSet_0x300_IHU_DualButtonSts(GetIHU_1Value(IHU_DualButtonSts));
+//    CanTx_SigSet_0x300_IHU_SS_Set(GetIHU_1Value(IHU_SS_Set));
+//    CanTx_SigSet_0x300_IHU_PngSetTemperature(GetIHU_1Value(IHU_PngSetTemperature));
+//    CanTx_SigSet_0x300_IHU_WirelessChargeSwtSet(GetIHU_1Value(IHU_WirelessChargeSwtSet));
+//    CanTx_SigSet_0x300_IHU_DrivemodeSet(GetIHU_1Value(IHU_DrivemodeSet));
+//
+//    CanTx_SigSet_0x302_FCM_FCWONOFFSts(GetFCM_3Value(FCM_FCWONOFFSts));
+//    CanTx_SigSet_0x302_FCM_AEBMode(GetFCM_3Value(FCM_AEBMode));
+//    CanTx_SigSet_0x302_FCM_AEBONOFFSts(GetFCM_3Value(FCM_AEBONOFFSts));
+//    CanTx_SigSet_0x302_FCM_FCWpreWarning(GetFCM_3Value(FCM_FCWpreWarning));
+//    CanTx_SigSet_0x302_FCM_DistanceWarning(GetFCM_3Value(FCM_DistanceWarning));
+//    CanTx_SigSet_0x302_FCM_FCWSnvtySts(GetFCM_3Value(FCM_FCWSnvtySts));
+//    CanTx_SigSet_0x302_FCM_FCWMode(GetFCM_3Value(FCM_FCWMode));
+//    CanTx_SigSet_0x302_FCM_ACCTakeOverReq(GetFCM_3Value(FCM_ACCTakeOverReq));
+//    CanTx_SigSet_0x302_FCM_ACCMode(GetFCM_3Value(FCM_ACCMode));
+//    CanTx_SigSet_0x302_FCM_TimeGapSetICM(GetFCM_3Value(FCM_TimeGapSetICM));
+//    CanTx_SigSet_0x302_FCM_ACCVSetDis(GetFCM_3Value(FCM_ACCVSetDis));
+//    CanTx_SigSet_0x302_FCM_ACCTextInfo(GetFCM_3Value(FCM_ACCTextInfo));
+//    CanTx_SigSet_0x302_FCM_AEBTextInfo(GetFCM_3Value(FCM_AEBTextInfo));
+//    CanTx_SigSet_0x302_FCM_DVMode(GetFCM_3Value(FCM_DVMode));
+//    CanTx_SigSet_0x302_FCM_CameraTextInfo(GetFCM_3Value(FCM_CameraTextInfo));
+//
+//    CanTx_SigSet_0x303_FCM_LDWLKATypefeedback(GetFCM_4Value(FCM_LDWLKATypefeedback));
+//    CanTx_SigSet_0x303_FCM_LDWSysSts(GetFCM_4Value(FCM_LDWSysSts));
+//    CanTx_SigSet_0x303_FCM_LDWONOFFSts(GetFCM_4Value(FCM_LDWONOFFSts));
+//    CanTx_SigSet_0x303_FCM_LDW_ELK_TJA_LDPLeftVisuali(GetFCM_4Value(FCM_LDW_ELK_TJA_LDPLeftVisuali));
+//    CanTx_SigSet_0x303_FCM_LDP_TJA_ELKTakeoverReq(GetFCM_4Value(FCM_LDP_TJA_ELKTakeoverReq));
+//    CanTx_SigSet_0x303_FCM_LDWWarnModSts(GetFCM_4Value(FCM_LDWWarnModSts));
+//    CanTx_SigSet_0x303_FCM_LDWLDPSnvtySts(GetFCM_4Value(FCM_LDWLDPSnvtySts));
+//    CanTx_SigSet_0x303_FCM_TSRState(GetFCM_4Value(FCM_TSRState));
+//    CanTx_SigSet_0x303_FCM_TSROverSpeedAcousticONOFFSts(GetFCM_4Value(FCM_TSROverSpeedAcousticONOFFSts));
+//    CanTx_SigSet_0x303_FCM_TSROverSpeedONOFFSts(GetFCM_4Value(FCM_TSROverSpeedONOFFSts));
+//    CanTx_SigSet_0x303_FCM_TSRONOFFSts(GetFCM_4Value(FCM_TSRONOFFSts));
+//    CanTx_SigSet_0x303_FCM_LDW_ELK_TJA_LDPRightVisuali(GetFCM_4Value(FCM_LDW_ELK_TJA_LDPRightVisuali));
+//    CanTx_SigSet_0x303_FCM_TSRDisplay(GetFCM_4Value(FCM_TSRDisplay));
+//    CanTx_SigSet_0x303_FCM_IHBCStatus(GetFCM_4Value(FCM_IHBCStatus));
+//    CanTx_SigSet_0x303_FCM_IHBCONOFFSts(GetFCM_4Value(FCM_IHBCONOFFSts));
+//    CanTx_SigSet_0x303_FCM_TSROverSpdWarning(GetFCM_4Value(FCM_TSROverSpdWarning));
+//    CanTx_SigSet_0x303_FCM_SLASpdlimitUnits(GetFCM_4Value(FCM_SLASpdlimitUnits));
+//    CanTx_SigSet_0x303_FCM_IHBCTextInfo(GetFCM_4Value(FCM_IHBCTextInfo));
+//    CanTx_SigSet_0x303_FCM_TSRTextInfo(GetFCM_4Value(FCM_TSRTextInfo));
+//    CanTx_SigSet_0x303_FCM_LDWTextInfo(GetFCM_4Value(FCM_LDWTextInfo));
+//    CanTx_SigSet_0x303_FCM_LDWVoiceWarning(GetFCM_4Value(FCM_LDWVoiceWarning));
+//
+//    CanTx_SigSet_0x304_FCM_EgoLeLineID(GetFCM_5Value(FCM_EgoLeLineID));
+//    CanTx_SigSet_0x304_FCM_EgoLeLineColor(GetFCM_5Value(FCM_EgoLeLineColor));
+//    CanTx_SigSet_0x304_FCM_EgoLeLineTyp(GetFCM_5Value(FCM_EgoLeLineTyp));
+//    CanTx_SigSet_0x304_FCM_EgoLeLineHozlDst(GetFCM_5Value(FCM_EgoLeLineHozlDst));
+//    CanTx_SigSet_0x304_FCM_EgoLeLineCrvt(GetFCM_5Value(FCM_EgoLeLineCrvt));
+//    CanTx_SigSet_0x304_FCM_EgoRiLineID(GetFCM_5Value(FCM_EgoRiLineID));
+//    CanTx_SigSet_0x304_FCM_EgoRiLineColor(GetFCM_5Value(FCM_EgoRiLineColor));
+//    CanTx_SigSet_0x304_FCM_EgoRiLineTyp(GetFCM_5Value(FCM_EgoRiLineTyp));
+//    CanTx_SigSet_0x304_FCM_EgoRiLineHozlDst(GetFCM_5Value(FCM_EgoRiLineHozlDst));
+//    CanTx_SigSet_0x304_FCM_EgoRiLineCrvt(GetFCM_5Value(FCM_EgoRiLineCrvt));
+//    CanTx_SigSet_0x304_FCM_5_RollingCounter(GetFCM_5Value(FCM_5_RollingCounter));
+//    CanTx_SigSet_0x304_FCM_5_Checksum(GetFCM_5Value(FCM_5_Checksum));
+//
+//    CanTx_SigSet_0x305_FCM_NeborLeLineID(GetFCM_6Value(FCM_NeborLeLineID));
+//    CanTx_SigSet_0x305_FCM_NeborLeLineColor(GetFCM_6Value(FCM_NeborLeLineColor));
+//    CanTx_SigSet_0x305_FCM_NeborLeLineTyp(GetFCM_6Value(FCM_NeborLeLineTyp));
+//    CanTx_SigSet_0x305_FCM_NeborLeLineHozlDst(GetFCM_6Value(FCM_NeborLeLineHozlDst));
+//    CanTx_SigSet_0x305_FCM_NeborLeLineCrvt(GetFCM_6Value(FCM_NeborLeLineCrvt));
+//    CanTx_SigSet_0x305_FCM_NeborRiLineID(GetFCM_6Value(FCM_NeborRiLineID));
+//    CanTx_SigSet_0x305_FCM_NeborRiLineColor(GetFCM_6Value(FCM_NeborRiLineColor));
+//    CanTx_SigSet_0x305_FCM_NeborRiLineTyp(GetFCM_6Value(FCM_NeborRiLineTyp));
+//    CanTx_SigSet_0x305_FCM_NeborRiLineHozlDst(GetFCM_6Value(FCM_NeborRiLineHozlDst));
+//    CanTx_SigSet_0x305_FCM_NeborRiLineCrvt(GetFCM_6Value(FCM_NeborRiLineCrvt));
+//    CanTx_SigSet_0x305_FCM_6_RollingCounter(GetFCM_6Value(FCM_6_RollingCounter));
+//    CanTx_SigSet_0x305_FCM_6_Checksum(GetFCM_6Value(FCM_6_Checksum));
+//
+//    CanTx_SigSet_0x306_FCM_ACCObjID(GetFCM_7Value(FCM_ACCObjID));
+//    CanTx_SigSet_0x306_FCM_ACCObjTyp(GetFCM_7Value(FCM_ACCObjTyp));
+//    CanTx_SigSet_0x306_FCM_ACC_TargetVehicleSubType(GetFCM_7Value(FCM_ACC_TargetVehicleSubType));
+//    CanTx_SigSet_0x306_FCM_dxTarObjcolor(GetFCM_7Value(FCM_dxTarObjcolor));
+//    CanTx_SigSet_0x306_FCM_ACCObjLgtDstX(GetFCM_7Value(FCM_ACCObjLgtDstX));
+//    CanTx_SigSet_0x306_FCM_ACCObjHozDstY(GetFCM_7Value(FCM_ACCObjHozDstY));
+//    CanTx_SigSet_0x306_FCM_FrntFarObjID(GetFCM_7Value(FCM_FrntFarObjID));
+//    CanTx_SigSet_0x306_FCM_FrntFarObjTyp(GetFCM_7Value(FCM_FrntFarObjTyp));
+//    CanTx_SigSet_0x306_FCM_FrntFarObjLgtDstX(GetFCM_7Value(FCM_FrntFarObjLgtDstX));
+//    CanTx_SigSet_0x306_FCM_FrntFarObjHozDstY(GetFCM_7Value(FCM_FrntFarObjHozDstY));
+//    CanTx_SigSet_0x306_FCM_7_RollingCounter(GetFCM_7Value(FCM_7_RollingCounter));
+//    CanTx_SigSet_0x306_FCM_7_Checksum(GetFCM_7Value(FCM_7_Checksum));
+//
+//    CanTx_SigSet_0x307_FCM_RiObjID(GetFCM_8Value(FCM_RiObjID));
+//    CanTx_SigSet_0x307_FCM_LeObjID(GetFCM_8Value(FCM_LeObjID));
+//    CanTx_SigSet_0x307_FCM_LeObjTyp(GetFCM_8Value(FCM_LeObjTyp));
+//    CanTx_SigSet_0x307_FCM_ACC_LeftTargetVehicleSubType(GetFCM_8Value(FCM_ACC_LeftTargetVehicleSubType));
+//    CanTx_SigSet_0x307_FCM_LeObjLgtDstX(GetFCM_8Value(FCM_LeObjLgtDstX));
+//    CanTx_SigSet_0x307_FCM_LeObjHozDstY(GetFCM_8Value(FCM_LeObjHozDstY));
+//    CanTx_SigSet_0x307_FCM_RiObjTyp(GetFCM_8Value(FCM_RiObjTyp));
+//    CanTx_SigSet_0x307_FCM_ACC_RightTargetVehicleSubTyp(GetFCM_8Value(FCM_ACC_RightTargetVehicleSubTyp));
+//    CanTx_SigSet_0x307_FCM_RiObjLgtDstX(GetFCM_8Value(FCM_RiObjLgtDstX));
+//    CanTx_SigSet_0x307_FCM_RiObjHozDstY(GetFCM_8Value(FCM_RiObjHozDstY));
+//    CanTx_SigSet_0x307_FCM_8_RollingCounter(GetFCM_8Value(FCM_8_RollingCounter));
+//    CanTx_SigSet_0x307_FCM_8_Checksum(GetFCM_8Value(FCM_8_Checksum));
+//
+//    CanTx_SigSet_0x312_BCM_SRF_PosStatus(GetBCM_5Value(BCM_SRF_PosStatus));
+//    CanTx_SigSet_0x312_BCM_SRF_ECU_Fault(GetBCM_5Value(BCM_SRF_ECU_Fault));
+//    CanTx_SigSet_0x312_BCM_SRF_Motor_Circuit_Fault(GetBCM_5Value(BCM_SRF_Motor_Circuit_Fault));
+//    CanTx_SigSet_0x312_BCM_SRF_SW_Fault(GetBCM_5Value(BCM_SRF_SW_Fault));
+//    CanTx_SigSet_0x312_BCM_SRF_InitializeStatus(GetBCM_5Value(BCM_SRF_InitializeStatus));
+//    CanTx_SigSet_0x312_BCM_RLS_REP_Error(GetBCM_5Value(BCM_RLS_REP_Error));
+//    CanTx_SigSet_0x312_BCM_RLS_Fault_Light(GetBCM_5Value(BCM_RLS_Fault_Light));
+//    CanTx_SigSet_0x312_BCM_RLS_Fault_Rain(GetBCM_5Value(BCM_RLS_Fault_Rain));
+//    CanTx_SigSet_0x312_BCM_SRF_Alarm(GetBCM_5Value(BCM_SRF_Alarm));
+//    CanTx_SigSet_0x312_BCM_RLS_VOLT_Error(GetBCM_5Value(BCM_RLS_VOLT_Error));
+//
+//    CanTx_SigSet_0x317_TBOX_AudioMuteRequest(GetTBOX_4Value(TBOX_AudioMuteRequest));
+//
+//    CanTx_SigSet_0x350_ACU_CrashOutputSts(GetACU_1Value(ACU_CrashOutputSts));
+//    CanTx_SigSet_0x350_ACU_AirbagWarningStatus(GetACU_1Value(ACU_AirbagWarningStatus));
+//    CanTx_SigSet_0x350_ACU_AirbagInhibitWarning(GetACU_1Value(ACU_AirbagInhibitWarning));
+//
+//    CanTx_SigSet_0x360_BCM_LeftTurnLightSts(GetBCM_1Value(BCM_LeftTurnLightSts));
+//    CanTx_SigSet_0x360_BCM_EmergencyLightSts(GetBCM_1Value(BCM_EmergencyLightSts));
+//    CanTx_SigSet_0x360_BCM_RightTurnLightSts(GetBCM_1Value(BCM_RightTurnLightSts));
+//
+//    CanTx_SigSet_0x362_BCM_AssistIlluminationSetSts(GetBCM_4Value(BCM_AssistIlluminationSetSts));
+//    CanTx_SigSet_0x362_BCM_WindowRemoteAutoDownSetSts(GetBCM_4Value(BCM_WindowRemoteAutoDownSetSts));
+//    CanTx_SigSet_0x362_BCM_LeaveHomeTimeSetSts(GetBCM_4Value(BCM_LeaveHomeTimeSetSts));
+//    CanTx_SigSet_0x362_BCM_FollowMeHomeTimeSetSts(GetBCM_4Value(BCM_FollowMeHomeTimeSetSts));
+//    CanTx_SigSet_0x362_BCM_exRearMirrorAutoFoldSetSts(GetBCM_4Value(BCM_exRearMirrorAutoFoldSetSts));
+//    CanTx_SigSet_0x362_BCM_SpeedLockSetSts(GetBCM_4Value(BCM_SpeedLockSetSts));
+//    CanTx_SigSet_0x362_BCM_InteriorLightTimeSetSts(GetBCM_4Value(BCM_InteriorLightTimeSetSts));
+//    CanTx_SigSet_0x362_BCM_AutoWshWipSetSts(GetBCM_4Value(BCM_AutoWshWipSetSts));
+//    CanTx_SigSet_0x362_BCM_SearchCarWarnModSetSts(GetBCM_4Value(BCM_SearchCarWarnModSetSts));
+//    CanTx_SigSet_0x362_BCM_WindowAutoUPbyLockSetSts(GetBCM_4Value(BCM_WindowAutoUPbyLockSetSts));
+//    CanTx_SigSet_0x362_BCM_HornAlertVolumeSetSts(GetBCM_4Value(BCM_HornAlertVolumeSetSts));
+//    CanTx_SigSet_0x362_BCM_AmbientLightLvl(GetBCM_4Value(BCM_AmbientLightLvl));
+//    CanTx_SigSet_0x362_BCM_AmbientLightSwtSts(GetBCM_4Value(BCM_AmbientLightSwtSts));
+//    CanTx_SigSet_0x362_BCM_ClsWinSpdSetSts(GetBCM_4Value(BCM_ClsWinSpdSetSts));
+//    CanTx_SigSet_0x362_BCM_FlaoutUnlockSetSts(GetBCM_4Value(BCM_FlaoutUnlockSetSts));
+//    CanTx_SigSet_0x362_BCM_SteeringwheelheatingSts(GetBCM_4Value(BCM_SteeringwheelheatingSts));
+//    CanTx_SigSet_0x362_BCM_NozzleheatingSts(GetBCM_4Value(BCM_NozzleheatingSts));
+//    CanTx_SigSet_0x362_BCM_FrontwindshieldheatingSts(GetBCM_4Value(BCM_FrontwindshieldheatingSts));
+//    CanTx_SigSet_0x362_BCM_AAL_ONOFFSts(GetBCM_4Value(BCM_AAL_ONOFFSts));
+//    CanTx_SigSet_0x362_BCM_AAL_PitchAngle(GetBCM_4Value(BCM_AAL_PitchAngle));
+//    CanTx_SigSet_0x362_BCM_AAL_YawAngle(GetBCM_4Value(BCM_AAL_YawAngle));
+//
+
+
+
+
+
+//    CanTx_SigSet_0x365_TPMS_TireBatteryPowerSts(GetTPMS_1Value(TPMS_TireBatteryPowerSts));
+//    CanTx_SigSet_0x365_TPMS_TireTemperatureSts(GetTPMS_1Value(TPMS_TireTemperatureSts));
+
+
+//    CanTx_SigSet_0x365_TPMS_TireTemperature(GetTPMS_1Value(TPMS_TireTemperature));
+//    CanTx_SigSet_0x365_TPMS_TireBatteryPower(GetTPMS_1Value(TPMS_TireBatteryPower));
+//
+//    CanTx_SigSet_0x375_IC_ParkingBrakeIndication(GetIC_1Value(IC_ParkingBrakeIndication));
+//    CanTx_SigSet_0x375_IC_SurplusFuel(GetIC_1Value(IC_SurplusFuel));
+//    CanTx_SigSet_0x375_IC_BrakeSysFailIndication(GetIC_1Value(IC_BrakeSysFailIndication));
+//    CanTx_SigSet_0x375_IC_EngineOilLowPressure(GetIC_1Value(IC_EngineOilLowPressure));
+
+
+
+//    CanTx_SigSet_0x375_IC_BrakeFluidLevelIndication(GetIC_1Value(IC_BrakeFluidLevelIndication));
+
+//    CanTx_SigSet_0x375_IC_DrvSeatbeltBucklestatus(GetIC_1Value(IC_DrvSeatbeltBucklestatus));
+//    CanTx_SigSet_0x375_IC_PassSeatbeltBucklestatus(GetIC_1Value(IC_PassSeatbeltBucklestatus));
+
+
+//    CanTx_SigSet_0x375_IC_ICFaultSts(GetIC_1Value(IC_ICFaultSts));
+
+
+//    CanTx_SigSet_0x375_IC_AirbagInhibitWarning(GetIC_1Value(IC_AirbagInhibitWarning));
+//
+
+
+//
+//    CanTx_SigSet_0x3A0_Swaybar_1_FrontSwaybarYellowLamp(GetGW_PC_4Value(Swaybar_1_FrontSwaybarYellowLamp));
+//    CanTx_SigSet_0x3A0_Swaybar_1_FrontSwaybarGreenLamp(GetGW_PC_4Value(Swaybar_1_FrontSwaybarGreenLamp));
+//    CanTx_SigSet_0x3A0_EHPS_1_FaultStatus(GetGW_PC_4Value(EHPS_1_FaultStatus));
+//    CanTx_SigSet_0x3A0_Swaybar_1_StatusNotice(GetGW_PC_4Value(Swaybar_1_StatusNotice));
+//    CanTx_SigSet_0x3A0_Swaybar_1_Timeout_Flag(GetGW_PC_4Value(Swaybar_1_Timeout_Flag));
+//
+//    CanTx_SigSet_0x3AC_AC_1_AirCirculationMode(GetGW_BD_14Value(AC_1_AirCirculationMode));
+//    CanTx_SigSet_0x3AC_AC_1_AirDistributeMode(GetGW_BD_14Value(AC_1_AirDistributeMode));
+//    CanTx_SigSet_0x3AC_AC_1_TemperatureLevel(GetGW_BD_14Value(AC_1_TemperatureLevel));
+//    CanTx_SigSet_0x3AC_AC_1_PTCButtonSts(GetGW_BD_14Value(AC_1_PTCButtonSts));
+//    CanTx_SigSet_0x3AC_AC_1_ACSystemSts(GetGW_BD_14Value(AC_1_ACSystemSts));
+//    CanTx_SigSet_0x3AC_AC_1_RearDefrostButtonSts(GetGW_BD_14Value(AC_1_RearDefrostButtonSts));
+//    CanTx_SigSet_0x3AC_AC_1_FrontDefrostButtonSts(GetGW_BD_14Value(AC_1_FrontDefrostButtonSts));
+//    CanTx_SigSet_0x3AC_AC_1_ACButtonSts(GetGW_BD_14Value(AC_1_ACButtonSts));
+//    CanTx_SigSet_0x3AC_AC_1_BlowerSpeedLevel(GetGW_BD_14Value(AC_1_BlowerSpeedLevel));
+//    CanTx_SigSet_0x3AC_AC_1_RearModeSts(GetGW_BD_14Value(AC_1_RearModeSts));
+//    CanTx_SigSet_0x3AC_AC_1_ButtonTriggerStatus(GetGW_BD_14Value(AC_1_ButtonTriggerStatus));
+//    CanTx_SigSet_0x3AC_AC_1_BlowerSpeedLevelRear(GetGW_BD_14Value(AC_1_BlowerSpeedLevelRear));
+//    CanTx_SigSet_0x3AC_AC_2_PngSetTemperature(GetGW_BD_14Value(AC_2_PngSetTemperature));
+//    CanTx_SigSet_0x3AC_AC_2_DriverSetTemperature(GetGW_BD_14Value(AC_2_DriverSetTemperature));
+//    CanTx_SigSet_0x3AC_AC_2_OutsideTemperature(GetGW_BD_14Value(AC_2_OutsideTemperature));
+//    CanTx_SigSet_0x3AC_AC_1_ACSelfCleanModeSts(GetGW_BD_14Value(AC_1_ACSelfCleanModeSts));
+//    CanTx_SigSet_0x3AC_AC_2_DualButtonSts(GetGW_BD_14Value(AC_2_DualButtonSts));
+//    CanTx_SigSet_0x3AC_AC_2_AUTOPassengerButtonSts(GetGW_BD_14Value(AC_2_AUTOPassengerButtonSts));
+//    CanTx_SigSet_0x3AC_AC_2_AUTOButtonSts(GetGW_BD_14Value(AC_2_AUTOButtonSts));
+//    CanTx_SigSet_0x3AC_AC_2_DualMode(GetGW_BD_14Value(AC_2_DualMode));
+//    CanTx_SigSet_0x3AC_AC_2_OutsideTemperatureValid(GetGW_BD_14Value(AC_2_OutsideTemperatureValid));
+//    CanTx_SigSet_0x3AC_AC_2_Timeout_Flag(GetGW_BD_14Value(AC_2_Timeout_Flag));
+//    CanTx_SigSet_0x3AC_AC_1_Timeout_Flag(GetGW_BD_14Value(AC_1_Timeout_Flag));
+//
+//    CanTx_SigSet_0x3B0_IHU_NavSpeedLimit(GetIHU_4Value(IHU_NavSpeedLimit));
+//    CanTx_SigSet_0x3B0_IHU_NavSpeedLimitStatus(GetIHU_4Value(IHU_NavSpeedLimitStatus));
+//    CanTx_SigSet_0x3B0_IHU_NavCurrRoadType(GetIHU_4Value(IHU_NavCurrRoadType));
+//    CanTx_SigSet_0x3B0_IHU_NavSpeedLimitUnits(GetIHU_4Value(IHU_NavSpeedLimitUnits));
+//
+//    CanTx_SigSet_0x3B1_IHU_BrightnessLevel(GetIHU_5Value(IHU_BrightnessLevel));
+//    CanTx_SigSet_0x3B1_IHU_VehiclePitchAngle(GetIHU_5Value(IHU_VehiclePitchAngle));
+//    CanTx_SigSet_0x3B1_IHU_VehicleRollAngle(GetIHU_5Value(IHU_VehicleRollAngle));
+//    CanTx_SigSet_0x3B1_IHU_GPSAntennaTurnOff(GetIHU_5Value(IHU_GPSAntennaTurnOff));
+//    CanTx_SigSet_0x3B1_IHU_GPSAntennaShortCircuit(GetIHU_5Value(IHU_GPSAntennaShortCircuit));
+//    CanTx_SigSet_0x3B1_IHU_GPSErr(GetIHU_5Value(IHU_GPSErr));
+//    CanTx_SigSet_0x3B1_IHU_VideoSts(GetIHU_5Value(IHU_VideoSts));
+//    CanTx_SigSet_0x3B1_IHU_DVSts(GetIHU_5Value(IHU_DVSts));
+//    CanTx_SigSet_0x3B1_IHU_GPSSatelliteNum(GetIHU_5Value(IHU_GPSSatelliteNum));
+//    CanTx_SigSet_0x3B1_IHU_USBtoTboxConnectSts(GetIHU_5Value(IHU_USBtoTboxConnectSts));
+//    CanTx_SigSet_0x3B1_IHU_IHUFaultSts(GetIHU_5Value(IHU_IHUFaultSts));
+//    CanTx_SigSet_0x3B1_IHU_AudioMuteSts(GetIHU_5Value(IHU_AudioMuteSts));
+//
+//    CanTx_SigSet_0x3CC_SCU_1_FRSeatHeatLvlSts(GetGW_BD_29Value(SCU_1_FRSeatHeatLvlSts));
+//    CanTx_SigSet_0x3CC_SCU_1_FLSeatHeatLvlSts(GetGW_BD_29Value(SCU_1_FLSeatHeatLvlSts));
+//    CanTx_SigSet_0x3CC_SCU_1_FLSeatMassgModSts(GetGW_BD_29Value(SCU_1_FLSeatMassgModSts));
+//    CanTx_SigSet_0x3CC_SCU_1_FLSeatMassgLvlSts(GetGW_BD_29Value(SCU_1_FLSeatMassgLvlSts));
+//    CanTx_SigSet_0x3CC_SCU_1_FaultsStatus(GetGW_BD_29Value(SCU_1_FaultsStatus));
+//    CanTx_SigSet_0x3CC_WCM_1_WirelessChargeSwtSts(GetGW_BD_29Value(WCM_1_WirelessChargeSwtSts));
+//    CanTx_SigSet_0x3CC_WCM_1_FailureSts(GetGW_BD_29Value(WCM_1_FailureSts));
+//    CanTx_SigSet_0x3CC_WCM_1_ChargingSts(GetGW_BD_29Value(WCM_1_ChargingSts));
+//    CanTx_SigSet_0x3CC_EPM_1_EPMModSts(GetGW_BD_29Value(EPM_1_EPMModSts));
+//    CanTx_SigSet_0x3CC_WCM_1_PhoneReminder(GetGW_BD_29Value(WCM_1_PhoneReminder));
+//    CanTx_SigSet_0x3CC_EPM_1_Timeout_Flag(GetGW_BD_29Value(EPM_1_Timeout_Flag));
+//    CanTx_SigSet_0x3CC_WCM_1_Timeout_Flag(GetGW_BD_29Value(WCM_1_Timeout_Flag));
+//    CanTx_SigSet_0x3CC_SCU_1_Timeout_Flag(GetGW_BD_29Value(SCU_1_Timeout_Flag));
+//
+//    CanTx_SigSet_0x542_IHU_DateTimeSecond(GetIHU_2Value(IHU_DateTimeSecond));
+//    CanTx_SigSet_0x542_IHU_DateTimeMinute(GetIHU_2Value(IHU_DateTimeMinute));
+//    CanTx_SigSet_0x542_IHU_DateTimeHour(GetIHU_2Value(IHU_DateTimeHour));
+//    CanTx_SigSet_0x542_IHU_DateTimeDay(GetIHU_2Value(IHU_DateTimeDay));
+//    CanTx_SigSet_0x542_IHU_DateTimeMonth(GetIHU_2Value(IHU_DateTimeMonth));
+//    CanTx_SigSet_0x542_IHU_DateTimeYear(GetIHU_2Value(IHU_DateTimeYear));
+//
+//    CanTx_SigSet_0x580_IHU_GPSPositioningSts(GetIHU_7Value(IHU_GPSPositioningSts));
+//    CanTx_SigSet_0x580_IHU_GPSDataType(GetIHU_7Value(IHU7_GPSDataType));
+//    CanTx_SigSet_0x580_IHU_GPSDataGroup(GetIHU_7Value(IHU7_GPSDataGroup));
+//    CanTx_SigSet_0x580_IHU_GPSviaGALILEO(GetIHU_7Value(IHU_GPSviaGALILEO));
+//    CanTx_SigSet_0x580_IHU_GPSviaGLONASS(GetIHU_7Value(IHU_GPSviaGLONASS));
+//    CanTx_SigSet_0x580_IHU_GPSviaBeidou(GetIHU_7Value(IHU_GPSviaBeidou));
+//    CanTx_SigSet_0x580_IHU_GPSviaGPS(GetIHU_7Value(IHU_GPSviaGPS));
+//    CanTx_SigSet_0x580_IHU_GPSAltitude(GetIHU_7Value(IHU_GPSAltitude));
+//    CanTx_SigSet_0x580_IHU_GPSLatitude(GetIHU_7Value(IHU_GPSLatitude));
+//    CanTx_SigSet_0x580_IHU_GPSLatitudeDirection(GetIHU_7Value(IHU_GPSLatitudeDirection));
+//
+//    CanTx_SigSet_0x581_IHU_GPSLongitudeDirection(GetIHU_8Value(IHU_GPSLongitudeDirection));
+//    CanTx_SigSet_0x581_IHU_GPSDataType(GetIHU_8Value(IHU8_GPSDataType));
+//    CanTx_SigSet_0x581_IHU_GPSDataGroup(GetIHU_8Value(IHU8_GPSDataGroup));
+//    CanTx_SigSet_0x581_IHU_GPSLongitude(GetIHU_8Value(IHU_GPSLongitude));
+//    CanTx_SigSet_0x581_IHU_GPSVehicleDirection(GetIHU_8Value(IHU_GPSVehicleDirection));
+//    CanTx_SigSet_0x581_IHU_GPSVehicleSpeed(GetIHU_8Value(IHU_GPSVehicleSpeed));
+//
+//    CanTx_SigSet_0x582_IHU_GPSDataType(GetIHU_9Value(IHU9_GPSDataType));
+//    CanTx_SigSet_0x582_IHU_GPSDataGroup(GetIHU_9Value(IHU9_GPSDataGroup));
+//    CanTx_SigSet_0x582_IHU_GPSTime(GetIHU_9Value(IHU_GPSTime));
+//
+//    CanTx_SigSet_0x598_TBOX_DateTimeSecond(GetTBOX_1Value(TBOX_DateTimeSecond));
+//    CanTx_SigSet_0x598_TBOX_DateTimeMinute(GetTBOX_1Value(TBOX_DateTimeMinute));
+//    CanTx_SigSet_0x598_TBOX_DateTimeHour(GetTBOX_1Value(TBOX_DateTimeHour));
+//    CanTx_SigSet_0x598_TBOX_DateTimeDay(GetTBOX_1Value(TBOX_DateTimeDay));
+//    CanTx_SigSet_0x598_TBOX_DateTimeMonth(GetTBOX_1Value(TBOX_DateTimeMonth));
+//    CanTx_SigSet_0x598_TBOX_DateTimeYear(GetTBOX_1Value(TBOX_DateTimeYear));
+//    CanTx_SigSet_0x598_TBOX_GPSAntennaShortCircuit(GetTBOX_1Value(TBOX_GPSAntennaShortCircuit));
+//    CanTx_SigSet_0x598_TBOX_GPSErr(GetTBOX_1Value(TBOX_GPSErr));
+//    CanTx_SigSet_0x598_TBOX_SIMErr(GetTBOX_1Value(TBOX_SIMErr));
+//    CanTx_SigSet_0x598_TBOX_GSMErr(GetTBOX_1Value(TBOX_GSMErr));
+//    CanTx_SigSet_0x598_TBOX_BatteryUseUp(GetTBOX_1Value(TBOX_BatteryUseUp));
+//    CanTx_SigSet_0x598_TBOX_PowerOverSuply(GetTBOX_1Value(TBOX_PowerOverSuply));
+//    CanTx_SigSet_0x598_TBOX_BatteryErr(GetTBOX_1Value(TBOX_BatteryErr));
+//    CanTx_SigSet_0x598_TBOX_CANErr(GetTBOX_1Value(TBOX_CANErr));
+//    CanTx_SigSet_0x598_TBOX_TempretureHigh(GetTBOX_1Value(TBOX_TempretureHigh));
+//    CanTx_SigSet_0x598_TBOX_ExternalMemoryErr(GetTBOX_1Value(TBOX_ExternalMemoryErr));
+//    CanTx_SigSet_0x598_TBOX_GPSAntennaTurnOff(GetTBOX_1Value(TBOX_GPSAntennaTurnOff));
+//
+//    CanTx_SigSet_0x599_TBOX_CommSignalVail(GetTBOX_2Value(TBOX_CommSignalVail));
+//    CanTx_SigSet_0x599_TBOX_EcallErr(GetTBOX_2Value(TBOX_EcallErr));
+//    CanTx_SigSet_0x599_TBOX_EcallStatus(GetTBOX_2Value(TBOX_EcallStatus));
+//
+
+//    CanTx_SigSet_0x150_EMS_3_SS_SetSts(GetGW_PC_1Value(EMS_3_SS_SetSts));
+//    CanTx_SigSet_0x150_TCU_1_TcuFaultLamp(GetGW_PC_1Value(TCU_1_TcuFaultLamp));
+//    CanTx_SigSet_0x150_EMS_3_SS_Fault_Lamp(GetGW_PC_1Value(EMS_3_SS_Fault_Lamp));
+//    CanTx_SigSet_0x150_EMS_3_SS_Active_Lamp(GetGW_PC_1Value(EMS_3_SS_Active_Lamp));
+//    CanTx_SigSet_0x150_EMS_3_SS_Screen_tip(GetGW_PC_1Value(EMS_3_SS_Screen_tip));
+//    CanTx_SigSet_0x150_EMS_3_EngineReleaseSig(GetGW_PC_1Value(EMS_3_EngineReleaseSig));
+
+//    CanTx_SigSet_0x150_TCU_1_ActualGearValid(GetGW_PC_1Value(TCU_1_ActualGearValid));
+//    CanTx_SigSet_0x150_TCU_1_TransOilWrnLmpReq(GetGW_PC_1Value(TCU_1_TransOilWrnLmpReq));
+//    CanTx_SigSet_0x150_TCU_3_Drivemode(GetGW_PC_1Value(TCU_3_Drivemode));
+//    CanTx_SigSet_0x150_TCU_1_ActualGear(GetGW_PC_1Value(TCU_1_ActualGear));
+//    CanTx_SigSet_0x150_TCU_1_ShiftRecommendation(GetGW_PC_1Value(TCU_1_ShiftRecommendation));
+
+//    CanTx_SigSet_0x150_TCU_1_IcInformaition(GetGW_PC_1Value(TCU_1_IcInformaition));
+//    CanTx_SigSet_0x150_EMS_3_EngineStatus(GetGW_PC_1Value(EMS_3_EngineStatus));
+
+//    CanTx_SigSet_0x150_EMS_3_Timeout_Flag(GetGW_PC_1Value(EMS_3_Timeout_Flag));
+
+//
+
+
+//    CanTx_SigSet_0x155_EMS_4_CruiseActiveStatus(GetGW_PC_6Value(EMS_4_CruiseActiveStatus));
+
+//    CanTx_SigSet_0x155_EMS_4_CruiseControlStatus(GetGW_PC_6Value(EMS_4_CruiseControlStatus));
+//    CanTx_SigSet_0x155_EMS_4_MIL(GetGW_PC_6Value(EMS_4_MIL));
+//    CanTx_SigSet_0x155_EMS_4_SVS(GetGW_PC_6Value(EMS_4_SVS));
+
+//    CanTx_SigSet_0x155_EMS_4_CruiseMainLamp(GetGW_PC_6Value(EMS_4_CruiseMainLamp));
+//    CanTx_SigSet_0x155_EMS_4_CruiseTargetSpeed(GetGW_PC_6Value(EMS_4_CruiseTargetSpeed));
+
+//    CanTx_SigSet_0x155_TCU_3_DrivemodeOprationNotice(GetGW_PC_6Value(TCU_3_DrivemodeOprationNotice));
+//    CanTx_SigSet_0x155_EMS_6_OilPressure(GetGW_PC_6Value(EMS_6_OilPressure));
+//    CanTx_SigSet_0x155_EMS_6_OilPressureLamp(GetGW_PC_6Value(EMS_6_OilPressureLamp));
+//    CanTx_SigSet_0x155_EMS_6_GeneratorFaultLamp(GetGW_PC_6Value(EMS_6_GeneratorFaultLamp));
+//    CanTx_SigSet_0x155_EMS_6_GPFState(GetGW_PC_6Value(EMS_6_GPFState));
+
+//    CanTx_SigSet_0x155_EMS_6_Timeout_Flag(GetGW_PC_6Value(EMS_6_Timeout_Flag));
+
+//
+//    CanTx_SigSet_0x211_ESP_LongitAccel(GetESP_2Value(ESP_LongitAccel));
+//    CanTx_SigSet_0x211_ESP_LateralAccel(GetESP_2Value(ESP_LateralAccel));
+//    CanTx_SigSet_0x211_ESP_YawRate(GetESP_2Value(ESP_YawRate));
+//    CanTx_SigSet_0x211_ESP_YawRateSensorValid(GetESP_2Value(ESP_YawRateSensorValid));
+//    CanTx_SigSet_0x211_ESP_LateralSensorValid(GetESP_2Value(ESP_LateralSensorValid));
+//    CanTx_SigSet_0x211_ESP_LongitSensorValid(GetESP_2Value(ESP_LongitSensorValid));
+//
+//    CanTx_SigSet_0x311_BCM_ConsoleBtn1TriggerSts(GetBCM_3Value(BCM_ConsoleBtn1TriggerSts));
+//    CanTx_SigSet_0x311_BCM_3_RollingCounter(GetBCM_3Value(BCM_3_RollingCounter));
+//    CanTx_SigSet_0x311_BCM_3_Checksum(GetBCM_3Value(BCM_3_Checksum));
+//
+//    CanTx_SigSet_0x3A7_BCM_1_LeftTurnLightSts(GetGW_BD_9Value(BCM_1_LeftTurnLightSts));
+//    CanTx_SigSet_0x3A7_BCM_1_HighBeamSts(GetGW_BD_9Value(BCM_1_HighBeamSts));
+//    CanTx_SigSet_0x3A7_BCM_1_LowBeamSts(GetGW_BD_9Value(BCM_1_LowBeamSts));
+//    CanTx_SigSet_0x3A7_BCM_1_PowerMode(GetGW_BD_9Value(BCM_1_PowerMode));
+//    CanTx_SigSet_0x3A7_BCM_1_RearFogLightSts(GetGW_BD_9Value(BCM_1_RearFogLightSts));
+//    CanTx_SigSet_0x3A7_BCM_1_EmergencyLightSts(GetGW_BD_9Value(BCM_1_EmergencyLightSts));
+//    CanTx_SigSet_0x3A7_BCM_1_PositionLightSts(GetGW_BD_9Value(BCM_1_PositionLightSts));
+//    CanTx_SigSet_0x3A7_BCM_1_RightTurnLightSts(GetGW_BD_9Value(BCM_1_RightTurnLightSts));
+
+
+
+//    CanTx_SigSet_0x3A7_BCM_1_DaytimeRunningLightSts(GetGW_BD_9Value(BCM_1_DaytimeRunningLightSts));
+//    CanTx_SigSet_0x3A7_BCM_1_FrontFogLightSts(GetGW_BD_9Value(BCM_1_FrontFogLightSts));
+//    CanTx_SigSet_0x3A7_BCM_1_ReverseGearInfo(GetGW_BD_9Value(BCM_1_ReverseGearInfo));
+//    CanTx_SigSet_0x3A7_BCM_1_ACRearFrostSts(GetGW_BD_9Value(BCM_1_ACRearFrostSts));
+
+
+//    CanTx_SigSet_0x3A7_TCM_1_FlashLightSWStsValid(GetGW_BD_9Value(TCM_1_FlashLightSWStsValid));
+//    CanTx_SigSet_0x3A7_TCM_1_FlashLightSWSts(GetGW_BD_9Value(TCM_1_FlashLightSWSts));
+//    CanTx_SigSet_0x3A7_TCM_1_HighBeamSWStsValid(GetGW_BD_9Value(TCM_1_HighBeamSWStsValid));
+//    CanTx_SigSet_0x3A7_TCM_1_HighBeamSWSts(GetGW_BD_9Value(TCM_1_HighBeamSWSts));
+//    CanTx_SigSet_0x3A7_BCM_1_BackMirrorFolderSts(GetGW_BD_9Value(BCM_1_BackMirrorFolderSts));
+
+//    CanTx_SigSet_0x3A7_TCM_1_LeftTurnLightSWSts(GetGW_BD_9Value(TCM_1_LeftTurnLightSWSts));
+//    CanTx_SigSet_0x3A7_TCM_1_LeftTurnLightSWStsValid(GetGW_BD_9Value(TCM_1_LeftTurnLightSWStsValid));
+//    CanTx_SigSet_0x3A7_TCM_1_RightTurnLightSWSts(GetGW_BD_9Value(TCM_1_RightTurnLightSWSts));
+//    CanTx_SigSet_0x3A7_TCM_1_RightTurnLightSWStsValid(GetGW_BD_9Value(TCM_1_RightTurnLightSWStsValid));
+//    CanTx_SigSet_0x3A7_TCM_1_Timeout_Flag(GetGW_BD_9Value(TCM_1_Timeout_Flag));
+
+//
+//    CanTx_SigSet_0x3C7_BCM_2_WindowRunningStatusRR(GetGW_BD_24Value(BCM_2_WindowRunningStatusRR));
+//    CanTx_SigSet_0x3C7_BCM_2_WindowRunningStatusRL(GetGW_BD_24Value(BCM_2_WindowRunningStatusRL));
+//    CanTx_SigSet_0x3C7_BCM_2_WindowRunningStatusFR(GetGW_BD_24Value(BCM_2_WindowRunningStatusFR));
+//    CanTx_SigSet_0x3C7_BCM_2_WindowRunningStatusFL(GetGW_BD_24Value(BCM_2_WindowRunningStatusFL));
+//    CanTx_SigSet_0x3C7_BCM_2_WindowPosFL(GetGW_BD_24Value(BCM_2_WindowPosFL));
+//    CanTx_SigSet_0x3C7_BCM_2_WindowPosFR(GetGW_BD_24Value(BCM_2_WindowPosFR));
+//    CanTx_SigSet_0x3C7_BCM_2_WindowPosRL(GetGW_BD_24Value(BCM_2_WindowPosRL));
+//    CanTx_SigSet_0x3C7_BCM_2_WindowPosRR(GetGW_BD_24Value(BCM_2_WindowPosRR));
+//    CanTx_SigSet_0x3C7_BCM_2_Timeout_Flag(GetGW_BD_24Value(BCM_2_Timeout_Flag));
+}
+
+void CanTransmitFunction(void const *pvParameters)
+{
+	(void)pvParameters;
+   // printf("CanTransmitFunction\r\n");
+	for(;;)
+	{
+      CanGetMsgSignal();
+      CanCcl_TickCntHnadler();
+		// CanDbc_TxHandler();
+		vTaskDelay(pdMS_TO_TICKS(5));
+	}
+}

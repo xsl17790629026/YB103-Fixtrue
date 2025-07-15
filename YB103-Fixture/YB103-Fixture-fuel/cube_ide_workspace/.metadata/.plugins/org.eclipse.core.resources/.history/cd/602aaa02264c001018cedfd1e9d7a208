@@ -1,0 +1,1221 @@
+#include "main.h"
+#include "lcd12864.h"
+#include "Service_CanComm_il.h"
+extern uint8_t g_menu_index;
+extern uint8_t g_item_index;
+
+static uint32_t crash_flag = 0;
+static uint8_t first_crash_flag = 0;
+
+uint32_t GetItemValue(uint8_t menu, uint8_t item, uint8_t really_value)
+{
+    uint32_t res = 0U;
+    switch(menu)
+    {
+        case CanMsg_ACU_1:
+            if(item < CanMsg_ACU_1_ITEM_MAX)
+            {
+                res = g_CanMsg_ACU_1[item];
+            }
+            break;
+        case CanMsg_BCM_3:
+            if(item < CanMsg_BCM_3_ITEM_MAX)
+            {
+                res = g_CanMsg_BCM_3[item];
+            }
+            break;
+        case CanMsg_BCM_4:
+            if(item < CanMsg_BCM_4_ITEM_MAX)
+            {
+                res = g_CanMsg_BCM_4[item];
+            }
+            break;
+        case CanMsg_FCM_3:
+            if(item < CanMsg_FCM_3_ITEM_MAX)
+            {
+                res = g_CanMsg_FCM_3[item];
+            }
+            break;
+        case CanMsg_FCM_4:
+            if(item < CanMsg_FCM_4_ITEM_MAX)
+            {
+                res = g_CanMsg_FCM_4[item];
+            }
+            break;
+        case CanMsg_GW_BD_14:
+            if(item < CanMsg_GW_BD_14_ITEM_MAX)
+            {
+                res = g_CanMsg_GW_BD_14[item];
+            }
+            break;
+        case CanMsg_GW_BD_29:
+            if(item < CanMsg_GW_BD_29_ITEM_MAX)
+            {
+                res = g_CanMsg_GW_BD_29[item];
+            }
+            break;
+        case CanMsg_GW_BD_9:
+            if(item < CanMsg_GW_BD_9_ITEM_MAX)
+            {
+                res = g_CanMsg_GW_BD_9[item];
+            }
+            break;
+        case CanMsg_GW_PC_1:
+            if(item < CanMsg_GW_PC_1_ITEM_MAX)
+            {
+                res = g_CanMsg_GW_PC_1[item];
+            }
+            break;
+        case CanMsg_GW_PC_2:
+            if(item < CanMsg_GW_PC_2_ITEM_MAX)
+            {
+                res = g_CanMsg_GW_PC_2[item];
+            }
+            break;
+        case CanMsg_GW_PC_7:
+            if(item < CanMsg_GW_PC_7_ITEM_MAX)
+            {
+                res = g_CanMsg_GW_PC_7[item];
+            }
+            break;
+        case CanMsg_PEPS_3:
+            if(item < CanMsg_PEPS_3_ITEM_MAX)
+            {
+                res = g_CanMsg_PEPS_3[item];
+            }
+            break;
+        case CanMsg_TBOX_1:
+            if(item < CanMsg_TBOX_1_ITEM_MAX)
+            {
+                res = g_CanMsg_TBOX_1[item];
+            }
+            break;
+        case CanMsg_TBOX_4:
+            if(item < CanMsg_TBOX_4_ITEM_MAX)
+            {
+                res = g_CanMsg_TBOX_4[item];
+            }
+            break;
+        case CanMsg_TPMS_1:
+            if(item < CanMsg_TPMS_1_ITEM_MAX)
+            {
+                res = g_CanMsg_TPMS_1[item];
+            }
+            break;
+        default:
+            break;
+    }
+    return res;
+}
+
+uint8_t GetItemMAXItem(uint8_t menu) 
+{
+    uint8_t temp = 0U;
+    switch(menu)
+    {
+        case CanMsg_ACU_1:
+            temp = CanMsg_ACU_1_ITEM_MAX;
+            break;
+        case CanMsg_BCM_3:
+            temp = CanMsg_BCM_3_ITEM_MAX;
+            break;
+        case CanMsg_BCM_4:
+            temp = CanMsg_BCM_4_ITEM_MAX;
+            break;
+        case CanMsg_FCM_3:
+            temp = CanMsg_FCM_3_ITEM_MAX;
+            break;
+        case CanMsg_FCM_4:
+            temp = CanMsg_FCM_4_ITEM_MAX;
+            break;
+        case CanMsg_GW_BD_14:
+            temp = CanMsg_GW_BD_14_ITEM_MAX;
+            break;
+        case CanMsg_GW_BD_29:
+            temp = CanMsg_GW_BD_29_ITEM_MAX;
+            break;
+        case CanMsg_GW_BD_9:
+            temp = CanMsg_GW_BD_9_ITEM_MAX;
+            break;
+        case CanMsg_GW_PC_1:
+            temp = CanMsg_GW_PC_1_ITEM_MAX;
+            break;
+        case CanMsg_GW_PC_2:
+            temp = CanMsg_GW_PC_2_ITEM_MAX;
+            break;
+        case CanMsg_GW_PC_7:
+            temp = CanMsg_GW_PC_7_ITEM_MAX;
+            break;
+        case CanMsg_PEPS_3:
+            temp = CanMsg_PEPS_3_ITEM_MAX;
+            break;
+        case CanMsg_TBOX_1:
+            temp = CanMsg_TBOX_1_ITEM_MAX;
+            break;
+        case CanMsg_TBOX_4:
+            temp = CanMsg_TBOX_4_ITEM_MAX;
+            break;
+        case CanMsg_TPMS_1:
+            temp = CanMsg_TPMS_1_ITEM_MAX;
+            break;
+        default:
+            break;
+    }
+    return temp;
+}
+
+uint32_t GetItemMAXValue(uint8_t menu, uint8_t item)
+{
+    uint32_t res = 0U;
+    switch(menu)
+    {
+        case CanMsg_ACU_1:
+            res = CanMsg_ACU_1Max[item];
+            break;
+        case CanMsg_BCM_3:
+            res = CanMsg_BCM_3Max[item];
+            break;
+        case CanMsg_BCM_4:
+            res = CanMsg_BCM_4Max[item];
+            break;
+        case CanMsg_FCM_3:
+            res = CanMsg_FCM_3Max[item];
+            break;
+        case CanMsg_FCM_4:
+            res = CanMsg_FCM_4Max[item];
+            break;
+        case CanMsg_GW_BD_14:
+            res = CanMsg_GW_BD_14Max[item];
+            break;
+        case CanMsg_GW_BD_29:
+            res = CanMsg_GW_BD_29Max[item];
+            break;
+        case CanMsg_GW_BD_9:
+            res = CanMsg_GW_BD_9Max[item];
+            break;
+        case CanMsg_GW_PC_1:
+            res = CanMsg_GW_PC_1Max[item];
+            break;
+        case CanMsg_GW_PC_2:
+            res = CanMsg_GW_PC_2Max[item];
+            break;
+        case CanMsg_GW_PC_7:
+            res = CanMsg_GW_PC_7Max[item];
+            break;
+        case CanMsg_PEPS_3:
+            res = CanMsg_PEPS_3Max[item];
+            break;
+        case CanMsg_TBOX_1:
+            res = CanMsg_TBOX_1Max[item];
+            break;
+        case CanMsg_TBOX_4:
+            res = CanMsg_TBOX_4Max[item];
+            break;
+        case CanMsg_TPMS_1:
+            res = CanMsg_TPMS_1Max[item];
+            break;
+        default:
+            break;
+    }
+    return res;
+}
+
+void SaveItemValue(Pagedis_Func menu, uint8_t item, int16_t value)
+{
+    g_menu_index = GET_MENU(menu, MENU_MAX);
+    switch (g_menu_index)
+    {
+        case CanMsg_ACU_1:
+            value = CHECK_VALUE(value, CanMsg_ACU_1Max[item]);
+            g_CanMsg_ACU_1[item] = value;
+            break;
+        case CanMsg_BCM_3:
+            value = CHECK_VALUE(value, CanMsg_BCM_3Max[item]);
+            g_CanMsg_BCM_3[item] = value;
+            break;
+        case CanMsg_BCM_4:
+            value = CHECK_VALUE(value, CanMsg_BCM_4Max[item]);
+            g_CanMsg_BCM_4[item] = value;
+            break;
+        case CanMsg_FCM_3:
+            value = CHECK_VALUE(value, CanMsg_FCM_3Max[item]);
+            g_CanMsg_FCM_3[item] = value;
+            break;
+        case CanMsg_FCM_4:
+            value = CHECK_VALUE(value, CanMsg_FCM_4Max[item]);
+            g_CanMsg_FCM_4[item] = value;
+            break;
+        case CanMsg_GW_BD_14:
+            value = CHECK_VALUE(value, CanMsg_GW_BD_14Max[item]);
+            g_CanMsg_GW_BD_14[item] = value;
+            break;
+        case CanMsg_GW_BD_29:
+            value = CHECK_VALUE(value, CanMsg_GW_BD_29Max[item]);
+            g_CanMsg_GW_BD_29[item] = value;
+            break;
+        case CanMsg_GW_BD_9:
+            value = CHECK_VALUE(value, CanMsg_GW_BD_9Max[item]);
+            g_CanMsg_GW_BD_9[item] = value;
+            break;
+        case CanMsg_GW_PC_1:
+            value = CHECK_VALUE(value, CanMsg_GW_PC_1Max[item]);
+            g_CanMsg_GW_PC_1[item] = value;
+            break;
+        case CanMsg_GW_PC_2:
+        	if(item != 2){
+                value = CHECK_VALUE(value, CanMsg_GW_PC_2Max[item]);
+                g_CanMsg_GW_PC_2[item] = value;
+        	}
+            break;
+        case CanMsg_GW_PC_7:
+            value = CHECK_VALUE(value, CanMsg_GW_PC_7Max[item]);
+            g_CanMsg_GW_PC_7[item] = value;
+            break;
+        case CanMsg_PEPS_3:
+            value = CHECK_VALUE(value, CanMsg_PEPS_3Max[item]);
+            g_CanMsg_PEPS_3[item] = value;
+            break;
+        case CanMsg_TBOX_1:
+            value = CHECK_VALUE(value, CanMsg_TBOX_1Max[item]);
+            g_CanMsg_TBOX_1[item] = value;
+            break;
+        case CanMsg_TBOX_4:
+            value = CHECK_VALUE(value, CanMsg_TBOX_4Max[item]);
+            g_CanMsg_TBOX_4[item] = value;
+            break;
+        case CanMsg_TPMS_1:
+            value = CHECK_VALUE(value, CanMsg_TPMS_1Max[item]);
+            g_CanMsg_TPMS_1[item] = value;
+            break;
+        default:
+            break;
+    }
+    g_item_index = item;
+}
+
+uint8_t ItemValueLimit(uint8_t menu, uint8_t item)
+{
+    uint8_t res = 0;
+    menu = GET_MENU(menu, MENU_MAX);
+    switch(menu)
+    {
+        case CanMsg_ACU_1:
+            res = 0;
+            break;
+        case CanMsg_BCM_3:
+            res = 0;
+            break;
+        case CanMsg_BCM_4:
+            res = 0;
+            break;
+        case CanMsg_FCM_3:
+            res = 0;
+            break;
+        case CanMsg_FCM_4:
+            res = 0;
+            break;
+        case CanMsg_GW_BD_14:
+            res = 0;
+            break;
+        case CanMsg_GW_BD_29:
+            res = 0;
+            break;
+        case CanMsg_GW_BD_9:
+            res = 0;
+            break;
+        case CanMsg_GW_PC_1:
+            res = 0;
+            break;
+        case CanMsg_GW_PC_2:
+            res = 0;
+            break;
+        case CanMsg_GW_PC_7:
+            res = 0;
+            break;
+        case CanMsg_PEPS_3:
+            res = 0;
+            break;
+        case CanMsg_TBOX_1:
+            res = 0;
+            break;
+        case CanMsg_TBOX_4:
+            res = 0;
+            break;
+        case CanMsg_TPMS_1:
+            res = 0;
+            break;
+        default:
+            break;
+    }
+    return res;
+}
+
+uint32_t GetCanMsg_ACU_1Value(uint8_t item)
+{
+    uint32_t res = 0u;
+    item = GET_MENU(item, CanMsg_ACU_1_ITEM_MAX);
+    res = g_CanMsg_ACU_1[item];
+    if(crash_flag != 0 && res == 0){
+    	res = crash_flag;
+    }
+    return res;
+}
+
+uint32_t GetCanMsg_BCM_3Value(uint8_t item)
+{
+    uint32_t res = 0u;
+    item = GET_MENU(item, CanMsg_BCM_3_ITEM_MAX);
+    res = g_CanMsg_BCM_3[item];
+    return res;
+}
+
+uint32_t GetCanMsg_BCM_4Value(uint8_t item)
+{
+    uint32_t res = 0u;
+    item = GET_MENU(item, CanMsg_BCM_4_ITEM_MAX);
+    res = g_CanMsg_BCM_4[item];
+    return res;
+}
+
+uint32_t GetCanMsg_FCM_3Value(uint8_t item)
+{
+    uint32_t res = 0u;
+    item = GET_MENU(item, CanMsg_FCM_3_ITEM_MAX);
+    res = g_CanMsg_FCM_3[item];
+    return res;
+}
+
+uint32_t GetCanMsg_FCM_4Value(uint8_t item)
+{
+    uint32_t res = 0u;
+    item = GET_MENU(item, CanMsg_FCM_4_ITEM_MAX);
+    res = g_CanMsg_FCM_4[item];
+    return res;
+}
+
+uint32_t GetCanMsg_GW_BD_14Value(uint8_t item)
+{
+    uint32_t res = 0u;
+    item = GET_MENU(item, CanMsg_GW_BD_14_ITEM_MAX);
+    res = g_CanMsg_GW_BD_14[item];
+    return res;
+}
+
+uint32_t GetCanMsg_GW_BD_29Value(uint8_t item)
+{
+    uint32_t res = 0u;
+    item = GET_MENU(item, CanMsg_GW_BD_29_ITEM_MAX);
+    res = g_CanMsg_GW_BD_29[item];
+    return res;
+}
+
+uint32_t GetCanMsg_GW_BD_9Value(uint8_t item)
+{
+    uint32_t res = 0u;
+    item = GET_MENU(item, CanMsg_GW_BD_9_ITEM_MAX);
+    res = g_CanMsg_GW_BD_9[item];
+    return res;
+}
+
+uint32_t GetCanMsg_GW_PC_1Value(uint8_t item)
+{
+    uint32_t res = 0u;
+    item = GET_MENU(item, CanMsg_GW_PC_1_ITEM_MAX);
+    res = g_CanMsg_GW_PC_1[item];
+    return res;
+}
+
+uint32_t GetCanMsg_GW_PC_2Value(uint8_t item)
+{
+    uint32_t res = 0u;
+    item = GET_MENU(item, CanMsg_GW_PC_2_ITEM_MAX);
+    res = g_CanMsg_GW_PC_2[item];
+    if(item == 0){
+    	int32_t tmp;
+    	tmp = res;
+    	tmp -= 780;
+    	return tmp;
+    }
+    return res;
+}
+
+uint32_t GetCanMsg_GW_PC_7Value(uint8_t item)
+{
+    uint32_t res = 0u;
+    item = GET_MENU(item, CanMsg_GW_PC_7_ITEM_MAX);
+    res = g_CanMsg_GW_PC_7[item];
+    return res;
+}
+
+uint32_t GetCanMsg_PEPS_3Value(uint8_t item)
+{
+    uint32_t res = 0u;
+    item = GET_MENU(item, CanMsg_PEPS_3_ITEM_MAX);
+    res = g_CanMsg_PEPS_3[item];
+    return res;
+}
+
+uint32_t GetCanMsg_TBOX_1Value(uint8_t item)
+{
+    uint32_t res = 0u;
+    item = GET_MENU(item, CanMsg_TBOX_1_ITEM_MAX);
+    res = g_CanMsg_TBOX_1[item];
+    return res;
+}
+
+uint32_t GetCanMsg_TBOX_4Value(uint8_t item)
+{
+    uint32_t res = 0u;
+    item = GET_MENU(item, CanMsg_TBOX_4_ITEM_MAX);
+    res = g_CanMsg_TBOX_4[item];
+    return res;
+}
+
+uint32_t GetCanMsg_TPMS_1Value(uint8_t item)
+{
+    uint32_t res = 0u;
+    item = GET_MENU(item, CanMsg_TPMS_1_ITEM_MAX);
+    res = g_CanMsg_TPMS_1[item];
+    return res;
+}
+
+void LCD_CanMsg_ACU_1_item_Judge(uint8_t item, uint32_t *m_value, uint8_t *flag){
+	if(*m_value == 1 || *m_value == 2 || *m_value == 4 || *m_value == 8 || *m_value == 16){
+		crash_flag = *m_value;
+	}
+	if(*m_value >= 0 && *m_value <= 2){
+		if(crash_flag != 0){
+			*m_value = crash_flag;
+		}
+	}
+	else if(*m_value == 4){
+		*m_value = 3;
+	}
+	else if(*m_value == 8){
+		*m_value = 4;
+	}
+	else if(*m_value == 16){
+		*m_value = 5;
+	}
+	else{
+		*flag = 1;
+	}
+}
+
+void LCD_CanMsg_ACU_1_item(uint8_t item, int16_t value)
+{
+    item = GET_MENU(item, CanMsg_ACU_1_ITEM_MAX);
+    write_com(0x83);
+    hzkdis(CanMsg_ACU_1Item[item]);
+    write_com(0x93);
+    uint32_t m_value = g_CanMsg_ACU_1[item];
+    uint8_t flag = 0;
+    LCD_CanMsg_ACU_1_item_Judge(item, &m_value, &flag);
+    if (flag == 0) {
+        hzkdis(CanMsg_ACU_1Value[item][m_value]);
+    } else {
+        LCD_ShowNum(m_value);
+    }
+
+    item = GET_MENU(item+1, CanMsg_ACU_1_ITEM_MAX);
+    write_com(0x8b);
+    hzkdis(CanMsg_ACU_1Item[item]);
+    write_com(0x9b);
+    m_value = g_CanMsg_ACU_1[item];
+    flag = 0;
+    LCD_CanMsg_ACU_1_item_Judge(item, &m_value, &flag);
+	if (flag == 0) {
+		hzkdis(CanMsg_ACU_1Value[item][m_value]);
+	} else {
+		LCD_ShowNum(m_value);
+	}
+
+    write_com(0x93);
+    if(crash_flag != 0 && first_crash_flag == 0){
+    	CanIl_SendEventMsg(CanMsg_ACU_1);
+    	first_crash_flag = 1;
+    }
+}
+
+void LCD_CanMsg_BCM_3_item(uint8_t item, int16_t value)
+{
+    item = GET_MENU(item, CanMsg_BCM_3_ITEM_MAX);
+    write_com(0x83);
+    hzkdis(CanMsg_BCM_3Item[item]);
+    write_com(0x93);
+    if (strcmp(CanMsg_BCM_3Value[item][0], "") != 0) {
+        hzkdis(CanMsg_BCM_3Value[item][g_CanMsg_BCM_3[item]]);
+    } else {
+        LCD_ShowNum(g_CanMsg_BCM_3[item]);
+    }
+
+    item = GET_MENU(item+1, CanMsg_BCM_3_ITEM_MAX);
+    write_com(0x8b);
+    hzkdis(CanMsg_BCM_3Item[item]);
+    write_com(0x9b);
+    if (strcmp(CanMsg_BCM_3Value[item][0], "") != 0) {
+        hzkdis(CanMsg_BCM_3Value[item][g_CanMsg_BCM_3[item]]);
+    } else {
+        LCD_ShowNum(g_CanMsg_BCM_3[item]);
+    }
+    write_com(0x93);
+}
+
+void LCD_CanMsg_BCM_4_item_Judge(uint8_t item, uint32_t *m_value, uint8_t *flag){
+    if (item == 0){
+    	if(*m_value >= 3 && *m_value <= 6){
+    		*m_value = 3;
+    	}
+    	else if(*m_value == 7){
+    		*m_value = 4;
+    	}
+    }
+    else if(item == 6){
+    	if(*m_value >= 5 && *m_value <= 6){
+    		*m_value = 5;
+    	}
+    	else if(*m_value == 7){
+    		*m_value = 6;
+    	}
+    }
+    else if(item == 7){
+    	if(*m_value >= 5 && *m_value <= 6){
+    		*m_value = 5;
+    	}
+    	else if(*m_value == 7){
+    		*m_value = 6;
+    	}
+    }
+    else if(item == 8){
+    	if(*m_value >= 4 && *m_value <= 6){
+    		*m_value = 4;
+    	}
+    	else if(*m_value == 7){
+    		*m_value = 5;
+    	}
+    }
+    else if(item == 10){
+    	if(*m_value >= 11){
+    		*m_value = 11;
+    	}
+    }
+}
+
+void LCD_CanMsg_BCM_4_item(uint8_t item, int16_t value)
+{
+
+
+    item = GET_MENU(item, CanMsg_BCM_4_ITEM_MAX);
+    write_com(0x83);
+    hzkdis(CanMsg_BCM_4Item[item]);
+    write_com(0x93);
+    uint32_t m_value = g_CanMsg_BCM_4[item];
+    uint8_t flag = 0;
+    LCD_CanMsg_BCM_4_item_Judge(item, &m_value, &flag);
+    if (flag == 0) {
+        hzkdis(CanMsg_BCM_4Value[item][m_value]);
+    } else {
+        LCD_ShowNum(m_value);
+    }
+
+    item = GET_MENU(item+1, CanMsg_BCM_4_ITEM_MAX);
+    write_com(0x8b);
+    hzkdis(CanMsg_BCM_4Item[item]);
+    write_com(0x9b);
+    m_value = g_CanMsg_BCM_4[item];
+    flag = 0;
+    LCD_CanMsg_BCM_4_item_Judge(item, &m_value, &flag);
+    if (flag == 0) {
+        hzkdis(CanMsg_BCM_4Value[item][m_value]);
+    } else {
+        LCD_ShowNum(m_value);
+    }
+    write_com(0x93);
+}
+
+void LCD_CanMsg_FCM_3_item_Judge(uint8_t item, uint32_t *m_value, uint8_t *flag){
+	if(item == 1){
+		if(*m_value >= 0x6 && *m_value <= 0x7){
+			*m_value = 6;
+		}
+	}
+}
+
+void LCD_CanMsg_FCM_3_item(uint8_t item, int16_t value)
+{
+
+
+    item = GET_MENU(item, CanMsg_FCM_3_ITEM_MAX);
+    write_com(0x83);
+    hzkdis(CanMsg_FCM_3Item[item]);
+    write_com(0x93);
+    uint32_t m_value = g_CanMsg_FCM_3[item];
+    uint8_t flag = 0;
+    LCD_CanMsg_FCM_3_item_Judge(item, &m_value, &flag);
+    if (flag == 0) {
+        hzkdis(CanMsg_FCM_3Value[item][m_value]);
+    } else {
+        LCD_ShowNum(m_value);
+    }
+
+    item = GET_MENU(item+1, CanMsg_FCM_3_ITEM_MAX);
+    write_com(0x8b);
+    hzkdis(CanMsg_FCM_3Item[item]);
+    write_com(0x9b);
+    m_value = g_CanMsg_FCM_3[item];
+    flag = 0;
+    LCD_CanMsg_FCM_3_item_Judge(item, &m_value, &flag);
+    if (strcmp(CanMsg_FCM_3Value[item][0], "") != 0) {
+        hzkdis(CanMsg_FCM_3Value[item][g_CanMsg_FCM_3[item]]);
+    } else {
+        LCD_ShowNum(g_CanMsg_FCM_3[item]);
+    }
+    write_com(0x93);
+}
+
+void LCD_CanMsg_FCM_4_item_Judge(uint8_t item, uint32_t *m_value, uint8_t *flag){
+	if(item == 1){
+		if(*m_value >= 5 && *m_value <= 7){
+			*m_value = 5;
+		}
+	}
+	else if(item == 4){
+		if(*m_value >= 6 && *m_value <= 7){
+			*m_value = 6;
+		}
+	}
+	else if(item == 7){
+		if(*m_value >= 6 && *m_value <= 7){
+			*m_value = 6;
+		}
+	}
+}
+
+void LCD_CanMsg_FCM_4_item(uint8_t item, int16_t value)
+{
+
+
+    item = GET_MENU(item, CanMsg_FCM_4_ITEM_MAX);
+    write_com(0x83);
+    hzkdis(CanMsg_FCM_4Item[item]);
+    write_com(0x93);
+    uint32_t m_value = g_CanMsg_FCM_4[item];
+    uint8_t flag = 0;
+    LCD_CanMsg_FCM_4_item_Judge(item, &m_value, &flag);
+    if (flag == 0) {
+        hzkdis(CanMsg_FCM_4Value[item][m_value]);
+    } else {
+        LCD_ShowNum(m_value);
+    }
+
+    item = GET_MENU(item+1, CanMsg_FCM_4_ITEM_MAX);
+    write_com(0x8b);
+    hzkdis(CanMsg_FCM_4Item[item]);
+    write_com(0x9b);
+    m_value = g_CanMsg_FCM_4[item];
+    flag = 0;
+    LCD_CanMsg_FCM_4_item_Judge(item, &m_value, &flag);
+    if (flag == 0) {
+        hzkdis(CanMsg_FCM_4Value[item][m_value]);
+    } else {
+        LCD_ShowNum(m_value);
+    }
+    write_com(0x93);
+}
+
+void LCD_CanMsg_GW_BD_14_item_Judge(uint8_t item, uint32_t *m_value, uint8_t *flag){
+	if(item == 2){
+		if(*m_value == 0){
+			*m_value = 0;
+		}
+		else if(*m_value == 1){
+			*m_value = 1;
+		}
+		else if(*m_value >= 2 && *m_value <= 32){
+			if((*m_value - 2) % 2 == 0){
+				*m_value = 16.5 + 0.5 * (*m_value - 2);
+				*flag = 3;
+			}
+			else{
+				*m_value = 16.5 + 0.5 * (*m_value - 2);
+				*flag = 2;
+			}
+		}
+		else if(*m_value == 0x3E){
+			*m_value = 2;
+		}
+		else if(*m_value == 0x3F){
+			*m_value = 3;
+		}
+		else{
+			*flag = 1;
+		}
+	}
+	else if(item == 3){
+		if(*m_value == 0){
+			*m_value = 0;
+		}
+		else if(*m_value == 1){
+			*m_value = 1;
+		}
+		else if(*m_value >= 2 && *m_value <= 32){
+			if((*m_value - 2) % 2 == 0){
+				*m_value = 16.5 + 0.5 * (*m_value - 2);
+				*flag = 3;
+			}
+			else{
+				*m_value = 16.5 + 0.5 * (*m_value - 2);
+				*flag = 2;
+			}
+		}
+		else if(*m_value == 0x3E){
+			*m_value = 2;
+		}
+		else if(*m_value == 0x3F){
+			*m_value = 3;
+		}
+		else{
+			*flag = 1;
+		}
+	}
+	else if(item == 5){
+		if(*m_value >= 6 && *m_value <= 7){
+			*m_value = 6;
+		}
+	}
+	else if(item == 11){
+		if(*m_value == 0xFF){
+			*m_value = 0;
+		}
+		else{
+			*flag = 1;
+		}
+	}
+}
+
+void LCD_CanMsg_GW_BD_14_item(uint8_t item, int16_t value)
+{
+    item = GET_MENU(item, CanMsg_GW_BD_14_ITEM_MAX);
+    write_com(0x83);
+    hzkdis(CanMsg_GW_BD_14Item[item]);
+    write_com(0x93);
+    uint32_t m_value = g_CanMsg_GW_BD_14[item];
+    uint8_t flag = 0;
+    LCD_CanMsg_GW_BD_14_item_Judge(item, &m_value, &flag);
+    if (flag == 0) {
+        hzkdis(CanMsg_GW_BD_14Value[item][m_value]);
+    } else if(flag == 1) {
+        LCD_ShowNum(m_value);
+    }
+    else if(flag ==2){
+    	LCD_ShowNumdecimal(m_value, 0);
+    }
+    else{
+    	LCD_ShowNumdecimal(m_value, 1);
+    }
+
+    item = GET_MENU(item+1, CanMsg_GW_BD_14_ITEM_MAX);
+    write_com(0x8b);
+    hzkdis(CanMsg_GW_BD_14Item[item]);
+    write_com(0x9b);
+    m_value = g_CanMsg_GW_BD_14[item];
+    flag = 0;
+    LCD_CanMsg_GW_BD_14_item_Judge(item, &m_value, &flag);
+    if (flag == 0) {
+        hzkdis(CanMsg_GW_BD_14Value[item][m_value]);
+    } else if(flag == 1) {
+        LCD_ShowNum(m_value);
+    }
+    else if(flag ==2){
+    	LCD_ShowNumdecimal(m_value, 0);
+    }
+    else{
+    	LCD_ShowNumdecimal(m_value, 1);
+    }
+    write_com(0x93);
+}
+
+void LCD_CanMsg_GW_BD_29_item_Judge(uint8_t item, uint32_t *m_value, uint8_t *flag){
+	if(item == 0){
+		if(*m_value >= 4 && *m_value <= 0x0E){
+			*m_value = 4;
+		}
+		else if(*m_value == 0x0F){
+			*m_value = 5;
+		}
+	}
+	else if(item == 1){
+		if(*m_value >= 4 && *m_value <= 0x0E){
+			*m_value = 4;
+		}
+		else if(*m_value == 0x0F){
+			*m_value = 5;
+		}
+	}
+	else if(item == 2){
+		if(*m_value >= 4 && *m_value <= 6){
+			*m_value = 4;
+		}
+		else if(*m_value == 7){
+			*m_value = 5;
+		}
+	}
+	else if(item == 3){
+		if(*m_value >= 4 && *m_value <= 0x0E){
+			*m_value = 3;
+		}
+		else if(*m_value == 0x0F){
+			*m_value = 4;
+		}
+	}
+	else if(item == 6){
+		if(*m_value >= 6 && *m_value <= 7){
+			*m_value = 6;
+		}
+	}
+}
+
+void LCD_CanMsg_GW_BD_29_item(uint8_t item, int16_t value)
+{
+
+
+    item = GET_MENU(item, CanMsg_GW_BD_29_ITEM_MAX);
+    write_com(0x83);
+    hzkdis(CanMsg_GW_BD_29Item[item]);
+    write_com(0x93);
+    uint32_t m_value = g_CanMsg_GW_BD_29[item];
+    uint8_t flag = 0;
+    LCD_CanMsg_GW_BD_29_item_Judge(item, &m_value, &flag);
+    if (flag == 0) {
+        hzkdis(CanMsg_GW_BD_29Value[item][m_value]);
+    } else {
+        LCD_ShowNum(m_value);
+    }
+
+    item = GET_MENU(item+1, CanMsg_GW_BD_29_ITEM_MAX);
+    write_com(0x8b);
+    hzkdis(CanMsg_GW_BD_29Item[item]);
+    write_com(0x9b);
+    m_value = g_CanMsg_GW_BD_29[item];
+    flag = 0;
+    LCD_CanMsg_GW_BD_29_item_Judge(item, &m_value, &flag);
+    if (flag == 0) {
+        hzkdis(CanMsg_GW_BD_29Value[item][m_value]);
+    } else {
+        LCD_ShowNum(m_value);
+    }
+    write_com(0x93);
+}
+
+void LCD_CanMsg_GW_BD_9_item(uint8_t item, int16_t value)
+{
+
+
+    item = GET_MENU(item, CanMsg_GW_BD_9_ITEM_MAX);
+    write_com(0x83);
+    hzkdis(CanMsg_GW_BD_9Item[item]);
+    write_com(0x93);
+    if (strcmp(CanMsg_GW_BD_9Value[item][0], "") != 0) {
+        hzkdis(CanMsg_GW_BD_9Value[item][g_CanMsg_GW_BD_9[item]]);
+    } else {
+        LCD_ShowNum(g_CanMsg_GW_BD_9[item]);
+    }
+
+    item = GET_MENU(item+1, CanMsg_GW_BD_9_ITEM_MAX);
+    write_com(0x8b);
+    hzkdis(CanMsg_GW_BD_9Item[item]);
+    write_com(0x9b);
+    if (strcmp(CanMsg_GW_BD_9Value[item][0], "") != 0) {
+        hzkdis(CanMsg_GW_BD_9Value[item][g_CanMsg_GW_BD_9[item]]);
+    } else {
+        LCD_ShowNum(g_CanMsg_GW_BD_9[item]);
+    }
+    write_com(0x93);
+}
+
+void LCD_CanMsg_GW_PC_1_item_Judge(uint8_t item, uint32_t *m_value, uint8_t *flag){
+	if(item == 0){
+		if((*m_value >= 0 && *m_value <= 5) || (*m_value == 7)){
+			if(*m_value == 7){
+				*m_value = 6;
+			}
+		}
+		else if(*m_value >= 0x8 && *m_value <= 0xC){
+			*m_value = 7;
+		}
+		else if(*m_value == 0xF){
+			*m_value = 8;
+		}
+		else{
+			*flag = 1;
+		}
+	}
+	else if(item == 2){
+		if(*m_value >= 0 && *m_value <= 0x0A){
+
+		}
+		else if(*m_value >= 0x0B && *m_value <= 0x0F){
+			*m_value = 11;
+		}
+		else if(*m_value >= 0x10 && *m_value <= 0x13){
+			*m_value -= 4;
+		}
+		else if(*m_value >= 0x14 && *m_value <= 0x3E){
+			*m_value = 16;
+		}
+		else if(*m_value == 0x3F){
+			*m_value = 17;
+		}
+		else{
+			*flag = 1;
+		}
+	}
+}
+
+void LCD_CanMsg_GW_PC_1_item(uint8_t item, int16_t value)
+{
+
+
+    item = GET_MENU(item, CanMsg_GW_PC_1_ITEM_MAX);
+    write_com(0x83);
+    hzkdis(CanMsg_GW_PC_1Item[item]);
+    write_com(0x93);
+    uint32_t m_value = g_CanMsg_GW_PC_1[item];
+    uint8_t flag = 0;
+    LCD_CanMsg_GW_PC_1_item_Judge(item, &m_value, &flag);
+    if (flag == 0) {
+        hzkdis(CanMsg_GW_PC_1Value[item][m_value]);
+    } else {
+        LCD_ShowNum(m_value);
+    }
+    item = GET_MENU(item+1, CanMsg_GW_PC_1_ITEM_MAX);
+    write_com(0x8b);
+    hzkdis(CanMsg_GW_PC_1Item[item]);
+    write_com(0x9b);
+    m_value = g_CanMsg_GW_PC_1[item];
+    flag = 0;
+    LCD_CanMsg_GW_PC_1_item_Judge(item, &m_value, &flag);
+    if (flag == 0) {
+        hzkdis(CanMsg_GW_PC_1Value[item][m_value]);
+    } else {
+        LCD_ShowNum(m_value);
+    }
+    write_com(0x93);
+}
+
+void LCD_CanMsg_GW_PC_2_item_Judge(uint8_t item, uint32_t *m_value, uint8_t *flag){
+	if(item == 2){
+		if(*m_value <= 1562 && *m_value >= 0 && *m_value != 0xFFFF){
+			if(*m_value > 780){
+				*m_value = 0;
+			}
+			else if(*m_value < 780){
+				*m_value = 1;
+			}
+			else if(*m_value == 780){
+				*m_value = 2;
+			}
+		}
+		else{
+			*m_value = 3;
+		}
+	}
+	else if(item == 1){
+		*flag = 1;
+	}
+}
+
+void LCD_CanMsg_GW_PC_2_item(uint8_t item, int16_t value)
+{
+    item = GET_MENU(item, CanMsg_GW_PC_2_ITEM_MAX);
+    write_com(0x83);
+    hzkdis(CanMsg_GW_PC_2Item[item]);
+    write_com(0x93);
+    uint32_t m_value = g_CanMsg_GW_PC_2[item];
+    uint8_t flag = 0;
+    LCD_CanMsg_GW_PC_2_item_Judge(item, &m_value, &flag);
+    if (flag == 0) {
+        hzkdis(CanMsg_GW_PC_2Value[item][m_value]);
+    } else {
+        LCD_ShowNum(m_value);
+    }
+
+    item = GET_MENU(item+1, CanMsg_GW_PC_2_ITEM_MAX);
+    write_com(0x8b);
+    hzkdis(CanMsg_GW_PC_2Item[item]);
+    write_com(0x9b);
+    m_value = g_CanMsg_GW_PC_2[item];
+    flag = 0;
+    LCD_CanMsg_GW_PC_2_item_Judge(item, &m_value, &flag);
+    if (flag == 0) {
+        hzkdis(CanMsg_GW_PC_2Value[item][m_value]);
+    } else {
+        LCD_ShowNum(m_value);
+    }
+    write_com(0x93);
+}
+
+void LCD_CanMsg_GW_PC_7_item(uint8_t item, int16_t value)
+{
+
+
+    item = GET_MENU(item, CanMsg_GW_PC_7_ITEM_MAX);
+    write_com(0x83);
+    hzkdis(CanMsg_GW_PC_7Item[item]);
+    write_com(0x93);
+    if (strcmp(CanMsg_GW_PC_7Value[item][0], "") != 0) {
+        hzkdis(CanMsg_GW_PC_7Value[item][g_CanMsg_GW_PC_7[item]]);
+    } else {
+        LCD_ShowNum(g_CanMsg_GW_PC_7[item]);
+    }
+
+    item = GET_MENU(item+1, CanMsg_GW_PC_7_ITEM_MAX);
+    write_com(0x8b);
+    hzkdis(CanMsg_GW_PC_7Item[item]);
+    write_com(0x9b);
+    if (strcmp(CanMsg_GW_PC_7Value[item][0], "") != 0) {
+        hzkdis(CanMsg_GW_PC_7Value[item][g_CanMsg_GW_PC_7[item]]);
+    } else {
+        LCD_ShowNum(g_CanMsg_GW_PC_7[item]);
+    }
+    write_com(0x93);
+}
+
+void LCD_CanMsg_PEPS_3_item(uint8_t item, int16_t value)
+{
+
+
+    item = GET_MENU(item, CanMsg_PEPS_3_ITEM_MAX);
+    write_com(0x83);
+    hzkdis(CanMsg_PEPS_3Item[item]);
+    write_com(0x93);
+    if (strcmp(CanMsg_PEPS_3Value[item][0], "") != 0) {
+        hzkdis(CanMsg_PEPS_3Value[item][g_CanMsg_PEPS_3[item]]);
+    } else {
+        LCD_ShowNum(g_CanMsg_PEPS_3[item]);
+    }
+
+    item = GET_MENU(item+1, CanMsg_PEPS_3_ITEM_MAX);
+    write_com(0x8b);
+    hzkdis(CanMsg_PEPS_3Item[item]);
+    write_com(0x9b);
+    if (strcmp(CanMsg_PEPS_3Value[item][0], "") != 0) {
+        hzkdis(CanMsg_PEPS_3Value[item][g_CanMsg_PEPS_3[item]]);
+    } else {
+        LCD_ShowNum(g_CanMsg_PEPS_3[item]);
+    }
+    write_com(0x93);
+}
+
+void LCD_CanMsg_TBOX_1_item(uint8_t item, int16_t value)
+{
+
+
+    item = GET_MENU(item, CanMsg_TBOX_1_ITEM_MAX);
+    write_com(0x83);
+    hzkdis(CanMsg_TBOX_1Item[item]);
+    write_com(0x93);
+    if (strcmp(CanMsg_TBOX_1Value[item][0], "") != 0) {
+        hzkdis(CanMsg_TBOX_1Value[item][g_CanMsg_TBOX_1[item]]);
+    } else {
+        LCD_ShowNum(g_CanMsg_TBOX_1[item]);
+    }
+
+    item = GET_MENU(item+1, CanMsg_TBOX_1_ITEM_MAX);
+    write_com(0x8b);
+    hzkdis(CanMsg_TBOX_1Item[item]);
+    write_com(0x9b);
+    if (strcmp(CanMsg_TBOX_1Value[item][0], "") != 0) {
+        hzkdis(CanMsg_TBOX_1Value[item][g_CanMsg_TBOX_1[item]]);
+    } else {
+        LCD_ShowNum(g_CanMsg_TBOX_1[item]);
+    }
+    write_com(0x93);
+}
+
+void LCD_CanMsg_TBOX_4_item(uint8_t item, int16_t value)
+{
+
+
+    item = GET_MENU(item, CanMsg_TBOX_4_ITEM_MAX);
+    write_com(0x83);
+    hzkdis(CanMsg_TBOX_4Item[item]);
+    write_com(0x93);
+    if (strcmp(CanMsg_TBOX_4Value[item][0], "") != 0) {
+        hzkdis(CanMsg_TBOX_4Value[item][g_CanMsg_TBOX_4[item]]);
+    } else {
+        LCD_ShowNum(g_CanMsg_TBOX_4[item]);
+    }
+
+    item = GET_MENU(item+1, CanMsg_TBOX_4_ITEM_MAX);
+    write_com(0x8b);
+    hzkdis(CanMsg_TBOX_4Item[item]);
+    write_com(0x9b);
+    if (strcmp(CanMsg_TBOX_4Value[item][0], "") != 0) {
+        hzkdis(CanMsg_TBOX_4Value[item][g_CanMsg_TBOX_4[item]]);
+    } else {
+        LCD_ShowNum(g_CanMsg_TBOX_4[item]);
+    }
+    write_com(0x93);
+}
+
+void LCD_CanMsg_TPMS_1_item_Judge(uint8_t item, uint32_t *m_value, uint8_t *flag){
+	if(item == 1){
+		if(*m_value == 0xFF){
+			*m_value = 0;
+		}
+		else{
+			*flag = 1;
+		}
+	}
+}
+
+void LCD_CanMsg_TPMS_1_item(uint8_t item, int16_t value)
+{
+    item = GET_MENU(item, CanMsg_TPMS_1_ITEM_MAX);
+    write_com(0x83);
+    hzkdis(CanMsg_TPMS_1Item[item]);
+    write_com(0x93);
+    uint32_t m_value = g_CanMsg_TPMS_1[item];
+    uint8_t flag = 0;
+    LCD_CanMsg_TPMS_1_item_Judge(item, &m_value, &flag);
+    if (flag == 0) {
+        hzkdis(CanMsg_TPMS_1Value[item][g_CanMsg_TPMS_1[item]]);
+    } else {
+        LCD_ShowNum(g_CanMsg_TPMS_1[item]);
+    }
+
+    item = GET_MENU(item+1, CanMsg_TPMS_1_ITEM_MAX);
+    write_com(0x8b);
+    hzkdis(CanMsg_TPMS_1Item[item]);
+    write_com(0x9b);
+    m_value = g_CanMsg_TPMS_1[item];
+    flag = 0;
+    LCD_CanMsg_TPMS_1_item_Judge(item, &m_value, &flag);
+    if (flag == 0) {
+        hzkdis(CanMsg_TPMS_1Value[item][g_CanMsg_TPMS_1[item]]);
+    } else {
+        LCD_ShowNum(g_CanMsg_TPMS_1[item]);
+    }
+    write_com(0x93);
+}
+
+// LCD显示函数指针数组
+void (*LCD_Display_Func[MENU_MAX])(uint8_t, int16_t) = {
+    LCD_CanMsg_ACU_1_item,
+    LCD_CanMsg_BCM_3_item,
+    LCD_CanMsg_BCM_4_item,
+    LCD_CanMsg_FCM_3_item,
+    LCD_CanMsg_FCM_4_item,
+    LCD_CanMsg_GW_BD_14_item,
+    LCD_CanMsg_GW_BD_29_item,
+    LCD_CanMsg_GW_BD_9_item,
+    LCD_CanMsg_GW_PC_1_item,
+    LCD_CanMsg_GW_PC_2_item,
+    LCD_CanMsg_GW_PC_7_item,
+    LCD_CanMsg_PEPS_3_item,
+    LCD_CanMsg_TBOX_1_item,
+    LCD_CanMsg_TBOX_4_item,
+    LCD_CanMsg_TPMS_1_item,
+};
+

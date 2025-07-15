@@ -1,0 +1,1262 @@
+#ifndef _APP_CAN_YB103_fuel_CANDBCMSG_H_
+#define _APP_CAN_YB103_fuel_CANDBCMSG_H_
+
+#include <stdint.h>
+
+typedef struct {
+    // 0x90 - IHU_3
+    // Byte 0
+    uint8_t IHU_AEBSwtSet : 2;
+    uint8_t IHU_FCWSnvtySet : 2;
+    uint8_t IHU_FCWSwtSet : 2;
+    uint8_t IHU_LDWWarnVoiceSwtSet : 2;
+    // Byte 1
+    uint8_t IHU_LDWSwtSet : 2;
+    uint8_t IHU_LDWLDPSnvtySet : 2;
+    uint8_t IHU_TSRSwtSet : 2;
+    uint8_t IHU_IHBCSwtSet : 2;
+    // Byte 2
+    uint8_t IHU_TSROverSpeedSwSet : 2;
+    uint8_t IHU_TSROverSpeedAcousticSwSet : 2;
+    uint8_t IHU_FlaoutUnlockSet : 2;
+    uint8_t IHU_AutoWshWipSet : 2;
+    // Byte 3
+    uint8_t IHU_SpeedLockSet : 3;
+    uint8_t IHU_HornAlertVolumeSet : 3;
+    uint8_t IHU_WindowRemoteAutoDownSet : 2;
+    // Byte 4
+    uint8_t IHU_AssistIlluminationSet : 2;
+    uint8_t IHU_exRearMirrorAutoFoldSet : 2;
+    uint8_t IHU_WindowAutoUPbyLockSet : 2;
+    uint8_t IHU_SearchCarWarnModSet : 2;
+    // Byte 5
+    uint8_t IHU_FLSeatHeatLvlSet : 4;
+    uint8_t IHU_FRSeatHeatLvlSet : 4;
+    // Byte 6
+    uint8_t IHU_FLSeatMassgLvlSet : 3;
+    uint8_t Reserve_6_3 : 1;
+    uint8_t IHU_FLSeatMassgModSet : 4;
+    // Byte 7
+    uint8_t IHU_ClsWinSpdSet : 3;
+    uint8_t IHU_Frontwindshieldheatingtset : 2;
+    uint8_t IHU_Nozzleheatingset : 2;
+    uint8_t Reserve_7 : 1;
+} CanMsg_IHU_3_0x90_Struct;
+
+typedef struct {
+    // 0x91 - IHU_6
+    // Byte 0
+    uint8_t IHU_WindowPosFLCmd : 7;
+    uint8_t Reserve_0 : 1;
+    // Byte 1
+    uint8_t IHU_WindowPosFRCmd : 7;
+    uint8_t Reserve_1 : 1;
+    // Byte 2
+    uint8_t IHU_WindowPosRLCmd : 7;
+    uint8_t Reserve_2 : 1;
+    // Byte 3
+    uint8_t IHU_WindowPosRRCmd : 7;
+    uint8_t Reserve_3 : 1;
+    // Byte 4
+    uint8_t IHU_SunroofCmd : 4;
+    uint8_t IHU_BackMirrorFoldCmd : 2;
+    uint8_t Reserve_4 : 2;
+    // Byte 5
+    uint8_t Reserve_5 : 8;
+    // Byte 6
+    uint8_t Reserve_6 : 8;
+    // Byte 7
+    uint8_t Reserve_7 : 8;
+} CanMsg_IHU_6_0x91_Struct;
+
+typedef struct {
+    // 0x92 - IHU_10
+    // Byte 0
+    uint8_t IHU_AmbientLightSwtSet : 2;
+    uint8_t IHU_AmbientLightLvlSet : 4;
+    uint8_t Reserve_0 : 2;
+    // Byte 1
+    uint8_t IHU_SteeringWheelHeatingSWSet : 2;
+    uint8_t Reserve_1 : 6;
+    // Byte 2
+    uint8_t Reserve_2 : 8;
+    // Byte 3
+    uint8_t Reserve_3 : 8;
+    // Byte 4
+    uint8_t Reserve_4 : 8;
+    // Byte 5
+    uint8_t Reserve_5 : 8;
+    // Byte 6
+    uint8_t Reserve_6 : 8;
+    // Byte 7
+    uint8_t Reserve_7 : 8;
+} CanMsg_IHU_10_0x92_Struct;
+
+typedef struct {
+    // 0x250 - GW_PC_2
+    // Byte 0
+    uint8_t ESP_1_ESPOff : 1;
+    uint8_t ESP_1_ESPActive : 1;
+    uint8_t ESP_1_TCSActive : 1;
+    uint8_t ESP_1_ESPFault : 1;
+    uint8_t ESP_1_TCSFault : 1;
+    uint8_t ESP_1_DVTSessionFlag : 1;
+    uint8_t ESP_1_HDCControl : 2;
+    // Byte 1
+    uint8_t ESP_1_HDCFault : 1;
+    uint8_t EPB_1_AutoHold_Standby : 1;
+    uint8_t EPB_1_WarningLamp : 1;
+    uint8_t EPB_1_ActiveLamp : 2;
+    uint8_t EPB_1_AutoholdActive : 1;
+    uint8_t EPB_1_AutoholdValid : 1;
+    uint8_t ABS_3_AbsActive : 1;
+    // Byte 2
+    uint8_t ABS_3_VehicleSpeed_Part1 : 5;
+    uint8_t ABS_3_AbsFault : 1;
+    uint8_t ABS_3_VehicleSpeedValid : 1;
+    uint8_t Reserve_2 : 1;
+    // Byte 3
+    uint8_t ABS_3_VehicleSpeed_Part0 : 8;
+    // Byte 4
+    uint8_t ABS_3_EbdActive : 1;
+    uint8_t ABS_3_EbdFault : 1;
+    uint8_t SAS_1_SteeringAngleValid : 1;
+    uint8_t SAS_1_FailureSts : 1;
+    uint8_t SAS_1_CalibratedSt : 1;
+    uint8_t Reserve_4 : 3;
+    // Byte 5
+    uint8_t SAS_1_SteeringAngle_Part1 : 8;
+    // Byte 6
+    uint8_t SAS_1_SteeringAngle_Part0 : 8;
+    // Byte 7
+    uint8_t ESP_1_Timeout_Flag : 1;
+    uint8_t EPB_1_Timeout_Flag : 1;
+    uint8_t ABS_3_Timeout_Flag : 1;
+    uint8_t SAS_1_Timeout_Flag : 1;
+    uint8_t EPB_1_InhibitDriveOffNotice : 1;
+    uint8_t Reserve_7 : 3;
+} CanMsg_GW_PC_2_0x250_Struct;
+
+typedef struct {
+    // 0x255 - GW_PC_7
+    // Byte 0
+    uint8_t AWD_1_SystemOperatingMode : 4;
+    uint8_t AWD_1_ShiftSystemActuatorFault : 1;
+    uint8_t AWD_1_ShiftSystemStuckinLow : 1;
+    uint8_t AWD_1_ShiftSystemEncoderFault : 1;
+    uint8_t AWD_1_DiagnosticLampRequest : 1;
+    // Byte 1
+    uint8_t AWD_1_ClutchCircuitFaultStatus : 2;
+    uint8_t AWD_1_Lamp2WD : 2;
+    uint8_t AWD_1_Lamp4WDLock : 2;
+    uint8_t AWD_1_Lamp4WDLow : 2;
+    // Byte 2
+    uint8_t AWD_1_OpreationNotice : 4;
+    uint8_t EDL_1_FrontDiffLockGreenLamp : 2;
+    uint8_t EDL_1_FrontDiffLockYellowLamp : 2;
+    // Byte 3
+    uint8_t EDL_1_RearDiffLockGreenLamp : 2;
+    uint8_t EDL_1_RearDiffLockYellowLamp : 2;
+    uint8_t EDL_1_StatusNotice : 4;
+    // Byte 4
+    uint8_t Reserve_4 : 8;
+    // Byte 5
+    uint8_t Reserve_5 : 8;
+    // Byte 6
+    uint8_t Reserve_6 : 8;
+    // Byte 7
+    uint8_t AWD_1_Timeout_Flag : 1;
+    uint8_t EDL_1_Timeout_Flag : 1;
+    uint8_t Reserve_7 : 6;
+} CanMsg_GW_PC_7_0x255_Struct;
+
+typedef struct {
+    // 0x268 - PEPS_1
+    // Byte 0
+    uint8_t Reserve_0 : 8;
+    // Byte 1
+    uint8_t PEPS_ESCL_LearningStatus : 2;
+    uint8_t Reserve_1 : 6;
+    // Byte 2
+    uint8_t PEPS_PowerRelayOutputFail : 1;
+    uint8_t PEPS_PIN_LearningStatus : 1;
+    uint8_t Reserve_2_2 : 4;
+    uint8_t PEPS_SSB_FailStatus : 1;
+    uint8_t PEPS_ESCL_FailStatus : 1;
+    // Byte 3
+    uint8_t PEPS_FailStatus : 1;
+    uint8_t Reserve_3 : 7;
+    // Byte 4
+    uint8_t Reserve_4_0 : 3;
+    uint8_t PEPS_ESCL_NotUnlockWarning : 1;
+    uint8_t PEPS_ESCL_NotLockWarning : 1;
+    uint8_t Reserve_4_5 : 2;
+    uint8_t PEPS_NotPNWarning : 1;
+    // Byte 5
+    uint8_t PEPS_BrakeIndicationWarning : 1;
+    uint8_t PEPS_ClutchIndicationWarning : 1;
+    uint8_t PEPS_KeyReminderWarning : 1;
+    uint8_t PEPS_NoKeyFoundWarning : 1;
+    uint8_t PEPS_KeyOutWarning1 : 1;
+    uint8_t PEPS_KeyBatteryWarning : 1;
+    uint8_t PEPS_KeyIntWarning1 : 1;
+    uint8_t PEPS_LockNotOFFWarning : 1;
+    // Byte 6
+    uint8_t Reserve_6 : 8;
+    // Byte 7
+    uint8_t Reserve_7 : 8;
+} CanMsg_PEPS_1_0x268_Struct;
+
+typedef struct {
+    // 0x269 - PEPS_3
+    // Byte 0
+    uint8_t PEPS_RemoteControlSt : 1;
+    uint8_t Reserve_0 : 7;
+    // Byte 1
+    uint8_t Reserve_1 : 8;
+    // Byte 2
+    uint8_t Reserve_2 : 8;
+    // Byte 3
+    uint8_t Reserve_3 : 8;
+    // Byte 4
+    uint8_t Reserve_4 : 8;
+    // Byte 5
+    uint8_t Reserve_5 : 8;
+    // Byte 6
+    uint8_t PEPS_3_RollingCounter : 4;
+    uint8_t Reserve_6 : 4;
+    // Byte 7
+    uint8_t PEPS_3_Checksum : 8;
+} CanMsg_PEPS_3_0x269_Struct;
+
+typedef struct {
+    // 0x300 - IHU_1
+    // Byte 0
+    uint8_t IHU_EPMModSet : 2;
+    uint8_t IHU_ACSelfCleanModeSet : 2;
+    uint8_t IHU_FrontDefrostButtonSts : 2;
+    uint8_t IHU_RearDefrostButtonSts : 2;
+    // Byte 1
+    uint8_t IHU_FollowMeHome_Time : 3;
+    uint8_t IHU_LeaveHome_Time : 3;
+    uint8_t IHU_ACButtonSts : 2;
+    // Byte 2
+    uint8_t IHU_InteriorLightTimeAjust : 3;
+    uint8_t IHU_TemperatureAjust : 4;
+    uint8_t IHU_ACSystemOff : 1;
+    // Byte 3
+    uint8_t IHU_BlowerSpeedAjust : 3;
+    uint8_t IHU_AirDistributeMode : 3;
+    uint8_t IHU_AirCirculationMode : 2;
+    // Byte 4
+    uint8_t Reserve_4_0 : 1;
+    uint8_t IHU_PTCButtonSts : 2;
+    uint8_t IHU_AUTOButtonSts : 2;
+    uint8_t IHU_AUTOPassengerButtonSts : 2;
+    uint8_t Reserve_4 : 1;
+    // Byte 5
+    uint8_t IHU_DualButtonSts : 2;
+    uint8_t IHU_DriverSetTemperature : 6;
+    // Byte 6
+    uint8_t IHU_PngSetTemperature : 6;
+    uint8_t IHU_SS_Set : 2;
+    // Byte 7
+    uint8_t IHU_DrivemodeSet : 6;
+    uint8_t IHU_WirelessChargeSwtSet : 2;
+} CanMsg_IHU_1_0x300_Struct;
+
+typedef struct {
+    // 0x302 - FCM_3
+    // Byte 0
+    uint8_t FCM_AEBONOFFSts : 2;
+    uint8_t FCM_AEBMode : 3;
+    uint8_t FCM_FCWONOFFSts : 2;
+    uint8_t Reserve_0 : 1;
+    // Byte 1
+    uint8_t FCM_FCWMode : 3;
+    uint8_t FCM_FCWSnvtySts : 2;
+    uint8_t FCM_DistanceWarning : 1;
+    uint8_t FCM_FCWpreWarning : 1;
+    uint8_t Reserve_1 : 1;
+    // Byte 2
+    uint8_t FCM_ACCVSetDis_Part1 : 1;
+    uint8_t FCM_TimeGapSetICM : 3;
+    uint8_t FCM_ACCMode : 3;
+    uint8_t FCM_ACCTakeOverReq : 1;
+    // Byte 3
+    uint8_t FCM_ACCVSetDis_Part0 : 8;
+    // Byte 4
+    uint8_t FCM_AEBTextInfo : 4;
+    uint8_t FCM_ACCTextInfo : 4;
+    // Byte 5
+    uint8_t FCM_CameraTextInfo : 2;
+    uint8_t FCM_DVMode : 2;
+    uint8_t Reserve_5 : 4;
+    // Byte 6
+    uint8_t Reserve_6 : 8;
+    // Byte 7
+    uint8_t Reserve_7 : 8;
+} CanMsg_FCM_3_0x302_Struct;
+
+typedef struct {
+    // 0x303 - FCM_4
+    // Byte 0
+    uint8_t FCM_LDWONOFFSts : 2;
+    uint8_t FCM_LDWSysSts : 3;
+    uint8_t FCM_LDWLKATypefeedback : 2;
+    uint8_t Reserve_0 : 1;
+    // Byte 1
+    uint8_t FCM_LDWLDPSnvtySts : 2;
+    uint8_t FCM_LDWWarnModSts : 2;
+    uint8_t FCM_LDP_TJA_ELKTakeoverReq : 2;
+    uint8_t FCM_LDW_ELK_TJA_LDPLeftVisuali : 2;
+    // Byte 2
+    uint8_t FCM_LDW_ELK_TJA_LDPRightVisuali : 2;
+    uint8_t FCM_TSRONOFFSts : 1;
+    uint8_t FCM_TSROverSpeedONOFFSts : 1;
+    uint8_t FCM_TSROverSpeedAcousticONOFFSts : 1;
+    uint8_t FCM_TSRState : 3;
+    // Byte 3
+    uint8_t FCM_TSRDisplay : 8;
+    // Byte 4
+    uint8_t FCM_SLASpdlimitUnits : 2;
+    uint8_t FCM_TSROverSpdWarning : 1;
+    uint8_t FCM_IHBCONOFFSts : 2;
+    uint8_t FCM_IHBCStatus : 3;
+    // Byte 5
+    uint8_t Reserve_5_0 : 2;
+    uint8_t FCM_LDWTextInfo : 2;
+    uint8_t FCM_TSRTextInfo : 2;
+    uint8_t FCM_IHBCTextInfo : 2;
+    // Byte 6
+    uint8_t Reserve_6_0 : 4;
+    uint8_t FCM_LDWVoiceWarning : 1;
+    uint8_t Reserve_6 : 3;
+    // Byte 7
+    uint8_t Reserve_7 : 8;
+} CanMsg_FCM_4_0x303_Struct;
+
+typedef struct {
+    // 0x304 - FCM_5
+    // Byte 0
+    uint8_t FCM_EgoLeLineHozlDst_Part1 : 3;
+    uint8_t FCM_EgoLeLineTyp : 2;
+    uint8_t FCM_EgoLeLineColor : 2;
+    uint8_t FCM_EgoLeLineID : 1;
+    // Byte 1
+    uint8_t FCM_EgoLeLineCrvt_Part1 : 2;
+    uint8_t FCM_EgoLeLineHozlDst_Part0 : 6;
+    // Byte 2
+    uint8_t FCM_EgoLeLineCrvt_Part0 : 8;
+    // Byte 3
+    uint8_t FCM_EgoRiLineHozlDst_Part1 : 3;
+    uint8_t FCM_EgoRiLineTyp : 2;
+    uint8_t FCM_EgoRiLineColor : 2;
+    uint8_t FCM_EgoRiLineID : 1;
+    // Byte 4
+    uint8_t FCM_EgoRiLineCrvt_Part1 : 2;
+    uint8_t FCM_EgoRiLineHozlDst_Part0 : 6;
+    // Byte 5
+    uint8_t FCM_EgoRiLineCrvt_Part0 : 8;
+    // Byte 6
+    uint8_t FCM_5_RollingCounter : 4;
+    uint8_t Reserve_6 : 4;
+    // Byte 7
+    uint8_t FCM_5_Checksum : 8;
+} CanMsg_FCM_5_0x304_Struct;
+
+typedef struct {
+    // 0x305 - FCM_6
+    // Byte 0
+    uint8_t FCM_NeborLeLineHozlDst_Part1 : 3;
+    uint8_t FCM_NeborLeLineTyp : 2;
+    uint8_t FCM_NeborLeLineColor : 2;
+    uint8_t FCM_NeborLeLineID : 1;
+    // Byte 1
+    uint8_t FCM_NeborLeLineCrvt_Part1 : 2;
+    uint8_t FCM_NeborLeLineHozlDst_Part0 : 6;
+    // Byte 2
+    uint8_t FCM_NeborLeLineCrvt_Part0 : 8;
+    // Byte 3
+    uint8_t FCM_NeborRiLineHozlDst_Part1 : 3;
+    uint8_t FCM_NeborRiLineTyp : 2;
+    uint8_t FCM_NeborRiLineColor : 2;
+    uint8_t FCM_NeborRiLineID : 1;
+    // Byte 4
+    uint8_t FCM_NeborRiLineCrvt_Part1 : 2;
+    uint8_t FCM_NeborRiLineHozlDst_Part0 : 6;
+    // Byte 5
+    uint8_t FCM_NeborRiLineCrvt_Part0 : 8;
+    // Byte 6
+    uint8_t FCM_6_RollingCounter : 4;
+    uint8_t Reserve_6 : 4;
+    // Byte 7
+    uint8_t FCM_6_Checksum : 8;
+} CanMsg_FCM_6_0x305_Struct;
+
+typedef struct {
+    // 0x306 - FCM_7
+    // Byte 0
+    uint8_t Reserve_0_0 : 1;
+    uint8_t FCM_ACC_TargetVehicleSubType : 3;
+    uint8_t FCM_ACCObjTyp : 3;
+    uint8_t FCM_ACCObjID : 1;
+    // Byte 1
+    uint8_t FCM_ACCObjLgtDstX_Part1 : 5;
+    uint8_t FCM_dxTarObjcolor : 3;
+    // Byte 2
+    uint8_t FCM_ACCObjHozDstY_Part1 : 5;
+    uint8_t FCM_ACCObjLgtDstX_Part0 : 3;
+    // Byte 3
+    uint8_t FCM_FrntFarObjTyp_Part1 : 2;
+    uint8_t FCM_FrntFarObjID : 1;
+    uint8_t FCM_ACCObjHozDstY_Part0 : 5;
+    // Byte 4
+    uint8_t FCM_FrntFarObjLgtDstX_Part1 : 6;
+    uint8_t FCM_FrntFarObjTyp_Part0 : 2;
+    // Byte 5
+    uint8_t FCM_FrntFarObjHozDstY_Part1 : 6;
+    uint8_t FCM_FrntFarObjLgtDstX_Part0 : 2;
+    // Byte 6
+    uint8_t FCM_7_RollingCounter : 4;
+    uint8_t FCM_FrntFarObjHozDstY_Part0 : 4;
+    // Byte 7
+    uint8_t FCM_7_Checksum : 8;
+} CanMsg_FCM_7_0x306_Struct;
+
+typedef struct {
+    // 0x307 - FCM_8
+    // Byte 0
+    uint8_t FCM_ACC_LeftTargetVehicleSubType : 3;
+    uint8_t FCM_LeObjTyp : 3;
+    uint8_t FCM_LeObjID : 1;
+    uint8_t FCM_RiObjID : 1;
+    // Byte 1
+    uint8_t FCM_LeObjLgtDstX : 8;
+    // Byte 2
+    uint8_t FCM_LeObjHozDstY_Part1 : 8;
+    // Byte 3
+    uint8_t FCM_ACC_RightTargetVehicleSubTyp : 3;
+    uint8_t FCM_RiObjTyp : 3;
+    uint8_t FCM_LeObjHozDstY_Part0 : 2;
+    // Byte 4
+    uint8_t FCM_RiObjLgtDstX : 8;
+    // Byte 5
+    uint8_t FCM_RiObjHozDstY_Part1 : 8;
+    // Byte 6
+    uint8_t FCM_8_RollingCounter : 4;
+    uint8_t Reserve_6_4 : 2;
+    uint8_t FCM_RiObjHozDstY_Part0 : 2;
+    // Byte 7
+    uint8_t FCM_8_Checksum : 8;
+} CanMsg_FCM_8_0x307_Struct;
+
+typedef struct {
+    // 0x312 - BCM_5
+    // Byte 0
+    uint8_t Reserve_0 : 8;
+    // Byte 1
+    uint8_t Reserve_1 : 8;
+    // Byte 2
+    uint8_t Reserve_2_0 : 4;
+    uint8_t BCM_SRF_PosStatus : 4;
+    // Byte 3
+    uint8_t Reserve_3_0 : 4;
+    uint8_t BCM_SRF_InitializeStatus : 1;
+    uint8_t BCM_SRF_SW_Fault : 1;
+    uint8_t BCM_SRF_Motor_Circuit_Fault : 1;
+    uint8_t BCM_SRF_ECU_Fault : 1;
+    // Byte 4
+    uint8_t BCM_SRF_Alarm : 1;
+    uint8_t Reserve_4_1 : 4;
+    uint8_t BCM_RLS_Fault_Rain : 1;
+    uint8_t BCM_RLS_Fault_Light : 1;
+    uint8_t BCM_RLS_REP_Error : 1;
+    // Byte 5
+    uint8_t BCM_RLS_VOLT_Error : 2;
+    uint8_t Reserve_5 : 6;
+    // Byte 6
+    uint8_t Reserve_6 : 8;
+    // Byte 7
+    uint8_t Reserve_7 : 8;
+} CanMsg_BCM_5_0x312_Struct;
+
+typedef struct {
+    // 0x317 - TBOX_4
+    // Byte 0
+    uint8_t TBOX_AudioMuteRequest : 1;
+    uint8_t Reserve_0 : 7;
+    // Byte 1
+    uint8_t Reserve_1 : 8;
+    // Byte 2
+    uint8_t Reserve_2 : 8;
+    // Byte 3
+    uint8_t Reserve_3 : 8;
+    // Byte 4
+    uint8_t Reserve_4 : 8;
+    // Byte 5
+    uint8_t Reserve_5 : 8;
+    // Byte 6
+    uint8_t Reserve_6 : 8;
+    // Byte 7
+    uint8_t Reserve_7 : 8;
+} CanMsg_TBOX_4_0x317_Struct;
+
+typedef struct {
+    // 0x350 - ACU_1
+    // Byte 0
+    uint8_t ACU_CrashOutputSts : 8;
+    // Byte 1
+    uint8_t Reserve_1_0 : 7;
+    uint8_t ACU_AirbagWarningStatus : 1;
+    // Byte 2
+    uint8_t ACU_AirbagInhibitWarning : 1;
+    uint8_t Reserve_2 : 7;
+    // Byte 3
+    uint8_t Reserve_3 : 8;
+    // Byte 4
+    uint8_t Reserve_4 : 8;
+    // Byte 5
+    uint8_t Reserve_5 : 8;
+    // Byte 6
+    uint8_t Reserve_6 : 8;
+    // Byte 7
+    uint8_t Reserve_7 : 8;
+} CanMsg_ACU_1_0x350_Struct;
+
+typedef struct {
+    // 0x360 - BCM_1
+    // Byte 0
+    uint8_t Reserve_0_0 : 6;
+    uint8_t BCM_LeftTurnLightSts : 2;
+    // Byte 1
+    uint8_t BCM_RightTurnLightSts : 2;
+    uint8_t Reserve_1_2 : 2;
+    uint8_t BCM_EmergencyLightSts : 2;
+    uint8_t Reserve_1 : 2;
+    // Byte 2
+    uint8_t Reserve_2 : 8;
+    // Byte 3
+    uint8_t Reserve_3 : 8;
+    // Byte 4
+    uint8_t Reserve_4 : 8;
+    // Byte 5
+    uint8_t Reserve_5 : 8;
+    // Byte 6
+    uint8_t Reserve_6 : 8;
+    // Byte 7
+    uint8_t Reserve_7 : 8;
+} CanMsg_BCM_1_0x360_Struct;
+
+typedef struct {
+    // 0x362 - BCM_4
+    // Byte 0
+    uint8_t BCM_FollowMeHomeTimeSetSts : 3;
+    uint8_t BCM_LeaveHomeTimeSetSts : 3;
+    uint8_t BCM_WindowRemoteAutoDownSetSts : 1;
+    uint8_t BCM_AssistIlluminationSetSts : 1;
+    // Byte 1
+    uint8_t BCM_InteriorLightTimeSetSts : 3;
+    uint8_t BCM_SpeedLockSetSts : 3;
+    uint8_t BCM_exRearMirrorAutoFoldSetSts : 1;
+    uint8_t Reserve_1 : 1;
+    // Byte 2
+    uint8_t BCM_HornAlertVolumeSetSts : 3;
+    uint8_t BCM_WindowAutoUPbyLockSetSts : 1;
+    uint8_t BCM_SearchCarWarnModSetSts : 2;
+    uint8_t BCM_AutoWshWipSetSts : 2;
+    // Byte 3
+    uint8_t BCM_FlaoutUnlockSetSts : 1;
+    uint8_t BCM_ClsWinSpdSetSts : 2;
+    uint8_t BCM_AmbientLightSwtSts : 1;
+    uint8_t BCM_AmbientLightLvl : 4;
+    // Byte 4
+    uint8_t Reserve_4_0 : 1;
+    uint8_t BCM_FrontwindshieldheatingSts : 1;
+    uint8_t BCM_NozzleheatingSts : 1;
+    uint8_t BCM_SteeringwheelheatingSts : 1;
+    uint8_t Reserve_4 : 4;
+    // Byte 5
+    uint8_t Reserve_5_0 : 7;
+    uint8_t BCM_AAL_ONOFFSts : 1;
+    // Byte 6
+    uint8_t BCM_AAL_PitchAngle : 8;
+    // Byte 7
+    uint8_t BCM_AAL_YawAngle : 8;
+} CanMsg_BCM_4_0x362_Struct;
+
+typedef struct {
+    // 0x365 - TPMS_1
+    // Byte 0
+    uint8_t TPMS_SystemStatus : 2;
+    uint8_t TPMS_TireID : 2;
+    uint8_t TPMS_SensorLost : 1;
+    uint8_t TPMS_TireLeakage : 1;
+    uint8_t TPMS_LearningStatus : 2;
+    // Byte 1
+    uint8_t Reserve_1_0 : 4;
+    uint8_t TPMS_TirePressureStatus : 2;
+    uint8_t TPMS_TireTemperatureSts : 1;
+    uint8_t TPMS_TireBatteryPowerSts : 1;
+    // Byte 2
+    uint8_t TPMS_TirePressure : 8;
+    // Byte 3
+    uint8_t TPMS_TireTemperature : 8;
+    // Byte 4
+    uint8_t TPMS_TireBatteryPower : 8;
+    // Byte 5
+    uint8_t Reserve_5 : 8;
+    // Byte 6
+    uint8_t Reserve_6 : 8;
+    // Byte 7
+    uint8_t Reserve_7 : 8;
+} CanMsg_TPMS_1_0x365_Struct;
+
+typedef struct {
+    // 0x375 - IC_1
+    // Byte 0
+    uint8_t IC_SurplusFuel : 7;
+    uint8_t IC_ParkingBrakeIndication : 1;
+    // Byte 1
+    uint8_t IC_SurplusMileage_Part1 : 2;
+    uint8_t IC_BrakeFluidLevelIndication : 1;
+    uint8_t IC_FuelSignalShortToGND : 1;
+    uint8_t IC_FuelSignalShortToBattery : 1;
+    uint8_t IC_FuelSignalOpen : 1;
+    uint8_t IC_EngineOilLowPressure : 1;
+    uint8_t IC_BrakeSysFailIndication : 1;
+    // Byte 2
+    uint8_t IC_SurplusMileage_Part0 : 8;
+    // Byte 3
+    uint8_t IC_OdoMeter_Part2 : 4;
+    uint8_t IC_SurplusFuelValid : 1;
+    uint8_t Reserve_3_5 : 1;
+    uint8_t IC_PassSeatbeltBucklestatus : 1;
+    uint8_t IC_DrvSeatbeltBucklestatus : 1;
+    // Byte 4
+    uint8_t IC_OdoMeter_Part1 : 8;
+    // Byte 5
+    uint8_t IC_OdoMeter_Part0 : 8;
+    // Byte 6
+    uint8_t IC_DisplayVehicleSpeedValue_Part1 : 4;
+    uint8_t IC_ICFaultSts : 1;
+    uint8_t Reserve_6 : 3;
+    // Byte 7
+    uint8_t IC_AirbagInhibitWarning : 2;
+    uint8_t IC_DisplayVehicleSpeedUnit : 1;
+    uint8_t IC_DisplayVehicleSpeedValue_Part0 : 5;
+} CanMsg_IC_1_0x375_Struct;
+
+typedef struct {
+    // 0x376 - IC_2
+    // Byte 0
+    uint8_t IC_TripAvgFuelConsRate_Part1 : 8;
+    // Byte 1
+    uint8_t IC_LifeTimeAvgFuelConsRate_Part1 : 7;
+    uint8_t IC_TripAvgFuelConsRate_Part0 : 1;
+    // Byte 2
+    uint8_t Reserve_2_0 : 6;
+    uint8_t IC_LifeTimeAvgFuelConsRate_Part0 : 2;
+    // Byte 3
+    uint8_t Reserve_3 : 8;
+    // Byte 4
+    uint8_t Reserve_4 : 8;
+    // Byte 5
+    uint8_t Reserve_5 : 8;
+    // Byte 6
+    uint8_t Reserve_6 : 8;
+    // Byte 7
+    uint8_t Reserve_7 : 8;
+} CanMsg_IC_2_0x376_Struct;
+
+typedef struct {
+    // 0x3A0 - GW_PC_4
+    // Byte 0
+    uint8_t Reserve_0_0 : 1;
+    uint8_t EHPS_1_FaultStatus : 1;
+    uint8_t Swaybar_1_FrontSwaybarGreenLamp : 2;
+    uint8_t Swaybar_1_FrontSwaybarYellowLamp : 2;
+    uint8_t Reserve_0 : 2;
+    // Byte 1
+    uint8_t Swaybar_1_StatusNotice : 4;
+    uint8_t Reserve_1 : 4;
+    // Byte 2
+    uint8_t Reserve_2 : 8;
+    // Byte 3
+    uint8_t Reserve_3 : 8;
+    // Byte 4
+    uint8_t Reserve_4 : 8;
+    // Byte 5
+    uint8_t Reserve_5 : 8;
+    // Byte 6
+    uint8_t Reserve_6 : 8;
+    // Byte 7
+    uint8_t Reserve_7_0 : 1;
+    uint8_t Swaybar_1_Timeout_Flag : 1;
+    uint8_t Reserve_7 : 6;
+} CanMsg_GW_PC_4_0x3A0_Struct;
+
+typedef struct {
+    // 0x3AC - GW_BD_14
+    // Byte 0
+    uint8_t AC_1_TemperatureLevel : 4;
+    uint8_t AC_1_AirDistributeMode : 3;
+    uint8_t AC_1_AirCirculationMode : 1;
+    // Byte 1
+    uint8_t AC_1_BlowerSpeedLevel : 3;
+    uint8_t AC_1_ACButtonSts : 1;
+    uint8_t AC_1_FrontDefrostButtonSts : 1;
+    uint8_t AC_1_RearDefrostButtonSts : 1;
+    uint8_t AC_1_ACSystemSts : 1;
+    uint8_t AC_1_PTCButtonSts : 1;
+    // Byte 2
+    uint8_t AC_2_PngSetTemperature_Part1 : 4;
+    uint8_t AC_1_BlowerSpeedLevelRear : 2;
+    uint8_t AC_1_ButtonTriggerStatus : 1;
+    uint8_t AC_1_RearModeSts : 1;
+    // Byte 3
+    uint8_t AC_2_DriverSetTemperature : 6;
+    uint8_t AC_2_PngSetTemperature_Part0 : 2;
+    // Byte 4
+    uint8_t AC_2_OutsideTemperature : 8;
+    // Byte 5
+    uint8_t AC_2_OutsideTemperatureValid : 1;
+    uint8_t AC_2_DualMode : 1;
+    uint8_t AC_2_AUTOButtonSts : 1;
+    uint8_t AC_2_AUTOPassengerButtonSts : 1;
+    uint8_t AC_2_DualButtonSts : 1;
+    uint8_t AC_1_ACSelfCleanModeSts : 1;
+    uint8_t Reserve_5 : 2;
+    // Byte 6
+    uint8_t Reserve_6 : 8;
+    // Byte 7
+    uint8_t AC_1_Timeout_Flag : 1;
+    uint8_t AC_2_Timeout_Flag : 1;
+    uint8_t Reserve_7 : 6;
+} CanMsg_GW_BD_14_0x3AC_Struct;
+
+typedef struct {
+    // 0x3B0 - IHU_4
+    // Byte 0
+    uint8_t IHU_NavSpeedLimitStatus : 2;
+    uint8_t IHU_NavSpeedLimit : 6;
+    // Byte 1
+    uint8_t IHU_NavSpeedLimitUnits : 2;
+    uint8_t IHU_NavCurrRoadType : 4;
+    uint8_t Reserve_1 : 2;
+    // Byte 2
+    uint8_t Reserve_2 : 8;
+    // Byte 3
+    uint8_t Reserve_3 : 8;
+    // Byte 4
+    uint8_t Reserve_4 : 8;
+    // Byte 5
+    uint8_t Reserve_5 : 8;
+    // Byte 6
+    uint8_t Reserve_6 : 8;
+    // Byte 7
+    uint8_t Reserve_7 : 8;
+} CanMsg_IHU_4_0x3B0_Struct;
+
+typedef struct {
+    // 0x3B1 - IHU_5
+    // Byte 0
+    uint8_t IHU_BrightnessLevel : 4;
+    uint8_t Reserve_0 : 4;
+    // Byte 1
+    uint8_t IHU_VehiclePitchAngle_Part1 : 8;
+    // Byte 2
+    uint8_t IHU_VehicleRollAngle_Part1 : 4;
+    uint8_t IHU_VehiclePitchAngle_Part0 : 4;
+    // Byte 3
+    uint8_t IHU_VehicleRollAngle_Part0 : 8;
+    // Byte 4
+    uint8_t IHU_DVSts : 1;
+    uint8_t IHU_VideoSts : 1;
+    uint8_t IHU_GPSErr : 1;
+    uint8_t IHU_GPSAntennaShortCircuit : 1;
+    uint8_t IHU_GPSAntennaTurnOff : 1;
+    uint8_t Reserve_4 : 3;
+    // Byte 5
+    uint8_t IHU_GPSSatelliteNum : 8;
+    // Byte 6
+    uint8_t IHU_AudioMuteSts : 1;
+    uint8_t IHU_IHUFaultSts : 1;
+    uint8_t IHU_USBtoTboxConnectSts : 1;
+    uint8_t Reserve_6 : 5;
+    // Byte 7
+    uint8_t Reserve_7 : 8;
+} CanMsg_IHU_5_0x3B1_Struct;
+
+typedef struct {
+    // 0x3CC - GW_BD_29
+    // Byte 0
+    uint8_t SCU_1_FLSeatHeatLvlSts : 4;
+    uint8_t SCU_1_FRSeatHeatLvlSts : 4;
+    // Byte 1
+    uint8_t SCU_1_FLSeatMassgLvlSts : 3;
+    uint8_t Reserve_1_3 : 1;
+    uint8_t SCU_1_FLSeatMassgModSts : 4;
+    // Byte 2
+    uint8_t SCU_1_FaultsStatus : 8;
+    // Byte 3
+    uint8_t WCM_1_ChargingSts : 2;
+    uint8_t Reserve_3_2 : 1;
+    uint8_t WCM_1_FailureSts : 3;
+    uint8_t WCM_1_WirelessChargeSwtSts : 2;
+    // Byte 4
+    uint8_t WCM_1_PhoneReminder : 1;
+    uint8_t EPM_1_EPMModSts : 2;
+    uint8_t Reserve_4 : 5;
+    // Byte 5
+    uint8_t Reserve_5 : 8;
+    // Byte 6
+    uint8_t Reserve_6 : 8;
+    // Byte 7
+    uint8_t SCU_1_Timeout_Flag : 1;
+    uint8_t WCM_1_Timeout_Flag : 1;
+    uint8_t EPM_1_Timeout_Flag : 1;
+    uint8_t Reserve_7 : 5;
+} CanMsg_GW_BD_29_0x3CC_Struct;
+
+typedef struct {
+    // 0x542 - IHU_2
+    // Byte 0
+    uint8_t IHU_DateTimeSecond : 6;
+    uint8_t Reserve_0 : 2;
+    // Byte 1
+    uint8_t IHU_DateTimeMinute : 6;
+    uint8_t Reserve_1 : 2;
+    // Byte 2
+    uint8_t IHU_DateTimeHour : 5;
+    uint8_t Reserve_2 : 3;
+    // Byte 3
+    uint8_t IHU_DateTimeDay : 5;
+    uint8_t Reserve_3 : 3;
+    // Byte 4
+    uint8_t IHU_DateTimeMonth : 4;
+    uint8_t Reserve_4 : 4;
+    // Byte 5
+    uint8_t IHU_DateTimeYear : 7;
+    uint8_t Reserve_5 : 1;
+    // Byte 6
+    uint8_t Reserve_6 : 8;
+    // Byte 7
+    uint8_t Reserve_7 : 8;
+} CanMsg_IHU_2_0x542_Struct;
+
+typedef struct {
+    // 0x580 - IHU_7
+    // Byte 0
+    uint8_t IHU_GPSDataGroup : 4;
+    uint8_t IHU_GPSDataType : 2;
+    uint8_t IHU_GPSPositioningSts : 2;
+    // Byte 1
+    uint8_t IHU_GPSviaGPS : 2;
+    uint8_t IHU_GPSviaBeidou : 2;
+    uint8_t IHU_GPSviaGLONASS : 2;
+    uint8_t IHU_GPSviaGALILEO : 2;
+    // Byte 2
+    uint8_t IHU_GPSAltitude_Part1 : 8;
+    // Byte 3
+    uint8_t IHU_GPSAltitude_Part0 : 8;
+    // Byte 4
+    uint8_t IHU_GPSLatitude_Part3 : 8;
+    // Byte 5
+    uint8_t IHU_GPSLatitude_Part2 : 8;
+    // Byte 6
+    uint8_t IHU_GPSLatitude_Part1 : 8;
+    // Byte 7
+    uint8_t IHU_GPSLatitudeDirection : 2;
+    uint8_t IHU_GPSLatitude_Part0 : 6;
+} CanMsg_IHU_7_0x580_Struct;
+
+typedef struct {
+    // 0x581 - IHU_8
+    // Byte 0
+    uint8_t IHU_GPSDataGroup : 4;
+    uint8_t IHU_GPSDataType : 2;
+    uint8_t IHU_GPSLongitudeDirection : 2;
+    // Byte 1
+    uint8_t IHU_GPSLongitude_Part3 : 8;
+    // Byte 2
+    uint8_t IHU_GPSLongitude_Part2 : 8;
+    // Byte 3
+    uint8_t IHU_GPSLongitude_Part1 : 8;
+    // Byte 4
+    uint8_t IHU_GPSVehicleDirection_Part1 : 1;
+    uint8_t Reserve_4_1 : 1;
+    uint8_t IHU_GPSLongitude_Part0 : 6;
+    // Byte 5
+    uint8_t IHU_GPSVehicleDirection_Part0 : 8;
+    // Byte 6
+    uint8_t IHU_GPSVehicleSpeed_Part1 : 8;
+    // Byte 7
+    uint8_t IHU_GPSVehicleSpeed_Part0 : 8;
+} CanMsg_IHU_8_0x581_Struct;
+
+typedef struct {
+    // 0x582 - IHU_9
+    // Byte 0
+    uint8_t IHU_GPSDataGroup : 4;
+    uint8_t IHU_GPSDataType : 2;
+    uint8_t Reserve_0 : 2;
+    // Byte 1
+    uint8_t IHU_GPSTime_Part3 : 8;
+    // Byte 2
+    uint8_t IHU_GPSTime_Part2 : 8;
+    // Byte 3
+    uint8_t IHU_GPSTime_Part1 : 8;
+    // Byte 4
+    uint8_t IHU_GPSTime_Part0 : 8;
+    // Byte 5
+    uint8_t Reserve_5 : 8;
+    // Byte 6
+    uint8_t Reserve_6 : 8;
+    // Byte 7
+    uint8_t Reserve_7 : 8;
+} CanMsg_IHU_9_0x582_Struct;
+
+typedef struct {
+    // 0x598 - TBOX_1
+    // Byte 0
+    uint8_t TBOX_DateTimeSecond : 6;
+    uint8_t Reserve_0 : 2;
+    // Byte 1
+    uint8_t TBOX_DateTimeMinute : 6;
+    uint8_t Reserve_1 : 2;
+    // Byte 2
+    uint8_t TBOX_DateTimeHour : 5;
+    uint8_t Reserve_2 : 3;
+    // Byte 3
+    uint8_t TBOX_DateTimeDay : 5;
+    uint8_t Reserve_3 : 3;
+    // Byte 4
+    uint8_t TBOX_DateTimeMonth : 4;
+    uint8_t Reserve_4 : 4;
+    // Byte 5
+    uint8_t TBOX_DateTimeYear : 7;
+    uint8_t Reserve_5 : 1;
+    // Byte 6
+    uint8_t Reserve_6_0 : 1;
+    uint8_t TBOX_BatteryErr : 1;
+    uint8_t TBOX_PowerOverSuply : 1;
+    uint8_t TBOX_BatteryUseUp : 1;
+    uint8_t TBOX_GSMErr : 1;
+    uint8_t TBOX_SIMErr : 1;
+    uint8_t TBOX_GPSErr : 1;
+    uint8_t TBOX_GPSAntennaShortCircuit : 1;
+    // Byte 7
+    uint8_t TBOX_GPSAntennaTurnOff : 1;
+    uint8_t TBOX_ExternalMemoryErr : 1;
+    uint8_t TBOX_TempretureHigh : 1;
+    uint8_t TBOX_CANErr : 1;
+    uint8_t Reserve_7 : 4;
+} CanMsg_TBOX_1_0x598_Struct;
+
+typedef struct {
+    // 0x599 - TBOX_2
+    // Byte 0
+    uint8_t TBOX_CommSignalVail : 8;
+    // Byte 1
+    uint8_t Reserve_1 : 8;
+    // Byte 2
+    uint8_t Reserve_2 : 8;
+    // Byte 3
+    uint8_t Reserve_3 : 8;
+    // Byte 4
+    uint8_t Reserve_4 : 8;
+    // Byte 5
+    uint8_t Reserve_5 : 8;
+    // Byte 6
+    uint8_t Reserve_6 : 8;
+    // Byte 7
+    uint8_t Reserve_7_0 : 2;
+    uint8_t TBOX_EcallStatus : 1;
+    uint8_t TBOX_EcallErr : 1;
+    uint8_t Reserve_7 : 4;
+} CanMsg_TBOX_2_0x599_Struct;
+
+typedef struct {
+    // 0x150 - GW_PC_1
+    // Byte 0
+    uint8_t EMS_2_EngineSpeed_Part1 : 8;
+    // Byte 1
+    uint8_t EMS_2_EngineSpeed_Part0 : 8;
+    // Byte 2
+    uint8_t EMS_2_EngineSpeedValid : 1;
+    uint8_t EMS_3_EngineReleaseSig : 2;
+    uint8_t EMS_3_SS_Screen_tip : 1;
+    uint8_t EMS_3_SS_Active_Lamp : 1;
+    uint8_t EMS_3_SS_Fault_Lamp : 1;
+    uint8_t TCU_1_TcuFaultLamp : 1;
+    uint8_t EMS_3_SS_SetSts : 1;
+    // Byte 3
+    uint8_t TCU_3_Drivemode : 6;
+    uint8_t TCU_1_TransOilWrnLmpReq : 1;
+    uint8_t TCU_1_ActualGearValid : 1;
+    // Byte 4
+    uint8_t TCU_1_GearShiftPositionValid : 1;
+    uint8_t Reserve_4_1 : 1;
+    uint8_t TCU_1_ShiftRecommendation : 2;
+    uint8_t TCU_1_ActualGear : 4;
+    // Byte 5
+    uint8_t TCU_1_IcInformaition : 4;
+    uint8_t TCU_1_GearShiftPosition : 4;
+    // Byte 6
+    uint8_t Reserve_6 : 8;
+    // Byte 7
+    uint8_t EMS_2_Timeout_Flag : 1;
+    uint8_t EMS_3_Timeout_Flag : 1;
+    uint8_t TCU_1_Timeout_Flag : 1;
+    uint8_t TCU_3_Timeout_Flag : 1;
+    uint8_t EMS_3_EngineStatus : 2;
+    uint8_t Reserve_7 : 2;
+} CanMsg_GW_PC_1_0x150_Struct;
+
+typedef struct {
+    // 0x155 - GW_PC_6
+    // Byte 0
+    uint8_t EMS_4_EngineCoolantTemp : 8;
+    // Byte 1
+    uint8_t EMS_4_FuelConsumption : 8;
+    // Byte 2
+    uint8_t EMS_4_SVS : 1;
+    uint8_t EMS_4_MIL : 1;
+    uint8_t EMS_4_CruiseControlStatus : 4;
+    uint8_t EMS_4_EngineCoolantTempValid : 1;
+    uint8_t EMS_4_CruiseActiveStatus : 1;
+    // Byte 3
+    uint8_t EMS_4_CruiseTargetSpeed_Part1 : 5;
+    uint8_t EMS_4_CruiseMainLamp : 1;
+    uint8_t TCU_3_TargetGearValid : 1;
+    uint8_t Reserve_3 : 1;
+    // Byte 4
+    uint8_t EMS_4_CruiseTargetSpeed_Part0 : 8;
+    // Byte 5
+    uint8_t TCU_3_DrivemodeOprationNotice : 4;
+    uint8_t TCU_3_TargetGear : 4;
+    // Byte 6
+    uint8_t EMS_6_OilPressure : 8;
+    // Byte 7
+    uint8_t EMS_4_Timeout_Flag : 1;
+    uint8_t EMS_6_Timeout_Flag : 1;
+    uint8_t TCU_3_Timeout_Flag1 : 1;
+    uint8_t EMS_6_GPFState : 3;
+    uint8_t EMS_6_GeneratorFaultLamp : 1;
+    uint8_t EMS_6_OilPressureLamp : 1;
+} CanMsg_GW_PC_6_0x155_Struct;
+
+typedef struct {
+    // 0x211 - ESP_2
+    // Byte 0
+    uint8_t ESP_LongitAccel_Part1 : 8;
+    // Byte 1
+    uint8_t ESP_LongitAccel_Part0 : 8;
+    // Byte 2
+    uint8_t ESP_LateralAccel_Part1 : 8;
+    // Byte 3
+    uint8_t ESP_LateralAccel_Part0 : 8;
+    // Byte 4
+    uint8_t ESP_YawRate_Part1 : 8;
+    // Byte 5
+    uint8_t ESP_YawRate_Part0 : 8;
+    // Byte 6
+    uint8_t Reserve_6_0 : 4;
+    uint8_t ESP_LongitSensorValid : 1;
+    uint8_t ESP_LateralSensorValid : 1;
+    uint8_t ESP_YawRateSensorValid : 1;
+    uint8_t Reserve_6 : 1;
+    // Byte 7
+    uint8_t Reserve_7 : 8;
+} CanMsg_ESP_2_0x211_Struct;
+
+typedef struct {
+    // 0x311 - BCM_3
+    // Byte 0
+    uint8_t Reserve_0 : 8;
+    // Byte 1
+    uint8_t Reserve_1_0 : 6;
+    uint8_t BCM_ConsoleBtn1TriggerSts : 1;
+    uint8_t Reserve_1 : 1;
+    // Byte 2
+    uint8_t Reserve_2 : 8;
+    // Byte 3
+    uint8_t Reserve_3 : 8;
+    // Byte 4
+    uint8_t Reserve_4 : 8;
+    // Byte 5
+    uint8_t Reserve_5 : 8;
+    // Byte 6
+    uint8_t BCM_3_RollingCounter : 4;
+    uint8_t Reserve_6 : 4;
+    // Byte 7
+    uint8_t BCM_3_Checksum : 8;
+} CanMsg_BCM_3_0x311_Struct;
+
+typedef struct {
+    // 0x3A7 - GW_BD_9
+    // Byte 0
+    uint8_t BCM_1_PowerMode : 2;
+    uint8_t BCM_1_LowBeamSts : 2;
+    uint8_t BCM_1_HighBeamSts : 2;
+    uint8_t BCM_1_LeftTurnLightSts : 2;
+    // Byte 1
+    uint8_t BCM_1_RightTurnLightSts : 2;
+    uint8_t BCM_1_PositionLightSts : 2;
+    uint8_t BCM_1_EmergencyLightSts : 2;
+    uint8_t BCM_1_RearFogLightSts : 2;
+    // Byte 2
+    uint8_t BCM_1_FrontFogLightSts : 2;
+    uint8_t BCM_1_DaytimeRunningLightSts : 2;
+    uint8_t Reserve_2_4 : 1;
+    uint8_t BCM_1_FrontLeftDoorSts : 1;
+    uint8_t BCM_1_FrontRightDoorSts : 1;
+    uint8_t BCM_1_RearLeftDoorSts : 1;
+    // Byte 3
+    uint8_t BCM_1_RearRightDoorSts : 1;
+    uint8_t BCM_1_TailGateOpenSts : 1;
+    uint8_t Reserve_3_2 : 4;
+    uint8_t BCM_1_ACRearFrostSts : 1;
+    uint8_t BCM_1_ReverseGearInfo : 1;
+    // Byte 4
+    uint8_t BCM_1_HoodSts : 1;
+    uint8_t Reserve_4_1 : 1;
+    uint8_t BCM_1_BackMirrorFolderSts : 1;
+    uint8_t Reserve_4_3 : 1;
+    uint8_t TCM_1_HighBeamSWSts : 1;
+    uint8_t TCM_1_HighBeamSWStsValid : 1;
+    uint8_t TCM_1_FlashLightSWSts : 1;
+    uint8_t TCM_1_FlashLightSWStsValid : 1;
+    // Byte 5
+    uint8_t Reserve_5 : 8;
+    // Byte 6
+    uint8_t Reserve_6 : 8;
+    // Byte 7
+    uint8_t BCM_1_Timeout_Flag : 1;
+    uint8_t TCM_1_Timeout_Flag : 1;
+    uint8_t Reserve_7_2 : 1;
+    uint8_t TCM_1_RightTurnLightSWStsValid : 1;
+    uint8_t TCM_1_RightTurnLightSWSts : 1;
+    uint8_t TCM_1_LeftTurnLightSWStsValid : 1;
+    uint8_t TCM_1_LeftTurnLightSWSts : 1;
+    uint8_t Reserve_7 : 1;
+} CanMsg_GW_BD_9_0x3A7_Struct;
+
+typedef struct {
+    // 0x3C7 - GW_BD_24
+    // Byte 0
+    uint8_t BCM_2_WindowRunningStatusFL : 2;
+    uint8_t BCM_2_WindowRunningStatusFR : 2;
+    uint8_t BCM_2_WindowRunningStatusRL : 2;
+    uint8_t BCM_2_WindowRunningStatusRR : 2;
+    // Byte 1
+    uint8_t BCM_2_WindowPosFL : 7;
+    uint8_t Reserve_1 : 1;
+    // Byte 2
+    uint8_t BCM_2_WindowPosFR : 7;
+    uint8_t Reserve_2 : 1;
+    // Byte 3
+    uint8_t BCM_2_WindowPosRL : 7;
+    uint8_t Reserve_3 : 1;
+    // Byte 4
+    uint8_t BCM_2_WindowPosRR : 7;
+    uint8_t Reserve_4 : 1;
+    // Byte 5
+    uint8_t Reserve_5 : 8;
+    // Byte 6
+    uint8_t Reserve_6 : 8;
+    // Byte 7
+    uint8_t BCM_2_Timeout_Flag : 1;
+    uint8_t Reserve_7 : 7;
+} CanMsg_GW_BD_24_0x3C7_Struct;
+
+typedef enum {
+    CanTxMsgIndex_IHU_3_0x90 = 0,
+    CanTxMsgIndex_IHU_6_0x91 = 1,
+    CanTxMsgIndex_IHU_10_0x92 = 2,
+    CanTxMsgIndex_GW_PC_2_0x250 = 3,
+    CanTxMsgIndex_GW_PC_7_0x255 = 4,
+    CanTxMsgIndex_PEPS_1_0x268 = 5,
+    CanTxMsgIndex_PEPS_3_0x269 = 6,
+    CanTxMsgIndex_IHU_1_0x300 = 7,
+    CanTxMsgIndex_FCM_3_0x302 = 8,
+    CanTxMsgIndex_FCM_4_0x303 = 9,
+    CanTxMsgIndex_FCM_5_0x304 = 10,
+    CanTxMsgIndex_FCM_6_0x305 = 11,
+    CanTxMsgIndex_FCM_7_0x306 = 27,
+    CanTxMsgIndex_FCM_8_0x307 = 13,
+    CanTxMsgIndex_BCM_5_0x312 = 14,
+    CanTxMsgIndex_TBOX_4_0x317 = 15,
+    CanTxMsgIndex_ACU_1_0x350 = 16,
+    CanTxMsgIndex_BCM_1_0x360 = 17,
+    CanTxMsgIndex_BCM_4_0x362 = 18,
+    CanTxMsgIndex_TPMS_1_0x365 = 19,
+    CanTxMsgIndex_IC_1_0x375 = 20,
+    CanTxMsgIndex_IC_2_0x376 = 21,
+    CanTxMsgIndex_GW_PC_4_0x3A0 = 22,
+    CanTxMsgIndex_GW_BD_14_0x3AC = 23,
+    CanTxMsgIndex_IHU_4_0x3B0 = 24,
+    CanTxMsgIndex_IHU_5_0x3B1 = 25,
+    CanTxMsgIndex_GW_BD_29_0x3CC = 26,
+    CanTxMsgIndex_IHU_2_0x542 = 12,
+    CanTxMsgIndex_IHU_7_0x580 = 28,
+    CanTxMsgIndex_IHU_8_0x581 = 29,
+    CanTxMsgIndex_IHU_9_0x582 = 30,
+    CanTxMsgIndex_TBOX_1_0x598 = 31,
+    CanTxMsgIndex_TBOX_2_0x599 = 32,
+    CanTxMsgIndex_GW_PC_1_0x150 = 33,
+    CanTxMsgIndex_GW_PC_6_0x155 = 34,
+    CanTxMsgIndex_ESP_2_0x211 = 35,
+    CanTxMsgIndex_BCM_3_0x311 = 36,
+    CanTxMsgIndex_GW_BD_9_0x3A7 = 37,
+    CanTxMsgIndex_GW_BD_24_0x3C7 = 38,
+    CanTxMsgIndex_Max = 39
+} CanTxMsgIndex_Type;
+
+typedef union {
+    uint8_t Data[8];
+    CanMsg_IHU_3_0x90_Struct Bit_0x90;
+    CanMsg_IHU_6_0x91_Struct Bit_0x91;
+    CanMsg_IHU_10_0x92_Struct Bit_0x92;
+    CanMsg_GW_PC_2_0x250_Struct Bit_0x250;
+    CanMsg_GW_PC_7_0x255_Struct Bit_0x255;
+    CanMsg_PEPS_1_0x268_Struct Bit_0x268;
+    CanMsg_PEPS_3_0x269_Struct Bit_0x269;
+    CanMsg_IHU_1_0x300_Struct Bit_0x300;
+    CanMsg_FCM_3_0x302_Struct Bit_0x302;
+    CanMsg_FCM_4_0x303_Struct Bit_0x303;
+    CanMsg_FCM_5_0x304_Struct Bit_0x304;
+    CanMsg_FCM_6_0x305_Struct Bit_0x305;
+    CanMsg_FCM_7_0x306_Struct Bit_0x306;
+    CanMsg_FCM_8_0x307_Struct Bit_0x307;
+    CanMsg_BCM_5_0x312_Struct Bit_0x312;
+    CanMsg_TBOX_4_0x317_Struct Bit_0x317;
+    CanMsg_ACU_1_0x350_Struct Bit_0x350;
+    CanMsg_BCM_1_0x360_Struct Bit_0x360;
+    CanMsg_BCM_4_0x362_Struct Bit_0x362;
+    CanMsg_TPMS_1_0x365_Struct Bit_0x365;
+    CanMsg_IC_1_0x375_Struct Bit_0x375;
+    CanMsg_IC_2_0x376_Struct Bit_0x376;
+    CanMsg_GW_PC_4_0x3A0_Struct Bit_0x3A0;
+    CanMsg_GW_BD_14_0x3AC_Struct Bit_0x3AC;
+    CanMsg_IHU_4_0x3B0_Struct Bit_0x3B0;
+    CanMsg_IHU_5_0x3B1_Struct Bit_0x3B1;
+    CanMsg_GW_BD_29_0x3CC_Struct Bit_0x3CC;
+    CanMsg_IHU_2_0x542_Struct Bit_0x542;
+    CanMsg_IHU_7_0x580_Struct Bit_0x580;
+    CanMsg_IHU_8_0x581_Struct Bit_0x581;
+    CanMsg_IHU_9_0x582_Struct Bit_0x582;
+    CanMsg_TBOX_1_0x598_Struct Bit_0x598;
+    CanMsg_TBOX_2_0x599_Struct Bit_0x599;
+    CanMsg_GW_PC_1_0x150_Struct Bit_0x150;
+    CanMsg_GW_PC_6_0x155_Struct Bit_0x155;
+    CanMsg_ESP_2_0x211_Struct Bit_0x211;
+    CanMsg_BCM_3_0x311_Struct Bit_0x311;
+    CanMsg_GW_BD_9_0x3A7_Struct Bit_0x3A7;
+    CanMsg_GW_BD_24_0x3C7_Struct Bit_0x3C7;
+} CanTransmitMsg_DataBuffer_Un;
+
+/*The following array needs to be defined in the .c file*/
+extern CanTransmitMsg_DataBuffer_Un CanTxMsg_DataBuffer[CanTxMsgIndex_Max];
+#endif//_APP_CAN_YB103_fuel_CANDBCMSG_H_

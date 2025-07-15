@@ -1,0 +1,2148 @@
+#include "main.h"
+#include "lcd12864.h"
+
+extern uint8_t g_menu_index;
+extern uint8_t g_item_index;
+
+uint32_t GetItemValue(uint8_t menu, uint8_t item, uint8_t really_value)
+{
+    uint32_t res = 0U;
+    switch(menu)
+    {
+        case IHU_3:
+            if(item < IHU_3_ITEM_MAX)
+            {
+                res = g_IHU_3[item];
+            }
+            break;
+        case IHU_6:
+            if(item < IHU_6_ITEM_MAX)
+            {
+                res = g_IHU_6[item];
+            }
+            break;
+        case IHU_10:
+            if(item < IHU_10_ITEM_MAX)
+            {
+                res = g_IHU_10[item];
+            }
+            break;
+        case GW_PC_2:
+            if(item < GW_PC_2_ITEM_MAX)
+            {
+                res = g_GW_PC_2[item];
+            }
+            break;
+        case GW_PC_7:
+            if(item < GW_PC_7_ITEM_MAX)
+            {
+                res = g_GW_PC_7[item];
+            }
+            break;
+        case PEPS_1:
+            if(item < PEPS_1_ITEM_MAX)
+            {
+                res = g_PEPS_1[item];
+            }
+            break;
+        case PEPS_3:
+            if(item < PEPS_3_ITEM_MAX)
+            {
+                res = g_PEPS_3[item];
+            }
+            break;
+        case IHU_1:
+            if(item < IHU_1_ITEM_MAX)
+            {
+                res = g_IHU_1[item];
+            }
+            break;
+        case FCM_3:
+            if(item < FCM_3_ITEM_MAX)
+            {
+                res = g_FCM_3[item];
+            }
+            break;
+        case FCM_4:
+            if(item < FCM_4_ITEM_MAX)
+            {
+                res = g_FCM_4[item];
+            }
+            break;
+        case FCM_5:
+            if(item < FCM_5_ITEM_MAX)
+            {
+                res = g_FCM_5[item];
+            }
+            break;
+        case FCM_6:
+            if(item < FCM_6_ITEM_MAX)
+            {
+                res = g_FCM_6[item];
+            }
+            break;
+        case FCM_7:
+            if(item < FCM_7_ITEM_MAX)
+            {
+                res = g_FCM_7[item];
+            }
+            break;
+        case FCM_8:
+            if(item < FCM_8_ITEM_MAX)
+            {
+                res = g_FCM_8[item];
+            }
+            break;
+        case BCM_5:
+            if(item < BCM_5_ITEM_MAX)
+            {
+                res = g_BCM_5[item];
+            }
+            break;
+        case TBOX_4:
+            if(item < TBOX_4_ITEM_MAX)
+            {
+                res = g_TBOX_4[item];
+            }
+            break;
+        case ACU_1:
+            if(item < ACU_1_ITEM_MAX)
+            {
+                res = g_ACU_1[item];
+            }
+            break;
+        case BCM_1:
+            if(item < BCM_1_ITEM_MAX)
+            {
+                res = g_BCM_1[item];
+            }
+            break;
+        case BCM_4:
+            if(item < BCM_4_ITEM_MAX)
+            {
+                res = g_BCM_4[item];
+            }
+            break;
+        case TPMS_1:
+            if(item < TPMS_1_ITEM_MAX)
+            {
+                res = g_TPMS_1[item];
+            }
+            break;
+        case IC_1:
+            if(item < IC_1_ITEM_MAX)
+            {
+                res = g_IC_1[item];
+            }
+            break;
+        case IC_2:
+            if(item < IC_2_ITEM_MAX)
+            {
+                res = g_IC_2[item];
+            }
+            break;
+        case GW_PC_4:
+            if(item < GW_PC_4_ITEM_MAX)
+            {
+                res = g_GW_PC_4[item];
+            }
+            break;
+        case GW_BD_14:
+            if(item < GW_BD_14_ITEM_MAX)
+            {
+                res = g_GW_BD_14[item];
+            }
+            break;
+        case IHU_4:
+            if(item < IHU_4_ITEM_MAX)
+            {
+                res = g_IHU_4[item];
+            }
+            break;
+        case IHU_5:
+            if(item < IHU_5_ITEM_MAX)
+            {
+                res = g_IHU_5[item];
+            }
+            break;
+        case GW_BD_29:
+            if(item < GW_BD_29_ITEM_MAX)
+            {
+                res = g_GW_BD_29[item];
+            }
+            break;
+        case IHU_2:
+            if(item < IHU_2_ITEM_MAX)
+            {
+                res = g_IHU_2[item];
+            }
+            break;
+        case IHU_7:
+            if(item < IHU_7_ITEM_MAX)
+            {
+                res = g_IHU_7[item];
+            }
+            break;
+        case IHU_8:
+            if(item < IHU_8_ITEM_MAX)
+            {
+                res = g_IHU_8[item];
+            }
+            break;
+        case IHU_9:
+            if(item < IHU_9_ITEM_MAX)
+            {
+                res = g_IHU_9[item];
+            }
+            break;
+        case TBOX_1:
+            if(item < TBOX_1_ITEM_MAX)
+            {
+                res = g_TBOX_1[item];
+            }
+            break;
+        case TBOX_2:
+            if(item < TBOX_2_ITEM_MAX)
+            {
+                res = g_TBOX_2[item];
+            }
+            break;
+        case GW_PC_1:
+            if(item < GW_PC_1_ITEM_MAX)
+            {
+                res = g_GW_PC_1[item];
+            }
+            break;
+        case GW_PC_6:
+            if(item < GW_PC_6_ITEM_MAX)
+            {
+                res = g_GW_PC_6[item];
+            }
+            break;
+        case ESP_2:
+            if(item < ESP_2_ITEM_MAX)
+            {
+                res = g_ESP_2[item];
+            }
+            break;
+        case BCM_3:
+            if(item < BCM_3_ITEM_MAX)
+            {
+                res = g_BCM_3[item];
+            }
+            break;
+        case GW_BD_9:
+            if(item < GW_BD_9_ITEM_MAX)
+            {
+                res = g_GW_BD_9[item];
+            }
+            break;
+        case GW_BD_24:
+            if(item < GW_BD_24_ITEM_MAX)
+            {
+                res = g_GW_BD_24[item];
+            }
+            break;
+        default:
+            break;
+    }
+    return res;
+}
+
+uint8_t GetItemMAXItem(uint8_t menu) 
+{
+    uint8_t temp = 0U;
+    switch(menu)
+    {
+        case IHU_3:
+            temp = IHU_3_ITEM_MAX;
+            break;
+        case IHU_6:
+            temp = IHU_6_ITEM_MAX;
+            break;
+        case IHU_10:
+            temp = IHU_10_ITEM_MAX;
+            break;
+        case GW_PC_2:
+            temp = GW_PC_2_ITEM_MAX;
+            break;
+        case GW_PC_7:
+            temp = GW_PC_7_ITEM_MAX;
+            break;
+        case PEPS_1:
+            temp = PEPS_1_ITEM_MAX;
+            break;
+        case PEPS_3:
+            temp = PEPS_3_ITEM_MAX;
+            break;
+        case IHU_1:
+            temp = IHU_1_ITEM_MAX;
+            break;
+        case FCM_3:
+            temp = FCM_3_ITEM_MAX;
+            break;
+        case FCM_4:
+            temp = FCM_4_ITEM_MAX;
+            break;
+        case FCM_5:
+            temp = FCM_5_ITEM_MAX;
+            break;
+        case FCM_6:
+            temp = FCM_6_ITEM_MAX;
+            break;
+        case FCM_7:
+            temp = FCM_7_ITEM_MAX;
+            break;
+        case FCM_8:
+            temp = FCM_8_ITEM_MAX;
+            break;
+        case BCM_5:
+            temp = BCM_5_ITEM_MAX;
+            break;
+        case TBOX_4:
+            temp = TBOX_4_ITEM_MAX;
+            break;
+        case ACU_1:
+            temp = ACU_1_ITEM_MAX;
+            break;
+        case BCM_1:
+            temp = BCM_1_ITEM_MAX;
+            break;
+        case BCM_4:
+            temp = BCM_4_ITEM_MAX;
+            break;
+        case TPMS_1:
+            temp = TPMS_1_ITEM_MAX;
+            break;
+        case IC_1:
+            temp = IC_1_ITEM_MAX;
+            break;
+        case IC_2:
+            temp = IC_2_ITEM_MAX;
+            break;
+        case GW_PC_4:
+            temp = GW_PC_4_ITEM_MAX;
+            break;
+        case GW_BD_14:
+            temp = GW_BD_14_ITEM_MAX;
+            break;
+        case IHU_4:
+            temp = IHU_4_ITEM_MAX;
+            break;
+        case IHU_5:
+            temp = IHU_5_ITEM_MAX;
+            break;
+        case GW_BD_29:
+            temp = GW_BD_29_ITEM_MAX;
+            break;
+        case IHU_2:
+            temp = IHU_2_ITEM_MAX;
+            break;
+        case IHU_7:
+            temp = IHU_7_ITEM_MAX;
+            break;
+        case IHU_8:
+            temp = IHU_8_ITEM_MAX;
+            break;
+        case IHU_9:
+            temp = IHU_9_ITEM_MAX;
+            break;
+        case TBOX_1:
+            temp = TBOX_1_ITEM_MAX;
+            break;
+        case TBOX_2:
+            temp = TBOX_2_ITEM_MAX;
+            break;
+        case GW_PC_1:
+            temp = GW_PC_1_ITEM_MAX;
+            break;
+        case GW_PC_6:
+            temp = GW_PC_6_ITEM_MAX;
+            break;
+        case ESP_2:
+            temp = ESP_2_ITEM_MAX;
+            break;
+        case BCM_3:
+            temp = BCM_3_ITEM_MAX;
+            break;
+        case GW_BD_9:
+            temp = GW_BD_9_ITEM_MAX;
+            break;
+        case GW_BD_24:
+            temp = GW_BD_24_ITEM_MAX;
+            break;
+        default:
+            break;
+    }
+    return temp;
+}
+
+uint32_t GetItemMAXValue(uint8_t menu, uint8_t item)
+{
+    uint32_t res = 0U;
+    switch(menu)
+    {
+        case IHU_3:
+            res = IHU_3Max[item];
+            break;
+        case IHU_6:
+            res = IHU_6Max[item];
+            break;
+        case IHU_10:
+            res = IHU_10Max[item];
+            break;
+        case GW_PC_2:
+            res = GW_PC_2Max[item];
+            break;
+        case GW_PC_7:
+            res = GW_PC_7Max[item];
+            break;
+        case PEPS_1:
+            res = PEPS_1Max[item];
+            break;
+        case PEPS_3:
+            res = PEPS_3Max[item];
+            break;
+        case IHU_1:
+            res = IHU_1Max[item];
+            break;
+        case FCM_3:
+            res = FCM_3Max[item];
+            break;
+        case FCM_4:
+            res = FCM_4Max[item];
+            break;
+        case FCM_5:
+            res = FCM_5Max[item];
+            break;
+        case FCM_6:
+            res = FCM_6Max[item];
+            break;
+        case FCM_7:
+            res = FCM_7Max[item];
+            break;
+        case FCM_8:
+            res = FCM_8Max[item];
+            break;
+        case BCM_5:
+            res = BCM_5Max[item];
+            break;
+        case TBOX_4:
+            res = TBOX_4Max[item];
+            break;
+        case ACU_1:
+            res = ACU_1Max[item];
+            break;
+        case BCM_1:
+            res = BCM_1Max[item];
+            break;
+        case BCM_4:
+            res = BCM_4Max[item];
+            break;
+        case TPMS_1:
+            res = TPMS_1Max[item];
+            break;
+        case IC_1:
+            res = IC_1Max[item];
+            break;
+        case IC_2:
+            res = IC_2Max[item];
+            break;
+        case GW_PC_4:
+            res = GW_PC_4Max[item];
+            break;
+        case GW_BD_14:
+            res = GW_BD_14Max[item];
+            break;
+        case IHU_4:
+            res = IHU_4Max[item];
+            break;
+        case IHU_5:
+            res = IHU_5Max[item];
+            break;
+        case GW_BD_29:
+            res = GW_BD_29Max[item];
+            break;
+        case IHU_2:
+            res = IHU_2Max[item];
+            break;
+        case IHU_7:
+            res = IHU_7Max[item];
+            break;
+        case IHU_8:
+            res = IHU_8Max[item];
+            break;
+        case IHU_9:
+            res = IHU_9Max[item];
+            break;
+        case TBOX_1:
+            res = TBOX_1Max[item];
+            break;
+        case TBOX_2:
+            res = TBOX_2Max[item];
+            break;
+        case GW_PC_1:
+            res = GW_PC_1Max[item];
+            break;
+        case GW_PC_6:
+            res = GW_PC_6Max[item];
+            break;
+        case ESP_2:
+            res = ESP_2Max[item];
+            break;
+        case BCM_3:
+            res = BCM_3Max[item];
+            break;
+        case GW_BD_9:
+            res = GW_BD_9Max[item];
+            break;
+        case GW_BD_24:
+            res = GW_BD_24Max[item];
+            break;
+        default:
+            break;
+    }
+    return res;
+}
+
+void SaveItemValue(Pagedis_Func menu, uint8_t item, int16_t value) 
+{
+    g_menu_index = GET_MENU(menu, MENU_MAX);
+    switch (g_menu_index)
+    {
+        case IHU_3:
+            value = CHECK_VALUE(value, IHU_3Max[item]);
+            g_IHU_3[item] = value;
+            break;
+        case IHU_6:
+            value = CHECK_VALUE(value, IHU_6Max[item]);
+            g_IHU_6[item] = value;
+            break;
+        case IHU_10:
+            value = CHECK_VALUE(value, IHU_10Max[item]);
+            g_IHU_10[item] = value;
+            break;
+        case GW_PC_2:
+            value = CHECK_VALUE(value, GW_PC_2Max[item]);
+            g_GW_PC_2[item] = value;
+            break;
+        case GW_PC_7:
+            value = CHECK_VALUE(value, GW_PC_7Max[item]);
+            g_GW_PC_7[item] = value;
+            break;
+        case PEPS_1:
+            value = CHECK_VALUE(value, PEPS_1Max[item]);
+            g_PEPS_1[item] = value;
+            break;
+        case PEPS_3:
+            value = CHECK_VALUE(value, PEPS_3Max[item]);
+            g_PEPS_3[item] = value;
+            break;
+        case IHU_1:
+            value = CHECK_VALUE(value, IHU_1Max[item]);
+            g_IHU_1[item] = value;
+            break;
+        case FCM_3:
+            value = CHECK_VALUE(value, FCM_3Max[item]);
+            g_FCM_3[item] = value;
+            break;
+        case FCM_4:
+            value = CHECK_VALUE(value, FCM_4Max[item]);
+            g_FCM_4[item] = value;
+            break;
+        case FCM_5:
+            value = CHECK_VALUE(value, FCM_5Max[item]);
+            g_FCM_5[item] = value;
+            break;
+        case FCM_6:
+            value = CHECK_VALUE(value, FCM_6Max[item]);
+            g_FCM_6[item] = value;
+            break;
+        case FCM_7:
+            value = CHECK_VALUE(value, FCM_7Max[item]);
+            g_FCM_7[item] = value;
+            break;
+        case FCM_8:
+            value = CHECK_VALUE(value, FCM_8Max[item]);
+            g_FCM_8[item] = value;
+            break;
+        case BCM_5:
+            value = CHECK_VALUE(value, BCM_5Max[item]);
+            g_BCM_5[item] = value;
+            break;
+        case TBOX_4:
+            value = CHECK_VALUE(value, TBOX_4Max[item]);
+            g_TBOX_4[item] = value;
+            break;
+        case ACU_1:
+            value = CHECK_VALUE(value, ACU_1Max[item]);
+            g_ACU_1[item] = value;
+            break;
+        case BCM_1:
+            value = CHECK_VALUE(value, BCM_1Max[item]);
+            g_BCM_1[item] = value;
+            break;
+        case BCM_4:
+            value = CHECK_VALUE(value, BCM_4Max[item]);
+            g_BCM_4[item] = value;
+            break;
+        case TPMS_1:
+            value = CHECK_VALUE(value, TPMS_1Max[item]);
+            g_TPMS_1[item] = value;
+            break;
+        case IC_1:
+            value = CHECK_VALUE(value, IC_1Max[item]);
+            g_IC_1[item] = value;
+            break;
+        case IC_2:
+            value = CHECK_VALUE(value, IC_2Max[item]);
+            g_IC_2[item] = value;
+            break;
+        case GW_PC_4:
+            value = CHECK_VALUE(value, GW_PC_4Max[item]);
+            g_GW_PC_4[item] = value;
+            break;
+        case GW_BD_14:
+            value = CHECK_VALUE(value, GW_BD_14Max[item]);
+            g_GW_BD_14[item] = value;
+            break;
+        case IHU_4:
+            value = CHECK_VALUE(value, IHU_4Max[item]);
+            g_IHU_4[item] = value;
+            break;
+        case IHU_5:
+            value = CHECK_VALUE(value, IHU_5Max[item]);
+            g_IHU_5[item] = value;
+            break;
+        case GW_BD_29:
+            value = CHECK_VALUE(value, GW_BD_29Max[item]);
+            g_GW_BD_29[item] = value;
+            break;
+        case IHU_2:
+            value = CHECK_VALUE(value, IHU_2Max[item]);
+            g_IHU_2[item] = value;
+            break;
+        case IHU_7:
+            value = CHECK_VALUE(value, IHU_7Max[item]);
+            g_IHU_7[item] = value;
+            break;
+        case IHU_8:
+            value = CHECK_VALUE(value, IHU_8Max[item]);
+            g_IHU_8[item] = value;
+            break;
+        case IHU_9:
+            value = CHECK_VALUE(value, IHU_9Max[item]);
+            g_IHU_9[item] = value;
+            break;
+        case TBOX_1:
+            value = CHECK_VALUE(value, TBOX_1Max[item]);
+            g_TBOX_1[item] = value;
+            break;
+        case TBOX_2:
+            value = CHECK_VALUE(value, TBOX_2Max[item]);
+            g_TBOX_2[item] = value;
+            break;
+        case GW_PC_1:
+            value = CHECK_VALUE(value, GW_PC_1Max[item]);
+            g_GW_PC_1[item] = value;
+            break;
+        case GW_PC_6:
+            value = CHECK_VALUE(value, GW_PC_6Max[item]);
+            g_GW_PC_6[item] = value;
+            break;
+        case ESP_2:
+            value = CHECK_VALUE(value, ESP_2Max[item]);
+            g_ESP_2[item] = value;
+            break;
+        case BCM_3:
+            value = CHECK_VALUE(value, BCM_3Max[item]);
+            g_BCM_3[item] = value;
+            break;
+        case GW_BD_9:
+            value = CHECK_VALUE(value, GW_BD_9Max[item]);
+            g_GW_BD_9[item] = value;
+            break;
+        case GW_BD_24:
+            value = CHECK_VALUE(value, GW_BD_24Max[item]);
+            g_GW_BD_24[item] = value;
+            break;
+        default:
+            break;
+    }
+    g_item_index = item;
+}
+
+uint8_t ItemValueLimit(uint8_t menu, uint8_t item) 
+{
+    uint8_t res = 0; 
+    menu = GET_MENU(menu, MENU_MAX);
+    switch(menu)
+    {
+        case IHU_3:
+            res = 0;
+            break;
+        case IHU_6:
+            res = 0;
+            break;
+        case IHU_10:
+            res = 0;
+            break;
+        case GW_PC_2:
+            res = 0;
+            break;
+        case GW_PC_7:
+            res = 0;
+            break;
+        case PEPS_1:
+            res = 0;
+            break;
+        case PEPS_3:
+            res = 0;
+            break;
+        case IHU_1:
+            res = 0;
+            break;
+        case FCM_3:
+            res = 0;
+            break;
+        case FCM_4:
+            res = 0;
+            break;
+        case FCM_5:
+            res = 0;
+            break;
+        case FCM_6:
+            res = 0;
+            break;
+        case FCM_7:
+            res = 0;
+            break;
+        case FCM_8:
+            res = 0;
+            break;
+        case BCM_5:
+            res = 0;
+            break;
+        case TBOX_4:
+            res = 0;
+            break;
+        case ACU_1:
+            res = 0;
+            break;
+        case BCM_1:
+            res = 0;
+            break;
+        case BCM_4:
+            res = 0;
+            break;
+        case TPMS_1:
+            res = 0;
+            break;
+        case IC_1:
+            res = 0;
+            break;
+        case IC_2:
+            res = 0;
+            break;
+        case GW_PC_4:
+            res = 0;
+            break;
+        case GW_BD_14:
+            res = 0;
+            break;
+        case IHU_4:
+            res = 0;
+            break;
+        case IHU_5:
+            res = 0;
+            break;
+        case GW_BD_29:
+            res = 0;
+            break;
+        case IHU_2:
+            res = 0;
+            break;
+        case IHU_7:
+            res = 0;
+            break;
+        case IHU_8:
+            res = 0;
+            break;
+        case IHU_9:
+            res = 0;
+            break;
+        case TBOX_1:
+            res = 0;
+            break;
+        case TBOX_2:
+            res = 0;
+            break;
+        case GW_PC_1:
+            res = 0;
+            break;
+        case GW_PC_6:
+            res = 0;
+            break;
+        case ESP_2:
+            res = 0;
+            break;
+        case BCM_3:
+            res = 0;
+            break;
+        case GW_BD_9:
+            res = 0;
+            break;
+        case GW_BD_24:
+            res = 0;
+            break;
+        default:
+            break;
+    }
+    return res;
+}
+
+uint32_t GetIHU_3Value(uint8_t item)
+{
+    uint32_t res = 0u;
+    item = GET_MENU(item, IHU_3_ITEM_MAX);
+    res = g_IHU_3[item];
+    return res;
+}
+
+uint32_t GetIHU_6Value(uint8_t item)
+{
+    uint32_t res = 0u;
+    item = GET_MENU(item, IHU_6_ITEM_MAX);
+    res = g_IHU_6[item];
+    return res;
+}
+
+uint32_t GetIHU_10Value(uint8_t item)
+{
+    uint32_t res = 0u;
+    item = GET_MENU(item, IHU_10_ITEM_MAX);
+    res = g_IHU_10[item];
+    return res;
+}
+
+uint32_t GetGW_PC_2Value(uint8_t item)
+{
+    uint32_t res = 0u;
+    item = GET_MENU(item, GW_PC_2_ITEM_MAX);
+    res = g_GW_PC_2[item];
+    return res;
+}
+
+uint32_t GetGW_PC_7Value(uint8_t item)
+{
+    uint32_t res = 0u;
+    item = GET_MENU(item, GW_PC_7_ITEM_MAX);
+    res = g_GW_PC_7[item];
+    return res;
+}
+
+uint32_t GetPEPS_1Value(uint8_t item)
+{
+    uint32_t res = 0u;
+    item = GET_MENU(item, PEPS_1_ITEM_MAX);
+    res = g_PEPS_1[item];
+    return res;
+}
+
+uint32_t GetPEPS_3Value(uint8_t item)
+{
+    uint32_t res = 0u;
+    item = GET_MENU(item, PEPS_3_ITEM_MAX);
+    res = g_PEPS_3[item];
+    return res;
+}
+
+uint32_t GetIHU_1Value(uint8_t item)
+{
+    uint32_t res = 0u;
+    item = GET_MENU(item, IHU_1_ITEM_MAX);
+    res = g_IHU_1[item];
+    return res;
+}
+
+uint32_t GetFCM_3Value(uint8_t item)
+{
+    uint32_t res = 0u;
+    item = GET_MENU(item, FCM_3_ITEM_MAX);
+    res = g_FCM_3[item];
+    return res;
+}
+
+uint32_t GetFCM_4Value(uint8_t item)
+{
+    uint32_t res = 0u;
+    item = GET_MENU(item, FCM_4_ITEM_MAX);
+    res = g_FCM_4[item];
+    return res;
+}
+
+uint32_t GetFCM_5Value(uint8_t item)
+{
+    uint32_t res = 0u;
+    item = GET_MENU(item, FCM_5_ITEM_MAX);
+    res = g_FCM_5[item];
+    return res;
+}
+
+uint32_t GetFCM_6Value(uint8_t item)
+{
+    uint32_t res = 0u;
+    item = GET_MENU(item, FCM_6_ITEM_MAX);
+    res = g_FCM_6[item];
+    return res;
+}
+
+uint32_t GetFCM_7Value(uint8_t item)
+{
+    uint32_t res = 0u;
+    item = GET_MENU(item, FCM_7_ITEM_MAX);
+    res = g_FCM_7[item];
+    return res;
+}
+
+uint32_t GetFCM_8Value(uint8_t item)
+{
+    uint32_t res = 0u;
+    item = GET_MENU(item, FCM_8_ITEM_MAX);
+    res = g_FCM_8[item];
+    return res;
+}
+
+uint32_t GetBCM_5Value(uint8_t item)
+{
+    uint32_t res = 0u;
+    item = GET_MENU(item, BCM_5_ITEM_MAX);
+    res = g_BCM_5[item];
+    return res;
+}
+
+uint32_t GetTBOX_4Value(uint8_t item)
+{
+    uint32_t res = 0u;
+    item = GET_MENU(item, TBOX_4_ITEM_MAX);
+    res = g_TBOX_4[item];
+    return res;
+}
+
+uint32_t GetACU_1Value(uint8_t item)
+{
+    uint32_t res = 0u;
+    item = GET_MENU(item, ACU_1_ITEM_MAX);
+    res = g_ACU_1[item];
+    return res;
+}
+
+uint32_t GetBCM_1Value(uint8_t item)
+{
+    uint32_t res = 0u;
+    item = GET_MENU(item, BCM_1_ITEM_MAX);
+    res = g_BCM_1[item];
+    return res;
+}
+
+uint32_t GetBCM_4Value(uint8_t item)
+{
+    uint32_t res = 0u;
+    item = GET_MENU(item, BCM_4_ITEM_MAX);
+    res = g_BCM_4[item];
+    return res;
+}
+
+uint32_t GetTPMS_1Value(uint8_t item)
+{
+    uint32_t res = 0u;
+    item = GET_MENU(item, TPMS_1_ITEM_MAX);
+    res = g_TPMS_1[item];
+    return res;
+}
+
+uint32_t GetIC_1Value(uint8_t item)
+{
+    uint32_t res = 0u;
+    item = GET_MENU(item, IC_1_ITEM_MAX);
+    res = g_IC_1[item];
+    return res;
+}
+
+uint32_t GetIC_2Value(uint8_t item)
+{
+    uint32_t res = 0u;
+    item = GET_MENU(item, IC_2_ITEM_MAX);
+    res = g_IC_2[item];
+    return res;
+}
+
+uint32_t GetGW_PC_4Value(uint8_t item)
+{
+    uint32_t res = 0u;
+    item = GET_MENU(item, GW_PC_4_ITEM_MAX);
+    res = g_GW_PC_4[item];
+    return res;
+}
+
+uint32_t GetGW_BD_14Value(uint8_t item)
+{
+    uint32_t res = 0u;
+    item = GET_MENU(item, GW_BD_14_ITEM_MAX);
+    res = g_GW_BD_14[item];
+    return res;
+}
+
+uint32_t GetIHU_4Value(uint8_t item)
+{
+    uint32_t res = 0u;
+    item = GET_MENU(item, IHU_4_ITEM_MAX);
+    res = g_IHU_4[item];
+    return res;
+}
+
+uint32_t GetIHU_5Value(uint8_t item)
+{
+    uint32_t res = 0u;
+    item = GET_MENU(item, IHU_5_ITEM_MAX);
+    res = g_IHU_5[item];
+    return res;
+}
+
+uint32_t GetGW_BD_29Value(uint8_t item)
+{
+    uint32_t res = 0u;
+    item = GET_MENU(item, GW_BD_29_ITEM_MAX);
+    res = g_GW_BD_29[item];
+    return res;
+}
+
+uint32_t GetIHU_2Value(uint8_t item)
+{
+    uint32_t res = 0u;
+    item = GET_MENU(item, IHU_2_ITEM_MAX);
+    res = g_IHU_2[item];
+    return res;
+}
+
+uint32_t GetIHU_7Value(uint8_t item)
+{
+    uint32_t res = 0u;
+    item = GET_MENU(item, IHU_7_ITEM_MAX);
+    res = g_IHU_7[item];
+    return res;
+}
+
+uint32_t GetIHU_8Value(uint8_t item)
+{
+    uint32_t res = 0u;
+    item = GET_MENU(item, IHU_8_ITEM_MAX);
+    res = g_IHU_8[item];
+    return res;
+}
+
+uint32_t GetIHU_9Value(uint8_t item)
+{
+    uint32_t res = 0u;
+    item = GET_MENU(item, IHU_9_ITEM_MAX);
+    res = g_IHU_9[item];
+    return res;
+}
+
+uint32_t GetTBOX_1Value(uint8_t item)
+{
+    uint32_t res = 0u;
+    item = GET_MENU(item, TBOX_1_ITEM_MAX);
+    res = g_TBOX_1[item];
+    return res;
+}
+
+uint32_t GetTBOX_2Value(uint8_t item)
+{
+    uint32_t res = 0u;
+    item = GET_MENU(item, TBOX_2_ITEM_MAX);
+    res = g_TBOX_2[item];
+    return res;
+}
+
+uint32_t GetGW_PC_1Value(uint8_t item)
+{
+    uint32_t res = 0u;
+    item = GET_MENU(item, GW_PC_1_ITEM_MAX);
+    res = g_GW_PC_1[item];
+    return res;
+}
+
+uint32_t GetGW_PC_6Value(uint8_t item)
+{
+    uint32_t res = 0u;
+    item = GET_MENU(item, GW_PC_6_ITEM_MAX);
+    res = g_GW_PC_6[item];
+    return res;
+}
+
+uint32_t GetESP_2Value(uint8_t item)
+{
+    uint32_t res = 0u;
+    item = GET_MENU(item, ESP_2_ITEM_MAX);
+    res = g_ESP_2[item];
+    return res;
+}
+
+uint32_t GetBCM_3Value(uint8_t item)
+{
+    uint32_t res = 0u;
+    item = GET_MENU(item, BCM_3_ITEM_MAX);
+    res = g_BCM_3[item];
+    return res;
+}
+
+uint32_t GetGW_BD_9Value(uint8_t item)
+{
+    uint32_t res = 0u;
+    item = GET_MENU(item, GW_BD_9_ITEM_MAX);
+    res = g_GW_BD_9[item];
+    return res;
+}
+
+uint32_t GetGW_BD_24Value(uint8_t item)
+{
+    uint32_t res = 0u;
+    item = GET_MENU(item, GW_BD_24_ITEM_MAX);
+    res = g_GW_BD_24[item];
+    return res;
+}
+
+void LCD_IHU_3_item(uint8_t item, int16_t value)
+{
+	static int16_t old_value = 0;
+    item = GET_MENU(item, IHU_3_ITEM_MAX);
+    write_com(0x83);
+    hzkdis(IHU_3Item[item]);
+    write_com(0x93);
+    if (strcmp(IHU_3Value[item][0], "") != 0) {
+        hzkdis(IHU_3Value[item][g_IHU_3[item]]);
+    } else {
+        LCD_ShowNum(g_IHU_3[item]);
+    }
+
+    item = GET_MENU(item+1, IHU_3_ITEM_MAX);
+    write_com(0x8b);
+    hzkdis(IHU_3Item[item]);
+    write_com(0x9b);
+    if (strcmp(IHU_3Value[item][0], "") != 0) {
+        hzkdis(IHU_3Value[item][g_IHU_3[item]]);
+    } else {
+        LCD_ShowNum(g_IHU_3[item]);
+    }
+    write_com(0x93);
+    if(old_value != value)
+    {
+        old_value = value;
+        CanIl_SendEventMsg(IHU_3);
+    }
+}
+
+void LCD_IHU_6_item(uint8_t item, int16_t value)
+{
+	static int16_t old_value = 0;
+    item = GET_MENU(item, IHU_6_ITEM_MAX);
+    write_com(0x83);
+    hzkdis(IHU_6Item[item]);
+    write_com(0x93);
+    if (strcmp(IHU_6Value[item][0], "") != 0) {
+        hzkdis(IHU_6Value[item][g_IHU_6[item]]);
+    } else {
+        LCD_ShowNum(g_IHU_6[item]);
+    }
+
+    item = GET_MENU(item+1, IHU_6_ITEM_MAX);
+    write_com(0x8b);
+    hzkdis(IHU_6Item[item]);
+    write_com(0x9b);
+    if (strcmp(IHU_6Value[item][0], "") != 0) {
+        hzkdis(IHU_6Value[item][g_IHU_6[item]]);
+    } else {
+        LCD_ShowNum(g_IHU_6[item]);
+    }
+    write_com(0x93);
+    if(old_value != value)
+    {
+        old_value = value;
+        CanIl_SendEventMsg(IHU_6);
+    }
+}
+
+void LCD_IHU_10_item(uint8_t item, int16_t value)
+{
+	static int16_t old_value = 0;
+    item = GET_MENU(item, IHU_10_ITEM_MAX);
+    write_com(0x83);
+    hzkdis(IHU_10Item[item]);
+    write_com(0x93);
+    if (strcmp(IHU_10Value[item][0], "") != 0) {
+        hzkdis(IHU_10Value[item][g_IHU_10[item]]);
+    } else {
+        LCD_ShowNum(g_IHU_10[item]);
+    }
+
+    item = GET_MENU(item+1, IHU_10_ITEM_MAX);
+    write_com(0x8b);
+    hzkdis(IHU_10Item[item]);
+    write_com(0x9b);
+    if (strcmp(IHU_10Value[item][0], "") != 0) {
+        hzkdis(IHU_10Value[item][g_IHU_10[item]]);
+    } else {
+        LCD_ShowNum(g_IHU_10[item]);
+    }
+    write_com(0x93);
+    if(old_value != value)
+    {
+        old_value = value;
+        CanIl_SendEventMsg(IHU_10);
+    }
+}
+
+void LCD_GW_PC_2_item(uint8_t item, int16_t value)
+{
+    item = GET_MENU(item, GW_PC_2_ITEM_MAX);
+    write_com(0x83);
+    hzkdis(GW_PC_2Item[item]);
+    write_com(0x93);
+    if (strcmp(GW_PC_2Value[item][0], "") != 0) {
+        hzkdis(GW_PC_2Value[item][g_GW_PC_2[item]]);
+    } else {
+        LCD_ShowNum(g_GW_PC_2[item]);
+    }
+
+    item = GET_MENU(item+1, GW_PC_2_ITEM_MAX);
+    write_com(0x8b);
+    hzkdis(GW_PC_2Item[item]);
+    write_com(0x9b);
+    if (strcmp(GW_PC_2Value[item][0], "") != 0) {
+        hzkdis(GW_PC_2Value[item][g_GW_PC_2[item]]);
+    } else {
+        LCD_ShowNum(g_GW_PC_2[item]);
+    }
+    write_com(0x93);
+}
+
+void LCD_GW_PC_7_item(uint8_t item, int16_t value)
+{
+    item = GET_MENU(item, GW_PC_7_ITEM_MAX);
+    write_com(0x83);
+    hzkdis(GW_PC_7Item[item]);
+    write_com(0x93);
+    if (strcmp(GW_PC_7Value[item][0], "") != 0) {
+        hzkdis(GW_PC_7Value[item][g_GW_PC_7[item]]);
+    } else {
+        LCD_ShowNum(g_GW_PC_7[item]);
+    }
+
+    item = GET_MENU(item+1, GW_PC_7_ITEM_MAX);
+    write_com(0x8b);
+    hzkdis(GW_PC_7Item[item]);
+    write_com(0x9b);
+    if (strcmp(GW_PC_7Value[item][0], "") != 0) {
+        hzkdis(GW_PC_7Value[item][g_GW_PC_7[item]]);
+    } else {
+        LCD_ShowNum(g_GW_PC_7[item]);
+    }
+    write_com(0x93);
+}
+
+void LCD_PEPS_1_item(uint8_t item, int16_t value)
+{
+    item = GET_MENU(item, PEPS_1_ITEM_MAX);
+    write_com(0x83);
+    hzkdis(PEPS_1Item[item]);
+    write_com(0x93);
+    if (strcmp(PEPS_1Value[item][0], "") != 0) {
+        hzkdis(PEPS_1Value[item][g_PEPS_1[item]]);
+    } else {
+        LCD_ShowNum(g_PEPS_1[item]);
+    }
+
+    item = GET_MENU(item+1, PEPS_1_ITEM_MAX);
+    write_com(0x8b);
+    hzkdis(PEPS_1Item[item]);
+    write_com(0x9b);
+    if (strcmp(PEPS_1Value[item][0], "") != 0) {
+        hzkdis(PEPS_1Value[item][g_PEPS_1[item]]);
+    } else {
+        LCD_ShowNum(g_PEPS_1[item]);
+    }
+    write_com(0x93);
+}
+
+void LCD_PEPS_3_item(uint8_t item, int16_t value)
+{
+    item = GET_MENU(item, PEPS_3_ITEM_MAX);
+    write_com(0x83);
+    hzkdis(PEPS_3Item[item]);
+    write_com(0x93);
+    if (strcmp(PEPS_3Value[item][0], "") != 0) {
+        hzkdis(PEPS_3Value[item][g_PEPS_3[item]]);
+    } else {
+        LCD_ShowNum(g_PEPS_3[item]);
+    }
+
+    item = GET_MENU(item+1, PEPS_3_ITEM_MAX);
+    write_com(0x8b);
+    hzkdis(PEPS_3Item[item]);
+    write_com(0x9b);
+    if (strcmp(PEPS_3Value[item][0], "") != 0) {
+        hzkdis(PEPS_3Value[item][g_PEPS_3[item]]);
+    } else {
+        LCD_ShowNum(g_PEPS_3[item]);
+    }
+    write_com(0x93);
+}
+
+void LCD_IHU_1_item(uint8_t item, int16_t value)
+{
+	static int16_t old_value = 0;
+    item = GET_MENU(item, IHU_1_ITEM_MAX);
+    write_com(0x83);
+    hzkdis(IHU_1Item[item]);
+    write_com(0x93);
+    if (strcmp(IHU_1Value[item][0], "") != 0) {
+        hzkdis(IHU_1Value[item][g_IHU_1[item]]);
+    } else {
+        LCD_ShowNum(g_IHU_1[item]);
+    }
+
+    item = GET_MENU(item+1, IHU_1_ITEM_MAX);
+    write_com(0x8b);
+    hzkdis(IHU_1Item[item]);
+    write_com(0x9b);
+    if (strcmp(IHU_1Value[item][0], "") != 0) {
+        hzkdis(IHU_1Value[item][g_IHU_1[item]]);
+    } else {
+        LCD_ShowNum(g_IHU_1[item]);
+    }
+    write_com(0x93);
+    if(old_value != value)
+    {
+        old_value = value;
+        CanIl_SendEventMsg(IHU_1);
+    }
+}
+
+void LCD_FCM_3_item(uint8_t item, int16_t value)
+{
+    item = GET_MENU(item, FCM_3_ITEM_MAX);
+    write_com(0x83);
+    hzkdis(FCM_3Item[item]);
+    write_com(0x93);
+    if (strcmp(FCM_3Value[item][0], "") != 0) {
+        hzkdis(FCM_3Value[item][g_FCM_3[item]]);
+    } else {
+        LCD_ShowNum(g_FCM_3[item]);
+    }
+
+    item = GET_MENU(item+1, FCM_3_ITEM_MAX);
+    write_com(0x8b);
+    hzkdis(FCM_3Item[item]);
+    write_com(0x9b);
+    if (strcmp(FCM_3Value[item][0], "") != 0) {
+        hzkdis(FCM_3Value[item][g_FCM_3[item]]);
+    } else {
+        LCD_ShowNum(g_FCM_3[item]);
+    }
+    write_com(0x93);
+}
+
+void LCD_FCM_4_item(uint8_t item, int16_t value)
+{
+    item = GET_MENU(item, FCM_4_ITEM_MAX);
+    write_com(0x83);
+    hzkdis(FCM_4Item[item]);
+    write_com(0x93);
+    if (strcmp(FCM_4Value[item][0], "") != 0) {
+        hzkdis(FCM_4Value[item][g_FCM_4[item]]);
+    } else {
+        LCD_ShowNum(g_FCM_4[item]);
+    }
+
+    item = GET_MENU(item+1, FCM_4_ITEM_MAX);
+    write_com(0x8b);
+    hzkdis(FCM_4Item[item]);
+    write_com(0x9b);
+    if (strcmp(FCM_4Value[item][0], "") != 0) {
+        hzkdis(FCM_4Value[item][g_FCM_4[item]]);
+    } else {
+        LCD_ShowNum(g_FCM_4[item]);
+    }
+    write_com(0x93);
+}
+
+void LCD_FCM_5_item(uint8_t item, int16_t value)
+{
+    item = GET_MENU(item, FCM_5_ITEM_MAX);
+    write_com(0x83);
+    hzkdis(FCM_5Item[item]);
+    write_com(0x93);
+    if (strcmp(FCM_5Value[item][0], "") != 0) {
+        hzkdis(FCM_5Value[item][g_FCM_5[item]]);
+    } else {
+        LCD_ShowNum(g_FCM_5[item]);
+    }
+
+    item = GET_MENU(item+1, FCM_5_ITEM_MAX);
+    write_com(0x8b);
+    hzkdis(FCM_5Item[item]);
+    write_com(0x9b);
+    if (strcmp(FCM_5Value[item][0], "") != 0) {
+        hzkdis(FCM_5Value[item][g_FCM_5[item]]);
+    } else {
+        LCD_ShowNum(g_FCM_5[item]);
+    }
+    write_com(0x93);
+}
+
+void LCD_FCM_6_item(uint8_t item, int16_t value)
+{
+    item = GET_MENU(item, FCM_6_ITEM_MAX);
+    write_com(0x83);
+    hzkdis(FCM_6Item[item]);
+    write_com(0x93);
+    if (strcmp(FCM_6Value[item][0], "") != 0) {
+        hzkdis(FCM_6Value[item][g_FCM_6[item]]);
+    } else {
+        LCD_ShowNum(g_FCM_6[item]);
+    }
+
+    item = GET_MENU(item+1, FCM_6_ITEM_MAX);
+    write_com(0x8b);
+    hzkdis(FCM_6Item[item]);
+    write_com(0x9b);
+    if (strcmp(FCM_6Value[item][0], "") != 0) {
+        hzkdis(FCM_6Value[item][g_FCM_6[item]]);
+    } else {
+        LCD_ShowNum(g_FCM_6[item]);
+    }
+    write_com(0x93);
+}
+
+void LCD_FCM_7_item(uint8_t item, int16_t value)
+{
+    item = GET_MENU(item, FCM_7_ITEM_MAX);
+    write_com(0x83);
+    hzkdis(FCM_7Item[item]);
+    write_com(0x93);
+    if (strcmp(FCM_7Value[item][0], "") != 0) {
+        hzkdis(FCM_7Value[item][g_FCM_7[item]]);
+    } else {
+        LCD_ShowNum(g_FCM_7[item]);
+    }
+
+    item = GET_MENU(item+1, FCM_7_ITEM_MAX);
+    write_com(0x8b);
+    hzkdis(FCM_7Item[item]);
+    write_com(0x9b);
+    if (strcmp(FCM_7Value[item][0], "") != 0) {
+        hzkdis(FCM_7Value[item][g_FCM_7[item]]);
+    } else {
+        LCD_ShowNum(g_FCM_7[item]);
+    }
+    write_com(0x93);
+}
+
+void LCD_FCM_8_item(uint8_t item, int16_t value)
+{
+    item = GET_MENU(item, FCM_8_ITEM_MAX);
+    write_com(0x83);
+    hzkdis(FCM_8Item[item]);
+    write_com(0x93);
+    if (strcmp(FCM_8Value[item][0], "") != 0) {
+        hzkdis(FCM_8Value[item][g_FCM_8[item]]);
+    } else {
+        LCD_ShowNum(g_FCM_8[item]);
+    }
+
+    item = GET_MENU(item+1, FCM_8_ITEM_MAX);
+    write_com(0x8b);
+    hzkdis(FCM_8Item[item]);
+    write_com(0x9b);
+    if (strcmp(FCM_8Value[item][0], "") != 0) {
+        hzkdis(FCM_8Value[item][g_FCM_8[item]]);
+    } else {
+        LCD_ShowNum(g_FCM_8[item]);
+    }
+    write_com(0x93);
+}
+
+void LCD_BCM_5_item(uint8_t item, int16_t value)
+{
+    item = GET_MENU(item, BCM_5_ITEM_MAX);
+    write_com(0x83);
+    hzkdis(BCM_5Item[item]);
+    write_com(0x93);
+    if (strcmp(BCM_5Value[item][0], "") != 0) {
+        hzkdis(BCM_5Value[item][g_BCM_5[item]]);
+    } else {
+        LCD_ShowNum(g_BCM_5[item]);
+    }
+
+    item = GET_MENU(item+1, BCM_5_ITEM_MAX);
+    write_com(0x8b);
+    hzkdis(BCM_5Item[item]);
+    write_com(0x9b);
+    if (strcmp(BCM_5Value[item][0], "") != 0) {
+        hzkdis(BCM_5Value[item][g_BCM_5[item]]);
+    } else {
+        LCD_ShowNum(g_BCM_5[item]);
+    }
+    write_com(0x93);
+}
+
+void LCD_TBOX_4_item(uint8_t item, int16_t value)
+{
+    item = GET_MENU(item, TBOX_4_ITEM_MAX);
+    write_com(0x83);
+    hzkdis(TBOX_4Item[item]);
+    write_com(0x93);
+    if (strcmp(TBOX_4Value[item][0], "") != 0) {
+        hzkdis(TBOX_4Value[item][g_TBOX_4[item]]);
+    } else {
+        LCD_ShowNum(g_TBOX_4[item]);
+    }
+
+    item = GET_MENU(item+1, TBOX_4_ITEM_MAX);
+    write_com(0x8b);
+    hzkdis(TBOX_4Item[item]);
+    write_com(0x9b);
+    if (strcmp(TBOX_4Value[item][0], "") != 0) {
+        hzkdis(TBOX_4Value[item][g_TBOX_4[item]]);
+    } else {
+        LCD_ShowNum(g_TBOX_4[item]);
+    }
+    write_com(0x93);
+}
+
+void LCD_ACU_1_item(uint8_t item, int16_t value)
+{
+	static uint8_t crash_flag = 0;
+	static uint8_t first_crash_flag = 0;
+
+    item = GET_MENU(item, ACU_1_ITEM_MAX);
+    write_com(0x83);
+    hzkdis(ACU_1Item[item]);
+    write_com(0x93);
+    if(item == 0){
+		uint16_t tmp = g_ACU_1[item];
+		if(tmp == 1 || tmp == 2 || tmp == 4 || tmp == 8 || tmp == 16){
+				crash_flag = tmp;
+		}
+		if(tmp == 0){
+			if(first_crash_flag == 1){
+				tmp = crash_flag;
+			}
+		}
+
+		if (strcmp(ACU_1Value[item][0], "") != 0) {
+			hzkdis(ACU_1Value[item][tmp]);
+		} else {
+			LCD_ShowNum(tmp);
+		}
+    }
+    item = GET_MENU(item+1, ACU_1_ITEM_MAX);
+    write_com(0x8b);
+    hzkdis(ACU_1Item[item]);
+    write_com(0x9b);
+
+    tmp = g_ACU_1[item];
+    if(tmp == 1 || tmp == 2 || tmp == 4 || tmp == 8 || tmp == 16){
+    		crash_flag = tmp;
+    }
+    if(tmp == 0){
+    	if(first_crash_flag == 1){
+    		tmp = crash_flag;
+    	}
+    }
+
+    if (strcmp(ACU_1Value[item][0], "") != 0) {
+        hzkdis(ACU_1Value[item][g_ACU_1[item]]);
+    } else {
+        LCD_ShowNum(g_ACU_1[item]);
+    }
+    write_com(0x93);
+
+    if(crash_flag != 0 && first_crash_flag == 0){
+    	CanIl_SendEventMsg(CanMsg_ACU_1);
+    	first_crash_flag = 1;
+    }
+}
+
+void LCD_BCM_1_item(uint8_t item, int16_t value)
+{
+    item = GET_MENU(item, BCM_1_ITEM_MAX);
+    write_com(0x83);
+    hzkdis(BCM_1Item[item]);
+    write_com(0x93);
+    if (strcmp(BCM_1Value[item][0], "") != 0) {
+        hzkdis(BCM_1Value[item][g_BCM_1[item]]);
+    } else {
+        LCD_ShowNum(g_BCM_1[item]);
+    }
+
+    item = GET_MENU(item+1, BCM_1_ITEM_MAX);
+    write_com(0x8b);
+    hzkdis(BCM_1Item[item]);
+    write_com(0x9b);
+    if (strcmp(BCM_1Value[item][0], "") != 0) {
+        hzkdis(BCM_1Value[item][g_BCM_1[item]]);
+    } else {
+        LCD_ShowNum(g_BCM_1[item]);
+    }
+    write_com(0x93);
+}
+
+void LCD_BCM_4_item(uint8_t item, int16_t value)
+{
+    item = GET_MENU(item, BCM_4_ITEM_MAX);
+    write_com(0x83);
+    hzkdis(BCM_4Item[item]);
+    write_com(0x93);
+    if (strcmp(BCM_4Value[item][0], "") != 0) {
+        hzkdis(BCM_4Value[item][g_BCM_4[item]]);
+    } else {
+        LCD_ShowNum(g_BCM_4[item]);
+    }
+
+    item = GET_MENU(item+1, BCM_4_ITEM_MAX);
+    write_com(0x8b);
+    hzkdis(BCM_4Item[item]);
+    write_com(0x9b);
+    if (strcmp(BCM_4Value[item][0], "") != 0) {
+        hzkdis(BCM_4Value[item][g_BCM_4[item]]);
+    } else {
+        LCD_ShowNum(g_BCM_4[item]);
+    }
+    write_com(0x93);
+}
+
+void LCD_TPMS_1_item(uint8_t item, int16_t value)
+{
+    item = GET_MENU(item, TPMS_1_ITEM_MAX);
+    write_com(0x83);
+    hzkdis(TPMS_1Item[item]);
+    write_com(0x93);
+    if (strcmp(TPMS_1Value[item][0], "") != 0) {
+        hzkdis(TPMS_1Value[item][g_TPMS_1[item]]);
+    } else {
+        LCD_ShowNum(g_TPMS_1[item]);
+    }
+
+    item = GET_MENU(item+1, TPMS_1_ITEM_MAX);
+    write_com(0x8b);
+    hzkdis(TPMS_1Item[item]);
+    write_com(0x9b);
+    if (strcmp(TPMS_1Value[item][0], "") != 0) {
+        hzkdis(TPMS_1Value[item][g_TPMS_1[item]]);
+    } else {
+        LCD_ShowNum(g_TPMS_1[item]);
+    }
+    write_com(0x93);
+}
+
+void LCD_IC_1_item(uint8_t item, int16_t value)
+{
+    item = GET_MENU(item, IC_1_ITEM_MAX);
+    write_com(0x83);
+    hzkdis(IC_1Item[item]);
+    write_com(0x93);
+    if (strcmp(IC_1Value[item][0], "") != 0) {
+        hzkdis(IC_1Value[item][g_IC_1[item]]);
+    } else {
+        LCD_ShowNum(g_IC_1[item]);
+    }
+
+    item = GET_MENU(item+1, IC_1_ITEM_MAX);
+    write_com(0x8b);
+    hzkdis(IC_1Item[item]);
+    write_com(0x9b);
+    if (strcmp(IC_1Value[item][0], "") != 0) {
+        hzkdis(IC_1Value[item][g_IC_1[item]]);
+    } else {
+        LCD_ShowNum(g_IC_1[item]);
+    }
+    write_com(0x93);
+}
+
+void LCD_IC_2_item(uint8_t item, int16_t value)
+{
+    item = GET_MENU(item, IC_2_ITEM_MAX);
+    write_com(0x83);
+    hzkdis(IC_2Item[item]);
+    write_com(0x93);
+    if (strcmp(IC_2Value[item][0], "") != 0) {
+        hzkdis(IC_2Value[item][g_IC_2[item]]);
+    } else {
+        LCD_ShowNum(g_IC_2[item]);
+    }
+
+    item = GET_MENU(item+1, IC_2_ITEM_MAX);
+    write_com(0x8b);
+    hzkdis(IC_2Item[item]);
+    write_com(0x9b);
+    if (strcmp(IC_2Value[item][0], "") != 0) {
+        hzkdis(IC_2Value[item][g_IC_2[item]]);
+    } else {
+        LCD_ShowNum(g_IC_2[item]);
+    }
+    write_com(0x93);
+}
+
+void LCD_GW_PC_4_item(uint8_t item, int16_t value)
+{
+    item = GET_MENU(item, GW_PC_4_ITEM_MAX);
+    write_com(0x83);
+    hzkdis(GW_PC_4Item[item]);
+    write_com(0x93);
+    if (strcmp(GW_PC_4Value[item][0], "") != 0) {
+        hzkdis(GW_PC_4Value[item][g_GW_PC_4[item]]);
+    } else {
+        LCD_ShowNum(g_GW_PC_4[item]);
+    }
+
+    item = GET_MENU(item+1, GW_PC_4_ITEM_MAX);
+    write_com(0x8b);
+    hzkdis(GW_PC_4Item[item]);
+    write_com(0x9b);
+    if (strcmp(GW_PC_4Value[item][0], "") != 0) {
+        hzkdis(GW_PC_4Value[item][g_GW_PC_4[item]]);
+    } else {
+        LCD_ShowNum(g_GW_PC_4[item]);
+    }
+    write_com(0x93);
+}
+
+void LCD_GW_BD_14_item(uint8_t item, int16_t value)
+{
+    item = GET_MENU(item, GW_BD_14_ITEM_MAX);
+    write_com(0x83);
+    hzkdis(GW_BD_14Item[item]);
+    write_com(0x93);
+    if (strcmp(GW_BD_14Value[item][0], "") != 0) {
+        hzkdis(GW_BD_14Value[item][g_GW_BD_14[item]]);
+    } else {
+        LCD_ShowNum(g_GW_BD_14[item]);
+    }
+
+    item = GET_MENU(item+1, GW_BD_14_ITEM_MAX);
+    write_com(0x8b);
+    hzkdis(GW_BD_14Item[item]);
+    write_com(0x9b);
+    if (strcmp(GW_BD_14Value[item][0], "") != 0) {
+        hzkdis(GW_BD_14Value[item][g_GW_BD_14[item]]);
+    } else {
+        LCD_ShowNum(g_GW_BD_14[item]);
+    }
+    write_com(0x93);
+}
+
+void LCD_IHU_4_item(uint8_t item, int16_t value)
+{
+    item = GET_MENU(item, IHU_4_ITEM_MAX);
+    write_com(0x83);
+    hzkdis(IHU_4Item[item]);
+    write_com(0x93);
+    if (strcmp(IHU_4Value[item][0], "") != 0) {
+        hzkdis(IHU_4Value[item][g_IHU_4[item]]);
+    } else {
+        LCD_ShowNum(g_IHU_4[item]);
+    }
+
+    item = GET_MENU(item+1, IHU_4_ITEM_MAX);
+    write_com(0x8b);
+    hzkdis(IHU_4Item[item]);
+    write_com(0x9b);
+    if (strcmp(IHU_4Value[item][0], "") != 0) {
+        hzkdis(IHU_4Value[item][g_IHU_4[item]]);
+    } else {
+        LCD_ShowNum(g_IHU_4[item]);
+    }
+    write_com(0x93);
+}
+
+void LCD_IHU_5_item(uint8_t item, int16_t value)
+{
+    item = GET_MENU(item, IHU_5_ITEM_MAX);
+    write_com(0x83);
+    hzkdis(IHU_5Item[item]);
+    write_com(0x93);
+    if (strcmp(IHU_5Value[item][0], "") != 0) {
+        hzkdis(IHU_5Value[item][g_IHU_5[item]]);
+    } else {
+        LCD_ShowNum(g_IHU_5[item]);
+    }
+
+    item = GET_MENU(item+1, IHU_5_ITEM_MAX);
+    write_com(0x8b);
+    hzkdis(IHU_5Item[item]);
+    write_com(0x9b);
+    if (strcmp(IHU_5Value[item][0], "") != 0) {
+        hzkdis(IHU_5Value[item][g_IHU_5[item]]);
+    } else {
+        LCD_ShowNum(g_IHU_5[item]);
+    }
+    write_com(0x93);
+}
+
+void LCD_GW_BD_29_item(uint8_t item, int16_t value)
+{
+    item = GET_MENU(item, GW_BD_29_ITEM_MAX);
+    write_com(0x83);
+    hzkdis(GW_BD_29Item[item]);
+    write_com(0x93);
+    if (strcmp(GW_BD_29Value[item][0], "") != 0) {
+        hzkdis(GW_BD_29Value[item][g_GW_BD_29[item]]);
+    } else {
+        LCD_ShowNum(g_GW_BD_29[item]);
+    }
+
+    item = GET_MENU(item+1, GW_BD_29_ITEM_MAX);
+    write_com(0x8b);
+    hzkdis(GW_BD_29Item[item]);
+    write_com(0x9b);
+    if (strcmp(GW_BD_29Value[item][0], "") != 0) {
+        hzkdis(GW_BD_29Value[item][g_GW_BD_29[item]]);
+    } else {
+        LCD_ShowNum(g_GW_BD_29[item]);
+    }
+    write_com(0x93);
+}
+
+void LCD_IHU_2_item(uint8_t item, int16_t value)
+{
+    item = GET_MENU(item, IHU_2_ITEM_MAX);
+    write_com(0x83);
+    hzkdis(IHU_2Item[item]);
+    write_com(0x93);
+    if (strcmp(IHU_2Value[item][0], "") != 0) {
+        hzkdis(IHU_2Value[item][g_IHU_2[item]]);
+    } else {
+        LCD_ShowNum(g_IHU_2[item]);
+    }
+
+    item = GET_MENU(item+1, IHU_2_ITEM_MAX);
+    write_com(0x8b);
+    hzkdis(IHU_2Item[item]);
+    write_com(0x9b);
+    if (strcmp(IHU_2Value[item][0], "") != 0) {
+        hzkdis(IHU_2Value[item][g_IHU_2[item]]);
+    } else {
+        LCD_ShowNum(g_IHU_2[item]);
+    }
+    write_com(0x93);
+}
+
+void LCD_IHU_7_item(uint8_t item, int16_t value)
+{
+    item = GET_MENU(item, IHU_7_ITEM_MAX);
+    write_com(0x83);
+    hzkdis(IHU_7Item[item]);
+    write_com(0x93);
+    if (strcmp(IHU_7Value[item][0], "") != 0) {
+        hzkdis(IHU_7Value[item][g_IHU_7[item]]);
+    } else {
+        LCD_ShowNum(g_IHU_7[item]);
+    }
+
+    item = GET_MENU(item+1, IHU_7_ITEM_MAX);
+    write_com(0x8b);
+    hzkdis(IHU_7Item[item]);
+    write_com(0x9b);
+    if (strcmp(IHU_7Value[item][0], "") != 0) {
+        hzkdis(IHU_7Value[item][g_IHU_7[item]]);
+    } else {
+        LCD_ShowNum(g_IHU_7[item]);
+    }
+    write_com(0x93);
+}
+
+void LCD_IHU_8_item(uint8_t item, int16_t value)
+{
+    item = GET_MENU(item, IHU_8_ITEM_MAX);
+    write_com(0x83);
+    hzkdis(IHU_8Item[item]);
+    write_com(0x93);
+    if (strcmp(IHU_8Value[item][0], "") != 0) {
+        hzkdis(IHU_8Value[item][g_IHU_8[item]]);
+    } else {
+        LCD_ShowNum(g_IHU_8[item]);
+    }
+
+    item = GET_MENU(item+1, IHU_8_ITEM_MAX);
+    write_com(0x8b);
+    hzkdis(IHU_8Item[item]);
+    write_com(0x9b);
+    if (strcmp(IHU_8Value[item][0], "") != 0) {
+        hzkdis(IHU_8Value[item][g_IHU_8[item]]);
+    } else {
+        LCD_ShowNum(g_IHU_8[item]);
+    }
+    write_com(0x93);
+}
+
+void LCD_IHU_9_item(uint8_t item, int16_t value)
+{
+    item = GET_MENU(item, IHU_9_ITEM_MAX);
+    write_com(0x83);
+    hzkdis(IHU_9Item[item]);
+    write_com(0x93);
+    if (strcmp(IHU_9Value[item][0], "") != 0) {
+        hzkdis(IHU_9Value[item][g_IHU_9[item]]);
+    } else {
+        LCD_ShowNum(g_IHU_9[item]);
+    }
+
+    item = GET_MENU(item+1, IHU_9_ITEM_MAX);
+    write_com(0x8b);
+    hzkdis(IHU_9Item[item]);
+    write_com(0x9b);
+    if (strcmp(IHU_9Value[item][0], "") != 0) {
+        hzkdis(IHU_9Value[item][g_IHU_9[item]]);
+    } else {
+        LCD_ShowNum(g_IHU_9[item]);
+    }
+    write_com(0x93);
+}
+
+void LCD_TBOX_1_item(uint8_t item, int16_t value)
+{
+    item = GET_MENU(item, TBOX_1_ITEM_MAX);
+    write_com(0x83);
+    hzkdis(TBOX_1Item[item]);
+    write_com(0x93);
+    if (strcmp(TBOX_1Value[item][0], "") != 0) {
+        hzkdis(TBOX_1Value[item][g_TBOX_1[item]]);
+    } else {
+        LCD_ShowNum(g_TBOX_1[item]);
+    }
+
+    item = GET_MENU(item+1, TBOX_1_ITEM_MAX);
+    write_com(0x8b);
+    hzkdis(TBOX_1Item[item]);
+    write_com(0x9b);
+    if (strcmp(TBOX_1Value[item][0], "") != 0) {
+        hzkdis(TBOX_1Value[item][g_TBOX_1[item]]);
+    } else {
+        LCD_ShowNum(g_TBOX_1[item]);
+    }
+    write_com(0x93);
+}
+
+void LCD_TBOX_2_item(uint8_t item, int16_t value)
+{
+    item = GET_MENU(item, TBOX_2_ITEM_MAX);
+    write_com(0x83);
+    hzkdis(TBOX_2Item[item]);
+    write_com(0x93);
+    if (strcmp(TBOX_2Value[item][0], "") != 0) {
+        hzkdis(TBOX_2Value[item][g_TBOX_2[item]]);
+    } else {
+        LCD_ShowNum(g_TBOX_2[item]);
+    }
+
+    item = GET_MENU(item+1, TBOX_2_ITEM_MAX);
+    write_com(0x8b);
+    hzkdis(TBOX_2Item[item]);
+    write_com(0x9b);
+    if (strcmp(TBOX_2Value[item][0], "") != 0) {
+        hzkdis(TBOX_2Value[item][g_TBOX_2[item]]);
+    } else {
+        LCD_ShowNum(g_TBOX_2[item]);
+    }
+    write_com(0x93);
+}
+
+void LCD_GW_PC_1_item(uint8_t item, int16_t value)
+{
+    item = GET_MENU(item, GW_PC_1_ITEM_MAX);
+    write_com(0x83);
+    hzkdis(GW_PC_1Item[item]);
+    write_com(0x93);
+    if (strcmp(GW_PC_1Value[item][0], "") != 0) {
+        hzkdis(GW_PC_1Value[item][g_GW_PC_1[item]]);
+    } else {
+        LCD_ShowNum(g_GW_PC_1[item]);
+    }
+
+    item = GET_MENU(item+1, GW_PC_1_ITEM_MAX);
+    write_com(0x8b);
+    hzkdis(GW_PC_1Item[item]);
+    write_com(0x9b);
+    if (strcmp(GW_PC_1Value[item][0], "") != 0) {
+        hzkdis(GW_PC_1Value[item][g_GW_PC_1[item]]);
+    } else {
+        LCD_ShowNum(g_GW_PC_1[item]);
+    }
+    write_com(0x93);
+}
+
+void LCD_GW_PC_6_item(uint8_t item, int16_t value)
+{
+    item = GET_MENU(item, GW_PC_6_ITEM_MAX);
+    write_com(0x83);
+    hzkdis(GW_PC_6Item[item]);
+    write_com(0x93);
+    if (strcmp(GW_PC_6Value[item][0], "") != 0) {
+        hzkdis(GW_PC_6Value[item][g_GW_PC_6[item]]);
+    } else {
+        LCD_ShowNum(g_GW_PC_6[item]);
+    }
+
+    item = GET_MENU(item+1, GW_PC_6_ITEM_MAX);
+    write_com(0x8b);
+    hzkdis(GW_PC_6Item[item]);
+    write_com(0x9b);
+    if (strcmp(GW_PC_6Value[item][0], "") != 0) {
+        hzkdis(GW_PC_6Value[item][g_GW_PC_6[item]]);
+    } else {
+        LCD_ShowNum(g_GW_PC_6[item]);
+    }
+    write_com(0x93);
+}
+
+void LCD_ESP_2_item(uint8_t item, int16_t value)
+{
+    item = GET_MENU(item, ESP_2_ITEM_MAX);
+    write_com(0x83);
+    hzkdis(ESP_2Item[item]);
+    write_com(0x93);
+    if (strcmp(ESP_2Value[item][0], "") != 0) {
+        hzkdis(ESP_2Value[item][g_ESP_2[item]]);
+    } else {
+        LCD_ShowNum(g_ESP_2[item]);
+    }
+
+    item = GET_MENU(item+1, ESP_2_ITEM_MAX);
+    write_com(0x8b);
+    hzkdis(ESP_2Item[item]);
+    write_com(0x9b);
+    if (strcmp(ESP_2Value[item][0], "") != 0) {
+        hzkdis(ESP_2Value[item][g_ESP_2[item]]);
+    } else {
+        LCD_ShowNum(g_ESP_2[item]);
+    }
+    write_com(0x93);
+}
+
+void LCD_BCM_3_item(uint8_t item, int16_t value)
+{
+    item = GET_MENU(item, BCM_3_ITEM_MAX);
+    write_com(0x83);
+    hzkdis(BCM_3Item[item]);
+    write_com(0x93);
+    if (strcmp(BCM_3Value[item][0], "") != 0) {
+        hzkdis(BCM_3Value[item][g_BCM_3[item]]);
+    } else {
+        LCD_ShowNum(g_BCM_3[item]);
+    }
+
+    item = GET_MENU(item+1, BCM_3_ITEM_MAX);
+    write_com(0x8b);
+    hzkdis(BCM_3Item[item]);
+    write_com(0x9b);
+    if (strcmp(BCM_3Value[item][0], "") != 0) {
+        hzkdis(BCM_3Value[item][g_BCM_3[item]]);
+    } else {
+        LCD_ShowNum(g_BCM_3[item]);
+    }
+    write_com(0x93);
+}
+
+void LCD_GW_BD_9_item(uint8_t item, int16_t value)
+{
+    item = GET_MENU(item, GW_BD_9_ITEM_MAX);
+    write_com(0x83);
+    hzkdis(GW_BD_9Item[item]);
+    write_com(0x93);
+    if (strcmp(GW_BD_9Value[item][0], "") != 0) {
+        hzkdis(GW_BD_9Value[item][g_GW_BD_9[item]]);
+    } else {
+        LCD_ShowNum(g_GW_BD_9[item]);
+    }
+
+    item = GET_MENU(item+1, GW_BD_9_ITEM_MAX);
+    write_com(0x8b);
+    hzkdis(GW_BD_9Item[item]);
+    write_com(0x9b);
+    if (strcmp(GW_BD_9Value[item][0], "") != 0) {
+        hzkdis(GW_BD_9Value[item][g_GW_BD_9[item]]);
+    } else {
+        LCD_ShowNum(g_GW_BD_9[item]);
+    }
+    write_com(0x93);
+}
+
+void LCD_GW_BD_24_item(uint8_t item, int16_t value)
+{
+    item = GET_MENU(item, GW_BD_24_ITEM_MAX);
+    write_com(0x83);
+    hzkdis(GW_BD_24Item[item]);
+    write_com(0x93);
+    if (strcmp(GW_BD_24Value[item][0], "") != 0) {
+        hzkdis(GW_BD_24Value[item][g_GW_BD_24[item]]);
+    } else {
+        LCD_ShowNum(g_GW_BD_24[item]);
+    }
+
+    item = GET_MENU(item+1, GW_BD_24_ITEM_MAX);
+    write_com(0x8b);
+    hzkdis(GW_BD_24Item[item]);
+    write_com(0x9b);
+    if (strcmp(GW_BD_24Value[item][0], "") != 0) {
+        hzkdis(GW_BD_24Value[item][g_GW_BD_24[item]]);
+    } else {
+        LCD_ShowNum(g_GW_BD_24[item]);
+    }
+    write_com(0x93);
+}
+
+// LCD显示函数指针数组
+void (*LCD_Display_Func[MENU_MAX])(uint8_t, int16_t) = {
+    LCD_IHU_3_item,
+    LCD_IHU_6_item,
+    LCD_IHU_10_item,
+    LCD_GW_PC_2_item,
+    LCD_GW_PC_7_item,
+    LCD_PEPS_1_item,
+    LCD_PEPS_3_item,
+    LCD_IHU_1_item,
+    LCD_FCM_3_item,
+    LCD_FCM_4_item,
+    LCD_FCM_5_item,
+    LCD_FCM_6_item,
+    LCD_FCM_7_item,
+    LCD_FCM_8_item,
+    LCD_BCM_5_item,
+    LCD_TBOX_4_item,
+    LCD_ACU_1_item,
+    LCD_BCM_1_item,
+    LCD_BCM_4_item,
+    LCD_TPMS_1_item,
+    LCD_IC_1_item,
+    LCD_IC_2_item,
+    LCD_GW_PC_4_item,
+    LCD_GW_BD_14_item,
+    LCD_IHU_4_item,
+    LCD_IHU_5_item,
+    LCD_GW_BD_29_item,
+    LCD_IHU_2_item,
+    LCD_IHU_7_item,
+    LCD_IHU_8_item,
+    LCD_IHU_9_item,
+    LCD_TBOX_1_item,
+    LCD_TBOX_2_item,
+    LCD_GW_PC_1_item,
+    LCD_GW_PC_6_item,
+    LCD_ESP_2_item,
+    LCD_BCM_3_item,
+    LCD_GW_BD_9_item,
+    LCD_GW_BD_24_item,
+};
+

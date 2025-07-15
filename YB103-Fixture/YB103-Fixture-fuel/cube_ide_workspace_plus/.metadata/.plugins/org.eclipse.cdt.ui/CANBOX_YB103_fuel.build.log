@@ -1,0 +1,108 @@
+15:06:46 **** Incremental Build of configuration Debug for project CANBOX_YB103_fuel ****
+make -j8 all 
+arm-none-eabi-gcc "../APP/can/dbc_can_core.c" -mcpu=cortex-m3 -std=gnu11 -g1 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F105xC -c -I../Core/Inc -I"D:/work/YB103-Fixture/YB103-Fixture-fuel/YB103_plus/Service/GPIO" -I"D:/work/YB103-Fixture/YB103-Fixture-fuel/YB103_plus/User/UserTimer" -I"D:/work/YB103-Fixture/YB103-Fixture-fuel/YB103_plus/APP" -I"D:/work/YB103-Fixture/YB103-Fixture-fuel/YB103_plus/APP/adc" -I"D:/work/YB103-Fixture/YB103-Fixture-fuel/YB103_plus/APP/can" -I"D:/work/YB103-Fixture/YB103-Fixture-fuel/YB103_plus/APP/config" -I"D:/work/YB103-Fixture/YB103-Fixture-fuel/YB103_plus/APP/key" -I"D:/work/YB103-Fixture/YB103-Fixture-fuel/YB103_plus/APP/key/inc" -I"D:/work/YB103-Fixture/YB103-Fixture-fuel/YB103_plus/APP/lcd12864" -I"D:/work/YB103-Fixture/YB103-Fixture-fuel/YB103_plus/APP/lin" -I"D:/work/YB103-Fixture/YB103-Fixture-fuel/YB103_plus/Service/Service_CanComm" -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM3 -Og -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"APP/can/dbc_can_core.d" -MT"APP/can/dbc_can_core.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "APP/can/dbc_can_core.o"
+../APP/can/dbc_can_core.c: In function 'Can_SendSts_Control':
+../APP/can/dbc_can_core.c:64:9: warning: implicit declaration of function 'delay_us' [-Wimplicit-function-declaration]
+   64 |         delay_us(100);
+      |         ^~~~~~~~
+../APP/can/dbc_can_core.c: In function 'App_Init':
+../APP/can/dbc_can_core.c:71:40: warning: passing argument 1 of 'Svc_CanCommUpInf_TxConfigTableInit' discards 'const' qualifier from pointer target type [-Wdiscarded-qualifiers]
+   71 |     Svc_CanCommUpInf_TxConfigTableInit(CanTransmitConfig_Table);
+      |                                        ^~~~~~~~~~~~~~~~~~~~~~~
+../APP/can/dbc_can_core.c:13:72: note: expected 'CanTransmitConfig_t *' but argument is of type 'const CanTransmitConfig_t *'
+   13 | static uint8_t Svc_CanCommUpInf_TxConfigTableInit(CanTransmitConfig_t *p_TxTable)
+      |                                                   ~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~
+In file included from ../APP/can/dbc_can_core.c:1:
+../APP/can/dbc_can_core.c: In function 'CanGetMsgSignal':
+../APP/can/dbc_can_core.c:79:47: warning: implicit declaration of function 'GetF1Value'; did you mean 'GetIC_1Value'? [-Wimplicit-function-declaration]
+   79 |         CanTx_SigSet_0x250_ABS_3_VehicleSpeed(GetF1Value(ABS_3_VehicleSpeed));
+      |                                               ^~~~~~~~~~
+D:/work/YB103-Fixture/YB103-Fixture-fuel/YB103_plus/APP/can/App_CAN_YB103_fuel_CanDbcSignal.h:264:100: note: in definition of macro 'CanTx_SigSet_0x250_ABS_3_VehicleSpeed'
+  264 |     CanTxMsg_DataBuffer[CanTxMsgIndex_GW_PC_2_0x250].Bit_0x250.ABS_3_VehicleSpeed_Part0 = (uint8_t)Data; CanTxMsg_DataBuffer[CanTxMsgIndex_GW_PC_2_0x250].Bit_0x250.ABS_3_VehicleSpeed_Part1 = (uint8_t)(Data >> 8)
+      |                                                                                                    ^~~~
+../APP/can/dbc_can_core.c:85:46: warning: implicit declaration of function 'GetF2Value'; did you mean 'GetIC_2Value'? [-Wimplicit-function-declaration]
+   85 |         CanTx_SigSet_0x150_EMS_2_EngineSpeed(GetF2Value(EMS_2_EngineSpeed));
+      |                                              ^~~~~~~~~~
+D:/work/YB103-Fixture/YB103-Fixture-fuel/YB103_plus/APP/can/App_CAN_YB103_fuel_CanDbcSignal.h:1889:99: note: in definition of macro 'CanTx_SigSet_0x150_EMS_2_EngineSpeed'
+ 1889 |     CanTxMsg_DataBuffer[CanTxMsgIndex_GW_PC_1_0x150].Bit_0x150.EMS_2_EngineSpeed_Part0 = (uint8_t)Data; CanTxMsg_DataBuffer[CanTxMsgIndex_GW_PC_1_0x150].Bit_0x150.EMS_2_EngineSpeed_Part1 = (uint8_t)(Data >> 8)
+      |                                                                                                   ^~~~
+../APP/can/dbc_can_core.c:89:43: warning: implicit declaration of function 'GetF3Value'; did you mean 'GetFCM_3Value'? [-Wimplicit-function-declaration]
+   89 |         CanTx_SigSet_0x375_IC_SurplusFuel(GetF3Value(IC_SurplusFuel));
+      |                                           ^~~~~~~~~~
+D:/work/YB103-Fixture/YB103-Fixture-fuel/YB103_plus/APP/can/App_CAN_YB103_fuel_CanDbcSignal.h:1289:87: note: in definition of macro 'CanTx_SigSet_0x375_IC_SurplusFuel'
+ 1289 |     CanTxMsg_DataBuffer[CanTxMsgIndex_IC_1_0x375].Bit_0x375.IC_SurplusFuel = (uint8_t)Data
+      |                                                                                       ^~~~
+../APP/can/dbc_can_core.c:95:52: warning: implicit declaration of function 'GetF4Value'; did you mean 'GetFCM_4Value'? [-Wimplicit-function-declaration]
+   95 |         CanTx_SigSet_0x155_EMS_4_EngineCoolantTemp(GetF4Value(EMS_4_EngineCoolantTemp));
+      |                                                    ^~~~~~~~~~
+D:/work/YB103-Fixture/YB103-Fixture-fuel/YB103_plus/APP/can/App_CAN_YB103_fuel_CanDbcSignal.h:1994:99: note: in definition of macro 'CanTx_SigSet_0x155_EMS_4_EngineCoolantTemp'
+ 1994 |     CanTxMsg_DataBuffer[CanTxMsgIndex_GW_PC_6_0x155].Bit_0x155.EMS_4_EngineCoolantTemp = (uint8_t)Data
+      |                                                                                                   ^~~~
+../APP/can/dbc_can_core.c:99:40: warning: implicit declaration of function 'GetF5Value'; did you mean 'GetFCM_5Value'? [-Wimplicit-function-declaration]
+   99 |         CanTx_SigSet_0x375_IC_OdoMeter(GetF5Value(IC_OdoMeter));
+      |                                        ^~~~~~~~~~
+D:/work/YB103-Fixture/YB103-Fixture-fuel/YB103_plus/APP/can/App_CAN_YB103_fuel_CanDbcSignal.h:1344:90: note: in definition of macro 'CanTx_SigSet_0x375_IC_OdoMeter'
+ 1344 |     CanTxMsg_DataBuffer[CanTxMsgIndex_IC_1_0x375].Bit_0x375.IC_OdoMeter_Part0 = (uint8_t)Data; CanTxMsg_DataBuffer[CanTxMsgIndex_IC_1_0x375].Bit_0x375.IC_OdoMeter_Part1 = (uint8_t)(Data >> 8); CanTxMsg_DataBuffer[CanTxMsgIndex_IC_1_0x375].Bit_0x375.IC_OdoMeter_Part2 = (uint8_t)(Data >> 16)
+      |                                                                                          ^~~~
+../APP/can/dbc_can_core.c:101:50: warning: implicit declaration of function 'GetF6Value'; did you mean 'GetFCM_6Value'? [-Wimplicit-function-declaration]
+  101 |         CanTx_SigSet_0x155_EMS_4_FuelConsumption(GetF6Value(EMS_4_FuelConsumption));
+      |                                                  ^~~~~~~~~~
+D:/work/YB103-Fixture/YB103-Fixture-fuel/YB103_plus/APP/can/App_CAN_YB103_fuel_CanDbcSignal.h:1999:97: note: in definition of macro 'CanTx_SigSet_0x155_EMS_4_FuelConsumption'
+ 1999 |     CanTxMsg_DataBuffer[CanTxMsgIndex_GW_PC_6_0x155].Bit_0x155.EMS_4_FuelConsumption = (uint8_t)Data
+      |                                                                                                 ^~~~
+../APP/can/dbc_can_core.c:104:51: warning: implicit declaration of function 'GetF7Value'; did you mean 'GetFCM_7Value'? [-Wimplicit-function-declaration]
+  104 |         CanTx_SigSet_0x376_IC_TripAvgFuelConsRate(GetF7Value(IC_TripAvgFuelConsRate));
+      |                                                   ^~~~~~~~~~
+D:/work/YB103-Fixture/YB103-Fixture-fuel/YB103_plus/APP/can/App_CAN_YB103_fuel_CanDbcSignal.h:1369:101: note: in definition of macro 'CanTx_SigSet_0x376_IC_TripAvgFuelConsRate'
+ 1369 |     CanTxMsg_DataBuffer[CanTxMsgIndex_IC_2_0x376].Bit_0x376.IC_TripAvgFuelConsRate_Part0 = (uint8_t)Data; CanTxMsg_DataBuffer[CanTxMsgIndex_IC_2_0x376].Bit_0x376.IC_TripAvgFuelConsRate_Part1 = (uint8_t)(Data >> 1)
+      |                                                                                                     ^~~~
+../APP/can/dbc_can_core.c:107:46: warning: implicit declaration of function 'GetF8Value'; did you mean 'GetFCM_8Value'? [-Wimplicit-function-declaration]
+  107 |         CanTx_SigSet_0x365_TPMS_SystemStatus(GetF8Value(TPMS_SystemStatus));
+      |                                              ^~~~~~~~~~
+D:/work/YB103-Fixture/YB103-Fixture-fuel/YB103_plus/APP/can/App_CAN_YB103_fuel_CanDbcSignal.h:1249:92: note: in definition of macro 'CanTx_SigSet_0x365_TPMS_SystemStatus'
+ 1249 |     CanTxMsg_DataBuffer[CanTxMsgIndex_TPMS_1_0x365].Bit_0x365.TPMS_SystemStatus = (uint8_t)Data
+      |                                                                                            ^~~~
+../APP/can/dbc_can_core.c:115:51: warning: implicit declaration of function 'GetF9Value'; did you mean 'GetIHU_9Value'? [-Wimplicit-function-declaration]
+  115 |         CanTx_SigSet_0x3A7_BCM_1_FrontLeftDoorSts(GetF9Value(BCM_1_FrontLeftDoorSts));
+      |                                                   ^~~~~~~~~~
+D:/work/YB103-Fixture/YB103-Fixture-fuel/YB103_plus/APP/can/App_CAN_YB103_fuel_CanDbcSignal.h:2184:98: note: in definition of macro 'CanTx_SigSet_0x3A7_BCM_1_FrontLeftDoorSts'
+ 2184 |     CanTxMsg_DataBuffer[CanTxMsgIndex_GW_BD_9_0x3A7].Bit_0x3A7.BCM_1_FrontLeftDoorSts = (uint8_t)Data
+      |                                                                                                  ^~~~
+../APP/can/dbc_can_core.c:123:46: warning: implicit declaration of function 'GetF10Value'; did you mean 'GetIC_2Value'? [-Wimplicit-function-declaration]
+  123 |     CanTx_SigSet_0x155_TCU_3_TargetGearValid(GetF10Value(TCU_3_TargetGearValid));
+      |                                              ^~~~~~~~~~~
+D:/work/YB103-Fixture/YB103-Fixture-fuel/YB103_plus/APP/can/App_CAN_YB103_fuel_CanDbcSignal.h:2029:97: note: in definition of macro 'CanTx_SigSet_0x155_TCU_3_TargetGearValid'
+ 2029 |     CanTxMsg_DataBuffer[CanTxMsgIndex_GW_PC_6_0x155].Bit_0x155.TCU_3_TargetGearValid = (uint8_t)Data
+      |                                                                                                 ^~~~
+../APP/can/dbc_can_core.c:130:56: warning: implicit declaration of function 'GetF11Value'; did you mean 'GetIC_1Value'? [-Wimplicit-function-declaration]
+  130 |         CanTx_SigSet_0x255_EDL_1_RearDiffLockGreenLamp(GetF11Value(EDL_1_RearDiffLockGreenLamp));
+      |                                                        ^~~~~~~~~~~
+D:/work/YB103-Fixture/YB103-Fixture-fuel/YB103_plus/APP/can/App_CAN_YB103_fuel_CanDbcSignal.h:394:103: note: in definition of macro 'CanTx_SigSet_0x255_EDL_1_RearDiffLockGreenLamp'
+  394 |     CanTxMsg_DataBuffer[CanTxMsgIndex_GW_PC_7_0x255].Bit_0x255.EDL_1_RearDiffLockGreenLamp = (uint8_t)Data
+      |                                                                                                       ^~~~
+../APP/can/dbc_can_core.c:136:57: warning: implicit declaration of function 'GetF12Value'; did you mean 'GetIC_2Value'? [-Wimplicit-function-declaration]
+  136 |         CanTx_SigSet_0x3AC_AC_2_OutsideTemperatureValid(GetF12Value(AC_2_OutsideTemperatureValid));
+      |                                                         ^~~~~~~~~~~
+D:/work/YB103-Fixture/YB103-Fixture-fuel/YB103_plus/APP/can/App_CAN_YB103_fuel_CanDbcSignal.h:1504:105: note: in definition of macro 'CanTx_SigSet_0x3AC_AC_2_OutsideTemperatureValid'
+ 1504 |     CanTxMsg_DataBuffer[CanTxMsgIndex_GW_BD_14_0x3AC].Bit_0x3AC.AC_2_OutsideTemperatureValid = (uint8_t)Data
+      |                                                                                                         ^~~~
+../APP/can/dbc_can_core.c:140:40: warning: implicit declaration of function 'GetF13Value'; did you mean 'GetFCM_3Value'? [-Wimplicit-function-declaration]
+  140 |     CanTx_SigSet_0x304_FCM_EgoLeLineID(GetF13Value(FCM_EgoLeLineID));
+      |                                        ^~~~~~~~~~~
+D:/work/YB103-Fixture/YB103-Fixture-fuel/YB103_plus/APP/can/App_CAN_YB103_fuel_CanDbcSignal.h:799:89: note: in definition of macro 'CanTx_SigSet_0x304_FCM_EgoLeLineID'
+  799 |     CanTxMsg_DataBuffer[CanTxMsgIndex_FCM_5_0x304].Bit_0x304.FCM_EgoLeLineID = (uint8_t)Data
+      |                                                                                         ^~~~
+arm-none-eabi-gcc -o "CANBOX_YB103_fuel.elf" @"objects.list"   -mcpu=cortex-m3 -T"D:\work\YB103-Fixture\YB103-Fixture-fuel\YB103_plus\STM32F105RBTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="CANBOX_YB103_fuel.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: CANBOX_YB103_fuel.elf
+ 
+arm-none-eabi-size  CANBOX_YB103_fuel.elf 
+arm-none-eabi-objdump -h -S CANBOX_YB103_fuel.elf  > "CANBOX_YB103_fuel.list"
+   text	   data	    bss	    dec	    hex	filename
+  67996	   1944	  22840	  92780	  16a6c	CANBOX_YB103_fuel.elf
+Finished building: default.size.stdout
+ 
+Finished building: CANBOX_YB103_fuel.list
+ 
+
+15:06:49 Build Finished. 0 errors, 15 warnings. (took 3s.240ms)
+

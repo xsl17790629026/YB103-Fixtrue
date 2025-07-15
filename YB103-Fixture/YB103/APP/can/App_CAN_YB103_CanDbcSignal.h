@@ -1,0 +1,2456 @@
+#ifndef _APP_CAN_YB103_CANDBCSIGNAL_H_
+#define _APP_CAN_YB103_CANDBCSIGNAL_H_
+
+//#include <stdint.h>
+
+#define CanTx_SigGet_0x350_ACU_CrashOutputSts()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_ACU_1_0x350].Bit_0x350.ACU_CrashOutputSts)
+#define CanTx_SigSet_0x350_ACU_CrashOutputSts(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_ACU_1_0x350].Bit_0x350.ACU_CrashOutputSts = (uint8_t)Data
+
+#define CanTx_SigGet_0x350_ACU_AirbagWarningStatus()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_ACU_1_0x350].Bit_0x350.ACU_AirbagWarningStatus)
+#define CanTx_SigSet_0x350_ACU_AirbagWarningStatus(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_ACU_1_0x350].Bit_0x350.ACU_AirbagWarningStatus = (uint8_t)Data
+
+#define CanTx_SigGet_0x350_ACU_AirbagInhibitWarning()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_ACU_1_0x350].Bit_0x350.ACU_AirbagInhibitWarning)
+#define CanTx_SigSet_0x350_ACU_AirbagInhibitWarning(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_ACU_1_0x350].Bit_0x350.ACU_AirbagInhibitWarning = (uint8_t)Data
+
+#define CanTx_SigGet_0x211_ESP_LongitAccel()\
+    (((uint16_t)CanTxMsg_DataBuffer[CanTxMsgIndex_ESP_2_0x211].Bit_0x211.ESP_LongitAccel_Part0) | ((uint16_t)CanTxMsg_DataBuffer[CanTxMsgIndex_ESP_2_0x211].Bit_0x211.ESP_LongitAccel_Part1 << 8))
+#define CanTx_SigSet_0x211_ESP_LongitAccel(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_ESP_2_0x211].Bit_0x211.ESP_LongitAccel_Part0 = (uint8_t)Data; CanTxMsg_DataBuffer[CanTxMsgIndex_ESP_2_0x211].Bit_0x211.ESP_LongitAccel_Part1 = (uint8_t)(Data >> 8)
+
+#define CanTx_SigGet_0x211_ESP_LateralAccel()\
+    (((uint16_t)CanTxMsg_DataBuffer[CanTxMsgIndex_ESP_2_0x211].Bit_0x211.ESP_LateralAccel_Part0) | ((uint16_t)CanTxMsg_DataBuffer[CanTxMsgIndex_ESP_2_0x211].Bit_0x211.ESP_LateralAccel_Part1 << 8))
+#define CanTx_SigSet_0x211_ESP_LateralAccel(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_ESP_2_0x211].Bit_0x211.ESP_LateralAccel_Part0 = (uint8_t)Data; CanTxMsg_DataBuffer[CanTxMsgIndex_ESP_2_0x211].Bit_0x211.ESP_LateralAccel_Part1 = (uint8_t)(Data >> 8)
+
+#define CanTx_SigGet_0x211_ESP_YawRate()\
+    (((uint16_t)CanTxMsg_DataBuffer[CanTxMsgIndex_ESP_2_0x211].Bit_0x211.ESP_YawRate_Part0) | ((uint16_t)CanTxMsg_DataBuffer[CanTxMsgIndex_ESP_2_0x211].Bit_0x211.ESP_YawRate_Part1 << 8))
+#define CanTx_SigSet_0x211_ESP_YawRate(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_ESP_2_0x211].Bit_0x211.ESP_YawRate_Part0 = (uint8_t)Data; CanTxMsg_DataBuffer[CanTxMsgIndex_ESP_2_0x211].Bit_0x211.ESP_YawRate_Part1 = (uint8_t)(Data >> 8)
+
+#define CanTx_SigGet_0x211_ESP_YawRateSensorValid()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_ESP_2_0x211].Bit_0x211.ESP_YawRateSensorValid)
+#define CanTx_SigSet_0x211_ESP_YawRateSensorValid(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_ESP_2_0x211].Bit_0x211.ESP_YawRateSensorValid = (uint8_t)Data
+
+#define CanTx_SigGet_0x211_ESP_LateralSensorValid()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_ESP_2_0x211].Bit_0x211.ESP_LateralSensorValid)
+#define CanTx_SigSet_0x211_ESP_LateralSensorValid(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_ESP_2_0x211].Bit_0x211.ESP_LateralSensorValid = (uint8_t)Data
+
+#define CanTx_SigGet_0x211_ESP_LongitSensorValid()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_ESP_2_0x211].Bit_0x211.ESP_LongitSensorValid)
+#define CanTx_SigSet_0x211_ESP_LongitSensorValid(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_ESP_2_0x211].Bit_0x211.ESP_LongitSensorValid = (uint8_t)Data
+
+#define CanTx_SigGet_0x200_ABS_FLWheelSpeed()\
+    (((uint16_t)CanTxMsg_DataBuffer[CanTxMsgIndex_ABS_1_0x200].Bit_0x200.ABS_FLWheelSpeed_Part0) | ((uint16_t)CanTxMsg_DataBuffer[CanTxMsgIndex_ABS_1_0x200].Bit_0x200.ABS_FLWheelSpeed_Part1 << 5))
+#define CanTx_SigSet_0x200_ABS_FLWheelSpeed(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_ABS_1_0x200].Bit_0x200.ABS_FLWheelSpeed_Part0 = (uint8_t)Data; CanTxMsg_DataBuffer[CanTxMsgIndex_ABS_1_0x200].Bit_0x200.ABS_FLWheelSpeed_Part1 = (uint8_t)(Data >> 5)
+
+#define CanTx_SigGet_0x200_ABS_FLWheelSpeedValid()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_ABS_1_0x200].Bit_0x200.ABS_FLWheelSpeedValid)
+#define CanTx_SigSet_0x200_ABS_FLWheelSpeedValid(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_ABS_1_0x200].Bit_0x200.ABS_FLWheelSpeedValid = (uint8_t)Data
+
+#define CanTx_SigGet_0x200_ABS_FLWheelSpeedRC()\
+    (((uint16_t)CanTxMsg_DataBuffer[CanTxMsgIndex_ABS_1_0x200].Bit_0x200.ABS_FLWheelSpeedRC_Part0) | ((uint16_t)CanTxMsg_DataBuffer[CanTxMsgIndex_ABS_1_0x200].Bit_0x200.ABS_FLWheelSpeedRC_Part1 << 8))
+#define CanTx_SigSet_0x200_ABS_FLWheelSpeedRC(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_ABS_1_0x200].Bit_0x200.ABS_FLWheelSpeedRC_Part0 = (uint8_t)Data; CanTxMsg_DataBuffer[CanTxMsgIndex_ABS_1_0x200].Bit_0x200.ABS_FLWheelSpeedRC_Part1 = (uint8_t)(Data >> 8)
+
+#define CanTx_SigGet_0x200_ABS_FRWheelSpeed()\
+    (((uint16_t)CanTxMsg_DataBuffer[CanTxMsgIndex_ABS_1_0x200].Bit_0x200.ABS_FRWheelSpeed_Part0) | ((uint16_t)CanTxMsg_DataBuffer[CanTxMsgIndex_ABS_1_0x200].Bit_0x200.ABS_FRWheelSpeed_Part1 << 5))
+#define CanTx_SigSet_0x200_ABS_FRWheelSpeed(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_ABS_1_0x200].Bit_0x200.ABS_FRWheelSpeed_Part0 = (uint8_t)Data; CanTxMsg_DataBuffer[CanTxMsgIndex_ABS_1_0x200].Bit_0x200.ABS_FRWheelSpeed_Part1 = (uint8_t)(Data >> 5)
+
+#define CanTx_SigGet_0x200_ABS_FRWheelSpeedValid()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_ABS_1_0x200].Bit_0x200.ABS_FRWheelSpeedValid)
+#define CanTx_SigSet_0x200_ABS_FRWheelSpeedValid(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_ABS_1_0x200].Bit_0x200.ABS_FRWheelSpeedValid = (uint8_t)Data
+
+#define CanTx_SigGet_0x200_ABS_FRWheelSpeedRC()\
+    (((uint16_t)CanTxMsg_DataBuffer[CanTxMsgIndex_ABS_1_0x200].Bit_0x200.ABS_FRWheelSpeedRC_Part0) | ((uint16_t)CanTxMsg_DataBuffer[CanTxMsgIndex_ABS_1_0x200].Bit_0x200.ABS_FRWheelSpeedRC_Part1 << 8))
+#define CanTx_SigSet_0x200_ABS_FRWheelSpeedRC(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_ABS_1_0x200].Bit_0x200.ABS_FRWheelSpeedRC_Part0 = (uint8_t)Data; CanTxMsg_DataBuffer[CanTxMsgIndex_ABS_1_0x200].Bit_0x200.ABS_FRWheelSpeedRC_Part1 = (uint8_t)(Data >> 8)
+
+#define CanTx_SigGet_0x200_ABS_FRWheelSts()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_ABS_1_0x200].Bit_0x200.ABS_FRWheelSts)
+#define CanTx_SigSet_0x200_ABS_FRWheelSts(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_ABS_1_0x200].Bit_0x200.ABS_FRWheelSts = (uint8_t)Data
+
+#define CanTx_SigGet_0x200_ABS_FLWheelSts()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_ABS_1_0x200].Bit_0x200.ABS_FLWheelSts)
+#define CanTx_SigSet_0x200_ABS_FLWheelSts(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_ABS_1_0x200].Bit_0x200.ABS_FLWheelSts = (uint8_t)Data
+
+#define CanTx_SigGet_0x200_ABS_1_RollingCounter()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_ABS_1_0x200].Bit_0x200.ABS_1_RollingCounter)
+#define CanTx_SigSet_0x200_ABS_1_RollingCounter(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_ABS_1_0x200].Bit_0x200.ABS_1_RollingCounter = (uint8_t)Data
+
+#define CanTx_SigGet_0x200_ABS_1_Checksum()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_ABS_1_0x200].Bit_0x200.ABS_1_Checksum)
+#define CanTx_SigSet_0x200_ABS_1_Checksum(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_ABS_1_0x200].Bit_0x200.ABS_1_Checksum = (uint8_t)Data
+
+#define CanTx_SigGet_0x201_ABS_RLWheelSpeed()\
+    (((uint16_t)CanTxMsg_DataBuffer[CanTxMsgIndex_ABS_2_0x201].Bit_0x201.ABS_RLWheelSpeed_Part0) | ((uint16_t)CanTxMsg_DataBuffer[CanTxMsgIndex_ABS_2_0x201].Bit_0x201.ABS_RLWheelSpeed_Part1 << 5))
+#define CanTx_SigSet_0x201_ABS_RLWheelSpeed(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_ABS_2_0x201].Bit_0x201.ABS_RLWheelSpeed_Part0 = (uint8_t)Data; CanTxMsg_DataBuffer[CanTxMsgIndex_ABS_2_0x201].Bit_0x201.ABS_RLWheelSpeed_Part1 = (uint8_t)(Data >> 5)
+
+#define CanTx_SigGet_0x201_ABS_RLWheelSpeedValid()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_ABS_2_0x201].Bit_0x201.ABS_RLWheelSpeedValid)
+#define CanTx_SigSet_0x201_ABS_RLWheelSpeedValid(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_ABS_2_0x201].Bit_0x201.ABS_RLWheelSpeedValid = (uint8_t)Data
+
+#define CanTx_SigGet_0x201_ABS_RLWheelSpeedRC()\
+    (((uint16_t)CanTxMsg_DataBuffer[CanTxMsgIndex_ABS_2_0x201].Bit_0x201.ABS_RLWheelSpeedRC_Part0) | ((uint16_t)CanTxMsg_DataBuffer[CanTxMsgIndex_ABS_2_0x201].Bit_0x201.ABS_RLWheelSpeedRC_Part1 << 8))
+#define CanTx_SigSet_0x201_ABS_RLWheelSpeedRC(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_ABS_2_0x201].Bit_0x201.ABS_RLWheelSpeedRC_Part0 = (uint8_t)Data; CanTxMsg_DataBuffer[CanTxMsgIndex_ABS_2_0x201].Bit_0x201.ABS_RLWheelSpeedRC_Part1 = (uint8_t)(Data >> 8)
+
+#define CanTx_SigGet_0x201_ABS_RRWheelSpeed()\
+    (((uint16_t)CanTxMsg_DataBuffer[CanTxMsgIndex_ABS_2_0x201].Bit_0x201.ABS_RRWheelSpeed_Part0) | ((uint16_t)CanTxMsg_DataBuffer[CanTxMsgIndex_ABS_2_0x201].Bit_0x201.ABS_RRWheelSpeed_Part1 << 5))
+#define CanTx_SigSet_0x201_ABS_RRWheelSpeed(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_ABS_2_0x201].Bit_0x201.ABS_RRWheelSpeed_Part0 = (uint8_t)Data; CanTxMsg_DataBuffer[CanTxMsgIndex_ABS_2_0x201].Bit_0x201.ABS_RRWheelSpeed_Part1 = (uint8_t)(Data >> 5)
+
+#define CanTx_SigGet_0x201_ABS_RRWheelSpeedValid()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_ABS_2_0x201].Bit_0x201.ABS_RRWheelSpeedValid)
+#define CanTx_SigSet_0x201_ABS_RRWheelSpeedValid(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_ABS_2_0x201].Bit_0x201.ABS_RRWheelSpeedValid = (uint8_t)Data
+
+#define CanTx_SigGet_0x201_ABS_RRWheelSpeedRC()\
+    (((uint16_t)CanTxMsg_DataBuffer[CanTxMsgIndex_ABS_2_0x201].Bit_0x201.ABS_RRWheelSpeedRC_Part0) | ((uint16_t)CanTxMsg_DataBuffer[CanTxMsgIndex_ABS_2_0x201].Bit_0x201.ABS_RRWheelSpeedRC_Part1 << 8))
+#define CanTx_SigSet_0x201_ABS_RRWheelSpeedRC(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_ABS_2_0x201].Bit_0x201.ABS_RRWheelSpeedRC_Part0 = (uint8_t)Data; CanTxMsg_DataBuffer[CanTxMsgIndex_ABS_2_0x201].Bit_0x201.ABS_RRWheelSpeedRC_Part1 = (uint8_t)(Data >> 8)
+
+#define CanTx_SigGet_0x201_ABS_RRWheelSts()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_ABS_2_0x201].Bit_0x201.ABS_RRWheelSts)
+#define CanTx_SigSet_0x201_ABS_RRWheelSts(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_ABS_2_0x201].Bit_0x201.ABS_RRWheelSts = (uint8_t)Data
+
+#define CanTx_SigGet_0x201_ABS_RLWheelSts()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_ABS_2_0x201].Bit_0x201.ABS_RLWheelSts)
+#define CanTx_SigSet_0x201_ABS_RLWheelSts(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_ABS_2_0x201].Bit_0x201.ABS_RLWheelSts = (uint8_t)Data
+
+#define CanTx_SigGet_0x201_ABS_2_RollingCounter()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_ABS_2_0x201].Bit_0x201.ABS_2_RollingCounter)
+#define CanTx_SigSet_0x201_ABS_2_RollingCounter(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_ABS_2_0x201].Bit_0x201.ABS_2_RollingCounter = (uint8_t)Data
+
+#define CanTx_SigGet_0x201_ABS_2_Checksum()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_ABS_2_0x201].Bit_0x201.ABS_2_Checksum)
+#define CanTx_SigSet_0x201_ABS_2_Checksum(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_ABS_2_0x201].Bit_0x201.ABS_2_Checksum = (uint8_t)Data
+
+#define CanTx_SigGet_0x365_TPMS_LearningStatus()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_TPMS_1_0x365].Bit_0x365.TPMS_LearningStatus)
+#define CanTx_SigSet_0x365_TPMS_LearningStatus(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_TPMS_1_0x365].Bit_0x365.TPMS_LearningStatus = (uint8_t)Data
+
+#define CanTx_SigGet_0x365_TPMS_TireLeakage()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_TPMS_1_0x365].Bit_0x365.TPMS_TireLeakage)
+#define CanTx_SigSet_0x365_TPMS_TireLeakage(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_TPMS_1_0x365].Bit_0x365.TPMS_TireLeakage = (uint8_t)Data
+
+#define CanTx_SigGet_0x365_TPMS_SensorLost()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_TPMS_1_0x365].Bit_0x365.TPMS_SensorLost)
+#define CanTx_SigSet_0x365_TPMS_SensorLost(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_TPMS_1_0x365].Bit_0x365.TPMS_SensorLost = (uint8_t)Data
+
+#define CanTx_SigGet_0x365_TPMS_TireID()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_TPMS_1_0x365].Bit_0x365.TPMS_TireID)
+#define CanTx_SigSet_0x365_TPMS_TireID(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_TPMS_1_0x365].Bit_0x365.TPMS_TireID = (uint8_t)Data
+
+#define CanTx_SigGet_0x365_TPMS_SystemStatus()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_TPMS_1_0x365].Bit_0x365.TPMS_SystemStatus)
+#define CanTx_SigSet_0x365_TPMS_SystemStatus(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_TPMS_1_0x365].Bit_0x365.TPMS_SystemStatus = (uint8_t)Data
+
+#define CanTx_SigGet_0x365_TPMS_TireBatteryPowerSts()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_TPMS_1_0x365].Bit_0x365.TPMS_TireBatteryPowerSts)
+#define CanTx_SigSet_0x365_TPMS_TireBatteryPowerSts(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_TPMS_1_0x365].Bit_0x365.TPMS_TireBatteryPowerSts = (uint8_t)Data
+
+#define CanTx_SigGet_0x365_TPMS_TireTemperatureSts()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_TPMS_1_0x365].Bit_0x365.TPMS_TireTemperatureSts)
+#define CanTx_SigSet_0x365_TPMS_TireTemperatureSts(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_TPMS_1_0x365].Bit_0x365.TPMS_TireTemperatureSts = (uint8_t)Data
+
+#define CanTx_SigGet_0x365_TPMS_TirePressureStatus()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_TPMS_1_0x365].Bit_0x365.TPMS_TirePressureStatus)
+#define CanTx_SigSet_0x365_TPMS_TirePressureStatus(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_TPMS_1_0x365].Bit_0x365.TPMS_TirePressureStatus = (uint8_t)Data
+
+#define CanTx_SigGet_0x365_TPMS_TirePressure()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_TPMS_1_0x365].Bit_0x365.TPMS_TirePressure)
+#define CanTx_SigSet_0x365_TPMS_TirePressure(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_TPMS_1_0x365].Bit_0x365.TPMS_TirePressure = (uint8_t)Data
+
+#define CanTx_SigGet_0x365_TPMS_TireTemperature()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_TPMS_1_0x365].Bit_0x365.TPMS_TireTemperature)
+#define CanTx_SigSet_0x365_TPMS_TireTemperature(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_TPMS_1_0x365].Bit_0x365.TPMS_TireTemperature = (uint8_t)Data
+
+#define CanTx_SigGet_0x365_TPMS_TireBatteryPower()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_TPMS_1_0x365].Bit_0x365.TPMS_TireBatteryPower)
+#define CanTx_SigSet_0x365_TPMS_TireBatteryPower(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_TPMS_1_0x365].Bit_0x365.TPMS_TireBatteryPower = (uint8_t)Data
+
+#define CanTx_SigGet_0x360_BCM_1_LeftTurnLightSts()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_BCM_1_0x360].Bit_0x360.BCM_LeftTurnLightSts)
+#define CanTx_SigSet_0x360_BCM_1_LeftTurnLightSts(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_BCM_1_0x360].Bit_0x360.BCM_LeftTurnLightSts = (uint8_t)Data
+#define CanTx_SigGet_0x360_BCM_1_EmergencyLightSts()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_BCM_1_0x360].Bit_0x360.BCM_EmergencyLightSts)
+#define CanTx_SigSet_0x360_BCM_1_EmergencyLightSts(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_BCM_1_0x360].Bit_0x360.BCM_EmergencyLightSts = (uint8_t)Data
+#define CanTx_SigGet_0x360_BCM_1_RightTurnLightSts()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_BCM_1_0x360].Bit_0x360.BCM_RightTurnLightSts)
+#define CanTx_SigSet_0x360_BCM_1_RightTurnLightSts(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_BCM_1_0x360].Bit_0x360.BCM_RightTurnLightSts = (uint8_t)Data
+#define CanTx_SigGet_0x360_BCM_1_ReverseLightSts()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_BCM_1_0x360].Bit_0x360.BCM_ReverseLightSts)
+#define CanTx_SigSet_0x360_BCM_1_ReverseLightSts(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_BCM_1_0x360].Bit_0x360.BCM_ReverseLightSts = (uint8_t)Data
+#define CanTx_SigGet_0x360_BCM_1_BrakeLightSts()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_BCM_1_0x360].Bit_0x360.BCM_BrakeLightSts)
+#define CanTx_SigSet_0x360_BCM_1_BrakeLightSts(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_BCM_1_0x360].Bit_0x360.BCM_BrakeLightSts = (uint8_t)Data
+#define CanTx_SigGet_0x360_BCM_1_BackMirrorFolderSts()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_BCM_1_0x360].Bit_0x360.BCM_BackMirrorFolderSts)
+#define CanTx_SigSet_0x360_BCM_1_BackMirrorFolderSts(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_BCM_1_0x360].Bit_0x360.BCM_BackMirrorFolderSts = (uint8_t)Data
+
+#define CanTx_SigGet_0x311_BCM_ConsoleBtn1TriggerSts()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_BCM_3_0x311].Bit_0x311.BCM_ConsoleBtn1TriggerSts)
+#define CanTx_SigSet_0x311_BCM_ConsoleBtn1TriggerSts(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_BCM_3_0x311].Bit_0x311.BCM_ConsoleBtn1TriggerSts = (uint8_t)Data
+
+#define CanTx_SigGet_0x311_BCM_3_RollingCounter()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_BCM_3_0x311].Bit_0x311.BCM_3_RollingCounter)
+#define CanTx_SigSet_0x311_BCM_3_RollingCounter(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_BCM_3_0x311].Bit_0x311.BCM_3_RollingCounter = (uint8_t)Data
+
+#define CanTx_SigGet_0x311_BCM_3_Checksum()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_BCM_3_0x311].Bit_0x311.BCM_3_Checksum)
+#define CanTx_SigSet_0x311_BCM_3_Checksum(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_BCM_3_0x311].Bit_0x311.BCM_3_Checksum = (uint8_t)Data
+
+#define CanTx_SigGet_0x362_BCM_AssistIlluminationSetSts()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_BCM_4_0x362].Bit_0x362.BCM_AssistIlluminationSetSts)
+#define CanTx_SigSet_0x362_BCM_AssistIlluminationSetSts(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_BCM_4_0x362].Bit_0x362.BCM_AssistIlluminationSetSts = (uint8_t)Data
+
+#define CanTx_SigGet_0x362_BCM_WindowRemoteAutoDownSetSts()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_BCM_4_0x362].Bit_0x362.BCM_WindowRemoteAutoDownSetSts)
+#define CanTx_SigSet_0x362_BCM_WindowRemoteAutoDownSetSts(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_BCM_4_0x362].Bit_0x362.BCM_WindowRemoteAutoDownSetSts = (uint8_t)Data
+
+#define CanTx_SigGet_0x362_BCM_LeaveHomeTimeSetSts()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_BCM_4_0x362].Bit_0x362.BCM_LeaveHomeTimeSetSts)
+#define CanTx_SigSet_0x362_BCM_LeaveHomeTimeSetSts(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_BCM_4_0x362].Bit_0x362.BCM_LeaveHomeTimeSetSts = (uint8_t)Data
+
+#define CanTx_SigGet_0x362_BCM_FollowMeHomeTimeSetSts()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_BCM_4_0x362].Bit_0x362.BCM_FollowMeHomeTimeSetSts)
+#define CanTx_SigSet_0x362_BCM_FollowMeHomeTimeSetSts(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_BCM_4_0x362].Bit_0x362.BCM_FollowMeHomeTimeSetSts = (uint8_t)Data
+
+#define CanTx_SigGet_0x362_BCM_exRearMirrorAutoFoldSetSts()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_BCM_4_0x362].Bit_0x362.BCM_exRearMirrorAutoFoldSetSts)
+#define CanTx_SigSet_0x362_BCM_exRearMirrorAutoFoldSetSts(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_BCM_4_0x362].Bit_0x362.BCM_exRearMirrorAutoFoldSetSts = (uint8_t)Data
+
+#define CanTx_SigGet_0x362_BCM_SpeedLockSetSts()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_BCM_4_0x362].Bit_0x362.BCM_SpeedLockSetSts)
+#define CanTx_SigSet_0x362_BCM_SpeedLockSetSts(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_BCM_4_0x362].Bit_0x362.BCM_SpeedLockSetSts = (uint8_t)Data
+
+#define CanTx_SigGet_0x362_BCM_InteriorLightTimeSetSts()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_BCM_4_0x362].Bit_0x362.BCM_InteriorLightTimeSetSts)
+#define CanTx_SigSet_0x362_BCM_InteriorLightTimeSetSts(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_BCM_4_0x362].Bit_0x362.BCM_InteriorLightTimeSetSts = (uint8_t)Data
+
+#define CanTx_SigGet_0x362_BCM_AutoWshWipSetSts()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_BCM_4_0x362].Bit_0x362.BCM_AutoWshWipSetSts)
+#define CanTx_SigSet_0x362_BCM_AutoWshWipSetSts(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_BCM_4_0x362].Bit_0x362.BCM_AutoWshWipSetSts = (uint8_t)Data
+
+#define CanTx_SigGet_0x362_BCM_SearchCarWarnModSetSts()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_BCM_4_0x362].Bit_0x362.BCM_SearchCarWarnModSetSts)
+#define CanTx_SigSet_0x362_BCM_SearchCarWarnModSetSts(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_BCM_4_0x362].Bit_0x362.BCM_SearchCarWarnModSetSts = (uint8_t)Data
+
+#define CanTx_SigGet_0x362_BCM_WindowAutoUPbyLockSetSts()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_BCM_4_0x362].Bit_0x362.BCM_WindowAutoUPbyLockSetSts)
+#define CanTx_SigSet_0x362_BCM_WindowAutoUPbyLockSetSts(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_BCM_4_0x362].Bit_0x362.BCM_WindowAutoUPbyLockSetSts = (uint8_t)Data
+
+#define CanTx_SigGet_0x362_BCM_HornAlertVolumeSetSts()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_BCM_4_0x362].Bit_0x362.BCM_HornAlertVolumeSetSts)
+#define CanTx_SigSet_0x362_BCM_HornAlertVolumeSetSts(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_BCM_4_0x362].Bit_0x362.BCM_HornAlertVolumeSetSts = (uint8_t)Data
+
+#define CanTx_SigGet_0x362_BCM_AmbientLightLvl()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_BCM_4_0x362].Bit_0x362.BCM_AmbientLightLvl)
+#define CanTx_SigSet_0x362_BCM_AmbientLightLvl(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_BCM_4_0x362].Bit_0x362.BCM_AmbientLightLvl = (uint8_t)Data
+
+#define CanTx_SigGet_0x362_BCM_AmbientLightSwtSts()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_BCM_4_0x362].Bit_0x362.BCM_AmbientLightSwtSts)
+#define CanTx_SigSet_0x362_BCM_AmbientLightSwtSts(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_BCM_4_0x362].Bit_0x362.BCM_AmbientLightSwtSts = (uint8_t)Data
+
+#define CanTx_SigGet_0x362_BCM_ClsWinSpdSetSts()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_BCM_4_0x362].Bit_0x362.BCM_ClsWinSpdSetSts)
+#define CanTx_SigSet_0x362_BCM_ClsWinSpdSetSts(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_BCM_4_0x362].Bit_0x362.BCM_ClsWinSpdSetSts = (uint8_t)Data
+
+#define CanTx_SigGet_0x362_BCM_FlaoutUnlockSetSts()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_BCM_4_0x362].Bit_0x362.BCM_FlaoutUnlockSetSts)
+#define CanTx_SigSet_0x362_BCM_FlaoutUnlockSetSts(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_BCM_4_0x362].Bit_0x362.BCM_FlaoutUnlockSetSts = (uint8_t)Data
+
+#define CanTx_SigGet_0x362_BCM_SteeringwheelheatingSts()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_BCM_4_0x362].Bit_0x362.BCM_SteeringwheelheatingSts)
+#define CanTx_SigSet_0x362_BCM_SteeringwheelheatingSts(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_BCM_4_0x362].Bit_0x362.BCM_SteeringwheelheatingSts = (uint8_t)Data
+
+#define CanTx_SigGet_0x362_BCM_NozzleheatingSts()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_BCM_4_0x362].Bit_0x362.BCM_NozzleheatingSts)
+#define CanTx_SigSet_0x362_BCM_NozzleheatingSts(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_BCM_4_0x362].Bit_0x362.BCM_NozzleheatingSts = (uint8_t)Data
+
+#define CanTx_SigGet_0x362_BCM_FrontwindshieldheatingSts()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_BCM_4_0x362].Bit_0x362.BCM_FrontwindshieldheatingSts)
+#define CanTx_SigSet_0x362_BCM_FrontwindshieldheatingSts(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_BCM_4_0x362].Bit_0x362.BCM_FrontwindshieldheatingSts = (uint8_t)Data
+
+#define CanTx_SigGet_0x362_BCM_AAL_ONOFFSts()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_BCM_4_0x362].Bit_0x362.BCM_AAL_ONOFFSts)
+#define CanTx_SigSet_0x362_BCM_AAL_ONOFFSts(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_BCM_4_0x362].Bit_0x362.BCM_AAL_ONOFFSts = (uint8_t)Data
+
+#define CanTx_SigGet_0x362_BCM_AAL_PitchAngle()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_BCM_4_0x362].Bit_0x362.BCM_AAL_PitchAngle)
+#define CanTx_SigSet_0x362_BCM_AAL_PitchAngle(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_BCM_4_0x362].Bit_0x362.BCM_AAL_PitchAngle = (uint8_t)Data
+
+#define CanTx_SigGet_0x362_BCM_AAL_YawAngle()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_BCM_4_0x362].Bit_0x362.BCM_AAL_YawAngle)
+#define CanTx_SigSet_0x362_BCM_AAL_YawAngle(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_BCM_4_0x362].Bit_0x362.BCM_AAL_YawAngle = (uint8_t)Data
+
+#define CanTx_SigGet_0x312_BCM_SRF_PosStatus()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_BCM_5_0x312].Bit_0x312.BCM_SRF_PosStatus)
+#define CanTx_SigSet_0x312_BCM_SRF_PosStatus(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_BCM_5_0x312].Bit_0x312.BCM_SRF_PosStatus = (uint8_t)Data
+
+#define CanTx_SigGet_0x312_BCM_SRF_ECU_Fault()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_BCM_5_0x312].Bit_0x312.BCM_SRF_ECU_Fault)
+#define CanTx_SigSet_0x312_BCM_SRF_ECU_Fault(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_BCM_5_0x312].Bit_0x312.BCM_SRF_ECU_Fault = (uint8_t)Data
+
+#define CanTx_SigGet_0x312_BCM_SRF_Motor_Circuit_Fault()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_BCM_5_0x312].Bit_0x312.BCM_SRF_Motor_Circuit_Fault)
+#define CanTx_SigSet_0x312_BCM_SRF_Motor_Circuit_Fault(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_BCM_5_0x312].Bit_0x312.BCM_SRF_Motor_Circuit_Fault = (uint8_t)Data
+
+#define CanTx_SigGet_0x312_BCM_SRF_SW_Fault()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_BCM_5_0x312].Bit_0x312.BCM_SRF_SW_Fault)
+#define CanTx_SigSet_0x312_BCM_SRF_SW_Fault(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_BCM_5_0x312].Bit_0x312.BCM_SRF_SW_Fault = (uint8_t)Data
+
+#define CanTx_SigGet_0x312_BCM_SRF_InitializeStatus()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_BCM_5_0x312].Bit_0x312.BCM_SRF_InitializeStatus)
+#define CanTx_SigSet_0x312_BCM_SRF_InitializeStatus(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_BCM_5_0x312].Bit_0x312.BCM_SRF_InitializeStatus = (uint8_t)Data
+
+#define CanTx_SigGet_0x312_BCM_RLS_REP_Error()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_BCM_5_0x312].Bit_0x312.BCM_RLS_REP_Error)
+#define CanTx_SigSet_0x312_BCM_RLS_REP_Error(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_BCM_5_0x312].Bit_0x312.BCM_RLS_REP_Error = (uint8_t)Data
+
+#define CanTx_SigGet_0x312_BCM_RLS_Fault_Light()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_BCM_5_0x312].Bit_0x312.BCM_RLS_Fault_Light)
+#define CanTx_SigSet_0x312_BCM_RLS_Fault_Light(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_BCM_5_0x312].Bit_0x312.BCM_RLS_Fault_Light = (uint8_t)Data
+
+#define CanTx_SigGet_0x312_BCM_RLS_Fault_Rain()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_BCM_5_0x312].Bit_0x312.BCM_RLS_Fault_Rain)
+#define CanTx_SigSet_0x312_BCM_RLS_Fault_Rain(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_BCM_5_0x312].Bit_0x312.BCM_RLS_Fault_Rain = (uint8_t)Data
+
+#define CanTx_SigGet_0x312_BCM_SRF_Alarm()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_BCM_5_0x312].Bit_0x312.BCM_SRF_Alarm)
+#define CanTx_SigSet_0x312_BCM_SRF_Alarm(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_BCM_5_0x312].Bit_0x312.BCM_SRF_Alarm = (uint8_t)Data
+
+#define CanTx_SigGet_0x312_BCM_RLS_VOLT_Error()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_BCM_5_0x312].Bit_0x312.BCM_RLS_VOLT_Error)
+#define CanTx_SigSet_0x312_BCM_RLS_VOLT_Error(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_BCM_5_0x312].Bit_0x312.BCM_RLS_VOLT_Error = (uint8_t)Data
+
+#define CanTx_SigGet_0x268_PEPS_ESCL_LearningStatus()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_PEPS_1_0x268].Bit_0x268.PEPS_ESCL_LearningStatus)
+#define CanTx_SigSet_0x268_PEPS_ESCL_LearningStatus(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_PEPS_1_0x268].Bit_0x268.PEPS_ESCL_LearningStatus = (uint8_t)Data
+
+#define CanTx_SigGet_0x268_PEPS_ESCL_FailStatus()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_PEPS_1_0x268].Bit_0x268.PEPS_ESCL_FailStatus)
+#define CanTx_SigSet_0x268_PEPS_ESCL_FailStatus(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_PEPS_1_0x268].Bit_0x268.PEPS_ESCL_FailStatus = (uint8_t)Data
+
+#define CanTx_SigGet_0x268_PEPS_SSB_FailStatus()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_PEPS_1_0x268].Bit_0x268.PEPS_SSB_FailStatus)
+#define CanTx_SigSet_0x268_PEPS_SSB_FailStatus(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_PEPS_1_0x268].Bit_0x268.PEPS_SSB_FailStatus = (uint8_t)Data
+
+#define CanTx_SigGet_0x268_PEPS_PIN_LearningStatus()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_PEPS_1_0x268].Bit_0x268.PEPS_PIN_LearningStatus)
+#define CanTx_SigSet_0x268_PEPS_PIN_LearningStatus(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_PEPS_1_0x268].Bit_0x268.PEPS_PIN_LearningStatus = (uint8_t)Data
+
+#define CanTx_SigGet_0x268_PEPS_PowerRelayOutputFail()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_PEPS_1_0x268].Bit_0x268.PEPS_PowerRelayOutputFail)
+#define CanTx_SigSet_0x268_PEPS_PowerRelayOutputFail(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_PEPS_1_0x268].Bit_0x268.PEPS_PowerRelayOutputFail = (uint8_t)Data
+
+#define CanTx_SigGet_0x268_PEPS_FailStatus()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_PEPS_1_0x268].Bit_0x268.PEPS_FailStatus)
+#define CanTx_SigSet_0x268_PEPS_FailStatus(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_PEPS_1_0x268].Bit_0x268.PEPS_FailStatus = (uint8_t)Data
+
+#define CanTx_SigGet_0x268_PEPS_NotPNWarning()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_PEPS_1_0x268].Bit_0x268.PEPS_NotPNWarning)
+#define CanTx_SigSet_0x268_PEPS_NotPNWarning(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_PEPS_1_0x268].Bit_0x268.PEPS_NotPNWarning = (uint8_t)Data
+
+#define CanTx_SigGet_0x268_PEPS_ESCL_NotLockWarning()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_PEPS_1_0x268].Bit_0x268.PEPS_ESCL_NotLockWarning)
+#define CanTx_SigSet_0x268_PEPS_ESCL_NotLockWarning(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_PEPS_1_0x268].Bit_0x268.PEPS_ESCL_NotLockWarning = (uint8_t)Data
+
+#define CanTx_SigGet_0x268_PEPS_ESCL_NotUnlockWarning()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_PEPS_1_0x268].Bit_0x268.PEPS_ESCL_NotUnlockWarning)
+#define CanTx_SigSet_0x268_PEPS_ESCL_NotUnlockWarning(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_PEPS_1_0x268].Bit_0x268.PEPS_ESCL_NotUnlockWarning = (uint8_t)Data
+
+#define CanTx_SigGet_0x268_PEPS_LockNotOFFWarning()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_PEPS_1_0x268].Bit_0x268.PEPS_LockNotOFFWarning)
+#define CanTx_SigSet_0x268_PEPS_LockNotOFFWarning(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_PEPS_1_0x268].Bit_0x268.PEPS_LockNotOFFWarning = (uint8_t)Data
+
+#define CanTx_SigGet_0x268_PEPS_KeyIntWarning1()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_PEPS_1_0x268].Bit_0x268.PEPS_KeyIntWarning1)
+#define CanTx_SigSet_0x268_PEPS_KeyIntWarning1(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_PEPS_1_0x268].Bit_0x268.PEPS_KeyIntWarning1 = (uint8_t)Data
+
+#define CanTx_SigGet_0x268_PEPS_KeyBatteryWarning()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_PEPS_1_0x268].Bit_0x268.PEPS_KeyBatteryWarning)
+#define CanTx_SigSet_0x268_PEPS_KeyBatteryWarning(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_PEPS_1_0x268].Bit_0x268.PEPS_KeyBatteryWarning = (uint8_t)Data
+
+#define CanTx_SigGet_0x268_PEPS_KeyOutWarning1()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_PEPS_1_0x268].Bit_0x268.PEPS_KeyOutWarning1)
+#define CanTx_SigSet_0x268_PEPS_KeyOutWarning1(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_PEPS_1_0x268].Bit_0x268.PEPS_KeyOutWarning1 = (uint8_t)Data
+
+#define CanTx_SigGet_0x268_PEPS_NoKeyFoundWarning()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_PEPS_1_0x268].Bit_0x268.PEPS_NoKeyFoundWarning)
+#define CanTx_SigSet_0x268_PEPS_NoKeyFoundWarning(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_PEPS_1_0x268].Bit_0x268.PEPS_NoKeyFoundWarning = (uint8_t)Data
+
+#define CanTx_SigGet_0x268_PEPS_KeyReminderWarning()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_PEPS_1_0x268].Bit_0x268.PEPS_KeyReminderWarning)
+#define CanTx_SigSet_0x268_PEPS_KeyReminderWarning(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_PEPS_1_0x268].Bit_0x268.PEPS_KeyReminderWarning = (uint8_t)Data
+
+#define CanTx_SigGet_0x268_PEPS_ClutchIndicationWarning()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_PEPS_1_0x268].Bit_0x268.PEPS_ClutchIndicationWarning)
+#define CanTx_SigSet_0x268_PEPS_ClutchIndicationWarning(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_PEPS_1_0x268].Bit_0x268.PEPS_ClutchIndicationWarning = (uint8_t)Data
+
+#define CanTx_SigGet_0x268_PEPS_BrakeIndicationWarning()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_PEPS_1_0x268].Bit_0x268.PEPS_BrakeIndicationWarning)
+#define CanTx_SigSet_0x268_PEPS_BrakeIndicationWarning(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_PEPS_1_0x268].Bit_0x268.PEPS_BrakeIndicationWarning = (uint8_t)Data
+
+#define CanTx_SigGet_0x269_PEPS_3_RemoteControlSt()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_PEPS_3_0x269].Bit_0x269.PEPS_RemoteControlSt)
+#define CanTx_SigSet_0x269_PEPS_3_RemoteControlSt(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_PEPS_3_0x269].Bit_0x269.PEPS_RemoteControlSt = (uint8_t)Data
+
+#define CanTx_SigGet_0x269_PEPS_3_RollingCounter()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_PEPS_3_0x269].Bit_0x269.PEPS_3_RollingCounter)
+#define CanTx_SigSet_0x269_PEPS_3_RollingCounter(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_PEPS_3_0x269].Bit_0x269.PEPS_3_RollingCounter = (uint8_t)Data
+
+#define CanTx_SigGet_0x269_PEPS_3_Checksum()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_PEPS_3_0x269].Bit_0x269.PEPS_3_Checksum)
+#define CanTx_SigSet_0x269_PEPS_3_Checksum(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_PEPS_3_0x269].Bit_0x269.PEPS_3_Checksum = (uint8_t)Data
+
+#define CanTx_SigGet_0x375_IC_ParkingBrakeIndication()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_IC_1_0x375].Bit_0x375.IC_ParkingBrakeIndication)
+#define CanTx_SigSet_0x375_IC_ParkingBrakeIndication(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_IC_1_0x375].Bit_0x375.IC_ParkingBrakeIndication = (uint8_t)Data
+
+#define CanTx_SigGet_0x375_IC_SurplusFuel()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_IC_1_0x375].Bit_0x375.IC_SurplusFuel)
+#define CanTx_SigSet_0x375_IC_SurplusFuel(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_IC_1_0x375].Bit_0x375.IC_SurplusFuel = (uint8_t)Data
+
+#define CanTx_SigGet_0x375_IC_BrakeSysFailIndication()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_IC_1_0x375].Bit_0x375.IC_BrakeSysFailIndication)
+#define CanTx_SigSet_0x375_IC_BrakeSysFailIndication(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_IC_1_0x375].Bit_0x375.IC_BrakeSysFailIndication = (uint8_t)Data
+
+#define CanTx_SigGet_0x375_IC_EngineOilLowPressure()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_IC_1_0x375].Bit_0x375.IC_EngineOilLowPressure)
+#define CanTx_SigSet_0x375_IC_EngineOilLowPressure(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_IC_1_0x375].Bit_0x375.IC_EngineOilLowPressure = (uint8_t)Data
+
+#define CanTx_SigGet_0x375_IC_FuelSignalOpen()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_IC_1_0x375].Bit_0x375.IC_FuelSignalOpen)
+#define CanTx_SigSet_0x375_IC_FuelSignalOpen(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_IC_1_0x375].Bit_0x375.IC_FuelSignalOpen = (uint8_t)Data
+
+#define CanTx_SigGet_0x375_IC_FuelSignalShortToBattery()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_IC_1_0x375].Bit_0x375.IC_FuelSignalShortToBattery)
+#define CanTx_SigSet_0x375_IC_FuelSignalShortToBattery(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_IC_1_0x375].Bit_0x375.IC_FuelSignalShortToBattery = (uint8_t)Data
+
+#define CanTx_SigGet_0x375_IC_FuelSignalShortToGND()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_IC_1_0x375].Bit_0x375.IC_FuelSignalShortToGND)
+#define CanTx_SigSet_0x375_IC_FuelSignalShortToGND(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_IC_1_0x375].Bit_0x375.IC_FuelSignalShortToGND = (uint8_t)Data
+
+#define CanTx_SigGet_0x375_IC_BrakeFluidLevelIndication()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_IC_1_0x375].Bit_0x375.IC_BrakeFluidLevelIndication)
+#define CanTx_SigSet_0x375_IC_BrakeFluidLevelIndication(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_IC_1_0x375].Bit_0x375.IC_BrakeFluidLevelIndication = (uint8_t)Data
+
+#define CanTx_SigGet_0x375_IC_SurplusMileage()\
+    (((uint16_t)CanTxMsg_DataBuffer[CanTxMsgIndex_IC_1_0x375].Bit_0x375.IC_SurplusMileage_Part0) | ((uint16_t)CanTxMsg_DataBuffer[CanTxMsgIndex_IC_1_0x375].Bit_0x375.IC_SurplusMileage_Part1 << 8))
+#define CanTx_SigSet_0x375_IC_SurplusMileage(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_IC_1_0x375].Bit_0x375.IC_SurplusMileage_Part0 = (uint8_t)Data; CanTxMsg_DataBuffer[CanTxMsgIndex_IC_1_0x375].Bit_0x375.IC_SurplusMileage_Part1 = (uint8_t)(Data >> 8)
+
+#define CanTx_SigGet_0x375_IC_DrvSeatbeltBucklestatus()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_IC_1_0x375].Bit_0x375.IC_DrvSeatbeltBucklestatus)
+#define CanTx_SigSet_0x375_IC_DrvSeatbeltBucklestatus(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_IC_1_0x375].Bit_0x375.IC_DrvSeatbeltBucklestatus = (uint8_t)Data
+
+#define CanTx_SigGet_0x375_IC_PassSeatbeltBucklestatus()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_IC_1_0x375].Bit_0x375.IC_PassSeatbeltBucklestatus)
+#define CanTx_SigSet_0x375_IC_PassSeatbeltBucklestatus(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_IC_1_0x375].Bit_0x375.IC_PassSeatbeltBucklestatus = (uint8_t)Data
+
+#define CanTx_SigGet_0x375_IC_SurplusFuelValid()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_IC_1_0x375].Bit_0x375.IC_SurplusFuelValid)
+#define CanTx_SigSet_0x375_IC_SurplusFuelValid(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_IC_1_0x375].Bit_0x375.IC_SurplusFuelValid = (uint8_t)Data
+
+#define CanTx_SigGet_0x375_IC_OdoMeter()\
+    (((uint32_t)CanTxMsg_DataBuffer[CanTxMsgIndex_IC_1_0x375].Bit_0x375.IC_OdoMeter_Part0) | ((uint32_t)CanTxMsg_DataBuffer[CanTxMsgIndex_IC_1_0x375].Bit_0x375.IC_OdoMeter_Part1 << 8) | ((uint32_t)CanTxMsg_DataBuffer[CanTxMsgIndex_IC_1_0x375].Bit_0x375.IC_OdoMeter_Part2 << 16))
+#define CanTx_SigSet_0x375_IC_OdoMeter(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_IC_1_0x375].Bit_0x375.IC_OdoMeter_Part0 = (uint8_t)Data; CanTxMsg_DataBuffer[CanTxMsgIndex_IC_1_0x375].Bit_0x375.IC_OdoMeter_Part1 = (uint8_t)(Data >> 8); CanTxMsg_DataBuffer[CanTxMsgIndex_IC_1_0x375].Bit_0x375.IC_OdoMeter_Part2 = (uint8_t)(Data >> 16)
+
+#define CanTx_SigGet_0x375_IC_ICFaultSts()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_IC_1_0x375].Bit_0x375.IC_ICFaultSts)
+#define CanTx_SigSet_0x375_IC_ICFaultSts(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_IC_1_0x375].Bit_0x375.IC_ICFaultSts = (uint8_t)Data
+
+#define CanTx_SigGet_0x375_IC_DisplayVehicleSpeedValue()\
+    (((uint16_t)CanTxMsg_DataBuffer[CanTxMsgIndex_IC_1_0x375].Bit_0x375.IC_DisplayVehicleSpeedValue_Part0) | ((uint16_t)CanTxMsg_DataBuffer[CanTxMsgIndex_IC_1_0x375].Bit_0x375.IC_DisplayVehicleSpeedValue_Part1 << 5))
+#define CanTx_SigSet_0x375_IC_DisplayVehicleSpeedValue(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_IC_1_0x375].Bit_0x375.IC_DisplayVehicleSpeedValue_Part0 = (uint8_t)Data; CanTxMsg_DataBuffer[CanTxMsgIndex_IC_1_0x375].Bit_0x375.IC_DisplayVehicleSpeedValue_Part1 = (uint8_t)(Data >> 5)
+
+#define CanTx_SigGet_0x375_IC_DisplayVehicleSpeedUnit()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_IC_1_0x375].Bit_0x375.IC_DisplayVehicleSpeedUnit)
+#define CanTx_SigSet_0x375_IC_DisplayVehicleSpeedUnit(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_IC_1_0x375].Bit_0x375.IC_DisplayVehicleSpeedUnit = (uint8_t)Data
+
+#define CanTx_SigGet_0x375_IC_AirbagInhibitWarning()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_IC_1_0x375].Bit_0x375.IC_AirbagInhibitWarning)
+#define CanTx_SigSet_0x375_IC_AirbagInhibitWarning(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_IC_1_0x375].Bit_0x375.IC_AirbagInhibitWarning = (uint8_t)Data
+
+#define CanTx_SigGet_0x376_IC_TripAvgFuelConsRate()\
+    (((uint16_t)CanTxMsg_DataBuffer[CanTxMsgIndex_IC_2_0x376].Bit_0x376.IC_TripAvgFuelConsRate_Part0) | ((uint16_t)CanTxMsg_DataBuffer[CanTxMsgIndex_IC_2_0x376].Bit_0x376.IC_TripAvgFuelConsRate_Part1 << 1))
+#define CanTx_SigSet_0x376_IC_TripAvgFuelConsRate(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_IC_2_0x376].Bit_0x376.IC_TripAvgFuelConsRate_Part0 = (uint8_t)Data; CanTxMsg_DataBuffer[CanTxMsgIndex_IC_2_0x376].Bit_0x376.IC_TripAvgFuelConsRate_Part1 = (uint8_t)(Data >> 1)
+
+#define CanTx_SigGet_0x376_IC_LifeTimeAvgFuelConsRate()\
+    (((uint16_t)CanTxMsg_DataBuffer[CanTxMsgIndex_IC_2_0x376].Bit_0x376.IC_LifeTimeAvgFuelConsRate_Part0) | ((uint16_t)CanTxMsg_DataBuffer[CanTxMsgIndex_IC_2_0x376].Bit_0x376.IC_LifeTimeAvgFuelConsRate_Part1 << 2))
+#define CanTx_SigSet_0x376_IC_LifeTimeAvgFuelConsRate(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_IC_2_0x376].Bit_0x376.IC_LifeTimeAvgFuelConsRate_Part0 = (uint8_t)Data; CanTxMsg_DataBuffer[CanTxMsgIndex_IC_2_0x376].Bit_0x376.IC_LifeTimeAvgFuelConsRate_Part1 = (uint8_t)(Data >> 2)
+
+#define CanTx_SigGet_0x300_IHU_RearDefrostButtonSts()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_1_0x300].Bit_0x300.IHU_RearDefrostButtonSts)
+#define CanTx_SigSet_0x300_IHU_RearDefrostButtonSts(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_1_0x300].Bit_0x300.IHU_RearDefrostButtonSts = (uint8_t)Data
+
+#define CanTx_SigGet_0x300_IHU_FrontDefrostButtonSts()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_1_0x300].Bit_0x300.IHU_FrontDefrostButtonSts)
+#define CanTx_SigSet_0x300_IHU_FrontDefrostButtonSts(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_1_0x300].Bit_0x300.IHU_FrontDefrostButtonSts = (uint8_t)Data
+
+#define CanTx_SigGet_0x300_IHU_ACSelfCleanModeSet()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_1_0x300].Bit_0x300.IHU_ACSelfCleanModeSet)
+#define CanTx_SigSet_0x300_IHU_ACSelfCleanModeSet(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_1_0x300].Bit_0x300.IHU_ACSelfCleanModeSet = (uint8_t)Data
+
+#define CanTx_SigGet_0x300_IHU_EPMModSet()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_1_0x300].Bit_0x300.IHU_EPMModSet)
+#define CanTx_SigSet_0x300_IHU_EPMModSet(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_1_0x300].Bit_0x300.IHU_EPMModSet = (uint8_t)Data
+
+#define CanTx_SigGet_0x300_IHU_ACButtonSts()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_1_0x300].Bit_0x300.IHU_ACButtonSts)
+#define CanTx_SigSet_0x300_IHU_ACButtonSts(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_1_0x300].Bit_0x300.IHU_ACButtonSts = (uint8_t)Data
+
+#define CanTx_SigGet_0x300_IHU_LeaveHome_Time()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_1_0x300].Bit_0x300.IHU_LeaveHome_Time)
+#define CanTx_SigSet_0x300_IHU_LeaveHome_Time(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_1_0x300].Bit_0x300.IHU_LeaveHome_Time = (uint8_t)Data
+
+#define CanTx_SigGet_0x300_IHU_FollowMeHome_Time()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_1_0x300].Bit_0x300.IHU_FollowMeHome_Time)
+#define CanTx_SigSet_0x300_IHU_FollowMeHome_Time(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_1_0x300].Bit_0x300.IHU_FollowMeHome_Time = (uint8_t)Data
+
+#define CanTx_SigGet_0x300_IHU_ACSystemOff()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_1_0x300].Bit_0x300.IHU_ACSystemOff)
+#define CanTx_SigSet_0x300_IHU_ACSystemOff(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_1_0x300].Bit_0x300.IHU_ACSystemOff = (uint8_t)Data
+
+#define CanTx_SigGet_0x300_IHU_TemperatureAjust()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_1_0x300].Bit_0x300.IHU_TemperatureAjust)
+#define CanTx_SigSet_0x300_IHU_TemperatureAjust(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_1_0x300].Bit_0x300.IHU_TemperatureAjust = (uint8_t)Data
+
+#define CanTx_SigGet_0x300_IHU_InteriorLightTimeAjust()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_1_0x300].Bit_0x300.IHU_InteriorLightTimeAjust)
+#define CanTx_SigSet_0x300_IHU_InteriorLightTimeAjust(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_1_0x300].Bit_0x300.IHU_InteriorLightTimeAjust = (uint8_t)Data
+
+#define CanTx_SigGet_0x300_IHU_AirCirculationMode()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_1_0x300].Bit_0x300.IHU_AirCirculationMode)
+#define CanTx_SigSet_0x300_IHU_AirCirculationMode(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_1_0x300].Bit_0x300.IHU_AirCirculationMode = (uint8_t)Data
+
+#define CanTx_SigGet_0x300_IHU_AirDistributeMode()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_1_0x300].Bit_0x300.IHU_AirDistributeMode)
+#define CanTx_SigSet_0x300_IHU_AirDistributeMode(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_1_0x300].Bit_0x300.IHU_AirDistributeMode = (uint8_t)Data
+
+#define CanTx_SigGet_0x300_IHU_BlowerSpeedAjust()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_1_0x300].Bit_0x300.IHU_BlowerSpeedAjust)
+#define CanTx_SigSet_0x300_IHU_BlowerSpeedAjust(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_1_0x300].Bit_0x300.IHU_BlowerSpeedAjust = (uint8_t)Data
+
+#define CanTx_SigGet_0x300_IHU_AUTOPassengerButtonSts()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_1_0x300].Bit_0x300.IHU_AUTOPassengerButtonSts)
+#define CanTx_SigSet_0x300_IHU_AUTOPassengerButtonSts(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_1_0x300].Bit_0x300.IHU_AUTOPassengerButtonSts = (uint8_t)Data
+
+#define CanTx_SigGet_0x300_IHU_AUTOButtonSts()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_1_0x300].Bit_0x300.IHU_AUTOButtonSts)
+#define CanTx_SigSet_0x300_IHU_AUTOButtonSts(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_1_0x300].Bit_0x300.IHU_AUTOButtonSts = (uint8_t)Data
+
+#define CanTx_SigGet_0x300_IHU_PTCButtonSts()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_1_0x300].Bit_0x300.IHU_PTCButtonSts)
+#define CanTx_SigSet_0x300_IHU_PTCButtonSts(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_1_0x300].Bit_0x300.IHU_PTCButtonSts = (uint8_t)Data
+
+#define CanTx_SigGet_0x300_IHU_DriverSetTemperature()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_1_0x300].Bit_0x300.IHU_DriverSetTemperature)
+#define CanTx_SigSet_0x300_IHU_DriverSetTemperature(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_1_0x300].Bit_0x300.IHU_DriverSetTemperature = (uint8_t)Data
+
+#define CanTx_SigGet_0x300_IHU_DualButtonSts()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_1_0x300].Bit_0x300.IHU_DualButtonSts)
+#define CanTx_SigSet_0x300_IHU_DualButtonSts(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_1_0x300].Bit_0x300.IHU_DualButtonSts = (uint8_t)Data
+
+#define CanTx_SigGet_0x300_IHU_SS_Set()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_1_0x300].Bit_0x300.IHU_SS_Set)
+#define CanTx_SigSet_0x300_IHU_SS_Set(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_1_0x300].Bit_0x300.IHU_SS_Set = (uint8_t)Data
+
+#define CanTx_SigGet_0x300_IHU_PngSetTemperature()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_1_0x300].Bit_0x300.IHU_PngSetTemperature)
+#define CanTx_SigSet_0x300_IHU_PngSetTemperature(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_1_0x300].Bit_0x300.IHU_PngSetTemperature = (uint8_t)Data
+
+#define CanTx_SigGet_0x300_IHU_WirelessChargeSwtSet()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_1_0x300].Bit_0x300.IHU_WirelessChargeSwtSet)
+#define CanTx_SigSet_0x300_IHU_WirelessChargeSwtSet(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_1_0x300].Bit_0x300.IHU_WirelessChargeSwtSet = (uint8_t)Data
+
+#define CanTx_SigGet_0x300_IHU_DrivemodeSet()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_1_0x300].Bit_0x300.IHU_DrivemodeSet)
+#define CanTx_SigSet_0x300_IHU_DrivemodeSet(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_1_0x300].Bit_0x300.IHU_DrivemodeSet = (uint8_t)Data
+
+#define CanTx_SigGet_0x542_IHU_DateTimeSecond()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_2_0x542].Bit_0x542.IHU_DateTimeSecond)
+#define CanTx_SigSet_0x542_IHU_DateTimeSecond(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_2_0x542].Bit_0x542.IHU_DateTimeSecond = (uint8_t)Data
+
+#define CanTx_SigGet_0x542_IHU_DateTimeMinute()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_2_0x542].Bit_0x542.IHU_DateTimeMinute)
+#define CanTx_SigSet_0x542_IHU_DateTimeMinute(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_2_0x542].Bit_0x542.IHU_DateTimeMinute = (uint8_t)Data
+
+#define CanTx_SigGet_0x542_IHU_DateTimeHour()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_2_0x542].Bit_0x542.IHU_DateTimeHour)
+#define CanTx_SigSet_0x542_IHU_DateTimeHour(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_2_0x542].Bit_0x542.IHU_DateTimeHour = (uint8_t)Data
+
+#define CanTx_SigGet_0x542_IHU_DateTimeDay()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_2_0x542].Bit_0x542.IHU_DateTimeDay)
+#define CanTx_SigSet_0x542_IHU_DateTimeDay(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_2_0x542].Bit_0x542.IHU_DateTimeDay = (uint8_t)Data
+
+#define CanTx_SigGet_0x542_IHU_DateTimeMonth()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_2_0x542].Bit_0x542.IHU_DateTimeMonth)
+#define CanTx_SigSet_0x542_IHU_DateTimeMonth(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_2_0x542].Bit_0x542.IHU_DateTimeMonth = (uint8_t)Data
+
+#define CanTx_SigGet_0x542_IHU_DateTimeYear()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_2_0x542].Bit_0x542.IHU_DateTimeYear)
+#define CanTx_SigSet_0x542_IHU_DateTimeYear(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_2_0x542].Bit_0x542.IHU_DateTimeYear = (uint8_t)Data
+
+#define CanTx_SigGet_0x90_IHU_LDWWarnVoiceSwtSet()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_3_0x90].Bit_0x90.IHU_LDWWarnVoiceSwtSet)
+#define CanTx_SigSet_0x90_IHU_LDWWarnVoiceSwtSet(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_3_0x90].Bit_0x90.IHU_LDWWarnVoiceSwtSet = (uint8_t)Data
+
+#define CanTx_SigGet_0x90_IHU_FCWSwtSet()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_3_0x90].Bit_0x90.IHU_FCWSwtSet)
+#define CanTx_SigSet_0x90_IHU_FCWSwtSet(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_3_0x90].Bit_0x90.IHU_FCWSwtSet = (uint8_t)Data
+
+#define CanTx_SigGet_0x90_IHU_FCWSnvtySet()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_3_0x90].Bit_0x90.IHU_FCWSnvtySet)
+#define CanTx_SigSet_0x90_IHU_FCWSnvtySet(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_3_0x90].Bit_0x90.IHU_FCWSnvtySet = (uint8_t)Data
+
+#define CanTx_SigGet_0x90_IHU_AEBSwtSet()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_3_0x90].Bit_0x90.IHU_AEBSwtSet)
+#define CanTx_SigSet_0x90_IHU_AEBSwtSet(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_3_0x90].Bit_0x90.IHU_AEBSwtSet = (uint8_t)Data
+
+#define CanTx_SigGet_0x90_IHU_IHBCSwtSet()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_3_0x90].Bit_0x90.IHU_IHBCSwtSet)
+#define CanTx_SigSet_0x90_IHU_IHBCSwtSet(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_3_0x90].Bit_0x90.IHU_IHBCSwtSet = (uint8_t)Data
+
+#define CanTx_SigGet_0x90_IHU_TSRSwtSet()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_3_0x90].Bit_0x90.IHU_TSRSwtSet)
+#define CanTx_SigSet_0x90_IHU_TSRSwtSet(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_3_0x90].Bit_0x90.IHU_TSRSwtSet = (uint8_t)Data
+
+#define CanTx_SigGet_0x90_IHU_LDWLDPSnvtySet()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_3_0x90].Bit_0x90.IHU_LDWLDPSnvtySet)
+#define CanTx_SigSet_0x90_IHU_LDWLDPSnvtySet(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_3_0x90].Bit_0x90.IHU_LDWLDPSnvtySet = (uint8_t)Data
+
+#define CanTx_SigGet_0x90_IHU_LDWSwtSet()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_3_0x90].Bit_0x90.IHU_LDWSwtSet)
+#define CanTx_SigSet_0x90_IHU_LDWSwtSet(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_3_0x90].Bit_0x90.IHU_LDWSwtSet = (uint8_t)Data
+
+#define CanTx_SigGet_0x90_IHU_AutoWshWipSet()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_3_0x90].Bit_0x90.IHU_AutoWshWipSet)
+#define CanTx_SigSet_0x90_IHU_AutoWshWipSet(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_3_0x90].Bit_0x90.IHU_AutoWshWipSet = (uint8_t)Data
+
+#define CanTx_SigGet_0x90_IHU_FlaoutUnlockSet()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_3_0x90].Bit_0x90.IHU_FlaoutUnlockSet)
+#define CanTx_SigSet_0x90_IHU_FlaoutUnlockSet(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_3_0x90].Bit_0x90.IHU_FlaoutUnlockSet = (uint8_t)Data
+
+#define CanTx_SigGet_0x90_IHU_TSROverSpeedAcousticSwSet()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_3_0x90].Bit_0x90.IHU_TSROverSpeedAcousticSwSet)
+#define CanTx_SigSet_0x90_IHU_TSROverSpeedAcousticSwSet(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_3_0x90].Bit_0x90.IHU_TSROverSpeedAcousticSwSet = (uint8_t)Data
+
+#define CanTx_SigGet_0x90_IHU_TSROverSpeedSwSet()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_3_0x90].Bit_0x90.IHU_TSROverSpeedSwSet)
+#define CanTx_SigSet_0x90_IHU_TSROverSpeedSwSet(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_3_0x90].Bit_0x90.IHU_TSROverSpeedSwSet = (uint8_t)Data
+
+#define CanTx_SigGet_0x90_IHU_WindowRemoteAutoDownSet()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_3_0x90].Bit_0x90.IHU_WindowRemoteAutoDownSet)
+#define CanTx_SigSet_0x90_IHU_WindowRemoteAutoDownSet(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_3_0x90].Bit_0x90.IHU_WindowRemoteAutoDownSet = (uint8_t)Data
+
+#define CanTx_SigGet_0x90_IHU_HornAlertVolumeSet()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_3_0x90].Bit_0x90.IHU_HornAlertVolumeSet)
+#define CanTx_SigSet_0x90_IHU_HornAlertVolumeSet(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_3_0x90].Bit_0x90.IHU_HornAlertVolumeSet = (uint8_t)Data
+
+#define CanTx_SigGet_0x90_IHU_SpeedLockSet()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_3_0x90].Bit_0x90.IHU_SpeedLockSet)
+#define CanTx_SigSet_0x90_IHU_SpeedLockSet(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_3_0x90].Bit_0x90.IHU_SpeedLockSet = (uint8_t)Data
+
+#define CanTx_SigGet_0x90_IHU_SearchCarWarnModSet()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_3_0x90].Bit_0x90.IHU_SearchCarWarnModSet)
+#define CanTx_SigSet_0x90_IHU_SearchCarWarnModSet(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_3_0x90].Bit_0x90.IHU_SearchCarWarnModSet = (uint8_t)Data
+
+#define CanTx_SigGet_0x90_IHU_WindowAutoUPbyLockSet()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_3_0x90].Bit_0x90.IHU_WindowAutoUPbyLockSet)
+#define CanTx_SigSet_0x90_IHU_WindowAutoUPbyLockSet(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_3_0x90].Bit_0x90.IHU_WindowAutoUPbyLockSet = (uint8_t)Data
+
+#define CanTx_SigGet_0x90_IHU_exRearMirrorAutoFoldSet()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_3_0x90].Bit_0x90.IHU_exRearMirrorAutoFoldSet)
+#define CanTx_SigSet_0x90_IHU_exRearMirrorAutoFoldSet(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_3_0x90].Bit_0x90.IHU_exRearMirrorAutoFoldSet = (uint8_t)Data
+
+#define CanTx_SigGet_0x90_IHU_AssistIlluminationSet()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_3_0x90].Bit_0x90.IHU_AssistIlluminationSet)
+#define CanTx_SigSet_0x90_IHU_AssistIlluminationSet(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_3_0x90].Bit_0x90.IHU_AssistIlluminationSet = (uint8_t)Data
+
+#define CanTx_SigGet_0x90_IHU_FRSeatHeatLvlSet()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_3_0x90].Bit_0x90.IHU_FRSeatHeatLvlSet)
+#define CanTx_SigSet_0x90_IHU_FRSeatHeatLvlSet(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_3_0x90].Bit_0x90.IHU_FRSeatHeatLvlSet = (uint8_t)Data
+
+#define CanTx_SigGet_0x90_IHU_FLSeatHeatLvlSet()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_3_0x90].Bit_0x90.IHU_FLSeatHeatLvlSet)
+#define CanTx_SigSet_0x90_IHU_FLSeatHeatLvlSet(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_3_0x90].Bit_0x90.IHU_FLSeatHeatLvlSet = (uint8_t)Data
+
+#define CanTx_SigGet_0x90_IHU_FLSeatMassgModSet()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_3_0x90].Bit_0x90.IHU_FLSeatMassgModSet)
+#define CanTx_SigSet_0x90_IHU_FLSeatMassgModSet(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_3_0x90].Bit_0x90.IHU_FLSeatMassgModSet = (uint8_t)Data
+
+#define CanTx_SigGet_0x90_IHU_FLSeatMassgLvlSet()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_3_0x90].Bit_0x90.IHU_FLSeatMassgLvlSet)
+#define CanTx_SigSet_0x90_IHU_FLSeatMassgLvlSet(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_3_0x90].Bit_0x90.IHU_FLSeatMassgLvlSet = (uint8_t)Data
+
+#define CanTx_SigGet_0x90_IHU_Nozzleheatingset()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_3_0x90].Bit_0x90.IHU_Nozzleheatingset)
+#define CanTx_SigSet_0x90_IHU_Nozzleheatingset(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_3_0x90].Bit_0x90.IHU_Nozzleheatingset = (uint8_t)Data
+
+#define CanTx_SigGet_0x90_IHU_Frontwindshieldheatingtset()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_3_0x90].Bit_0x90.IHU_Frontwindshieldheatingtset)
+#define CanTx_SigSet_0x90_IHU_Frontwindshieldheatingtset(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_3_0x90].Bit_0x90.IHU_Frontwindshieldheatingtset = (uint8_t)Data
+
+#define CanTx_SigGet_0x90_IHU_ClsWinSpdSet()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_3_0x90].Bit_0x90.IHU_ClsWinSpdSet)
+#define CanTx_SigSet_0x90_IHU_ClsWinSpdSet(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_3_0x90].Bit_0x90.IHU_ClsWinSpdSet = (uint8_t)Data
+
+#define CanTx_SigGet_0x3B0_IHU_NavSpeedLimit()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_4_0x3B0].Bit_0x3B0.IHU_NavSpeedLimit)
+#define CanTx_SigSet_0x3B0_IHU_NavSpeedLimit(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_4_0x3B0].Bit_0x3B0.IHU_NavSpeedLimit = (uint8_t)Data
+
+#define CanTx_SigGet_0x3B0_IHU_NavSpeedLimitStatus()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_4_0x3B0].Bit_0x3B0.IHU_NavSpeedLimitStatus)
+#define CanTx_SigSet_0x3B0_IHU_NavSpeedLimitStatus(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_4_0x3B0].Bit_0x3B0.IHU_NavSpeedLimitStatus = (uint8_t)Data
+
+#define CanTx_SigGet_0x3B0_IHU_NavCurrRoadType()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_4_0x3B0].Bit_0x3B0.IHU_NavCurrRoadType)
+#define CanTx_SigSet_0x3B0_IHU_NavCurrRoadType(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_4_0x3B0].Bit_0x3B0.IHU_NavCurrRoadType = (uint8_t)Data
+
+#define CanTx_SigGet_0x3B0_IHU_NavSpeedLimitUnits()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_4_0x3B0].Bit_0x3B0.IHU_NavSpeedLimitUnits)
+#define CanTx_SigSet_0x3B0_IHU_NavSpeedLimitUnits(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_4_0x3B0].Bit_0x3B0.IHU_NavSpeedLimitUnits = (uint8_t)Data
+
+#define CanTx_SigGet_0x3B1_IHU_BrightnessLevel()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_5_0x3B1].Bit_0x3B1.IHU_BrightnessLevel)
+#define CanTx_SigSet_0x3B1_IHU_BrightnessLevel(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_5_0x3B1].Bit_0x3B1.IHU_BrightnessLevel = (uint8_t)Data
+
+#define CanTx_SigGet_0x3B1_IHU_VehiclePitchAngle()\
+    (((uint16_t)CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_5_0x3B1].Bit_0x3B1.IHU_VehiclePitchAngle_Part0) | ((uint16_t)CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_5_0x3B1].Bit_0x3B1.IHU_VehiclePitchAngle_Part1 << 4))
+#define CanTx_SigSet_0x3B1_IHU_VehiclePitchAngle(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_5_0x3B1].Bit_0x3B1.IHU_VehiclePitchAngle_Part0 = (uint8_t)Data; CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_5_0x3B1].Bit_0x3B1.IHU_VehiclePitchAngle_Part1 = (uint8_t)(Data >> 4)
+
+#define CanTx_SigGet_0x3B1_IHU_VehicleRollAngle()\
+    (((uint16_t)CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_5_0x3B1].Bit_0x3B1.IHU_VehicleRollAngle_Part0) | ((uint16_t)CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_5_0x3B1].Bit_0x3B1.IHU_VehicleRollAngle_Part1 << 8))
+#define CanTx_SigSet_0x3B1_IHU_VehicleRollAngle(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_5_0x3B1].Bit_0x3B1.IHU_VehicleRollAngle_Part0 = (uint8_t)Data; CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_5_0x3B1].Bit_0x3B1.IHU_VehicleRollAngle_Part1 = (uint8_t)(Data >> 8)
+
+#define CanTx_SigGet_0x3B1_IHU_GPSAntennaTurnOff()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_5_0x3B1].Bit_0x3B1.IHU_GPSAntennaTurnOff)
+#define CanTx_SigSet_0x3B1_IHU_GPSAntennaTurnOff(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_5_0x3B1].Bit_0x3B1.IHU_GPSAntennaTurnOff = (uint8_t)Data
+
+#define CanTx_SigGet_0x3B1_IHU_GPSAntennaShortCircuit()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_5_0x3B1].Bit_0x3B1.IHU_GPSAntennaShortCircuit)
+#define CanTx_SigSet_0x3B1_IHU_GPSAntennaShortCircuit(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_5_0x3B1].Bit_0x3B1.IHU_GPSAntennaShortCircuit = (uint8_t)Data
+
+#define CanTx_SigGet_0x3B1_IHU_GPSErr()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_5_0x3B1].Bit_0x3B1.IHU_GPSErr)
+#define CanTx_SigSet_0x3B1_IHU_GPSErr(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_5_0x3B1].Bit_0x3B1.IHU_GPSErr = (uint8_t)Data
+
+#define CanTx_SigGet_0x3B1_IHU_VideoSts()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_5_0x3B1].Bit_0x3B1.IHU_VideoSts)
+#define CanTx_SigSet_0x3B1_IHU_VideoSts(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_5_0x3B1].Bit_0x3B1.IHU_VideoSts = (uint8_t)Data
+
+#define CanTx_SigGet_0x3B1_IHU_DVSts()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_5_0x3B1].Bit_0x3B1.IHU_DVSts)
+#define CanTx_SigSet_0x3B1_IHU_DVSts(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_5_0x3B1].Bit_0x3B1.IHU_DVSts = (uint8_t)Data
+
+#define CanTx_SigGet_0x3B1_IHU_GPSSatelliteNum()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_5_0x3B1].Bit_0x3B1.IHU_GPSSatelliteNum)
+#define CanTx_SigSet_0x3B1_IHU_GPSSatelliteNum(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_5_0x3B1].Bit_0x3B1.IHU_GPSSatelliteNum = (uint8_t)Data
+
+#define CanTx_SigGet_0x3B1_IHU_USBtoTboxConnectSts()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_5_0x3B1].Bit_0x3B1.IHU_USBtoTboxConnectSts)
+#define CanTx_SigSet_0x3B1_IHU_USBtoTboxConnectSts(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_5_0x3B1].Bit_0x3B1.IHU_USBtoTboxConnectSts = (uint8_t)Data
+
+#define CanTx_SigGet_0x3B1_IHU_IHUFaultSts()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_5_0x3B1].Bit_0x3B1.IHU_IHUFaultSts)
+#define CanTx_SigSet_0x3B1_IHU_IHUFaultSts(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_5_0x3B1].Bit_0x3B1.IHU_IHUFaultSts = (uint8_t)Data
+
+#define CanTx_SigGet_0x3B1_IHU_AudioMuteSts()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_5_0x3B1].Bit_0x3B1.IHU_AudioMuteSts)
+#define CanTx_SigSet_0x3B1_IHU_AudioMuteSts(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_5_0x3B1].Bit_0x3B1.IHU_AudioMuteSts = (uint8_t)Data
+
+#define CanTx_SigGet_0x91_IHU_WindowPosFLCmd()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_6_0x91].Bit_0x91.IHU_WindowPosFLCmd)
+#define CanTx_SigSet_0x91_IHU_WindowPosFLCmd(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_6_0x91].Bit_0x91.IHU_WindowPosFLCmd = (uint8_t)Data
+
+#define CanTx_SigGet_0x91_IHU_WindowPosFRCmd()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_6_0x91].Bit_0x91.IHU_WindowPosFRCmd)
+#define CanTx_SigSet_0x91_IHU_WindowPosFRCmd(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_6_0x91].Bit_0x91.IHU_WindowPosFRCmd = (uint8_t)Data
+
+#define CanTx_SigGet_0x91_IHU_WindowPosRLCmd()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_6_0x91].Bit_0x91.IHU_WindowPosRLCmd)
+#define CanTx_SigSet_0x91_IHU_WindowPosRLCmd(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_6_0x91].Bit_0x91.IHU_WindowPosRLCmd = (uint8_t)Data
+
+#define CanTx_SigGet_0x91_IHU_WindowPosRRCmd()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_6_0x91].Bit_0x91.IHU_WindowPosRRCmd)
+#define CanTx_SigSet_0x91_IHU_WindowPosRRCmd(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_6_0x91].Bit_0x91.IHU_WindowPosRRCmd = (uint8_t)Data
+
+#define CanTx_SigGet_0x91_IHU_BackMirrorFoldCmd()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_6_0x91].Bit_0x91.IHU_BackMirrorFoldCmd)
+#define CanTx_SigSet_0x91_IHU_BackMirrorFoldCmd(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_6_0x91].Bit_0x91.IHU_BackMirrorFoldCmd = (uint8_t)Data
+
+#define CanTx_SigGet_0x91_IHU_SunroofCmd()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_6_0x91].Bit_0x91.IHU_SunroofCmd)
+#define CanTx_SigSet_0x91_IHU_SunroofCmd(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_6_0x91].Bit_0x91.IHU_SunroofCmd = (uint8_t)Data
+
+#define CanTx_SigGet_0x580_IHU_GPSPositioningSts()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_7_0x580].Bit_0x580.IHU_GPSPositioningSts)
+#define CanTx_SigSet_0x580_IHU_GPSPositioningSts(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_7_0x580].Bit_0x580.IHU_GPSPositioningSts = (uint8_t)Data
+
+#define CanTx_SigGet_0x580_IHU_GPSDataType()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_7_0x580].Bit_0x580.IHU_GPSDataType)
+#define CanTx_SigSet_0x580_IHU_GPSDataType(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_7_0x580].Bit_0x580.IHU_GPSDataType = (uint8_t)Data
+
+#define CanTx_SigGet_0x580_IHU_GPSDataGroup()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_7_0x580].Bit_0x580.IHU_GPSDataGroup)
+#define CanTx_SigSet_0x580_IHU_GPSDataGroup(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_7_0x580].Bit_0x580.IHU_GPSDataGroup = (uint8_t)Data
+
+#define CanTx_SigGet_0x580_IHU_GPSviaGALILEO()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_7_0x580].Bit_0x580.IHU_GPSviaGALILEO)
+#define CanTx_SigSet_0x580_IHU_GPSviaGALILEO(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_7_0x580].Bit_0x580.IHU_GPSviaGALILEO = (uint8_t)Data
+
+#define CanTx_SigGet_0x580_IHU_GPSviaGLONASS()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_7_0x580].Bit_0x580.IHU_GPSviaGLONASS)
+#define CanTx_SigSet_0x580_IHU_GPSviaGLONASS(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_7_0x580].Bit_0x580.IHU_GPSviaGLONASS = (uint8_t)Data
+
+#define CanTx_SigGet_0x580_IHU_GPSviaBeidou()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_7_0x580].Bit_0x580.IHU_GPSviaBeidou)
+#define CanTx_SigSet_0x580_IHU_GPSviaBeidou(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_7_0x580].Bit_0x580.IHU_GPSviaBeidou = (uint8_t)Data
+
+#define CanTx_SigGet_0x580_IHU_GPSviaGPS()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_7_0x580].Bit_0x580.IHU_GPSviaGPS)
+#define CanTx_SigSet_0x580_IHU_GPSviaGPS(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_7_0x580].Bit_0x580.IHU_GPSviaGPS = (uint8_t)Data
+
+#define CanTx_SigGet_0x580_IHU_GPSAltitude()\
+    (((uint16_t)CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_7_0x580].Bit_0x580.IHU_GPSAltitude_Part0) | ((uint16_t)CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_7_0x580].Bit_0x580.IHU_GPSAltitude_Part1 << 8))
+#define CanTx_SigSet_0x580_IHU_GPSAltitude(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_7_0x580].Bit_0x580.IHU_GPSAltitude_Part0 = (uint8_t)Data; CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_7_0x580].Bit_0x580.IHU_GPSAltitude_Part1 = (uint8_t)(Data >> 8)
+
+#define CanTx_SigGet_0x580_IHU_GPSLatitude()\
+    (((uint32_t)CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_7_0x580].Bit_0x580.IHU_GPSLatitude_Part0) | ((uint32_t)CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_7_0x580].Bit_0x580.IHU_GPSLatitude_Part1 << 6) | ((uint32_t)CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_7_0x580].Bit_0x580.IHU_GPSLatitude_Part2 << 14) | ((uint32_t)CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_7_0x580].Bit_0x580.IHU_GPSLatitude_Part3 << 22))
+#define CanTx_SigSet_0x580_IHU_GPSLatitude(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_7_0x580].Bit_0x580.IHU_GPSLatitude_Part0 = (uint8_t)Data; CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_7_0x580].Bit_0x580.IHU_GPSLatitude_Part1 = (uint8_t)(Data >> 6); CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_7_0x580].Bit_0x580.IHU_GPSLatitude_Part2 = (uint8_t)(Data >> 14); CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_7_0x580].Bit_0x580.IHU_GPSLatitude_Part3 = (uint8_t)(Data >> 22)
+
+#define CanTx_SigGet_0x580_IHU_GPSLatitudeDirection()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_7_0x580].Bit_0x580.IHU_GPSLatitudeDirection)
+#define CanTx_SigSet_0x580_IHU_GPSLatitudeDirection(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_7_0x580].Bit_0x580.IHU_GPSLatitudeDirection = (uint8_t)Data
+
+#define CanTx_SigGet_0x581_IHU_GPSLongitudeDirection()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_8_0x581].Bit_0x581.IHU_GPSLongitudeDirection)
+#define CanTx_SigSet_0x581_IHU_GPSLongitudeDirection(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_8_0x581].Bit_0x581.IHU_GPSLongitudeDirection = (uint8_t)Data
+
+#define CanTx_SigGet_0x581_IHU_GPSDataType()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_8_0x581].Bit_0x581.IHU_GPSDataType)
+#define CanTx_SigSet_0x581_IHU_GPSDataType(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_8_0x581].Bit_0x581.IHU_GPSDataType = (uint8_t)Data
+
+#define CanTx_SigGet_0x581_IHU_GPSDataGroup()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_8_0x581].Bit_0x581.IHU_GPSDataGroup)
+#define CanTx_SigSet_0x581_IHU_GPSDataGroup(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_8_0x581].Bit_0x581.IHU_GPSDataGroup = (uint8_t)Data
+
+#define CanTx_SigGet_0x581_IHU_GPSLongitude()\
+    (((uint32_t)CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_8_0x581].Bit_0x581.IHU_GPSLongitude_Part0) | ((uint32_t)CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_8_0x581].Bit_0x581.IHU_GPSLongitude_Part1 << 6) | ((uint32_t)CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_8_0x581].Bit_0x581.IHU_GPSLongitude_Part2 << 14) | ((uint32_t)CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_8_0x581].Bit_0x581.IHU_GPSLongitude_Part3 << 22))
+#define CanTx_SigSet_0x581_IHU_GPSLongitude(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_8_0x581].Bit_0x581.IHU_GPSLongitude_Part0 = (uint8_t)Data; CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_8_0x581].Bit_0x581.IHU_GPSLongitude_Part1 = (uint8_t)(Data >> 6); CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_8_0x581].Bit_0x581.IHU_GPSLongitude_Part2 = (uint8_t)(Data >> 14); CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_8_0x581].Bit_0x581.IHU_GPSLongitude_Part3 = (uint8_t)(Data >> 22)
+
+#define CanTx_SigGet_0x581_IHU_GPSVehicleDirection()\
+    (((uint16_t)CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_8_0x581].Bit_0x581.IHU_GPSVehicleDirection_Part0) | ((uint16_t)CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_8_0x581].Bit_0x581.IHU_GPSVehicleDirection_Part1 << 8))
+#define CanTx_SigSet_0x581_IHU_GPSVehicleDirection(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_8_0x581].Bit_0x581.IHU_GPSVehicleDirection_Part0 = (uint8_t)Data; CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_8_0x581].Bit_0x581.IHU_GPSVehicleDirection_Part1 = (uint8_t)(Data >> 8)
+
+#define CanTx_SigGet_0x581_IHU_GPSVehicleSpeed()\
+    (((uint16_t)CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_8_0x581].Bit_0x581.IHU_GPSVehicleSpeed_Part0) | ((uint16_t)CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_8_0x581].Bit_0x581.IHU_GPSVehicleSpeed_Part1 << 8))
+#define CanTx_SigSet_0x581_IHU_GPSVehicleSpeed(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_8_0x581].Bit_0x581.IHU_GPSVehicleSpeed_Part0 = (uint8_t)Data; CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_8_0x581].Bit_0x581.IHU_GPSVehicleSpeed_Part1 = (uint8_t)(Data >> 8)
+
+#define CanTx_SigGet_0x582_IHU_GPSDataType()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_9_0x582].Bit_0x582.IHU_GPSDataType)
+#define CanTx_SigSet_0x582_IHU_GPSDataType(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_9_0x582].Bit_0x582.IHU_GPSDataType = (uint8_t)Data
+
+#define CanTx_SigGet_0x582_IHU_GPSDataGroup()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_9_0x582].Bit_0x582.IHU_GPSDataGroup)
+#define CanTx_SigSet_0x582_IHU_GPSDataGroup(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_9_0x582].Bit_0x582.IHU_GPSDataGroup = (uint8_t)Data
+
+#define CanTx_SigGet_0x582_IHU_GPSTime()\
+    (((uint32_t)CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_9_0x582].Bit_0x582.IHU_GPSTime_Part0) | ((uint32_t)CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_9_0x582].Bit_0x582.IHU_GPSTime_Part1 << 8) | ((uint32_t)CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_9_0x582].Bit_0x582.IHU_GPSTime_Part2 << 16) | ((uint32_t)CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_9_0x582].Bit_0x582.IHU_GPSTime_Part3 << 24))
+#define CanTx_SigSet_0x582_IHU_GPSTime(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_9_0x582].Bit_0x582.IHU_GPSTime_Part0 = (uint8_t)Data; CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_9_0x582].Bit_0x582.IHU_GPSTime_Part1 = (uint8_t)(Data >> 8); CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_9_0x582].Bit_0x582.IHU_GPSTime_Part2 = (uint8_t)(Data >> 16); CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_9_0x582].Bit_0x582.IHU_GPSTime_Part3 = (uint8_t)(Data >> 24)
+
+#define CanTx_SigGet_0x92_IHU_AmbientLightLvlSet()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_10_0x92].Bit_0x92.IHU_AmbientLightLvlSet)
+#define CanTx_SigSet_0x92_IHU_AmbientLightLvlSet(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_10_0x92].Bit_0x92.IHU_AmbientLightLvlSet = (uint8_t)Data
+
+#define CanTx_SigGet_0x92_IHU_AmbientLightSwtSet()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_10_0x92].Bit_0x92.IHU_AmbientLightSwtSet)
+#define CanTx_SigSet_0x92_IHU_AmbientLightSwtSet(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_10_0x92].Bit_0x92.IHU_AmbientLightSwtSet = (uint8_t)Data
+
+#define CanTx_SigGet_0x92_IHU_FLSeatVentLvlSet()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_10_0x92].Bit_0x92.IHU_FLSeatVentLvlSet)
+#define CanTx_SigSet_0x92_IHU_FLSeatVentLvlSet(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_10_0x92].Bit_0x92.IHU_FLSeatVentLvlSet = (uint8_t)Data
+
+#define CanTx_SigGet_0x92_IHU_SteeringWheelHeatingSWSet()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_10_0x92].Bit_0x92.IHU_SteeringWheelHeatingSWSet)
+#define CanTx_SigSet_0x92_IHU_SteeringWheelHeatingSWSet(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_10_0x92].Bit_0x92.IHU_SteeringWheelHeatingSWSet = (uint8_t)Data
+
+#define CanTx_SigGet_0x92_IHU_FRSeatVentLvlSet()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_10_0x92].Bit_0x92.IHU_FRSeatVentLvlSet)
+#define CanTx_SigSet_0x92_IHU_FRSeatVentLvlSet(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_IHU_10_0x92].Bit_0x92.IHU_FRSeatVentLvlSet = (uint8_t)Data
+
+#define CanTx_SigGet_0x598_TBOX_DateTimeSecond()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_TBOX_1_0x598].Bit_0x598.TBOX_DateTimeSecond)
+#define CanTx_SigSet_0x598_TBOX_DateTimeSecond(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_TBOX_1_0x598].Bit_0x598.TBOX_DateTimeSecond = (uint8_t)Data
+
+#define CanTx_SigGet_0x598_TBOX_DateTimeMinute()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_TBOX_1_0x598].Bit_0x598.TBOX_DateTimeMinute)
+#define CanTx_SigSet_0x598_TBOX_DateTimeMinute(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_TBOX_1_0x598].Bit_0x598.TBOX_DateTimeMinute = (uint8_t)Data
+
+#define CanTx_SigGet_0x598_TBOX_DateTimeHour()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_TBOX_1_0x598].Bit_0x598.TBOX_DateTimeHour)
+#define CanTx_SigSet_0x598_TBOX_DateTimeHour(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_TBOX_1_0x598].Bit_0x598.TBOX_DateTimeHour = (uint8_t)Data
+
+#define CanTx_SigGet_0x598_TBOX_DateTimeDay()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_TBOX_1_0x598].Bit_0x598.TBOX_DateTimeDay)
+#define CanTx_SigSet_0x598_TBOX_DateTimeDay(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_TBOX_1_0x598].Bit_0x598.TBOX_DateTimeDay = (uint8_t)Data
+
+#define CanTx_SigGet_0x598_TBOX_DateTimeMonth()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_TBOX_1_0x598].Bit_0x598.TBOX_DateTimeMonth)
+#define CanTx_SigSet_0x598_TBOX_DateTimeMonth(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_TBOX_1_0x598].Bit_0x598.TBOX_DateTimeMonth = (uint8_t)Data
+
+#define CanTx_SigGet_0x598_TBOX_DateTimeYear()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_TBOX_1_0x598].Bit_0x598.TBOX_DateTimeYear)
+#define CanTx_SigSet_0x598_TBOX_DateTimeYear(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_TBOX_1_0x598].Bit_0x598.TBOX_DateTimeYear = (uint8_t)Data
+
+#define CanTx_SigGet_0x598_TBOX_GPSAntennaShortCircuit()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_TBOX_1_0x598].Bit_0x598.TBOX_GPSAntennaShortCircuit)
+#define CanTx_SigSet_0x598_TBOX_GPSAntennaShortCircuit(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_TBOX_1_0x598].Bit_0x598.TBOX_GPSAntennaShortCircuit = (uint8_t)Data
+
+#define CanTx_SigGet_0x598_TBOX_GPSErr()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_TBOX_1_0x598].Bit_0x598.TBOX_GPSErr)
+#define CanTx_SigSet_0x598_TBOX_GPSErr(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_TBOX_1_0x598].Bit_0x598.TBOX_GPSErr = (uint8_t)Data
+
+#define CanTx_SigGet_0x598_TBOX_SIMErr()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_TBOX_1_0x598].Bit_0x598.TBOX_SIMErr)
+#define CanTx_SigSet_0x598_TBOX_SIMErr(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_TBOX_1_0x598].Bit_0x598.TBOX_SIMErr = (uint8_t)Data
+
+#define CanTx_SigGet_0x598_TBOX_GSMErr()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_TBOX_1_0x598].Bit_0x598.TBOX_GSMErr)
+#define CanTx_SigSet_0x598_TBOX_GSMErr(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_TBOX_1_0x598].Bit_0x598.TBOX_GSMErr = (uint8_t)Data
+
+#define CanTx_SigGet_0x598_TBOX_BatteryUseUp()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_TBOX_1_0x598].Bit_0x598.TBOX_BatteryUseUp)
+#define CanTx_SigSet_0x598_TBOX_BatteryUseUp(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_TBOX_1_0x598].Bit_0x598.TBOX_BatteryUseUp = (uint8_t)Data
+
+#define CanTx_SigGet_0x598_TBOX_PowerOverSuply()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_TBOX_1_0x598].Bit_0x598.TBOX_PowerOverSuply)
+#define CanTx_SigSet_0x598_TBOX_PowerOverSuply(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_TBOX_1_0x598].Bit_0x598.TBOX_PowerOverSuply = (uint8_t)Data
+
+#define CanTx_SigGet_0x598_TBOX_BatteryErr()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_TBOX_1_0x598].Bit_0x598.TBOX_BatteryErr)
+#define CanTx_SigSet_0x598_TBOX_BatteryErr(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_TBOX_1_0x598].Bit_0x598.TBOX_BatteryErr = (uint8_t)Data
+
+#define CanTx_SigGet_0x598_TBOX_CANErr()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_TBOX_1_0x598].Bit_0x598.TBOX_CANErr)
+#define CanTx_SigSet_0x598_TBOX_CANErr(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_TBOX_1_0x598].Bit_0x598.TBOX_CANErr = (uint8_t)Data
+
+#define CanTx_SigGet_0x598_TBOX_TempretureHigh()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_TBOX_1_0x598].Bit_0x598.TBOX_TempretureHigh)
+#define CanTx_SigSet_0x598_TBOX_TempretureHigh(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_TBOX_1_0x598].Bit_0x598.TBOX_TempretureHigh = (uint8_t)Data
+
+#define CanTx_SigGet_0x598_TBOX_ExternalMemoryErr()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_TBOX_1_0x598].Bit_0x598.TBOX_ExternalMemoryErr)
+#define CanTx_SigSet_0x598_TBOX_ExternalMemoryErr(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_TBOX_1_0x598].Bit_0x598.TBOX_ExternalMemoryErr = (uint8_t)Data
+
+#define CanTx_SigGet_0x598_TBOX_GPSAntennaTurnOff()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_TBOX_1_0x598].Bit_0x598.TBOX_GPSAntennaTurnOff)
+#define CanTx_SigSet_0x598_TBOX_GPSAntennaTurnOff(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_TBOX_1_0x598].Bit_0x598.TBOX_GPSAntennaTurnOff = (uint8_t)Data
+
+#define CanTx_SigGet_0x599_TBOX_CommSignalVail()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_TBOX_2_0x599].Bit_0x599.TBOX_CommSignalVail)
+#define CanTx_SigSet_0x599_TBOX_CommSignalVail(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_TBOX_2_0x599].Bit_0x599.TBOX_CommSignalVail = (uint8_t)Data
+
+#define CanTx_SigGet_0x599_TBOX_EcallErr()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_TBOX_2_0x599].Bit_0x599.TBOX_EcallErr)
+#define CanTx_SigSet_0x599_TBOX_EcallErr(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_TBOX_2_0x599].Bit_0x599.TBOX_EcallErr = (uint8_t)Data
+
+#define CanTx_SigGet_0x599_TBOX_EcallStatus()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_TBOX_2_0x599].Bit_0x599.TBOX_EcallStatus)
+#define CanTx_SigSet_0x599_TBOX_EcallStatus(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_TBOX_2_0x599].Bit_0x599.TBOX_EcallStatus = (uint8_t)Data
+
+#define CanTx_SigGet_0x317_TBOX_AudioMuteRequest()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_TBOX_4_0x317].Bit_0x317.TBOX_AudioMuteRequest)
+#define CanTx_SigSet_0x317_TBOX_AudioMuteRequest(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_TBOX_4_0x317].Bit_0x317.TBOX_AudioMuteRequest = (uint8_t)Data
+
+#define CanTx_SigGet_0x302_FCM_FCWONOFFSts()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_FCM_3_0x302].Bit_0x302.FCM_FCWONOFFSts)
+#define CanTx_SigSet_0x302_FCM_FCWONOFFSts(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_FCM_3_0x302].Bit_0x302.FCM_FCWONOFFSts = (uint8_t)Data
+
+#define CanTx_SigGet_0x302_FCM_AEBMode()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_FCM_3_0x302].Bit_0x302.FCM_AEBMode)
+#define CanTx_SigSet_0x302_FCM_AEBMode(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_FCM_3_0x302].Bit_0x302.FCM_AEBMode = (uint8_t)Data
+
+#define CanTx_SigGet_0x302_FCM_AEBONOFFSts()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_FCM_3_0x302].Bit_0x302.FCM_AEBONOFFSts)
+#define CanTx_SigSet_0x302_FCM_AEBONOFFSts(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_FCM_3_0x302].Bit_0x302.FCM_AEBONOFFSts = (uint8_t)Data
+
+#define CanTx_SigGet_0x302_FCM_FCWpreWarning()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_FCM_3_0x302].Bit_0x302.FCM_FCWpreWarning)
+#define CanTx_SigSet_0x302_FCM_FCWpreWarning(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_FCM_3_0x302].Bit_0x302.FCM_FCWpreWarning = (uint8_t)Data
+
+#define CanTx_SigGet_0x302_FCM_DistanceWarning()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_FCM_3_0x302].Bit_0x302.FCM_DistanceWarning)
+#define CanTx_SigSet_0x302_FCM_DistanceWarning(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_FCM_3_0x302].Bit_0x302.FCM_DistanceWarning = (uint8_t)Data
+
+#define CanTx_SigGet_0x302_FCM_FCWSnvtySts()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_FCM_3_0x302].Bit_0x302.FCM_FCWSnvtySts)
+#define CanTx_SigSet_0x302_FCM_FCWSnvtySts(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_FCM_3_0x302].Bit_0x302.FCM_FCWSnvtySts = (uint8_t)Data
+
+#define CanTx_SigGet_0x302_FCM_FCWMode()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_FCM_3_0x302].Bit_0x302.FCM_FCWMode)
+#define CanTx_SigSet_0x302_FCM_FCWMode(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_FCM_3_0x302].Bit_0x302.FCM_FCWMode = (uint8_t)Data
+
+#define CanTx_SigGet_0x302_FCM_ACCTakeOverReq()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_FCM_3_0x302].Bit_0x302.FCM_ACCTakeOverReq)
+#define CanTx_SigSet_0x302_FCM_ACCTakeOverReq(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_FCM_3_0x302].Bit_0x302.FCM_ACCTakeOverReq = (uint8_t)Data
+
+#define CanTx_SigGet_0x302_FCM_ACCMode()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_FCM_3_0x302].Bit_0x302.FCM_ACCMode)
+#define CanTx_SigSet_0x302_FCM_ACCMode(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_FCM_3_0x302].Bit_0x302.FCM_ACCMode = (uint8_t)Data
+
+#define CanTx_SigGet_0x302_FCM_TimeGapSetICM()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_FCM_3_0x302].Bit_0x302.FCM_TimeGapSetICM)
+#define CanTx_SigSet_0x302_FCM_TimeGapSetICM(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_FCM_3_0x302].Bit_0x302.FCM_TimeGapSetICM = (uint8_t)Data
+
+#define CanTx_SigGet_0x302_FCM_ACCVSetDis()\
+    (((uint16_t)CanTxMsg_DataBuffer[CanTxMsgIndex_FCM_3_0x302].Bit_0x302.FCM_ACCVSetDis_Part0) | ((uint16_t)CanTxMsg_DataBuffer[CanTxMsgIndex_FCM_3_0x302].Bit_0x302.FCM_ACCVSetDis_Part1 << 8))
+#define CanTx_SigSet_0x302_FCM_ACCVSetDis(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_FCM_3_0x302].Bit_0x302.FCM_ACCVSetDis_Part0 = (uint8_t)Data; CanTxMsg_DataBuffer[CanTxMsgIndex_FCM_3_0x302].Bit_0x302.FCM_ACCVSetDis_Part1 = (uint8_t)(Data >> 8)
+
+#define CanTx_SigGet_0x302_FCM_ACCTextInfo()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_FCM_3_0x302].Bit_0x302.FCM_ACCTextInfo)
+#define CanTx_SigSet_0x302_FCM_ACCTextInfo(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_FCM_3_0x302].Bit_0x302.FCM_ACCTextInfo = (uint8_t)Data
+
+#define CanTx_SigGet_0x302_FCM_AEBTextInfo()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_FCM_3_0x302].Bit_0x302.FCM_AEBTextInfo)
+#define CanTx_SigSet_0x302_FCM_AEBTextInfo(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_FCM_3_0x302].Bit_0x302.FCM_AEBTextInfo = (uint8_t)Data
+
+#define CanTx_SigGet_0x302_FCM_DVMode()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_FCM_3_0x302].Bit_0x302.FCM_DVMode)
+#define CanTx_SigSet_0x302_FCM_DVMode(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_FCM_3_0x302].Bit_0x302.FCM_DVMode = (uint8_t)Data
+
+#define CanTx_SigGet_0x302_FCM_CameraTextInfo()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_FCM_3_0x302].Bit_0x302.FCM_CameraTextInfo)
+#define CanTx_SigSet_0x302_FCM_CameraTextInfo(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_FCM_3_0x302].Bit_0x302.FCM_CameraTextInfo = (uint8_t)Data
+
+#define CanTx_SigGet_0x303_FCM_LDWLKATypefeedback()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_FCM_4_0x303].Bit_0x303.FCM_LDWLKATypefeedback)
+#define CanTx_SigSet_0x303_FCM_LDWLKATypefeedback(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_FCM_4_0x303].Bit_0x303.FCM_LDWLKATypefeedback = (uint8_t)Data
+
+#define CanTx_SigGet_0x303_FCM_LDWSysSts()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_FCM_4_0x303].Bit_0x303.FCM_LDWSysSts)
+#define CanTx_SigSet_0x303_FCM_LDWSysSts(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_FCM_4_0x303].Bit_0x303.FCM_LDWSysSts = (uint8_t)Data
+
+#define CanTx_SigGet_0x303_FCM_LDWONOFFSts()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_FCM_4_0x303].Bit_0x303.FCM_LDWONOFFSts)
+#define CanTx_SigSet_0x303_FCM_LDWONOFFSts(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_FCM_4_0x303].Bit_0x303.FCM_LDWONOFFSts = (uint8_t)Data
+
+#define CanTx_SigGet_0x303_FCM_LDW_ELK_TJA_LDPLeftVisuali()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_FCM_4_0x303].Bit_0x303.FCM_LDW_ELK_TJA_LDPLeftVisuali)
+#define CanTx_SigSet_0x303_FCM_LDW_ELK_TJA_LDPLeftVisuali(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_FCM_4_0x303].Bit_0x303.FCM_LDW_ELK_TJA_LDPLeftVisuali = (uint8_t)Data
+
+#define CanTx_SigGet_0x303_FCM_LDP_TJA_ELKTakeoverReq()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_FCM_4_0x303].Bit_0x303.FCM_LDP_TJA_ELKTakeoverReq)
+#define CanTx_SigSet_0x303_FCM_LDP_TJA_ELKTakeoverReq(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_FCM_4_0x303].Bit_0x303.FCM_LDP_TJA_ELKTakeoverReq = (uint8_t)Data
+
+#define CanTx_SigGet_0x303_FCM_LDWWarnModSts()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_FCM_4_0x303].Bit_0x303.FCM_LDWWarnModSts)
+#define CanTx_SigSet_0x303_FCM_LDWWarnModSts(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_FCM_4_0x303].Bit_0x303.FCM_LDWWarnModSts = (uint8_t)Data
+
+#define CanTx_SigGet_0x303_FCM_LDWLDPSnvtySts()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_FCM_4_0x303].Bit_0x303.FCM_LDWLDPSnvtySts)
+#define CanTx_SigSet_0x303_FCM_LDWLDPSnvtySts(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_FCM_4_0x303].Bit_0x303.FCM_LDWLDPSnvtySts = (uint8_t)Data
+
+#define CanTx_SigGet_0x303_FCM_TSRState()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_FCM_4_0x303].Bit_0x303.FCM_TSRState)
+#define CanTx_SigSet_0x303_FCM_TSRState(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_FCM_4_0x303].Bit_0x303.FCM_TSRState = (uint8_t)Data
+
+#define CanTx_SigGet_0x303_FCM_TSROverSpeedAcousticONOFFSts()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_FCM_4_0x303].Bit_0x303.FCM_TSROverSpeedAcousticONOFFSts)
+#define CanTx_SigSet_0x303_FCM_TSROverSpeedAcousticONOFFSts(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_FCM_4_0x303].Bit_0x303.FCM_TSROverSpeedAcousticONOFFSts = (uint8_t)Data
+
+#define CanTx_SigGet_0x303_FCM_TSROverSpeedONOFFSts()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_FCM_4_0x303].Bit_0x303.FCM_TSROverSpeedONOFFSts)
+#define CanTx_SigSet_0x303_FCM_TSROverSpeedONOFFSts(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_FCM_4_0x303].Bit_0x303.FCM_TSROverSpeedONOFFSts = (uint8_t)Data
+
+#define CanTx_SigGet_0x303_FCM_TSRONOFFSts()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_FCM_4_0x303].Bit_0x303.FCM_TSRONOFFSts)
+#define CanTx_SigSet_0x303_FCM_TSRONOFFSts(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_FCM_4_0x303].Bit_0x303.FCM_TSRONOFFSts = (uint8_t)Data
+
+#define CanTx_SigGet_0x303_FCM_LDW_ELK_TJA_LDPRightVisuali()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_FCM_4_0x303].Bit_0x303.FCM_LDW_ELK_TJA_LDPRightVisuali)
+#define CanTx_SigSet_0x303_FCM_LDW_ELK_TJA_LDPRightVisuali(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_FCM_4_0x303].Bit_0x303.FCM_LDW_ELK_TJA_LDPRightVisuali = (uint8_t)Data
+
+#define CanTx_SigGet_0x303_FCM_TSRDisplay()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_FCM_4_0x303].Bit_0x303.FCM_TSRDisplay)
+#define CanTx_SigSet_0x303_FCM_TSRDisplay(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_FCM_4_0x303].Bit_0x303.FCM_TSRDisplay = (uint8_t)Data
+
+#define CanTx_SigGet_0x303_FCM_IHBCStatus()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_FCM_4_0x303].Bit_0x303.FCM_IHBCStatus)
+#define CanTx_SigSet_0x303_FCM_IHBCStatus(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_FCM_4_0x303].Bit_0x303.FCM_IHBCStatus = (uint8_t)Data
+
+#define CanTx_SigGet_0x303_FCM_IHBCONOFFSts()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_FCM_4_0x303].Bit_0x303.FCM_IHBCONOFFSts)
+#define CanTx_SigSet_0x303_FCM_IHBCONOFFSts(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_FCM_4_0x303].Bit_0x303.FCM_IHBCONOFFSts = (uint8_t)Data
+
+#define CanTx_SigGet_0x303_FCM_TSROverSpdWarning()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_FCM_4_0x303].Bit_0x303.FCM_TSROverSpdWarning)
+#define CanTx_SigSet_0x303_FCM_TSROverSpdWarning(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_FCM_4_0x303].Bit_0x303.FCM_TSROverSpdWarning = (uint8_t)Data
+
+#define CanTx_SigGet_0x303_FCM_SLASpdlimitUnits()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_FCM_4_0x303].Bit_0x303.FCM_SLASpdlimitUnits)
+#define CanTx_SigSet_0x303_FCM_SLASpdlimitUnits(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_FCM_4_0x303].Bit_0x303.FCM_SLASpdlimitUnits = (uint8_t)Data
+
+#define CanTx_SigGet_0x303_FCM_IHBCTextInfo()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_FCM_4_0x303].Bit_0x303.FCM_IHBCTextInfo)
+#define CanTx_SigSet_0x303_FCM_IHBCTextInfo(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_FCM_4_0x303].Bit_0x303.FCM_IHBCTextInfo = (uint8_t)Data
+
+#define CanTx_SigGet_0x303_FCM_TSRTextInfo()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_FCM_4_0x303].Bit_0x303.FCM_TSRTextInfo)
+#define CanTx_SigSet_0x303_FCM_TSRTextInfo(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_FCM_4_0x303].Bit_0x303.FCM_TSRTextInfo = (uint8_t)Data
+
+#define CanTx_SigGet_0x303_FCM_LDWTextInfo()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_FCM_4_0x303].Bit_0x303.FCM_LDWTextInfo)
+#define CanTx_SigSet_0x303_FCM_LDWTextInfo(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_FCM_4_0x303].Bit_0x303.FCM_LDWTextInfo = (uint8_t)Data
+
+#define CanTx_SigGet_0x303_FCM_LDWVoiceWarning()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_FCM_4_0x303].Bit_0x303.FCM_LDWVoiceWarning)
+#define CanTx_SigSet_0x303_FCM_LDWVoiceWarning(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_FCM_4_0x303].Bit_0x303.FCM_LDWVoiceWarning = (uint8_t)Data
+
+#define CanTx_SigGet_0x304_FCM_EgoLeLineID()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_FCM_5_0x304].Bit_0x304.FCM_EgoLeLineID)
+#define CanTx_SigSet_0x304_FCM_EgoLeLineID(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_FCM_5_0x304].Bit_0x304.FCM_EgoLeLineID = (uint8_t)Data
+
+#define CanTx_SigGet_0x304_FCM_EgoLeLineColor()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_FCM_5_0x304].Bit_0x304.FCM_EgoLeLineColor)
+#define CanTx_SigSet_0x304_FCM_EgoLeLineColor(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_FCM_5_0x304].Bit_0x304.FCM_EgoLeLineColor = (uint8_t)Data
+
+#define CanTx_SigGet_0x304_FCM_EgoLeLineTyp()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_FCM_5_0x304].Bit_0x304.FCM_EgoLeLineTyp)
+#define CanTx_SigSet_0x304_FCM_EgoLeLineTyp(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_FCM_5_0x304].Bit_0x304.FCM_EgoLeLineTyp = (uint8_t)Data
+
+#define CanTx_SigGet_0x304_FCM_EgoLeLineHozlDst()\
+    (((uint16_t)CanTxMsg_DataBuffer[CanTxMsgIndex_FCM_5_0x304].Bit_0x304.FCM_EgoLeLineHozlDst_Part0) | ((uint16_t)CanTxMsg_DataBuffer[CanTxMsgIndex_FCM_5_0x304].Bit_0x304.FCM_EgoLeLineHozlDst_Part1 << 6))
+#define CanTx_SigSet_0x304_FCM_EgoLeLineHozlDst(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_FCM_5_0x304].Bit_0x304.FCM_EgoLeLineHozlDst_Part0 = (uint8_t)Data; CanTxMsg_DataBuffer[CanTxMsgIndex_FCM_5_0x304].Bit_0x304.FCM_EgoLeLineHozlDst_Part1 = (uint8_t)(Data >> 6)
+
+#define CanTx_SigGet_0x304_FCM_EgoLeLineCrvt()\
+    (((uint16_t)CanTxMsg_DataBuffer[CanTxMsgIndex_FCM_5_0x304].Bit_0x304.FCM_EgoLeLineCrvt_Part0) | ((uint16_t)CanTxMsg_DataBuffer[CanTxMsgIndex_FCM_5_0x304].Bit_0x304.FCM_EgoLeLineCrvt_Part1 << 8))
+#define CanTx_SigSet_0x304_FCM_EgoLeLineCrvt(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_FCM_5_0x304].Bit_0x304.FCM_EgoLeLineCrvt_Part0 = (uint8_t)Data; CanTxMsg_DataBuffer[CanTxMsgIndex_FCM_5_0x304].Bit_0x304.FCM_EgoLeLineCrvt_Part1 = (uint8_t)(Data >> 8)
+
+#define CanTx_SigGet_0x304_FCM_EgoRiLineID()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_FCM_5_0x304].Bit_0x304.FCM_EgoRiLineID)
+#define CanTx_SigSet_0x304_FCM_EgoRiLineID(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_FCM_5_0x304].Bit_0x304.FCM_EgoRiLineID = (uint8_t)Data
+
+#define CanTx_SigGet_0x304_FCM_EgoRiLineColor()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_FCM_5_0x304].Bit_0x304.FCM_EgoRiLineColor)
+#define CanTx_SigSet_0x304_FCM_EgoRiLineColor(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_FCM_5_0x304].Bit_0x304.FCM_EgoRiLineColor = (uint8_t)Data
+
+#define CanTx_SigGet_0x304_FCM_EgoRiLineTyp()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_FCM_5_0x304].Bit_0x304.FCM_EgoRiLineTyp)
+#define CanTx_SigSet_0x304_FCM_EgoRiLineTyp(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_FCM_5_0x304].Bit_0x304.FCM_EgoRiLineTyp = (uint8_t)Data
+
+#define CanTx_SigGet_0x304_FCM_EgoRiLineHozlDst()\
+    (((uint16_t)CanTxMsg_DataBuffer[CanTxMsgIndex_FCM_5_0x304].Bit_0x304.FCM_EgoRiLineHozlDst_Part0) | ((uint16_t)CanTxMsg_DataBuffer[CanTxMsgIndex_FCM_5_0x304].Bit_0x304.FCM_EgoRiLineHozlDst_Part1 << 6))
+#define CanTx_SigSet_0x304_FCM_EgoRiLineHozlDst(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_FCM_5_0x304].Bit_0x304.FCM_EgoRiLineHozlDst_Part0 = (uint8_t)Data; CanTxMsg_DataBuffer[CanTxMsgIndex_FCM_5_0x304].Bit_0x304.FCM_EgoRiLineHozlDst_Part1 = (uint8_t)(Data >> 6)
+
+#define CanTx_SigGet_0x304_FCM_EgoRiLineCrvt()\
+    (((uint16_t)CanTxMsg_DataBuffer[CanTxMsgIndex_FCM_5_0x304].Bit_0x304.FCM_EgoRiLineCrvt_Part0) | ((uint16_t)CanTxMsg_DataBuffer[CanTxMsgIndex_FCM_5_0x304].Bit_0x304.FCM_EgoRiLineCrvt_Part1 << 8))
+#define CanTx_SigSet_0x304_FCM_EgoRiLineCrvt(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_FCM_5_0x304].Bit_0x304.FCM_EgoRiLineCrvt_Part0 = (uint8_t)Data; CanTxMsg_DataBuffer[CanTxMsgIndex_FCM_5_0x304].Bit_0x304.FCM_EgoRiLineCrvt_Part1 = (uint8_t)(Data >> 8)
+
+#define CanTx_SigGet_0x304_FCM_5_RollingCounter()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_FCM_5_0x304].Bit_0x304.FCM_5_RollingCounter)
+#define CanTx_SigSet_0x304_FCM_5_RollingCounter(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_FCM_5_0x304].Bit_0x304.FCM_5_RollingCounter = (uint8_t)Data
+
+#define CanTx_SigGet_0x304_FCM_5_Checksum()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_FCM_5_0x304].Bit_0x304.FCM_5_Checksum)
+#define CanTx_SigSet_0x304_FCM_5_Checksum(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_FCM_5_0x304].Bit_0x304.FCM_5_Checksum = (uint8_t)Data
+
+#define CanTx_SigGet_0x305_FCM_NeborLeLineID()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_FCM_6_0x305].Bit_0x305.FCM_NeborLeLineID)
+#define CanTx_SigSet_0x305_FCM_NeborLeLineID(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_FCM_6_0x305].Bit_0x305.FCM_NeborLeLineID = (uint8_t)Data
+
+#define CanTx_SigGet_0x305_FCM_NeborLeLineColor()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_FCM_6_0x305].Bit_0x305.FCM_NeborLeLineColor)
+#define CanTx_SigSet_0x305_FCM_NeborLeLineColor(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_FCM_6_0x305].Bit_0x305.FCM_NeborLeLineColor = (uint8_t)Data
+
+#define CanTx_SigGet_0x305_FCM_NeborLeLineTyp()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_FCM_6_0x305].Bit_0x305.FCM_NeborLeLineTyp)
+#define CanTx_SigSet_0x305_FCM_NeborLeLineTyp(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_FCM_6_0x305].Bit_0x305.FCM_NeborLeLineTyp = (uint8_t)Data
+
+#define CanTx_SigGet_0x305_FCM_NeborLeLineHozlDst()\
+    (((uint16_t)CanTxMsg_DataBuffer[CanTxMsgIndex_FCM_6_0x305].Bit_0x305.FCM_NeborLeLineHozlDst_Part0) | ((uint16_t)CanTxMsg_DataBuffer[CanTxMsgIndex_FCM_6_0x305].Bit_0x305.FCM_NeborLeLineHozlDst_Part1 << 6))
+#define CanTx_SigSet_0x305_FCM_NeborLeLineHozlDst(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_FCM_6_0x305].Bit_0x305.FCM_NeborLeLineHozlDst_Part0 = (uint8_t)Data; CanTxMsg_DataBuffer[CanTxMsgIndex_FCM_6_0x305].Bit_0x305.FCM_NeborLeLineHozlDst_Part1 = (uint8_t)(Data >> 6)
+
+#define CanTx_SigGet_0x305_FCM_NeborLeLineCrvt()\
+    (((uint16_t)CanTxMsg_DataBuffer[CanTxMsgIndex_FCM_6_0x305].Bit_0x305.FCM_NeborLeLineCrvt_Part0) | ((uint16_t)CanTxMsg_DataBuffer[CanTxMsgIndex_FCM_6_0x305].Bit_0x305.FCM_NeborLeLineCrvt_Part1 << 8))
+#define CanTx_SigSet_0x305_FCM_NeborLeLineCrvt(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_FCM_6_0x305].Bit_0x305.FCM_NeborLeLineCrvt_Part0 = (uint8_t)Data; CanTxMsg_DataBuffer[CanTxMsgIndex_FCM_6_0x305].Bit_0x305.FCM_NeborLeLineCrvt_Part1 = (uint8_t)(Data >> 8)
+
+#define CanTx_SigGet_0x305_FCM_NeborRiLineID()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_FCM_6_0x305].Bit_0x305.FCM_NeborRiLineID)
+#define CanTx_SigSet_0x305_FCM_NeborRiLineID(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_FCM_6_0x305].Bit_0x305.FCM_NeborRiLineID = (uint8_t)Data
+
+#define CanTx_SigGet_0x305_FCM_NeborRiLineColor()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_FCM_6_0x305].Bit_0x305.FCM_NeborRiLineColor)
+#define CanTx_SigSet_0x305_FCM_NeborRiLineColor(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_FCM_6_0x305].Bit_0x305.FCM_NeborRiLineColor = (uint8_t)Data
+
+#define CanTx_SigGet_0x305_FCM_NeborRiLineTyp()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_FCM_6_0x305].Bit_0x305.FCM_NeborRiLineTyp)
+#define CanTx_SigSet_0x305_FCM_NeborRiLineTyp(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_FCM_6_0x305].Bit_0x305.FCM_NeborRiLineTyp = (uint8_t)Data
+
+#define CanTx_SigGet_0x305_FCM_NeborRiLineHozlDst()\
+    (((uint16_t)CanTxMsg_DataBuffer[CanTxMsgIndex_FCM_6_0x305].Bit_0x305.FCM_NeborRiLineHozlDst_Part0) | ((uint16_t)CanTxMsg_DataBuffer[CanTxMsgIndex_FCM_6_0x305].Bit_0x305.FCM_NeborRiLineHozlDst_Part1 << 6))
+#define CanTx_SigSet_0x305_FCM_NeborRiLineHozlDst(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_FCM_6_0x305].Bit_0x305.FCM_NeborRiLineHozlDst_Part0 = (uint8_t)Data; CanTxMsg_DataBuffer[CanTxMsgIndex_FCM_6_0x305].Bit_0x305.FCM_NeborRiLineHozlDst_Part1 = (uint8_t)(Data >> 6)
+
+#define CanTx_SigGet_0x305_FCM_NeborRiLineCrvt()\
+    (((uint16_t)CanTxMsg_DataBuffer[CanTxMsgIndex_FCM_6_0x305].Bit_0x305.FCM_NeborRiLineCrvt_Part0) | ((uint16_t)CanTxMsg_DataBuffer[CanTxMsgIndex_FCM_6_0x305].Bit_0x305.FCM_NeborRiLineCrvt_Part1 << 8))
+#define CanTx_SigSet_0x305_FCM_NeborRiLineCrvt(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_FCM_6_0x305].Bit_0x305.FCM_NeborRiLineCrvt_Part0 = (uint8_t)Data; CanTxMsg_DataBuffer[CanTxMsgIndex_FCM_6_0x305].Bit_0x305.FCM_NeborRiLineCrvt_Part1 = (uint8_t)(Data >> 8)
+
+#define CanTx_SigGet_0x305_FCM_6_RollingCounter()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_FCM_6_0x305].Bit_0x305.FCM_6_RollingCounter)
+#define CanTx_SigSet_0x305_FCM_6_RollingCounter(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_FCM_6_0x305].Bit_0x305.FCM_6_RollingCounter = (uint8_t)Data
+
+#define CanTx_SigGet_0x305_FCM_6_Checksum()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_FCM_6_0x305].Bit_0x305.FCM_6_Checksum)
+#define CanTx_SigSet_0x305_FCM_6_Checksum(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_FCM_6_0x305].Bit_0x305.FCM_6_Checksum = (uint8_t)Data
+
+#define CanTx_SigGet_0x306_FCM_ACCObjID()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_FCM_7_0x306].Bit_0x306.FCM_ACCObjID)
+#define CanTx_SigSet_0x306_FCM_ACCObjID(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_FCM_7_0x306].Bit_0x306.FCM_ACCObjID = (uint8_t)Data
+
+#define CanTx_SigGet_0x306_FCM_ACCObjTyp()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_FCM_7_0x306].Bit_0x306.FCM_ACCObjTyp)
+#define CanTx_SigSet_0x306_FCM_ACCObjTyp(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_FCM_7_0x306].Bit_0x306.FCM_ACCObjTyp = (uint8_t)Data
+
+#define CanTx_SigGet_0x306_FCM_ACC_TargetVehicleSubType()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_FCM_7_0x306].Bit_0x306.FCM_ACC_TargetVehicleSubType)
+#define CanTx_SigSet_0x306_FCM_ACC_TargetVehicleSubType(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_FCM_7_0x306].Bit_0x306.FCM_ACC_TargetVehicleSubType = (uint8_t)Data
+
+#define CanTx_SigGet_0x306_FCM_dxTarObjcolor()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_FCM_7_0x306].Bit_0x306.FCM_dxTarObjcolor)
+#define CanTx_SigSet_0x306_FCM_dxTarObjcolor(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_FCM_7_0x306].Bit_0x306.FCM_dxTarObjcolor = (uint8_t)Data
+
+#define CanTx_SigGet_0x306_FCM_ACCObjLgtDstX()\
+    (((uint8_t)CanTxMsg_DataBuffer[CanTxMsgIndex_FCM_7_0x306].Bit_0x306.FCM_ACCObjLgtDstX_Part0) | ((uint8_t)CanTxMsg_DataBuffer[CanTxMsgIndex_FCM_7_0x306].Bit_0x306.FCM_ACCObjLgtDstX_Part1 << 3))
+#define CanTx_SigSet_0x306_FCM_ACCObjLgtDstX(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_FCM_7_0x306].Bit_0x306.FCM_ACCObjLgtDstX_Part0 = (uint8_t)Data; CanTxMsg_DataBuffer[CanTxMsgIndex_FCM_7_0x306].Bit_0x306.FCM_ACCObjLgtDstX_Part1 = (uint8_t)(Data >> 3)
+
+#define CanTx_SigGet_0x306_FCM_ACCObjHozDstY()\
+    (((uint16_t)CanTxMsg_DataBuffer[CanTxMsgIndex_FCM_7_0x306].Bit_0x306.FCM_ACCObjHozDstY_Part0) | ((uint16_t)CanTxMsg_DataBuffer[CanTxMsgIndex_FCM_7_0x306].Bit_0x306.FCM_ACCObjHozDstY_Part1 << 5))
+#define CanTx_SigSet_0x306_FCM_ACCObjHozDstY(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_FCM_7_0x306].Bit_0x306.FCM_ACCObjHozDstY_Part0 = (uint8_t)Data; CanTxMsg_DataBuffer[CanTxMsgIndex_FCM_7_0x306].Bit_0x306.FCM_ACCObjHozDstY_Part1 = (uint8_t)(Data >> 5)
+
+#define CanTx_SigGet_0x306_FCM_FrntFarObjID()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_FCM_7_0x306].Bit_0x306.FCM_FrntFarObjID)
+#define CanTx_SigSet_0x306_FCM_FrntFarObjID(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_FCM_7_0x306].Bit_0x306.FCM_FrntFarObjID = (uint8_t)Data
+
+#define CanTx_SigGet_0x306_FCM_FrntFarObjTyp()\
+    (((uint8_t)CanTxMsg_DataBuffer[CanTxMsgIndex_FCM_7_0x306].Bit_0x306.FCM_FrntFarObjTyp_Part0) | ((uint8_t)CanTxMsg_DataBuffer[CanTxMsgIndex_FCM_7_0x306].Bit_0x306.FCM_FrntFarObjTyp_Part1 << 2))
+#define CanTx_SigSet_0x306_FCM_FrntFarObjTyp(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_FCM_7_0x306].Bit_0x306.FCM_FrntFarObjTyp_Part0 = (uint8_t)Data; CanTxMsg_DataBuffer[CanTxMsgIndex_FCM_7_0x306].Bit_0x306.FCM_FrntFarObjTyp_Part1 = (uint8_t)(Data >> 2)
+
+#define CanTx_SigGet_0x306_FCM_FrntFarObjLgtDstX()\
+    (((uint8_t)CanTxMsg_DataBuffer[CanTxMsgIndex_FCM_7_0x306].Bit_0x306.FCM_FrntFarObjLgtDstX_Part0) | ((uint8_t)CanTxMsg_DataBuffer[CanTxMsgIndex_FCM_7_0x306].Bit_0x306.FCM_FrntFarObjLgtDstX_Part1 << 2))
+#define CanTx_SigSet_0x306_FCM_FrntFarObjLgtDstX(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_FCM_7_0x306].Bit_0x306.FCM_FrntFarObjLgtDstX_Part0 = (uint8_t)Data; CanTxMsg_DataBuffer[CanTxMsgIndex_FCM_7_0x306].Bit_0x306.FCM_FrntFarObjLgtDstX_Part1 = (uint8_t)(Data >> 2)
+
+#define CanTx_SigGet_0x306_FCM_FrntFarObjHozDstY()\
+    (((uint16_t)CanTxMsg_DataBuffer[CanTxMsgIndex_FCM_7_0x306].Bit_0x306.FCM_FrntFarObjHozDstY_Part0) | ((uint16_t)CanTxMsg_DataBuffer[CanTxMsgIndex_FCM_7_0x306].Bit_0x306.FCM_FrntFarObjHozDstY_Part1 << 4))
+#define CanTx_SigSet_0x306_FCM_FrntFarObjHozDstY(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_FCM_7_0x306].Bit_0x306.FCM_FrntFarObjHozDstY_Part0 = (uint8_t)Data; CanTxMsg_DataBuffer[CanTxMsgIndex_FCM_7_0x306].Bit_0x306.FCM_FrntFarObjHozDstY_Part1 = (uint8_t)(Data >> 4)
+
+#define CanTx_SigGet_0x306_FCM_7_RollingCounter()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_FCM_7_0x306].Bit_0x306.FCM_7_RollingCounter)
+#define CanTx_SigSet_0x306_FCM_7_RollingCounter(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_FCM_7_0x306].Bit_0x306.FCM_7_RollingCounter = (uint8_t)Data
+
+#define CanTx_SigGet_0x306_FCM_7_Checksum()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_FCM_7_0x306].Bit_0x306.FCM_7_Checksum)
+#define CanTx_SigSet_0x306_FCM_7_Checksum(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_FCM_7_0x306].Bit_0x306.FCM_7_Checksum = (uint8_t)Data
+
+#define CanTx_SigGet_0x307_FCM_RiObjID()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_FCM_8_0x307].Bit_0x307.FCM_RiObjID)
+#define CanTx_SigSet_0x307_FCM_RiObjID(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_FCM_8_0x307].Bit_0x307.FCM_RiObjID = (uint8_t)Data
+
+#define CanTx_SigGet_0x307_FCM_LeObjID()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_FCM_8_0x307].Bit_0x307.FCM_LeObjID)
+#define CanTx_SigSet_0x307_FCM_LeObjID(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_FCM_8_0x307].Bit_0x307.FCM_LeObjID = (uint8_t)Data
+
+#define CanTx_SigGet_0x307_FCM_LeObjTyp()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_FCM_8_0x307].Bit_0x307.FCM_LeObjTyp)
+#define CanTx_SigSet_0x307_FCM_LeObjTyp(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_FCM_8_0x307].Bit_0x307.FCM_LeObjTyp = (uint8_t)Data
+
+#define CanTx_SigGet_0x307_FCM_ACC_LeftTargetVehicleSubType()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_FCM_8_0x307].Bit_0x307.FCM_ACC_LeftTargetVehicleSubType)
+#define CanTx_SigSet_0x307_FCM_ACC_LeftTargetVehicleSubType(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_FCM_8_0x307].Bit_0x307.FCM_ACC_LeftTargetVehicleSubType = (uint8_t)Data
+
+#define CanTx_SigGet_0x307_FCM_LeObjLgtDstX()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_FCM_8_0x307].Bit_0x307.FCM_LeObjLgtDstX)
+#define CanTx_SigSet_0x307_FCM_LeObjLgtDstX(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_FCM_8_0x307].Bit_0x307.FCM_LeObjLgtDstX = (uint8_t)Data
+
+#define CanTx_SigGet_0x307_FCM_LeObjHozDstY()\
+    (((uint16_t)CanTxMsg_DataBuffer[CanTxMsgIndex_FCM_8_0x307].Bit_0x307.FCM_LeObjHozDstY_Part0) | ((uint16_t)CanTxMsg_DataBuffer[CanTxMsgIndex_FCM_8_0x307].Bit_0x307.FCM_LeObjHozDstY_Part1 << 2))
+#define CanTx_SigSet_0x307_FCM_LeObjHozDstY(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_FCM_8_0x307].Bit_0x307.FCM_LeObjHozDstY_Part0 = (uint8_t)Data; CanTxMsg_DataBuffer[CanTxMsgIndex_FCM_8_0x307].Bit_0x307.FCM_LeObjHozDstY_Part1 = (uint8_t)(Data >> 2)
+
+#define CanTx_SigGet_0x307_FCM_RiObjTyp()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_FCM_8_0x307].Bit_0x307.FCM_RiObjTyp)
+#define CanTx_SigSet_0x307_FCM_RiObjTyp(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_FCM_8_0x307].Bit_0x307.FCM_RiObjTyp = (uint8_t)Data
+
+#define CanTx_SigGet_0x307_FCM_ACC_RightTargetVehicleSubTyp()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_FCM_8_0x307].Bit_0x307.FCM_ACC_RightTargetVehicleSubTyp)
+#define CanTx_SigSet_0x307_FCM_ACC_RightTargetVehicleSubTyp(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_FCM_8_0x307].Bit_0x307.FCM_ACC_RightTargetVehicleSubTyp = (uint8_t)Data
+
+#define CanTx_SigGet_0x307_FCM_RiObjLgtDstX()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_FCM_8_0x307].Bit_0x307.FCM_RiObjLgtDstX)
+#define CanTx_SigSet_0x307_FCM_RiObjLgtDstX(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_FCM_8_0x307].Bit_0x307.FCM_RiObjLgtDstX = (uint8_t)Data
+
+#define CanTx_SigGet_0x307_FCM_RiObjHozDstY()\
+    (((uint16_t)CanTxMsg_DataBuffer[CanTxMsgIndex_FCM_8_0x307].Bit_0x307.FCM_RiObjHozDstY_Part0) | ((uint16_t)CanTxMsg_DataBuffer[CanTxMsgIndex_FCM_8_0x307].Bit_0x307.FCM_RiObjHozDstY_Part1 << 2))
+#define CanTx_SigSet_0x307_FCM_RiObjHozDstY(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_FCM_8_0x307].Bit_0x307.FCM_RiObjHozDstY_Part0 = (uint8_t)Data; CanTxMsg_DataBuffer[CanTxMsgIndex_FCM_8_0x307].Bit_0x307.FCM_RiObjHozDstY_Part1 = (uint8_t)(Data >> 2)
+
+#define CanTx_SigGet_0x307_FCM_8_RollingCounter()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_FCM_8_0x307].Bit_0x307.FCM_8_RollingCounter)
+#define CanTx_SigSet_0x307_FCM_8_RollingCounter(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_FCM_8_0x307].Bit_0x307.FCM_8_RollingCounter = (uint8_t)Data
+
+#define CanTx_SigGet_0x307_FCM_8_Checksum()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_FCM_8_0x307].Bit_0x307.FCM_8_Checksum)
+#define CanTx_SigSet_0x307_FCM_8_Checksum(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_FCM_8_0x307].Bit_0x307.FCM_8_Checksum = (uint8_t)Data
+
+#define CanTx_SigGet_0x150_EMS_2_EngineSpeed()\
+    (((uint16_t)CanTxMsg_DataBuffer[CanTxMsgIndex_GW_PC_1_0x150].Bit_0x150.EMS_2_EngineSpeed_Part0) | ((uint16_t)CanTxMsg_DataBuffer[CanTxMsgIndex_GW_PC_1_0x150].Bit_0x150.EMS_2_EngineSpeed_Part1 << 8))
+#define CanTx_SigSet_0x150_EMS_2_EngineSpeed(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_GW_PC_1_0x150].Bit_0x150.EMS_2_EngineSpeed_Part0 = (uint8_t)Data; CanTxMsg_DataBuffer[CanTxMsgIndex_GW_PC_1_0x150].Bit_0x150.EMS_2_EngineSpeed_Part1 = (uint8_t)(Data >> 8)
+
+#define CanTx_SigGet_0x150_EMS_3_SS_SetSts()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_GW_PC_1_0x150].Bit_0x150.EMS_3_SS_SetSts)
+#define CanTx_SigSet_0x150_EMS_3_SS_SetSts(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_GW_PC_1_0x150].Bit_0x150.EMS_3_SS_SetSts = (uint8_t)Data
+
+#define CanTx_SigGet_0x150_TCU_1_TcuFaultLamp()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_GW_PC_1_0x150].Bit_0x150.TCU_1_TcuFaultLamp)
+#define CanTx_SigSet_0x150_TCU_1_TcuFaultLamp(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_GW_PC_1_0x150].Bit_0x150.TCU_1_TcuFaultLamp = (uint8_t)Data
+
+#define CanTx_SigGet_0x150_EMS_3_SS_Fault_Lamp()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_GW_PC_1_0x150].Bit_0x150.EMS_3_SS_Fault_Lamp)
+#define CanTx_SigSet_0x150_EMS_3_SS_Fault_Lamp(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_GW_PC_1_0x150].Bit_0x150.EMS_3_SS_Fault_Lamp = (uint8_t)Data
+
+#define CanTx_SigGet_0x150_EMS_3_SS_Active_Lamp()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_GW_PC_1_0x150].Bit_0x150.EMS_3_SS_Active_Lamp)
+#define CanTx_SigSet_0x150_EMS_3_SS_Active_Lamp(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_GW_PC_1_0x150].Bit_0x150.EMS_3_SS_Active_Lamp = (uint8_t)Data
+
+#define CanTx_SigGet_0x150_EMS_3_SS_Screen_tip()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_GW_PC_1_0x150].Bit_0x150.EMS_3_SS_Screen_tip)
+#define CanTx_SigSet_0x150_EMS_3_SS_Screen_tip(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_GW_PC_1_0x150].Bit_0x150.EMS_3_SS_Screen_tip = (uint8_t)Data
+
+#define CanTx_SigGet_0x150_EMS_3_EngineReleaseSig()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_GW_PC_1_0x150].Bit_0x150.EMS_3_EngineReleaseSig)
+#define CanTx_SigSet_0x150_EMS_3_EngineReleaseSig(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_GW_PC_1_0x150].Bit_0x150.EMS_3_EngineReleaseSig = (uint8_t)Data
+
+#define CanTx_SigGet_0x150_EMS_2_EngineSpeedValid()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_GW_PC_1_0x150].Bit_0x150.EMS_2_EngineSpeedValid)
+#define CanTx_SigSet_0x150_EMS_2_EngineSpeedValid(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_GW_PC_1_0x150].Bit_0x150.EMS_2_EngineSpeedValid = (uint8_t)Data
+
+#define CanTx_SigGet_0x150_TCU_1_ActualGearValid()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_GW_PC_1_0x150].Bit_0x150.TCU_1_ActualGearValid)
+#define CanTx_SigSet_0x150_TCU_1_ActualGearValid(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_GW_PC_1_0x150].Bit_0x150.TCU_1_ActualGearValid = (uint8_t)Data
+
+#define CanTx_SigGet_0x150_TCU_1_TransOilWrnLmpReq()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_GW_PC_1_0x150].Bit_0x150.TCU_1_TransOilWrnLmpReq)
+#define CanTx_SigSet_0x150_TCU_1_TransOilWrnLmpReq(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_GW_PC_1_0x150].Bit_0x150.TCU_1_TransOilWrnLmpReq = (uint8_t)Data
+
+#define CanTx_SigGet_0x150_TCU_3_Drivemode()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_GW_PC_1_0x150].Bit_0x150.TCU_3_Drivemode)
+#define CanTx_SigSet_0x150_TCU_3_Drivemode(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_GW_PC_1_0x150].Bit_0x150.TCU_3_Drivemode = (uint8_t)Data
+
+#define CanTx_SigGet_0x150_TCU_1_ActualGear()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_GW_PC_1_0x150].Bit_0x150.TCU_1_ActualGear)
+#define CanTx_SigSet_0x150_TCU_1_ActualGear(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_GW_PC_1_0x150].Bit_0x150.TCU_1_ActualGear = (uint8_t)Data
+
+#define CanTx_SigGet_0x150_TCU_1_ShiftRecommendation()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_GW_PC_1_0x150].Bit_0x150.TCU_1_ShiftRecommendation)
+#define CanTx_SigSet_0x150_TCU_1_ShiftRecommendation(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_GW_PC_1_0x150].Bit_0x150.TCU_1_ShiftRecommendation = (uint8_t)Data
+
+#define CanTx_SigGet_0x150_TCU_1_GearShiftPositionValid()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_GW_PC_1_0x150].Bit_0x150.TCU_1_GearShiftPositionValid)
+#define CanTx_SigSet_0x150_TCU_1_GearShiftPositionValid(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_GW_PC_1_0x150].Bit_0x150.TCU_1_GearShiftPositionValid = (uint8_t)Data
+
+#define CanTx_SigGet_0x150_TCU_1_GearShiftPosition()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_GW_PC_1_0x150].Bit_0x150.TCU_1_GearShiftPosition)
+#define CanTx_SigSet_0x150_TCU_1_GearShiftPosition(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_GW_PC_1_0x150].Bit_0x150.TCU_1_GearShiftPosition = (uint8_t)Data
+
+#define CanTx_SigGet_0x150_TCU_1_IcInformaition()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_GW_PC_1_0x150].Bit_0x150.TCU_1_IcInformaition)
+#define CanTx_SigSet_0x150_TCU_1_IcInformaition(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_GW_PC_1_0x150].Bit_0x150.TCU_1_IcInformaition = (uint8_t)Data
+
+#define CanTx_SigGet_0x150_EMS_3_EngineStatus()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_GW_PC_1_0x150].Bit_0x150.EMS_3_EngineStatus)
+#define CanTx_SigSet_0x150_EMS_3_EngineStatus(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_GW_PC_1_0x150].Bit_0x150.EMS_3_EngineStatus = (uint8_t)Data
+
+#define CanTx_SigGet_0x150_TCU_3_Timeout_Flag()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_GW_PC_1_0x150].Bit_0x150.TCU_3_Timeout_Flag)
+#define CanTx_SigSet_0x150_TCU_3_Timeout_Flag(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_GW_PC_1_0x150].Bit_0x150.TCU_3_Timeout_Flag = (uint8_t)Data
+
+#define CanTx_SigGet_0x150_TCU_1_Timeout_Flag()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_GW_PC_1_0x150].Bit_0x150.TCU_1_Timeout_Flag)
+#define CanTx_SigSet_0x150_TCU_1_Timeout_Flag(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_GW_PC_1_0x150].Bit_0x150.TCU_1_Timeout_Flag = (uint8_t)Data
+
+#define CanTx_SigGet_0x150_EMS_3_Timeout_Flag()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_GW_PC_1_0x150].Bit_0x150.EMS_3_Timeout_Flag)
+#define CanTx_SigSet_0x150_EMS_3_Timeout_Flag(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_GW_PC_1_0x150].Bit_0x150.EMS_3_Timeout_Flag = (uint8_t)Data
+
+#define CanTx_SigGet_0x150_EMS_2_Timeout_Flag()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_GW_PC_1_0x150].Bit_0x150.EMS_2_Timeout_Flag)
+#define CanTx_SigSet_0x150_EMS_2_Timeout_Flag(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_GW_PC_1_0x150].Bit_0x150.EMS_2_Timeout_Flag = (uint8_t)Data
+
+#define CanTx_SigGet_0x155_EMS_4_EngineCoolantTemp()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_GW_PC_6_0x155].Bit_0x155.EMS_4_EngineCoolantTemp)
+#define CanTx_SigSet_0x155_EMS_4_EngineCoolantTemp(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_GW_PC_6_0x155].Bit_0x155.EMS_4_EngineCoolantTemp = (uint8_t)Data
+
+#define CanTx_SigGet_0x155_EMS_4_FuelConsumption()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_GW_PC_6_0x155].Bit_0x155.EMS_4_FuelConsumption)
+#define CanTx_SigSet_0x155_EMS_4_FuelConsumption(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_GW_PC_6_0x155].Bit_0x155.EMS_4_FuelConsumption = (uint8_t)Data
+
+#define CanTx_SigGet_0x155_EMS_4_CruiseActiveStatus()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_GW_PC_6_0x155].Bit_0x155.EMS_4_CruiseActiveStatus)
+#define CanTx_SigSet_0x155_EMS_4_CruiseActiveStatus(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_GW_PC_6_0x155].Bit_0x155.EMS_4_CruiseActiveStatus = (uint8_t)Data
+
+#define CanTx_SigGet_0x155_EMS_4_EngineCoolantTempValid()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_GW_PC_6_0x155].Bit_0x155.EMS_4_EngineCoolantTempValid)
+#define CanTx_SigSet_0x155_EMS_4_EngineCoolantTempValid(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_GW_PC_6_0x155].Bit_0x155.EMS_4_EngineCoolantTempValid = (uint8_t)Data
+
+#define CanTx_SigGet_0x155_EMS_4_CruiseControlStatus()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_GW_PC_6_0x155].Bit_0x155.EMS_4_CruiseControlStatus)
+#define CanTx_SigSet_0x155_EMS_4_CruiseControlStatus(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_GW_PC_6_0x155].Bit_0x155.EMS_4_CruiseControlStatus = (uint8_t)Data
+
+#define CanTx_SigGet_0x155_EMS_4_MIL()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_GW_PC_6_0x155].Bit_0x155.EMS_4_MIL)
+#define CanTx_SigSet_0x155_EMS_4_MIL(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_GW_PC_6_0x155].Bit_0x155.EMS_4_MIL = (uint8_t)Data
+
+#define CanTx_SigGet_0x155_EMS_4_SVS()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_GW_PC_6_0x155].Bit_0x155.EMS_4_SVS)
+#define CanTx_SigSet_0x155_EMS_4_SVS(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_GW_PC_6_0x155].Bit_0x155.EMS_4_SVS = (uint8_t)Data
+
+#define CanTx_SigGet_0x155_TCU_3_TargetGearValid()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_GW_PC_6_0x155].Bit_0x155.TCU_3_TargetGearValid)
+#define CanTx_SigSet_0x155_TCU_3_TargetGearValid(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_GW_PC_6_0x155].Bit_0x155.TCU_3_TargetGearValid = (uint8_t)Data
+
+#define CanTx_SigGet_0x155_EMS_4_CruiseMainLamp()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_GW_PC_6_0x155].Bit_0x155.EMS_4_CruiseMainLamp)
+#define CanTx_SigSet_0x155_EMS_4_CruiseMainLamp(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_GW_PC_6_0x155].Bit_0x155.EMS_4_CruiseMainLamp = (uint8_t)Data
+
+#define CanTx_SigGet_0x155_EMS_4_CruiseTargetSpeed()\
+    (((uint16_t)CanTxMsg_DataBuffer[CanTxMsgIndex_GW_PC_6_0x155].Bit_0x155.EMS_4_CruiseTargetSpeed_Part0) | ((uint16_t)CanTxMsg_DataBuffer[CanTxMsgIndex_GW_PC_6_0x155].Bit_0x155.EMS_4_CruiseTargetSpeed_Part1 << 8))
+#define CanTx_SigSet_0x155_EMS_4_CruiseTargetSpeed(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_GW_PC_6_0x155].Bit_0x155.EMS_4_CruiseTargetSpeed_Part0 = (uint8_t)Data; CanTxMsg_DataBuffer[CanTxMsgIndex_GW_PC_6_0x155].Bit_0x155.EMS_4_CruiseTargetSpeed_Part1 = (uint8_t)(Data >> 8)
+
+#define CanTx_SigGet_0x155_TCU_3_TargetGear()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_GW_PC_6_0x155].Bit_0x155.TCU_3_TargetGear)
+#define CanTx_SigSet_0x155_TCU_3_TargetGear(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_GW_PC_6_0x155].Bit_0x155.TCU_3_TargetGear = (uint8_t)Data
+
+#define CanTx_SigGet_0x155_TCU_3_DrivemodeOprationNotice()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_GW_PC_6_0x155].Bit_0x155.TCU_3_DrivemodeOprationNotice)
+#define CanTx_SigSet_0x155_TCU_3_DrivemodeOprationNotice(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_GW_PC_6_0x155].Bit_0x155.TCU_3_DrivemodeOprationNotice = (uint8_t)Data
+
+#define CanTx_SigGet_0x155_EMS_6_OilPressure()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_GW_PC_6_0x155].Bit_0x155.EMS_6_OilPressure)
+#define CanTx_SigSet_0x155_EMS_6_OilPressure(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_GW_PC_6_0x155].Bit_0x155.EMS_6_OilPressure = (uint8_t)Data
+
+#define CanTx_SigGet_0x155_EMS_6_OilPressureLamp()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_GW_PC_6_0x155].Bit_0x155.EMS_6_OilPressureLamp)
+#define CanTx_SigSet_0x155_EMS_6_OilPressureLamp(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_GW_PC_6_0x155].Bit_0x155.EMS_6_OilPressureLamp = (uint8_t)Data
+
+#define CanTx_SigGet_0x155_EMS_6_GeneratorFaultLamp()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_GW_PC_6_0x155].Bit_0x155.EMS_6_GeneratorFaultLamp)
+#define CanTx_SigSet_0x155_EMS_6_GeneratorFaultLamp(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_GW_PC_6_0x155].Bit_0x155.EMS_6_GeneratorFaultLamp = (uint8_t)Data
+
+#define CanTx_SigGet_0x155_EMS_6_GPFState()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_GW_PC_6_0x155].Bit_0x155.EMS_6_GPFState)
+#define CanTx_SigSet_0x155_EMS_6_GPFState(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_GW_PC_6_0x155].Bit_0x155.EMS_6_GPFState = (uint8_t)Data
+
+#define CanTx_SigGet_0x155_TCU_3_Timeout_Flag1()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_GW_PC_6_0x155].Bit_0x155.TCU_3_Timeout_Flag1)
+#define CanTx_SigSet_0x155_TCU_3_Timeout_Flag1(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_GW_PC_6_0x155].Bit_0x155.TCU_3_Timeout_Flag1 = (uint8_t)Data
+
+#define CanTx_SigGet_0x155_EMS_6_Timeout_Flag()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_GW_PC_6_0x155].Bit_0x155.EMS_6_Timeout_Flag)
+#define CanTx_SigSet_0x155_EMS_6_Timeout_Flag(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_GW_PC_6_0x155].Bit_0x155.EMS_6_Timeout_Flag = (uint8_t)Data
+
+#define CanTx_SigGet_0x155_EMS_4_Timeout_Flag()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_GW_PC_6_0x155].Bit_0x155.EMS_4_Timeout_Flag)
+#define CanTx_SigSet_0x155_EMS_4_Timeout_Flag(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_GW_PC_6_0x155].Bit_0x155.EMS_4_Timeout_Flag = (uint8_t)Data
+
+#define CanTx_SigGet_0x250_ESP_1_HDCControl()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_GW_PC_2_0x250].Bit_0x250.ESP_1_HDCControl)
+#define CanTx_SigSet_0x250_ESP_1_HDCControl(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_GW_PC_2_0x250].Bit_0x250.ESP_1_HDCControl = (uint8_t)Data
+
+#define CanTx_SigGet_0x250_ESP_1_DVTSessionFlag()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_GW_PC_2_0x250].Bit_0x250.ESP_1_DVTSessionFlag)
+#define CanTx_SigSet_0x250_ESP_1_DVTSessionFlag(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_GW_PC_2_0x250].Bit_0x250.ESP_1_DVTSessionFlag = (uint8_t)Data
+
+#define CanTx_SigGet_0x250_ESP_1_TCSFault()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_GW_PC_2_0x250].Bit_0x250.ESP_1_TCSFault)
+#define CanTx_SigSet_0x250_ESP_1_TCSFault(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_GW_PC_2_0x250].Bit_0x250.ESP_1_TCSFault = (uint8_t)Data
+
+#define CanTx_SigGet_0x250_ESP_1_ESPFault()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_GW_PC_2_0x250].Bit_0x250.ESP_1_ESPFault)
+#define CanTx_SigSet_0x250_ESP_1_ESPFault(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_GW_PC_2_0x250].Bit_0x250.ESP_1_ESPFault = (uint8_t)Data
+
+#define CanTx_SigGet_0x250_ESP_1_TCSActive()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_GW_PC_2_0x250].Bit_0x250.ESP_1_TCSActive)
+#define CanTx_SigSet_0x250_ESP_1_TCSActive(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_GW_PC_2_0x250].Bit_0x250.ESP_1_TCSActive = (uint8_t)Data
+
+#define CanTx_SigGet_0x250_ESP_1_ESPActive()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_GW_PC_2_0x250].Bit_0x250.ESP_1_ESPActive)
+#define CanTx_SigSet_0x250_ESP_1_ESPActive(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_GW_PC_2_0x250].Bit_0x250.ESP_1_ESPActive = (uint8_t)Data
+
+#define CanTx_SigGet_0x250_ESP_1_ESPOff()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_GW_PC_2_0x250].Bit_0x250.ESP_1_ESPOff)
+#define CanTx_SigSet_0x250_ESP_1_ESPOff(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_GW_PC_2_0x250].Bit_0x250.ESP_1_ESPOff = (uint8_t)Data
+
+#define CanTx_SigGet_0x250_ABS_3_AbsActive()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_GW_PC_2_0x250].Bit_0x250.ABS_3_AbsActive)
+#define CanTx_SigSet_0x250_ABS_3_AbsActive(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_GW_PC_2_0x250].Bit_0x250.ABS_3_AbsActive = (uint8_t)Data
+
+#define CanTx_SigGet_0x250_EPB_1_AutoholdValid()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_GW_PC_2_0x250].Bit_0x250.EPB_1_AutoholdValid)
+#define CanTx_SigSet_0x250_EPB_1_AutoholdValid(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_GW_PC_2_0x250].Bit_0x250.EPB_1_AutoholdValid = (uint8_t)Data
+
+#define CanTx_SigGet_0x250_EPB_1_AutoholdActive()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_GW_PC_2_0x250].Bit_0x250.EPB_1_AutoholdActive)
+#define CanTx_SigSet_0x250_EPB_1_AutoholdActive(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_GW_PC_2_0x250].Bit_0x250.EPB_1_AutoholdActive = (uint8_t)Data
+
+#define CanTx_SigGet_0x250_EPB_1_ActiveLamp()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_GW_PC_2_0x250].Bit_0x250.EPB_1_ActiveLamp)
+#define CanTx_SigSet_0x250_EPB_1_ActiveLamp(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_GW_PC_2_0x250].Bit_0x250.EPB_1_ActiveLamp = (uint8_t)Data
+
+#define CanTx_SigGet_0x250_EPB_1_WarningLamp()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_GW_PC_2_0x250].Bit_0x250.EPB_1_WarningLamp)
+#define CanTx_SigSet_0x250_EPB_1_WarningLamp(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_GW_PC_2_0x250].Bit_0x250.EPB_1_WarningLamp = (uint8_t)Data
+
+#define CanTx_SigGet_0x250_EPB_1_AutoHold_Standby()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_GW_PC_2_0x250].Bit_0x250.EPB_1_AutoHold_Standby)
+#define CanTx_SigSet_0x250_EPB_1_AutoHold_Standby(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_GW_PC_2_0x250].Bit_0x250.EPB_1_AutoHold_Standby = (uint8_t)Data
+
+#define CanTx_SigGet_0x250_ESP_1_HDCFault()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_GW_PC_2_0x250].Bit_0x250.ESP_1_HDCFault)
+#define CanTx_SigSet_0x250_ESP_1_HDCFault(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_GW_PC_2_0x250].Bit_0x250.ESP_1_HDCFault = (uint8_t)Data
+
+#define CanTx_SigGet_0x250_ABS_3_VehicleSpeedValid()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_GW_PC_2_0x250].Bit_0x250.ABS_3_VehicleSpeedValid)
+#define CanTx_SigSet_0x250_ABS_3_VehicleSpeedValid(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_GW_PC_2_0x250].Bit_0x250.ABS_3_VehicleSpeedValid = (uint8_t)Data
+
+#define CanTx_SigGet_0x250_ABS_3_AbsFault()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_GW_PC_2_0x250].Bit_0x250.ABS_3_AbsFault)
+#define CanTx_SigSet_0x250_ABS_3_AbsFault(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_GW_PC_2_0x250].Bit_0x250.ABS_3_AbsFault = (uint8_t)Data
+
+#define CanTx_SigGet_0x250_ABS_3_VehicleSpeed()\
+    (((uint16_t)CanTxMsg_DataBuffer[CanTxMsgIndex_GW_PC_2_0x250].Bit_0x250.ABS_3_VehicleSpeed_Part0) | ((uint16_t)CanTxMsg_DataBuffer[CanTxMsgIndex_GW_PC_2_0x250].Bit_0x250.ABS_3_VehicleSpeed_Part1 << 8))
+#define CanTx_SigSet_0x250_ABS_3_VehicleSpeed(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_GW_PC_2_0x250].Bit_0x250.ABS_3_VehicleSpeed_Part0 = (uint8_t)Data; CanTxMsg_DataBuffer[CanTxMsgIndex_GW_PC_2_0x250].Bit_0x250.ABS_3_VehicleSpeed_Part1 = (uint8_t)(Data >> 8)
+
+#define CanTx_SigGet_0x250_SAS_1_CalibratedSt()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_GW_PC_2_0x250].Bit_0x250.SAS_1_CalibratedSt)
+#define CanTx_SigSet_0x250_SAS_1_CalibratedSt(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_GW_PC_2_0x250].Bit_0x250.SAS_1_CalibratedSt = (uint8_t)Data
+
+#define CanTx_SigGet_0x250_SAS_1_FailureSts()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_GW_PC_2_0x250].Bit_0x250.SAS_1_FailureSts)
+#define CanTx_SigSet_0x250_SAS_1_FailureSts(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_GW_PC_2_0x250].Bit_0x250.SAS_1_FailureSts = (uint8_t)Data
+
+#define CanTx_SigGet_0x250_SAS_1_SteeringAngleValid()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_GW_PC_2_0x250].Bit_0x250.SAS_1_SteeringAngleValid)
+#define CanTx_SigSet_0x250_SAS_1_SteeringAngleValid(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_GW_PC_2_0x250].Bit_0x250.SAS_1_SteeringAngleValid = (uint8_t)Data
+
+#define CanTx_SigGet_0x250_ABS_3_EbdFault()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_GW_PC_2_0x250].Bit_0x250.ABS_3_EbdFault)
+#define CanTx_SigSet_0x250_ABS_3_EbdFault(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_GW_PC_2_0x250].Bit_0x250.ABS_3_EbdFault = (uint8_t)Data
+
+#define CanTx_SigGet_0x250_ABS_3_EbdActive()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_GW_PC_2_0x250].Bit_0x250.ABS_3_EbdActive)
+#define CanTx_SigSet_0x250_ABS_3_EbdActive(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_GW_PC_2_0x250].Bit_0x250.ABS_3_EbdActive = (uint8_t)Data
+
+#define CanTx_SigGet_0x250_SAS_1_SteeringAngle()\
+    (((uint16_t)CanTxMsg_DataBuffer[CanTxMsgIndex_GW_PC_2_0x250].Bit_0x250.SAS_1_SteeringAngle_Part0) | ((uint16_t)CanTxMsg_DataBuffer[CanTxMsgIndex_GW_PC_2_0x250].Bit_0x250.SAS_1_SteeringAngle_Part1 << 8))
+#define CanTx_SigSet_0x250_SAS_1_SteeringAngle(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_GW_PC_2_0x250].Bit_0x250.SAS_1_SteeringAngle_Part0 = (uint8_t)Data; CanTxMsg_DataBuffer[CanTxMsgIndex_GW_PC_2_0x250].Bit_0x250.SAS_1_SteeringAngle_Part1 = (uint8_t)(Data >> 8)
+
+#define CanTx_SigGet_0x250_EPB_1_InhibitDriveOffNotice()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_GW_PC_2_0x250].Bit_0x250.EPB_1_InhibitDriveOffNotice)
+#define CanTx_SigSet_0x250_EPB_1_InhibitDriveOffNotice(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_GW_PC_2_0x250].Bit_0x250.EPB_1_InhibitDriveOffNotice = (uint8_t)Data
+
+#define CanTx_SigGet_0x250_SAS_1_Timeout_Flag()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_GW_PC_2_0x250].Bit_0x250.SAS_1_Timeout_Flag)
+#define CanTx_SigSet_0x250_SAS_1_Timeout_Flag(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_GW_PC_2_0x250].Bit_0x250.SAS_1_Timeout_Flag = (uint8_t)Data
+
+#define CanTx_SigGet_0x250_ABS_3_Timeout_Flag()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_GW_PC_2_0x250].Bit_0x250.ABS_3_Timeout_Flag)
+#define CanTx_SigSet_0x250_ABS_3_Timeout_Flag(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_GW_PC_2_0x250].Bit_0x250.ABS_3_Timeout_Flag = (uint8_t)Data
+
+#define CanTx_SigGet_0x250_EPB_1_Timeout_Flag()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_GW_PC_2_0x250].Bit_0x250.EPB_1_Timeout_Flag)
+#define CanTx_SigSet_0x250_EPB_1_Timeout_Flag(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_GW_PC_2_0x250].Bit_0x250.EPB_1_Timeout_Flag = (uint8_t)Data
+
+#define CanTx_SigGet_0x250_ESP_1_Timeout_Flag()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_GW_PC_2_0x250].Bit_0x250.ESP_1_Timeout_Flag)
+#define CanTx_SigSet_0x250_ESP_1_Timeout_Flag(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_GW_PC_2_0x250].Bit_0x250.ESP_1_Timeout_Flag = (uint8_t)Data
+
+#define CanTx_SigGet_0x255_AWD_1_DiagnosticLampRequest()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_GW_PC_7_0x255].Bit_0x255.AWD_1_DiagnosticLampRequest)
+#define CanTx_SigSet_0x255_AWD_1_DiagnosticLampRequest(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_GW_PC_7_0x255].Bit_0x255.AWD_1_DiagnosticLampRequest = (uint8_t)Data
+
+#define CanTx_SigGet_0x255_AWD_1_ShiftSystemEncoderFault()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_GW_PC_7_0x255].Bit_0x255.AWD_1_ShiftSystemEncoderFault)
+#define CanTx_SigSet_0x255_AWD_1_ShiftSystemEncoderFault(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_GW_PC_7_0x255].Bit_0x255.AWD_1_ShiftSystemEncoderFault = (uint8_t)Data
+
+#define CanTx_SigGet_0x255_AWD_1_ShiftSystemStuckinLow()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_GW_PC_7_0x255].Bit_0x255.AWD_1_ShiftSystemStuckinLow)
+#define CanTx_SigSet_0x255_AWD_1_ShiftSystemStuckinLow(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_GW_PC_7_0x255].Bit_0x255.AWD_1_ShiftSystemStuckinLow = (uint8_t)Data
+
+#define CanTx_SigGet_0x255_AWD_1_ShiftSystemActuatorFault()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_GW_PC_7_0x255].Bit_0x255.AWD_1_ShiftSystemActuatorFault)
+#define CanTx_SigSet_0x255_AWD_1_ShiftSystemActuatorFault(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_GW_PC_7_0x255].Bit_0x255.AWD_1_ShiftSystemActuatorFault = (uint8_t)Data
+
+#define CanTx_SigGet_0x255_AWD_1_SystemOperatingMode()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_GW_PC_7_0x255].Bit_0x255.AWD_1_SystemOperatingMode)
+#define CanTx_SigSet_0x255_AWD_1_SystemOperatingMode(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_GW_PC_7_0x255].Bit_0x255.AWD_1_SystemOperatingMode = (uint8_t)Data
+
+#define CanTx_SigGet_0x255_AWD_1_Lamp4WDLow()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_GW_PC_7_0x255].Bit_0x255.AWD_1_Lamp4WDLow)
+#define CanTx_SigSet_0x255_AWD_1_Lamp4WDLow(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_GW_PC_7_0x255].Bit_0x255.AWD_1_Lamp4WDLow = (uint8_t)Data
+
+#define CanTx_SigGet_0x255_AWD_1_Lamp4WDLock()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_GW_PC_7_0x255].Bit_0x255.AWD_1_Lamp4WDLock)
+#define CanTx_SigSet_0x255_AWD_1_Lamp4WDLock(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_GW_PC_7_0x255].Bit_0x255.AWD_1_Lamp4WDLock = (uint8_t)Data
+
+#define CanTx_SigGet_0x255_AWD_1_Lamp2WD()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_GW_PC_7_0x255].Bit_0x255.AWD_1_Lamp2WD)
+#define CanTx_SigSet_0x255_AWD_1_Lamp2WD(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_GW_PC_7_0x255].Bit_0x255.AWD_1_Lamp2WD = (uint8_t)Data
+
+#define CanTx_SigGet_0x255_AWD_1_ClutchCircuitFaultStatus()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_GW_PC_7_0x255].Bit_0x255.AWD_1_ClutchCircuitFaultStatus)
+#define CanTx_SigSet_0x255_AWD_1_ClutchCircuitFaultStatus(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_GW_PC_7_0x255].Bit_0x255.AWD_1_ClutchCircuitFaultStatus = (uint8_t)Data
+
+#define CanTx_SigGet_0x255_EDL_1_FrontDiffLockYellowLamp()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_GW_PC_7_0x255].Bit_0x255.EDL_1_FrontDiffLockYellowLamp)
+#define CanTx_SigSet_0x255_EDL_1_FrontDiffLockYellowLamp(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_GW_PC_7_0x255].Bit_0x255.EDL_1_FrontDiffLockYellowLamp = (uint8_t)Data
+
+#define CanTx_SigGet_0x255_EDL_1_FrontDiffLockGreenLamp()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_GW_PC_7_0x255].Bit_0x255.EDL_1_FrontDiffLockGreenLamp)
+#define CanTx_SigSet_0x255_EDL_1_FrontDiffLockGreenLamp(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_GW_PC_7_0x255].Bit_0x255.EDL_1_FrontDiffLockGreenLamp = (uint8_t)Data
+
+#define CanTx_SigGet_0x255_AWD_1_OpreationNotice()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_GW_PC_7_0x255].Bit_0x255.AWD_1_OpreationNotice)
+#define CanTx_SigSet_0x255_AWD_1_OpreationNotice(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_GW_PC_7_0x255].Bit_0x255.AWD_1_OpreationNotice = (uint8_t)Data
+
+#define CanTx_SigGet_0x255_EDL_1_StatusNotice()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_GW_PC_7_0x255].Bit_0x255.EDL_1_StatusNotice)
+#define CanTx_SigSet_0x255_EDL_1_StatusNotice(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_GW_PC_7_0x255].Bit_0x255.EDL_1_StatusNotice = (uint8_t)Data
+
+#define CanTx_SigGet_0x255_EDL_1_RearDiffLockYellowLamp()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_GW_PC_7_0x255].Bit_0x255.EDL_1_RearDiffLockYellowLamp)
+#define CanTx_SigSet_0x255_EDL_1_RearDiffLockYellowLamp(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_GW_PC_7_0x255].Bit_0x255.EDL_1_RearDiffLockYellowLamp = (uint8_t)Data
+
+#define CanTx_SigGet_0x255_EDL_1_RearDiffLockGreenLamp()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_GW_PC_7_0x255].Bit_0x255.EDL_1_RearDiffLockGreenLamp)
+#define CanTx_SigSet_0x255_EDL_1_RearDiffLockGreenLamp(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_GW_PC_7_0x255].Bit_0x255.EDL_1_RearDiffLockGreenLamp = (uint8_t)Data
+
+#define CanTx_SigGet_0x255_EDL_1_Timeout_Flag()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_GW_PC_7_0x255].Bit_0x255.EDL_1_Timeout_Flag)
+#define CanTx_SigSet_0x255_EDL_1_Timeout_Flag(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_GW_PC_7_0x255].Bit_0x255.EDL_1_Timeout_Flag = (uint8_t)Data
+
+#define CanTx_SigGet_0x255_AWD_1_Timeout_Flag()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_GW_PC_7_0x255].Bit_0x255.AWD_1_Timeout_Flag)
+#define CanTx_SigSet_0x255_AWD_1_Timeout_Flag(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_GW_PC_7_0x255].Bit_0x255.AWD_1_Timeout_Flag = (uint8_t)Data
+
+#define CanTx_SigGet_0x3A0_Swaybar_1_FrontSwaybarYellowLamp()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_GW_PC_4_0x3A0].Bit_0x3A0.Swaybar_1_FrontSwaybarYellowLamp)
+#define CanTx_SigSet_0x3A0_Swaybar_1_FrontSwaybarYellowLamp(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_GW_PC_4_0x3A0].Bit_0x3A0.Swaybar_1_FrontSwaybarYellowLamp = (uint8_t)Data
+
+#define CanTx_SigGet_0x3A0_Swaybar_1_FrontSwaybarGreenLamp()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_GW_PC_4_0x3A0].Bit_0x3A0.Swaybar_1_FrontSwaybarGreenLamp)
+#define CanTx_SigSet_0x3A0_Swaybar_1_FrontSwaybarGreenLamp(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_GW_PC_4_0x3A0].Bit_0x3A0.Swaybar_1_FrontSwaybarGreenLamp = (uint8_t)Data
+
+#define CanTx_SigGet_0x3A0_EHPS_1_FaultStatus()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_GW_PC_4_0x3A0].Bit_0x3A0.EHPS_1_FaultStatus)
+#define CanTx_SigSet_0x3A0_EHPS_1_FaultStatus(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_GW_PC_4_0x3A0].Bit_0x3A0.EHPS_1_FaultStatus = (uint8_t)Data
+
+#define CanTx_SigGet_0x3A0_Swaybar_1_StatusNotice()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_GW_PC_4_0x3A0].Bit_0x3A0.Swaybar_1_StatusNotice)
+#define CanTx_SigSet_0x3A0_Swaybar_1_StatusNotice(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_GW_PC_4_0x3A0].Bit_0x3A0.Swaybar_1_StatusNotice = (uint8_t)Data
+
+#define CanTx_SigGet_0x3A0_Swaybar_1_Timeout_Flag()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_GW_PC_4_0x3A0].Bit_0x3A0.Swaybar_1_Timeout_Flag)
+#define CanTx_SigSet_0x3A0_Swaybar_1_Timeout_Flag(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_GW_PC_4_0x3A0].Bit_0x3A0.Swaybar_1_Timeout_Flag = (uint8_t)Data
+
+#define CanTx_SigGet_0x3A0_EHPS_1_Timeout_Flag()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_GW_PC_4_0x3A0].Bit_0x3A0.EHPS_1_Timeout_Flag)
+#define CanTx_SigSet_0x3A0_EHPS_1_Timeout_Flag(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_GW_PC_4_0x3A0].Bit_0x3A0.EHPS_1_Timeout_Flag = (uint8_t)Data
+
+#define CanTx_SigGet_0x3A7_BCM_1_LeftTurnLightSts()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_GW_BD_9_0x3A7].Bit_0x3A7.BCM_1_LeftTurnLightSts)
+#define CanTx_SigSet_0x3A7_BCM_1_LeftTurnLightSts(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_GW_BD_9_0x3A7].Bit_0x3A7.BCM_1_LeftTurnLightSts = (uint8_t)Data
+
+#define CanTx_SigGet_0x3A7_BCM_1_HighBeamSts()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_GW_BD_9_0x3A7].Bit_0x3A7.BCM_1_HighBeamSts)
+#define CanTx_SigSet_0x3A7_BCM_1_HighBeamSts(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_GW_BD_9_0x3A7].Bit_0x3A7.BCM_1_HighBeamSts = (uint8_t)Data
+
+#define CanTx_SigGet_0x3A7_BCM_1_LowBeamSts()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_GW_BD_9_0x3A7].Bit_0x3A7.BCM_1_LowBeamSts)
+#define CanTx_SigSet_0x3A7_BCM_1_LowBeamSts(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_GW_BD_9_0x3A7].Bit_0x3A7.BCM_1_LowBeamSts = (uint8_t)Data
+
+#define CanTx_SigGet_0x3A7_BCM_1_PowerMode()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_GW_BD_9_0x3A7].Bit_0x3A7.BCM_1_PowerMode)
+#define CanTx_SigSet_0x3A7_BCM_1_PowerMode(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_GW_BD_9_0x3A7].Bit_0x3A7.BCM_1_PowerMode = (uint8_t)Data
+
+#define CanTx_SigGet_0x3A7_BCM_1_RearFogLightSts()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_GW_BD_9_0x3A7].Bit_0x3A7.BCM_1_RearFogLightSts)
+#define CanTx_SigSet_0x3A7_BCM_1_RearFogLightSts(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_GW_BD_9_0x3A7].Bit_0x3A7.BCM_1_RearFogLightSts = (uint8_t)Data
+
+#define CanTx_SigGet_0x3A7_BCM_1_EmergencyLightSts()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_GW_BD_9_0x3A7].Bit_0x3A7.BCM_1_EmergencyLightSts)
+#define CanTx_SigSet_0x3A7_BCM_1_EmergencyLightSts(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_GW_BD_9_0x3A7].Bit_0x3A7.BCM_1_EmergencyLightSts = (uint8_t)Data
+
+#define CanTx_SigGet_0x3A7_BCM_1_PositionLightSts()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_GW_BD_9_0x3A7].Bit_0x3A7.BCM_1_PositionLightSts)
+#define CanTx_SigSet_0x3A7_BCM_1_PositionLightSts(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_GW_BD_9_0x3A7].Bit_0x3A7.BCM_1_PositionLightSts = (uint8_t)Data
+
+#define CanTx_SigGet_0x3A7_BCM_1_RightTurnLightSts()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_GW_BD_9_0x3A7].Bit_0x3A7.BCM_1_RightTurnLightSts)
+#define CanTx_SigSet_0x3A7_BCM_1_RightTurnLightSts(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_GW_BD_9_0x3A7].Bit_0x3A7.BCM_1_RightTurnLightSts = (uint8_t)Data
+
+#define CanTx_SigGet_0x3A7_BCM_1_RearLeftDoorSts()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_GW_BD_9_0x3A7].Bit_0x3A7.BCM_1_RearLeftDoorSts)
+#define CanTx_SigSet_0x3A7_BCM_1_RearLeftDoorSts(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_GW_BD_9_0x3A7].Bit_0x3A7.BCM_1_RearLeftDoorSts = (uint8_t)Data
+
+#define CanTx_SigGet_0x3A7_BCM_1_FrontRightDoorSts()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_GW_BD_9_0x3A7].Bit_0x3A7.BCM_1_FrontRightDoorSts)
+#define CanTx_SigSet_0x3A7_BCM_1_FrontRightDoorSts(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_GW_BD_9_0x3A7].Bit_0x3A7.BCM_1_FrontRightDoorSts = (uint8_t)Data
+
+#define CanTx_SigGet_0x3A7_BCM_1_FrontLeftDoorSts()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_GW_BD_9_0x3A7].Bit_0x3A7.BCM_1_FrontLeftDoorSts)
+#define CanTx_SigSet_0x3A7_BCM_1_FrontLeftDoorSts(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_GW_BD_9_0x3A7].Bit_0x3A7.BCM_1_FrontLeftDoorSts = (uint8_t)Data
+
+#define CanTx_SigGet_0x3A7_BCM_1_DaytimeRunningLightSts()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_GW_BD_9_0x3A7].Bit_0x3A7.BCM_1_DaytimeRunningLightSts)
+#define CanTx_SigSet_0x3A7_BCM_1_DaytimeRunningLightSts(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_GW_BD_9_0x3A7].Bit_0x3A7.BCM_1_DaytimeRunningLightSts = (uint8_t)Data
+
+#define CanTx_SigGet_0x3A7_BCM_1_FrontFogLightSts()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_GW_BD_9_0x3A7].Bit_0x3A7.BCM_1_FrontFogLightSts)
+#define CanTx_SigSet_0x3A7_BCM_1_FrontFogLightSts(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_GW_BD_9_0x3A7].Bit_0x3A7.BCM_1_FrontFogLightSts = (uint8_t)Data
+
+#define CanTx_SigGet_0x3A7_BCM_1_ReverseGearInfo()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_GW_BD_9_0x3A7].Bit_0x3A7.BCM_1_ReverseGearInfo)
+#define CanTx_SigSet_0x3A7_BCM_1_ReverseGearInfo(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_GW_BD_9_0x3A7].Bit_0x3A7.BCM_1_ReverseGearInfo = (uint8_t)Data
+
+#define CanTx_SigGet_0x3A7_BCM_1_ACRearFrostSts()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_GW_BD_9_0x3A7].Bit_0x3A7.BCM_1_ACRearFrostSts)
+#define CanTx_SigSet_0x3A7_BCM_1_ACRearFrostSts(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_GW_BD_9_0x3A7].Bit_0x3A7.BCM_1_ACRearFrostSts = (uint8_t)Data
+
+#define CanTx_SigGet_0x3A7_BCM_1_TailGateOpenSts()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_GW_BD_9_0x3A7].Bit_0x3A7.BCM_1_TailGateOpenSts)
+#define CanTx_SigSet_0x3A7_BCM_1_TailGateOpenSts(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_GW_BD_9_0x3A7].Bit_0x3A7.BCM_1_TailGateOpenSts = (uint8_t)Data
+
+#define CanTx_SigGet_0x3A7_BCM_1_RearRightDoorSts()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_GW_BD_9_0x3A7].Bit_0x3A7.BCM_1_RearRightDoorSts)
+#define CanTx_SigSet_0x3A7_BCM_1_RearRightDoorSts(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_GW_BD_9_0x3A7].Bit_0x3A7.BCM_1_RearRightDoorSts = (uint8_t)Data
+
+#define CanTx_SigGet_0x3A7_TCM_1_FlashLightSWStsValid()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_GW_BD_9_0x3A7].Bit_0x3A7.TCM_1_FlashLightSWStsValid)
+#define CanTx_SigSet_0x3A7_TCM_1_FlashLightSWStsValid(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_GW_BD_9_0x3A7].Bit_0x3A7.TCM_1_FlashLightSWStsValid = (uint8_t)Data
+
+#define CanTx_SigGet_0x3A7_TCM_1_FlashLightSWSts()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_GW_BD_9_0x3A7].Bit_0x3A7.TCM_1_FlashLightSWSts)
+#define CanTx_SigSet_0x3A7_TCM_1_FlashLightSWSts(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_GW_BD_9_0x3A7].Bit_0x3A7.TCM_1_FlashLightSWSts = (uint8_t)Data
+
+#define CanTx_SigGet_0x3A7_TCM_1_HighBeamSWStsValid()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_GW_BD_9_0x3A7].Bit_0x3A7.TCM_1_HighBeamSWStsValid)
+#define CanTx_SigSet_0x3A7_TCM_1_HighBeamSWStsValid(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_GW_BD_9_0x3A7].Bit_0x3A7.TCM_1_HighBeamSWStsValid = (uint8_t)Data
+
+#define CanTx_SigGet_0x3A7_TCM_1_HighBeamSWSts()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_GW_BD_9_0x3A7].Bit_0x3A7.TCM_1_HighBeamSWSts)
+#define CanTx_SigSet_0x3A7_TCM_1_HighBeamSWSts(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_GW_BD_9_0x3A7].Bit_0x3A7.TCM_1_HighBeamSWSts = (uint8_t)Data
+
+#define CanTx_SigGet_0x3A7_BCM_1_BackMirrorFolderSts()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_GW_BD_9_0x3A7].Bit_0x3A7.BCM_1_BackMirrorFolderSts)
+#define CanTx_SigSet_0x3A7_BCM_1_BackMirrorFolderSts(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_GW_BD_9_0x3A7].Bit_0x3A7.BCM_1_BackMirrorFolderSts = (uint8_t)Data
+
+#define CanTx_SigGet_0x3A7_BCM_1_HoodSts()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_GW_BD_9_0x3A7].Bit_0x3A7.BCM_1_HoodSts)
+#define CanTx_SigSet_0x3A7_BCM_1_HoodSts(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_GW_BD_9_0x3A7].Bit_0x3A7.BCM_1_HoodSts = (uint8_t)Data
+
+#define CanTx_SigGet_0x3A7_TCM_1_LeftTurnLightSWSts()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_GW_BD_9_0x3A7].Bit_0x3A7.TCM_1_LeftTurnLightSWSts)
+#define CanTx_SigSet_0x3A7_TCM_1_LeftTurnLightSWSts(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_GW_BD_9_0x3A7].Bit_0x3A7.TCM_1_LeftTurnLightSWSts = (uint8_t)Data
+
+#define CanTx_SigGet_0x3A7_TCM_1_LeftTurnLightSWStsValid()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_GW_BD_9_0x3A7].Bit_0x3A7.TCM_1_LeftTurnLightSWStsValid)
+#define CanTx_SigSet_0x3A7_TCM_1_LeftTurnLightSWStsValid(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_GW_BD_9_0x3A7].Bit_0x3A7.TCM_1_LeftTurnLightSWStsValid = (uint8_t)Data
+
+#define CanTx_SigGet_0x3A7_TCM_1_RightTurnLightSWSts()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_GW_BD_9_0x3A7].Bit_0x3A7.TCM_1_RightTurnLightSWSts)
+#define CanTx_SigSet_0x3A7_TCM_1_RightTurnLightSWSts(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_GW_BD_9_0x3A7].Bit_0x3A7.TCM_1_RightTurnLightSWSts = (uint8_t)Data
+
+#define CanTx_SigGet_0x3A7_TCM_1_RightTurnLightSWStsValid()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_GW_BD_9_0x3A7].Bit_0x3A7.TCM_1_RightTurnLightSWStsValid)
+#define CanTx_SigSet_0x3A7_TCM_1_RightTurnLightSWStsValid(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_GW_BD_9_0x3A7].Bit_0x3A7.TCM_1_RightTurnLightSWStsValid = (uint8_t)Data
+
+#define CanTx_SigGet_0x3A7_TCM_1_Timeout_Flag()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_GW_BD_9_0x3A7].Bit_0x3A7.TCM_1_Timeout_Flag)
+#define CanTx_SigSet_0x3A7_TCM_1_Timeout_Flag(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_GW_BD_9_0x3A7].Bit_0x3A7.TCM_1_Timeout_Flag = (uint8_t)Data
+
+#define CanTx_SigGet_0x3A7_BCM_1_Timeout_Flag()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_GW_BD_9_0x3A7].Bit_0x3A7.BCM_1_Timeout_Flag)
+#define CanTx_SigSet_0x3A7_BCM_1_Timeout_Flag(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_GW_BD_9_0x3A7].Bit_0x3A7.BCM_1_Timeout_Flag = (uint8_t)Data
+
+#define CanTx_SigGet_0x3AC_AC_1_AirCirculationMode()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_GW_BD_14_0x3AC].Bit_0x3AC.AC_1_AirCirculationMode)
+#define CanTx_SigSet_0x3AC_AC_1_AirCirculationMode(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_GW_BD_14_0x3AC].Bit_0x3AC.AC_1_AirCirculationMode = (uint8_t)Data
+
+#define CanTx_SigGet_0x3AC_AC_1_AirDistributeMode()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_GW_BD_14_0x3AC].Bit_0x3AC.AC_1_AirDistributeMode)
+#define CanTx_SigSet_0x3AC_AC_1_AirDistributeMode(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_GW_BD_14_0x3AC].Bit_0x3AC.AC_1_AirDistributeMode = (uint8_t)Data
+
+#define CanTx_SigGet_0x3AC_AC_1_TemperatureLevel()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_GW_BD_14_0x3AC].Bit_0x3AC.AC_1_TemperatureLevel)
+#define CanTx_SigSet_0x3AC_AC_1_TemperatureLevel(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_GW_BD_14_0x3AC].Bit_0x3AC.AC_1_TemperatureLevel = (uint8_t)Data
+
+#define CanTx_SigGet_0x3AC_AC_1_PTCButtonSts()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_GW_BD_14_0x3AC].Bit_0x3AC.AC_1_PTCButtonSts)
+#define CanTx_SigSet_0x3AC_AC_1_PTCButtonSts(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_GW_BD_14_0x3AC].Bit_0x3AC.AC_1_PTCButtonSts = (uint8_t)Data
+
+#define CanTx_SigGet_0x3AC_AC_1_ACSystemSts()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_GW_BD_14_0x3AC].Bit_0x3AC.AC_1_ACSystemSts)
+#define CanTx_SigSet_0x3AC_AC_1_ACSystemSts(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_GW_BD_14_0x3AC].Bit_0x3AC.AC_1_ACSystemSts = (uint8_t)Data
+
+#define CanTx_SigGet_0x3AC_AC_1_RearDefrostButtonSts()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_GW_BD_14_0x3AC].Bit_0x3AC.AC_1_RearDefrostButtonSts)
+#define CanTx_SigSet_0x3AC_AC_1_RearDefrostButtonSts(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_GW_BD_14_0x3AC].Bit_0x3AC.AC_1_RearDefrostButtonSts = (uint8_t)Data
+
+#define CanTx_SigGet_0x3AC_AC_1_FrontDefrostButtonSts()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_GW_BD_14_0x3AC].Bit_0x3AC.AC_1_FrontDefrostButtonSts)
+#define CanTx_SigSet_0x3AC_AC_1_FrontDefrostButtonSts(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_GW_BD_14_0x3AC].Bit_0x3AC.AC_1_FrontDefrostButtonSts = (uint8_t)Data
+
+#define CanTx_SigGet_0x3AC_AC_1_ACButtonSts()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_GW_BD_14_0x3AC].Bit_0x3AC.AC_1_ACButtonSts)
+#define CanTx_SigSet_0x3AC_AC_1_ACButtonSts(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_GW_BD_14_0x3AC].Bit_0x3AC.AC_1_ACButtonSts = (uint8_t)Data
+
+#define CanTx_SigGet_0x3AC_AC_1_BlowerSpeedLevel()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_GW_BD_14_0x3AC].Bit_0x3AC.AC_1_BlowerSpeedLevel)
+#define CanTx_SigSet_0x3AC_AC_1_BlowerSpeedLevel(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_GW_BD_14_0x3AC].Bit_0x3AC.AC_1_BlowerSpeedLevel = (uint8_t)Data
+
+#define CanTx_SigGet_0x3AC_AC_1_RearModeSts()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_GW_BD_14_0x3AC].Bit_0x3AC.AC_1_RearModeSts)
+#define CanTx_SigSet_0x3AC_AC_1_RearModeSts(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_GW_BD_14_0x3AC].Bit_0x3AC.AC_1_RearModeSts = (uint8_t)Data
+
+#define CanTx_SigGet_0x3AC_AC_1_ButtonTriggerStatus()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_GW_BD_14_0x3AC].Bit_0x3AC.AC_1_ButtonTriggerStatus)
+#define CanTx_SigSet_0x3AC_AC_1_ButtonTriggerStatus(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_GW_BD_14_0x3AC].Bit_0x3AC.AC_1_ButtonTriggerStatus = (uint8_t)Data
+
+#define CanTx_SigGet_0x3AC_AC_1_BlowerSpeedLevelRear()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_GW_BD_14_0x3AC].Bit_0x3AC.AC_1_BlowerSpeedLevelRear)
+#define CanTx_SigSet_0x3AC_AC_1_BlowerSpeedLevelRear(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_GW_BD_14_0x3AC].Bit_0x3AC.AC_1_BlowerSpeedLevelRear = (uint8_t)Data
+
+#define CanTx_SigGet_0x3AC_AC_2_PngSetTemperature()\
+    (((uint8_t)CanTxMsg_DataBuffer[CanTxMsgIndex_GW_BD_14_0x3AC].Bit_0x3AC.AC_2_PngSetTemperature_Part0) | ((uint8_t)CanTxMsg_DataBuffer[CanTxMsgIndex_GW_BD_14_0x3AC].Bit_0x3AC.AC_2_PngSetTemperature_Part1 << 2))
+#define CanTx_SigSet_0x3AC_AC_2_PngSetTemperature(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_GW_BD_14_0x3AC].Bit_0x3AC.AC_2_PngSetTemperature_Part0 = (uint8_t)Data; CanTxMsg_DataBuffer[CanTxMsgIndex_GW_BD_14_0x3AC].Bit_0x3AC.AC_2_PngSetTemperature_Part1 = (uint8_t)(Data >> 2)
+
+#define CanTx_SigGet_0x3AC_AC_2_DriverSetTemperature()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_GW_BD_14_0x3AC].Bit_0x3AC.AC_2_DriverSetTemperature)
+#define CanTx_SigSet_0x3AC_AC_2_DriverSetTemperature(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_GW_BD_14_0x3AC].Bit_0x3AC.AC_2_DriverSetTemperature = (uint8_t)Data
+
+#define CanTx_SigGet_0x3AC_AC_2_OutsideTemperature()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_GW_BD_14_0x3AC].Bit_0x3AC.AC_2_OutsideTemperature)
+#define CanTx_SigSet_0x3AC_AC_2_OutsideTemperature(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_GW_BD_14_0x3AC].Bit_0x3AC.AC_2_OutsideTemperature = (uint8_t)Data
+
+#define CanTx_SigGet_0x3AC_AC_1_ACSelfCleanModeSts()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_GW_BD_14_0x3AC].Bit_0x3AC.AC_1_ACSelfCleanModeSts)
+#define CanTx_SigSet_0x3AC_AC_1_ACSelfCleanModeSts(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_GW_BD_14_0x3AC].Bit_0x3AC.AC_1_ACSelfCleanModeSts = (uint8_t)Data
+
+#define CanTx_SigGet_0x3AC_AC_2_DualButtonSts()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_GW_BD_14_0x3AC].Bit_0x3AC.AC_2_DualButtonSts)
+#define CanTx_SigSet_0x3AC_AC_2_DualButtonSts(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_GW_BD_14_0x3AC].Bit_0x3AC.AC_2_DualButtonSts = (uint8_t)Data
+
+#define CanTx_SigGet_0x3AC_AC_2_AUTOPassengerButtonSts()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_GW_BD_14_0x3AC].Bit_0x3AC.AC_2_AUTOPassengerButtonSts)
+#define CanTx_SigSet_0x3AC_AC_2_AUTOPassengerButtonSts(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_GW_BD_14_0x3AC].Bit_0x3AC.AC_2_AUTOPassengerButtonSts = (uint8_t)Data
+
+#define CanTx_SigGet_0x3AC_AC_2_AUTOButtonSts()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_GW_BD_14_0x3AC].Bit_0x3AC.AC_2_AUTOButtonSts)
+#define CanTx_SigSet_0x3AC_AC_2_AUTOButtonSts(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_GW_BD_14_0x3AC].Bit_0x3AC.AC_2_AUTOButtonSts = (uint8_t)Data
+
+#define CanTx_SigGet_0x3AC_AC_2_DualMode()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_GW_BD_14_0x3AC].Bit_0x3AC.AC_2_DualMode)
+#define CanTx_SigSet_0x3AC_AC_2_DualMode(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_GW_BD_14_0x3AC].Bit_0x3AC.AC_2_DualMode = (uint8_t)Data
+
+#define CanTx_SigGet_0x3AC_AC_2_OutsideTemperatureValid()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_GW_BD_14_0x3AC].Bit_0x3AC.AC_2_OutsideTemperatureValid)
+#define CanTx_SigSet_0x3AC_AC_2_OutsideTemperatureValid(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_GW_BD_14_0x3AC].Bit_0x3AC.AC_2_OutsideTemperatureValid = (uint8_t)Data
+
+#define CanTx_SigGet_0x3AC_AC_2_Timeout_Flag()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_GW_BD_14_0x3AC].Bit_0x3AC.AC_2_Timeout_Flag)
+#define CanTx_SigSet_0x3AC_AC_2_Timeout_Flag(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_GW_BD_14_0x3AC].Bit_0x3AC.AC_2_Timeout_Flag = (uint8_t)Data
+
+#define CanTx_SigGet_0x3AC_AC_1_Timeout_Flag()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_GW_BD_14_0x3AC].Bit_0x3AC.AC_1_Timeout_Flag)
+#define CanTx_SigSet_0x3AC_AC_1_Timeout_Flag(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_GW_BD_14_0x3AC].Bit_0x3AC.AC_1_Timeout_Flag = (uint8_t)Data
+
+#define CanTx_SigGet_0x3C7_BCM_2_WindowRunningStatusRR()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_GW_BD_24_0x3C7].Bit_0x3C7.BCM_2_WindowRunningStatusRR)
+#define CanTx_SigSet_0x3C7_BCM_2_WindowRunningStatusRR(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_GW_BD_24_0x3C7].Bit_0x3C7.BCM_2_WindowRunningStatusRR = (uint8_t)Data
+
+#define CanTx_SigGet_0x3C7_BCM_2_WindowRunningStatusRL()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_GW_BD_24_0x3C7].Bit_0x3C7.BCM_2_WindowRunningStatusRL)
+#define CanTx_SigSet_0x3C7_BCM_2_WindowRunningStatusRL(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_GW_BD_24_0x3C7].Bit_0x3C7.BCM_2_WindowRunningStatusRL = (uint8_t)Data
+
+#define CanTx_SigGet_0x3C7_BCM_2_WindowRunningStatusFR()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_GW_BD_24_0x3C7].Bit_0x3C7.BCM_2_WindowRunningStatusFR)
+#define CanTx_SigSet_0x3C7_BCM_2_WindowRunningStatusFR(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_GW_BD_24_0x3C7].Bit_0x3C7.BCM_2_WindowRunningStatusFR = (uint8_t)Data
+
+#define CanTx_SigGet_0x3C7_BCM_2_WindowRunningStatusFL()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_GW_BD_24_0x3C7].Bit_0x3C7.BCM_2_WindowRunningStatusFL)
+#define CanTx_SigSet_0x3C7_BCM_2_WindowRunningStatusFL(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_GW_BD_24_0x3C7].Bit_0x3C7.BCM_2_WindowRunningStatusFL = (uint8_t)Data
+
+#define CanTx_SigGet_0x3C7_BCM_2_WindowPosFL()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_GW_BD_24_0x3C7].Bit_0x3C7.BCM_2_WindowPosFL)
+#define CanTx_SigSet_0x3C7_BCM_2_WindowPosFL(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_GW_BD_24_0x3C7].Bit_0x3C7.BCM_2_WindowPosFL = (uint8_t)Data
+
+#define CanTx_SigGet_0x3C7_BCM_2_WindowPosFR()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_GW_BD_24_0x3C7].Bit_0x3C7.BCM_2_WindowPosFR)
+#define CanTx_SigSet_0x3C7_BCM_2_WindowPosFR(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_GW_BD_24_0x3C7].Bit_0x3C7.BCM_2_WindowPosFR = (uint8_t)Data
+
+#define CanTx_SigGet_0x3C7_BCM_2_WindowPosRL()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_GW_BD_24_0x3C7].Bit_0x3C7.BCM_2_WindowPosRL)
+#define CanTx_SigSet_0x3C7_BCM_2_WindowPosRL(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_GW_BD_24_0x3C7].Bit_0x3C7.BCM_2_WindowPosRL = (uint8_t)Data
+
+#define CanTx_SigGet_0x3C7_BCM_2_WindowPosRR()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_GW_BD_24_0x3C7].Bit_0x3C7.BCM_2_WindowPosRR)
+#define CanTx_SigSet_0x3C7_BCM_2_WindowPosRR(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_GW_BD_24_0x3C7].Bit_0x3C7.BCM_2_WindowPosRR = (uint8_t)Data
+
+#define CanTx_SigGet_0x3C7_BCM_2_Timeout_Flag()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_GW_BD_24_0x3C7].Bit_0x3C7.BCM_2_Timeout_Flag)
+#define CanTx_SigSet_0x3C7_BCM_2_Timeout_Flag(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_GW_BD_24_0x3C7].Bit_0x3C7.BCM_2_Timeout_Flag = (uint8_t)Data
+
+#define CanTx_SigGet_0x3CC_SCU_1_FRSeatHeatLvlSts()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_GW_BD_29_0x3CC].Bit_0x3CC.SCU_1_FRSeatHeatLvlSts)
+#define CanTx_SigSet_0x3CC_SCU_1_FRSeatHeatLvlSts(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_GW_BD_29_0x3CC].Bit_0x3CC.SCU_1_FRSeatHeatLvlSts = (uint8_t)Data
+
+#define CanTx_SigGet_0x3CC_SCU_1_FLSeatHeatLvlSts()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_GW_BD_29_0x3CC].Bit_0x3CC.SCU_1_FLSeatHeatLvlSts)
+#define CanTx_SigSet_0x3CC_SCU_1_FLSeatHeatLvlSts(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_GW_BD_29_0x3CC].Bit_0x3CC.SCU_1_FLSeatHeatLvlSts = (uint8_t)Data
+
+#define CanTx_SigGet_0x3CC_SCU_1_FLSeatMassgModSts()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_GW_BD_29_0x3CC].Bit_0x3CC.SCU_1_FLSeatMassgModSts)
+#define CanTx_SigSet_0x3CC_SCU_1_FLSeatMassgModSts(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_GW_BD_29_0x3CC].Bit_0x3CC.SCU_1_FLSeatMassgModSts = (uint8_t)Data
+
+#define CanTx_SigGet_0x3CC_SCU_1_FLSeatMassgLvlSts()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_GW_BD_29_0x3CC].Bit_0x3CC.SCU_1_FLSeatMassgLvlSts)
+#define CanTx_SigSet_0x3CC_SCU_1_FLSeatMassgLvlSts(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_GW_BD_29_0x3CC].Bit_0x3CC.SCU_1_FLSeatMassgLvlSts = (uint8_t)Data
+
+#define CanTx_SigGet_0x3CC_SCU_1_FaultsStatus()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_GW_BD_29_0x3CC].Bit_0x3CC.SCU_1_FaultsStatus)
+#define CanTx_SigSet_0x3CC_SCU_1_FaultsStatus(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_GW_BD_29_0x3CC].Bit_0x3CC.SCU_1_FaultsStatus = (uint8_t)Data
+
+#define CanTx_SigGet_0x3CC_WCM_1_WirelessChargeSwtSts()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_GW_BD_29_0x3CC].Bit_0x3CC.WCM_1_WirelessChargeSwtSts)
+#define CanTx_SigSet_0x3CC_WCM_1_WirelessChargeSwtSts(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_GW_BD_29_0x3CC].Bit_0x3CC.WCM_1_WirelessChargeSwtSts = (uint8_t)Data
+
+#define CanTx_SigGet_0x3CC_WCM_1_FailureSts()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_GW_BD_29_0x3CC].Bit_0x3CC.WCM_1_FailureSts)
+#define CanTx_SigSet_0x3CC_WCM_1_FailureSts(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_GW_BD_29_0x3CC].Bit_0x3CC.WCM_1_FailureSts = (uint8_t)Data
+
+#define CanTx_SigGet_0x3CC_WCM_1_ChargingSts()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_GW_BD_29_0x3CC].Bit_0x3CC.WCM_1_ChargingSts)
+#define CanTx_SigSet_0x3CC_WCM_1_ChargingSts(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_GW_BD_29_0x3CC].Bit_0x3CC.WCM_1_ChargingSts = (uint8_t)Data
+
+#define CanTx_SigGet_0x3CC_SCU_1_FLSeatVentLvlSts()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_GW_BD_29_0x3CC].Bit_0x3CC.SCU_1_FLSeatVentLvlSts)
+#define CanTx_SigSet_0x3CC_SCU_1_FLSeatVentLvlSts(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_GW_BD_29_0x3CC].Bit_0x3CC.SCU_1_FLSeatVentLvlSts = (uint8_t)Data
+
+#define CanTx_SigGet_0x3CC_EPM_1_EPMModSts()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_GW_BD_29_0x3CC].Bit_0x3CC.EPM_1_EPMModSts)
+#define CanTx_SigSet_0x3CC_EPM_1_EPMModSts(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_GW_BD_29_0x3CC].Bit_0x3CC.EPM_1_EPMModSts = (uint8_t)Data
+
+#define CanTx_SigGet_0x3CC_WCM_1_PhoneReminder()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_GW_BD_29_0x3CC].Bit_0x3CC.WCM_1_PhoneReminder)
+#define CanTx_SigSet_0x3CC_WCM_1_PhoneReminder(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_GW_BD_29_0x3CC].Bit_0x3CC.WCM_1_PhoneReminder = (uint8_t)Data
+
+#define CanTx_SigGet_0x3CC_SCU_1_FRSeatVentLvlSts()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_GW_BD_29_0x3CC].Bit_0x3CC.SCU_1_FRSeatVentLvlSts)
+#define CanTx_SigSet_0x3CC_SCU_1_FRSeatVentLvlSts(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_GW_BD_29_0x3CC].Bit_0x3CC.SCU_1_FRSeatVentLvlSts = (uint8_t)Data
+
+#define CanTx_SigGet_0x3CC_EPM_1_Timeout_Flag()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_GW_BD_29_0x3CC].Bit_0x3CC.EPM_1_Timeout_Flag)
+#define CanTx_SigSet_0x3CC_EPM_1_Timeout_Flag(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_GW_BD_29_0x3CC].Bit_0x3CC.EPM_1_Timeout_Flag = (uint8_t)Data
+
+#define CanTx_SigGet_0x3CC_WCM_1_Timeout_Flag()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_GW_BD_29_0x3CC].Bit_0x3CC.WCM_1_Timeout_Flag)
+#define CanTx_SigSet_0x3CC_WCM_1_Timeout_Flag(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_GW_BD_29_0x3CC].Bit_0x3CC.WCM_1_Timeout_Flag = (uint8_t)Data
+
+#define CanTx_SigGet_0x3CC_SCU_1_Timeout_Flag()\
+    (CanTxMsg_DataBuffer[CanTxMsgIndex_GW_BD_29_0x3CC].Bit_0x3CC.SCU_1_Timeout_Flag)
+#define CanTx_SigSet_0x3CC_SCU_1_Timeout_Flag(Data)\
+    CanTxMsg_DataBuffer[CanTxMsgIndex_GW_BD_29_0x3CC].Bit_0x3CC.SCU_1_Timeout_Flag = (uint8_t)Data
+
+#endif//_APP_CAN_YB103_CANDBCSIGNAL_H_

@@ -1,0 +1,180 @@
+#ifndef _LCD12864_ENUM_H_
+#define _LCD12864_ENUM_H_
+
+#include "main.h"
+
+typedef enum
+{
+	CanMsg_ACU_1,
+	CanMsg_BCM_3,
+	CanMsg_BCM_4,
+	CanMsg_FCM_3,
+	CanMsg_FCM_4,
+	CanMsg_GW_BD_14,
+	CanMsg_GW_BD_29,
+	CanMsg_GW_BD_9,
+	CanMsg_GW_PC_1,
+	CanMsg_GW_PC_2,
+	CanMsg_GW_PC_7,
+	CanMsg_PEPS_3,
+	CanMsg_TBOX_1,
+	CanMsg_TBOX_4,
+	CanMsg_TPMS_1,
+    MENU_MAX
+} Pagedis_Func;
+
+typedef enum
+{
+	ACU_CrashOutputSts,
+	CanMsg_ACU_1_ITEM_MAX,
+} CanMsg_ACU_1_ITEM;
+
+typedef enum
+{
+	BCM_ConsoleBtn1TriggerSts,
+	CanMsg_BCM_3_ITEM_MAX,
+} CanMsg_BCM_3_ITEM;
+
+typedef enum
+{
+	BCM_SpeedLockSetSts,
+	BCM_FlaoutUnlockSetSts,
+	BCM_exRearMirrorAutoFoldSetSts,
+	BCM_WindowAutoUPbyLockSetSts,
+	BCM_ClsWinSpdSetSts,
+	BCM_SearchCarWarnModSetSts,
+	BCM_FollowMeHomeTimeSetSts,
+	BCM_LeaveHomeTimeSetSts,
+	BCM_InteriorLightTimeSetSts,
+	BCM_AmbientLightSwtSts,
+	BCM_AmbientLightLvl,
+	BCM_AutoWshWipSetSts,
+	CanMsg_BCM_4_ITEM_MAX,
+} CanMsg_BCM_4_ITEM;
+
+typedef enum
+{
+	FCM_AEBONOFFSts,
+	FCM_AEBMode,
+	FCM_FCWONOFFSts,
+	FCM_FCWMode,
+	FCM_FCWSnvtySts,
+	CanMsg_FCM_3_ITEM_MAX,
+} CanMsg_FCM_3_ITEM;
+
+typedef enum
+{
+	FCM_LDWONOFFSts,
+	FCM_LDWSysSts,
+	FCM_LDWWarnModSts,
+	FCM_TSRONOFFSts,
+	FCM_TSRState,
+	FCM_TSROverSpeedAcousticONOFFSts,
+	FCM_IHBCONOFFSts,
+	FCM_IHBCStatus,
+	CanMsg_FCM_4_ITEM_MAX,
+} CanMsg_FCM_4_ITEM;
+
+typedef enum
+{
+	AC_1_ButtonTriggerStatus,
+	AC_1_ACSystemSts,
+	AC_2_DriverSetTemperature,
+	AC_2_PngSetTemperature,
+	AC_1_BlowerSpeedLevel,
+	AC_1_AirDistributeMode,
+	AC_1_AirCirculationMode,
+	AC_1_ACButtonSts,
+	AC_1_FrontDefrostButtonSts,
+	AC_2_DualButtonSts,
+	AC_2_AUTOButtonSts,
+	AC_2_OutsideTemperature,
+	AC_1_ACSelfCleanModeSts,
+	CanMsg_GW_BD_14_ITEM_MAX,
+} CanMsg_GW_BD_14_ITEM;
+
+typedef enum
+{
+	SCU_1_FLSeatHeatLvlSts,
+	SCU_1_FRSeatHeatLvlSts,
+	SCU_1_FLSeatMassgLvlSts,
+	SCU_1_FLSeatMassgModSts,
+	WCM_1_WirelessChargeSwtSts,
+	WCM_1_ChargingSts,
+	WCM_1_FailureSts,
+	EPM_1_EPMModSts,
+	CanMsg_GW_BD_29_ITEM_MAX,
+} CanMsg_GW_BD_29_ITEM;
+
+typedef enum
+{
+	BCM_1_FrontLeftDoorSts,
+	BCM_1_FrontRightDoorSts,
+	BCM_1_RearLeftDoorSts,
+	BCM_1_RearRightDoorSts,
+	BCM_1_TailGateOpenSts,
+	BCM_1_HoodSts,
+	TCM_1_LeftTurnLightSWSts,
+	TCM_1_RightTurnLightSWSts,
+	BCM_1_PositionLightSts,
+	BCM_1_ACRearFrostSts,
+	CanMsg_GW_BD_9_ITEM_MAX,
+} CanMsg_GW_BD_9_ITEM;
+
+typedef enum
+{
+	TCU_1_GearShiftPosition,
+	EMS_3_SS_SetSts,
+	TCU_3_Drivemode,
+	CanMsg_GW_PC_1_ITEM_MAX,
+} CanMsg_GW_PC_1_ITEM;
+
+typedef enum
+{
+	SAS_1_CalibratedSt,
+	ABS_3_VehicleSpeed,
+	SAS_1_SteeringAngle,
+	CanMsg_GW_PC_2_ITEM_MAX,
+} CanMsg_GW_PC_2_ITEM;
+
+typedef enum
+{
+	AWD_1_Lamp4WDLock,
+	AWD_1_Lamp4WDLow,
+	CanMsg_GW_PC_7_ITEM_MAX,
+} CanMsg_GW_PC_7_ITEM;
+
+typedef enum
+{
+	PEPS_RemoteControlSt,
+	CanMsg_PEPS_3_ITEM_MAX,
+} CanMsg_PEPS_3_ITEM;
+
+typedef enum
+{
+	TBOX_DateTimeSecond,
+	TBOX_DateTimeMinute,
+	TBOX_DateTimeHour,
+	TBOX_DateTimeDay,
+	TBOX_DateTimeMonth,
+	TBOX_DateTimeYear,
+	CanMsg_TBOX_1_ITEM_MAX,
+} CanMsg_TBOX_1_ITEM;
+
+typedef enum
+{
+	TBOX_AudioMuteRequest,
+	CanMsg_TBOX_4_ITEM_MAX,
+} CanMsg_TBOX_4_ITEM;
+
+typedef enum
+{
+	TPMS_TireID,
+	TPMS_TirePressure,
+	TPMS_TirePressureStatus,
+	TPMS_SensorLost,
+	TPMS_LearningStatus,
+	CanMsg_TPMS_1_ITEM_MAX,
+} CanMsg_TPMS_1_ITEM;
+
+#endif // _LCD12864_ENUM_H_

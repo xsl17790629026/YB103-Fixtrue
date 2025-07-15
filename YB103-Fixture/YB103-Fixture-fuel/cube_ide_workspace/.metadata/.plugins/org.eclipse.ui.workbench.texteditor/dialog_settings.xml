@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<item key="hasShownOverlayPopupBefore" value="true"/>
+	<item key="replaceBarOpen" value="true"/>
+	<list key="searchhistory">
+		<item value="BD_9"/>
+		<item value="IC_1"/>
+		<item value="Spd"/>
+		<item value="PC_2"/>
+		<item value="Sd"/>
+		<item value="g_GW_PC_2"/>
+		<item value="Sp"/>
+		<item value="39"/>
+		<item value="ilMessageSummaryTable"/>
+		<item value="IHU_8"/>
+		<item value="65535"/>
+		<item value="0xFFFF"/>
+		<item value="27"/>
+		<item value="3227"/>
+		<item value="uint32_t"/>
+	</list>
+	<list key="replacehistory">
+		<item value="0xFFFF"/>
+		<item value="65535"/>
+		<item value="tmp"/>
+		<item value="uint16_t"/>
+		<item value="[16]"/>
+	</list>
+</section>

@@ -1,0 +1,7 @@
+{
+    "files.associations": {
+        "can.h": "c",
+        "bit": "cpp",
+        "compare": "c"
+    }
+}

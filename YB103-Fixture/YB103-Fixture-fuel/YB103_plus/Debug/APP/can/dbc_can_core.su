@@ -1,0 +1,7 @@
+../APP/can/dbc_can_core.c:13:16:Svc_CanCommUpInf_TxConfigTableInit	0	static
+../APP/can/dbc_can_core.c:26:16:Svc_CanCommUpInf_TxConfigTableLenInit	0	static
+../APP/can/dbc_can_core.c:39:16:Service_CanComm_CanMsgTxStateBufferInit	0	static
+../APP/can/dbc_can_core.c:52:6:Can_SendSts_Control	8	static
+../APP/can/dbc_can_core.c:69:6:App_Init	8	static
+../APP/can/dbc_can_core.c:76:6:CanGetMsgSignal	8	static
+../APP/can/dbc_can_core.c:643:6:CanTransmitFunction	8	static

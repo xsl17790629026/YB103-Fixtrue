@@ -1,0 +1,8 @@
+../Service/GPIO/GPIO_Service.c:4:6:GPIO_Service_ExtendPower_Set	8	static
+../Service/GPIO/GPIO_Service.c:9:9:GPIO_Service_ACC_Get	8	static
+../Service/GPIO/GPIO_Service.c:14:9:GPIO_Service_ILL_Get	8	static
+../Service/GPIO/GPIO_Service.c:19:9:GPIO_Service_Reverse_Get	8	static
+../Service/GPIO/GPIO_Service.c:24:9:GPIO_Service_Parking_Get	8	static
+../Service/GPIO/GPIO_Service.c:29:9:GPIO_Service_Mute_Get	8	static
+../Service/GPIO/GPIO_Service.c:34:9:GPIO_Service_Body_Get	8	static
+../Service/GPIO/GPIO_Service.c:39:9:GPIO_Service_Door_Get	8	static

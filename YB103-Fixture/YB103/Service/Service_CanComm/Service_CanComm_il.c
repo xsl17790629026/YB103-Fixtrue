@@ -1,0 +1,1060 @@
+/*******************************************************************************************/
+/*====================== COPYRIGHT (C) CVTE automotive Technology 2020 =====================*/	
+/*******************************************************************************************
+* C Source	   : can_il.c
+*
+* Description  : Source file for CAN Interaction Layer module.
+*
+* Environment  : autosar 4.x SC1, Renesas RH850, Greenhills Multi 6.1.4
+*
+* Created_by   : MCU Platform team
+*
+*	 Rev 1.0.0		Dsl 24-11-2020								   
+*	 Initial revision.
+*
+********************************************************************************************/
+#include "Service_CanComm_il.h"
+#include "Service_CanComm_il_def.h"
+#include "can.h"
+
+//#define CANIL_DEBUG
+#ifdef CANIL_DEBUG
+#define CANIL_PRINTF       Lpuart_MCU_Prrintf
+#define CANIL_PRINTF_TAB   Lpuart_MCU_PrintfTab
+#else
+#define CANIL_PRINTF(format, ...)       
+#endif
+
+const EventTxConfig_t EventTxConfig =
+{
+	.eventtx_interval_time    = 4,
+	.eventtx_cnt              = 5,
+	.cyceventtx_interval_time = 4,
+};
+
+CanMsgTxStateBuffer_Struct * CanMsgTxStateBufferPtr;
+
+
+const CanTransmitConfig_t *ilTxTable;
+uint8_t iBytesOfTxHandles = 0u;
+EventTxConfig_t *iEventTxConfig = &EventTxConfig;
+const CanRxMessageConfig_t *ilRxTable[3] = {NULL, NULL, NULL};
+uint16_t iBytesOfRxHandles[3] = {0u};
+void (*FuncTimeoutDetectHandler)(void);
+void (*FuncRxIrqHandler)(uint8_t instance, uint32_t canId, uint8_t msgLen, uint8_t *data);
+CanRxSiganl_t *ilRxSignalTable = NULL;
+CanTxSiganl_t *ilTxSignalTable = NULL;
+uint16_t ilRxSignalTableLen = 0u;
+uint16_t ilTxSignalTableLen = 0u;
+ //static uint16_t ilRxSignalSummaryTable[250] = {0};
+ //static uint16_t ilTxSignalSummaryTable[184] = {0};
+// static uint8_t ilMessageSummaryTable[27] = {0};
+
+static uint8_t CanIlState = 0u;
+static bool CanBusSts = FALSE;
+static bool CanBusLost = FALSE;
+static uint8_t CanMsgAttributeSend = SEND_ALL_MSG;
+
+/* Private typedef -----------------------------------------------------------*/
+#define CanIl_EnableRx()                      (CanIlState = (uint8_t)(((uint8_t)(CanIlState & iRxIsNotWait)) | iRxIsRun))
+#define CanIl_EnableTx()    			      (CanIlState = (uint8_t)(((uint8_t)(CanIlState & iTxIsNotWait)) | iTxIsRun))
+#define CanIl_Wait_Rx()                       (CanIlState = (uint8_t)(((uint8_t)(CanIlState & iRxIsNotRun)) | iRxIsWait))
+#define CanIl_Wait_Tx()      			      (CanIlState = (uint8_t)(((uint8_t)(CanIlState & iTxIsNotRun)) | iTxIsWait))
+#define CanIl_SuspendRx()                     (CanIlState = (uint8_t)(((uint8_t)(CanIlState & iRxIsNotRun)) & iRxIsNotWait))
+#define CanIl_SuspendTx()   			      (CanIlState = (uint8_t)(((uint8_t)(CanIlState & iTxIsNotRun)) & iTxIsNotWait))
+
+#define CanIl_Tx_Enabled()   			      (CanIlState & iTxIsRun)
+#define CanIl_Tx_Waiting()   			      (CanIlState & iTxIsWait)
+#define CanIl_Tx_Suspended() 			      ((CanIlState & (iTxIsRun | iTxIsWait))==0)
+#define CanIl_Tx_NotSuspended()  		      ((CanIlState & (iTxIsRun | iTxIsWait))!=0)
+
+#define CanIl_Rx_Enabled()   			      (CanIlState & iRxIsRun)
+#define CanIl_Rx_Waiting()   			      (CanIlState & iRxIsWait)
+#define CanIl_Rx_Suspended() 			      ((CanIlState & (iRxIsRun | iRxIsWait))==0)
+#define CanIl_Rx_NotSuspended()  		      ((CanIlState & (iRxIsRun | iRxIsWait))!=0)
+
+#define IlGetTxStartDelayCycles(ilTxHnd)      ilTxTable[ilTxHnd].startcycles//(IlTxStartCycles[(ilTxHnd)])
+
+//#define CanIl_GetTxIndex(ilTxHnd)             ilTxTable[ilTxHnd].indirection
+#define CanIl_GetTxCycCycles(ilTxHnd)         ilTxTable[ilTxHnd].cycliccycles
+#define CanIl_GetTxEventCycles(ilTxHnd)	      ilTxTable[ilTxHnd].eventcycles
+#define CanIl_GetTxUpdateCycles(ilTxHnd)	  ilTxTable[ilTxHnd].updatecycles
+#define CanIl_GetTxTypes(ilTxHnd)			  ilTxTable[ilTxHnd].msgtype
+#define CanIl_GetTxAttribute(ilTxHnd)	      ilTxTable[ilTxHnd].msgattribute
+
+//#define CanIl_TxResetConfirmationFlags() 	  (CanIl_VStdMemNearClr(ilTxConfirmationFlags,(uint8_t)iBytesOfTxHandles))
+
+#define CanIl_GetEventTx_Interval_Time()      iEventTxConfig->eventtx_interval_time
+#define CanIl_GetEventTx_Cnt()                iEventTxConfig->eventtx_cnt
+#define CanIl_GetCycEventTx_Interval_Time()   iEventTxConfig->cyceventtx_interval_time
+
+#define CAN_BUSLOST_TIMEOUT         200
+#define CAN_FIRST_BUSLOST_TIMEOUT	200
+
+#define CANTASK_CYCLE               5
+#define TIMEOUT_DETECT_CYCLE        100/CANTASK_CYCLE
+
+/* CAN transmit constants */
+#define CANTXFAILED                             ((uint8_t)0x00) /* CAN transmission failed */
+#define CANTXOK                                 ((uint8_t)0x01) /* CAN transmission succeeded */
+#define CAN_OK1									(0)
+
+/* return values of CanRxActualIdType */
+#define kCanIdTypeStd                           	(0x00000000UL)
+#define kCanIdTypeExt                           	(0x00000001UL)
+
+typedef enum
+{
+	CAN_SEND_MSG_SUCCS = 0,
+	CAN_SEND_MSG_FILED,
+}CAN_SendSts_TypeDef;
+
+static uint8_t CanDrvTransmit(uint16_t txHandle);
+
+
+static void CanIl_VStdMemNearClr(uint8_t *pdest,uint8_t len)
+{
+     uint8_t i;
+     for(i=0;i<len;i++)
+     {
+        pdest[i]=0;
+     }
+}
+
+uint8_t CanIl_GetRxEnabled(void)
+{
+	return CanIl_Rx_Enabled();
+}
+
+void CanIl_SetCanBusSts(void)
+{
+	CanBusSts = TRUE;
+}
+
+static uint8_t CanIl_GetCanBusSts(void)
+{
+	return CanBusSts;
+}
+
+static void CanIl_ClrCanBusSts(void)
+{
+	CanBusSts = FALSE;
+}
+
+uint8_t CanIl_GetCanBusLost(void)
+{
+	return CanBusLost;
+}
+
+static void CanIl_ClrCanBusLost(void)
+{
+	CanBusLost = FALSE;
+}
+
+static void CanIl_SetCanBusLost(void)
+{
+	CanBusLost = TRUE;
+}
+
+void CanIl_SetTxStartAPPMsg(void)
+{
+	CanMsgAttributeSend |= SEND_APP_MSG;	
+}
+
+void CanIl_SetTxStopAPPMsg(void)
+{
+	CanMsgAttributeSend &= ~SEND_APP_MSG; 
+}
+
+void CanIl_SetTxStartNWMMsg(void)
+{
+	CanMsgAttributeSend |= SEND_NWM_MSG; 
+}
+
+void CanIl_SetTxStopNWMMsg(void)
+{
+	CanMsgAttributeSend &= ~SEND_NWM_MSG; 
+}
+
+
+/*****************************************************************************
+**  Function:   Can Signal table init
+**
+**  Parameter:  --
+**  Returncode: --
+******************************************************************************/
+// void CanIl_RxSignalTable_Init(void)
+// {
+// 	uint16_t i = 0;
+// 	//memset(ilRxSignalSummaryTable,0xFF,CAN_RXSIGNAL_MAXNUM*2);
+
+// 	for(i=0; i<(250); i++)
+// 	{
+// 		ilRxSignalSummaryTable[i] = 0xFFFFu;
+// 	}
+
+// 	if(ilRxSignalTable != NULL)
+// 	{
+// 		for(i = 0 ;i < ilRxSignalTableLen;++i)
+// 		{
+// 			ilRxSignalSummaryTable[ilRxSignalTable[i].signalindex] = i;
+// 			//CANIL_PRINTF("%d %d\r\n",ilSignalSummaryTable[ilSignalTable[i].signalindex],i);
+// 		}
+// 	}
+// }
+
+/*****************************************************************************
+**  Function:   Can Signal table init
+**
+**  Parameter:  --
+**  Returncode: --
+******************************************************************************/
+// void CanIl_TxSignalTable_Init(void)
+// {
+// 	uint16_t i = 0;
+// 	//memset(ilTxSignalSummaryTable,0xFF,CAN_TXSIGNAL_MAXNUM*2);
+
+// 	for(i=0; i<(184); i++)
+// 	{
+// 		ilTxSignalSummaryTable[i] = 0xFFFFu;
+// 	}
+
+// 	if(ilTxSignalTable != NULL)
+// 	{
+// 		for(i = 0 ;i < ilTxSignalTableLen;++i)
+// 		{
+// 			ilTxSignalSummaryTable[ilTxSignalTable[i].signalindex] = i;
+// 			//CANIL_PRINTF("%d %d\r\n",ilSignalSummaryTable[ilSignalTable[i].signalindex],i);
+// 		}
+// 	}
+// }
+
+/*****************************************************************************
+**  Function:   Can Signal table init
+**
+**  Parameter:  --
+**  Returncode: --
+******************************************************************************/
+void CanIl_MessageTable_Init(void)
+{
+//	uint16_t i = 0;
+//	//memset(ilMessageSummaryTable,0xFF,CAN_MESSAGE_MAXNUM);
+//
+//	for(i=0; i<(27); i++)
+//	{
+//		ilMessageSummaryTable[i] = 0xFFu;
+//	}
+//
+//	if(ilTxTable != NULL)
+//	{
+//		for(i = 0 ;i < iBytesOfTxHandles;++i)
+//		{
+//			ilMessageSummaryTable[ilTxTable[i].MsgIndex] = i;
+//		}
+//	}
+}
+
+/*****************************************************************************
+**  Function:   Read Can Signal
+**
+**  Parameter:  --
+**  Returncode: --
+******************************************************************************/
+// uint8_t CanIl_ReadSignal(uint16_t signal,void* pdata)
+// {
+// 	uint8_t res = false;
+// 	uint16_t SignalTableIndex = 0xFFFFu;
+// 	if(ilRxSignalTable == NULL)
+// 	{
+// 		return res;
+// 	}
+// 	SignalTableIndex = ilRxSignalSummaryTable[signal];
+// 	if((SignalTableIndex != 0xFFFFu) && (SignalTableIndex < ilRxSignalTableLen))
+// 	{
+// 		if(ilRxSignalTable[SignalTableIndex].Can_Read != NULL)
+// 		{
+// 			ilRxSignalTable[SignalTableIndex].Can_Read(pdata);
+// 			res = true;
+// 		}
+// 	}
+// 	return res;
+// }
+
+/*****************************************************************************
+**  Function:   write Can Signal
+**
+**  Parameter:  --
+**  Returncode: --
+******************************************************************************/
+// uint8_t CanIl_WriteSignal(uint16_t signal,void* pdata)
+// {
+// 	uint8_t res = false;
+// 	uint16_t SignalTableIndex = 0xFFFFu;
+// 	if(ilTxSignalTable == NULL)
+// 	{
+// 		return res;
+// 	}
+// 	SignalTableIndex = ilTxSignalSummaryTable[signal];
+// 	if((SignalTableIndex != 0xFFFFu) && (SignalTableIndex < ilTxSignalTableLen))
+// 	{
+// 		if(ilTxSignalTable[SignalTableIndex].Can_Write != NULL)
+// 		{
+// 			ilTxSignalTable[SignalTableIndex].Can_Write(pdata);
+// 			res = true;
+// 		}
+// 	}
+// 	return res;
+// }
+
+/*****************************************************************************
+**  Function:   write Can Signal
+**
+**  Parameter:  --
+**  Returncode: --
+******************************************************************************/
+// uint8_t CanIl_ClearTxSignal(uint8_t signal)
+// {
+// 	uint8_t res = false;
+// 	uint16_t SignalTableIndex = 0xFFFFu;
+// 	uint8_t pdata = 0u;
+// 	if(ilTxSignalTable == NULL)
+// 	{
+// 		return res;
+// 	}
+// 	SignalTableIndex = ilTxSignalSummaryTable[signal];
+// 	if((SignalTableIndex != 0xFFFFu) && (SignalTableIndex < ilTxSignalTableLen))
+// 	{
+// 		if(ilTxSignalTable[SignalTableIndex].Can_Write != NULL)
+// 		{
+// 			ilTxSignalTable[SignalTableIndex].Can_Write((void*)&pdata);
+// 			res = true;
+// 		}
+// 	}
+// 	return res;
+// }
+
+/*****************************************************************************
+**  Function:   initialize the interaction layer
+**
+**  Parameter:  --
+**  Returncode: --
+******************************************************************************/
+void CanIl_StateInit(void)
+{
+    CanIlState = iTxIsIdle;
+}
+
+/*****************************************************************************
+**  Function:   activates the Receive
+**
+**  Parameter:  --
+**  Returncode: --
+******************************************************************************/
+bool CanIl_TxState(void)
+{
+    if (CanIl_Tx_Enabled() != 0)
+    {
+         return TRUE;
+    }
+	else
+	{
+		return FALSE;
+	}
+}
+
+/*****************************************************************************
+**  Function:   activates the Receive
+**
+**  Parameter:  --
+**  Returncode: --
+******************************************************************************/
+bool CanIl_RxState(void)
+{
+    if (CanIl_Rx_Enabled() != 0)
+    {
+         return TRUE;
+    }
+	else
+	{
+		return FALSE;
+	}
+}
+
+/*****************************************************************************
+**  Function:   activates the Receive
+**
+**  Parameter:  --
+**  Returncode: --
+******************************************************************************/
+void CanIl_RxStart(void)
+{
+    if (CanIl_Rx_Enabled()!=0)
+    {
+         return;
+    }
+    
+    CanIl_EnableRx();
+}
+
+/*****************************************************************************
+**  Function:   activates the transmit()
+**
+**  Parameter:  --
+**  Returncode: --
+******************************************************************************/
+void CanIl_TxStart( void )
+{
+    uint16_t ilTxHnd;
+	uint16_t i;
+
+    if (CanIl_Tx_Enabled()!=0)
+    {
+        return;
+    }
+
+    for ( ilTxHnd=0 ; ilTxHnd < iBytesOfTxHandles  ; ilTxHnd++ )
+    {
+    	/*set the init tx state from TransmitType*/
+        ilTxState(ilTxHnd) = CanIl_GetTxTypes(ilTxHnd);
+		/*no tx event, so set it to 0*/
+        ilTxUpdateCounter(ilTxHnd) = 0;
+		/*start tx,set the start cycle time from TxStartCycTimer*/
+        ilTxCyclicCounter(ilTxHnd) = IlGetTxStartDelayCycles(ilTxHnd);
+
+        if((ilTxState(ilTxHnd) & (iTxCycEveSend))!=0)
+        {
+        ilTxEventCounter(ilTxHnd)  = IlGetTxStartDelayCycles(ilTxHnd);
+        }
+        else
+        {
+        ilTxEventCounter(ilTxHnd)  = 0;
+        }
+    }
+
+    //CanIl_TxResetConfirmationFlags();
+	for(i=0;i<iBytesOfTxHandles;i++)
+	{
+		ilTxConfirmationFlags(i) = 0;
+	}
+    CanIl_EnableTx();
+}
+
+/*****************************************************************************
+**  Function:   stops the receive
+**
+**  Parameter:  --
+**  Returncode: --
+**
+******************************************************************************/
+void CanIl_RxStop( void )
+{
+    if (CanIl_Rx_Suspended())
+    {
+        return;
+    }
+
+    CanIl_SuspendRx();
+}
+
+/*****************************************************************************
+**  Function:   stops the transmit
+**
+**  Parameter:  --
+**  Returncode: --
+**
+******************************************************************************/
+void CanIl_TxStop( void )
+{
+    if (CanIl_Tx_Suspended())
+    {
+        return;
+    }
+
+    CanIl_SuspendTx();
+}
+
+/*****************************************************************************
+**  Function:   Put the transmit
+**
+**  Parameter:  --
+**  Returncode: --
+**
+******************************************************************************/
+void CanIl_WaitTx( void )
+{
+    if (CanIl_Tx_Enabled()==0)
+    {
+        return;
+    }
+
+    CanIl_Wait_Tx();
+}
+
+/*****************************************************************************
+**  Function:   Put the transmit
+**              running
+**  Parameter:  --
+**  Returncode: --
+**
+******************************************************************************/
+void CanIl_ReleaseTx( void )
+{
+    if (CanIl_Tx_Waiting()==0)
+    {
+        return;
+    }
+
+    CanIl_EnableTx();
+}
+
+static void CanIl_SendMsg(uint16_t ilTxHnd)
+{
+    ilTxState(ilTxHnd) &= iNotTxReq;
+
+	/*after event tx,update the cycle time*/
+    ilTxUpdateCounter(ilTxHnd) = CanIl_GetTxUpdateCycles(ilTxHnd);
+
+    if (CanDrvTransmit( ilTxHnd) == CANTXFAILED)
+    {
+    	/*CAN send failed, need to resend*/
+        ilTxState(ilTxHnd) |= (iTxReqSend);
+        ilTxUpdateCounter(ilTxHnd) = 0;
+    }
+    else
+    {
+    	ilTxConfirmationFlags(ilTxHnd)=0x01;
+    }
+}
+
+static void CanIl_TxStateTask(void)
+{
+	uint16_t ilTxHnd;
+	uint16_t x;
+	uint16_t i;
+
+	if(CanIl_Tx_NotSuspended())
+	{
+		ilTxHnd = iBytesOfTxHandles;
+
+		do
+		{
+			ilTxHnd--;
+
+			x = ilTxHnd;
+
+			if(x != iCanNotUsedTxHandle)
+			{
+				if(ilTxConfirmationFlags(x) != 0)
+				{
+					for(i=0;i<iBytesOfTxHandles;i++)
+					{
+						ilTxConfirmationFlags(i) = 0;
+					}
+					ilTxUpdateCounter(ilTxHnd) = CanIl_GetTxUpdateCycles(ilTxHnd);
+				}
+			}
+		}while(ilTxHnd != 0);
+	}
+}
+
+static void CanIl_TxTimerTask(void)
+{
+	uint16_t ilTxHnd;
+
+	if (CanIl_Tx_Enabled()!=0)
+	{
+		ilTxHnd = iBytesOfTxHandles;
+		do
+		{
+			ilTxHnd--;
+
+			if(!(CanMsgAttributeSend & CanIl_GetTxAttribute(ilTxHnd)))
+			{
+				continue;
+			}
+
+			if ((ilTxUpdateCounter(ilTxHnd)!= (uint8_t)(iStopUpdateCntVal & 0x00FF)) && (ilTxUpdateCounter(ilTxHnd) > 0))
+			{
+				ilTxUpdateCounter(ilTxHnd)--;
+			}
+
+			/*tx state is iTxCycSend*/
+			if ((ilTxState(ilTxHnd) & iTxCycSend)!=0)
+			{
+				if (ilTxCyclicCounter(ilTxHnd)!=0)
+				{
+					ilTxCyclicCounter(ilTxHnd)--;
+				}
+
+				/*cycle time out*/
+				if ((ilTxCyclicCounter(ilTxHnd)==0)||((ilTxState(ilTxHnd) & iTxReqSend)!=0))
+				{
+					/*update cycle time from TxCycTimer*/
+					ilTxCyclicCounter(ilTxHnd) = CanIl_GetTxCycCycles(ilTxHnd);
+
+					if ((ilTxState(ilTxHnd) & (iTxCycEveSend | iTxQuickStart))==0)
+					{
+						ilTxState(ilTxHnd) |= iTxReqSend;
+					}
+				}
+			}
+
+			/*tx state is iTxCycEveSend or iTxQuickStart*/
+			if	((ilTxState(ilTxHnd) & (iTxCycEveSend | iTxQuickStart))!=0)
+			{
+
+				if (ilTxEventCounter(ilTxHnd)!=0) /*iTxCycEveSend*/
+				{
+					ilTxEventCounter(ilTxHnd)--;
+				}
+				/*tx state is iTxQuickStart*/
+				if(((ilTxState(ilTxHnd) & iTxQuickStart)!=0) && (ilTxEventCounter(ilTxHnd)>0))
+				{
+					if((ilTxEventCounter(ilTxHnd) >= CanIl_GetCycEventTx_Interval_Time())&&((CanIl_GetTxEventCycles(ilTxHnd)-ilTxEventCounter(ilTxHnd)) >= CanIl_GetCycEventTx_Interval_Time()))
+					{
+						ilTxState(ilTxHnd) |= iTxReqSend;
+
+						ilTxState(ilTxHnd) &=(~ iTxQuickStart);
+					}
+					else if(ilTxEventCounter(ilTxHnd) < CanIl_GetCycEventTx_Interval_Time())
+					{
+						ilTxEventCounter(ilTxHnd) = CanIl_GetCycEventTx_Interval_Time();
+						ilTxState(ilTxHnd) |= iTxReqSend;
+
+						ilTxState(ilTxHnd) &=(~ iTxQuickStart);
+					}
+					else if((CanIl_GetTxEventCycles(ilTxHnd)-ilTxEventCounter(ilTxHnd)) < CanIl_GetCycEventTx_Interval_Time())
+					{
+						ilTxState(ilTxHnd) |= iTxQuickStart;
+
+					}
+					else
+					{
+
+					}
+				}
+
+				if ((ilTxEventCounter(ilTxHnd)==0)||((ilTxState(ilTxHnd) & iTxReqSend)!=0))
+				{
+					/*tx state is iTxCycEveSend*/
+					if((ilTxState(ilTxHnd) & iTxCycEveSend)!=0)
+					{
+						//ilTxUpdateCounter(ilTxHnd)=0;
+						ilTxState(ilTxHnd) &=(~ iTxQuickStart);
+						ilTxState(ilTxHnd) |= iTxReqSend;
+					}
+					ilTxEventCounter(ilTxHnd) = CanIl_GetTxEventCycles(ilTxHnd);
+				}
+			}
+
+			if (((ilTxState(ilTxHnd) & (iTxEveSend ))!=0) && ((ilTxState(ilTxHnd) & (iTxQuickStart ))!=0))
+			{
+				if (ilTxEventCounter(ilTxHnd)!=0)
+				{
+					ilTxEventCounter(ilTxHnd)--;
+				}
+
+				if (ilTxEventCounter(ilTxHnd)==0)
+				{
+					ilTxState(ilTxHnd) &=(~ iTxQuickStart);
+					ilTxState(ilTxHnd) |= iTxReqSend;
+					ilTxEventCounter(ilTxHnd) = CanIl_GetTxEventCycles(ilTxHnd);
+				}
+			}
+
+			if (((ilTxState(ilTxHnd) & iTxReqSend)!=0) && (ilTxUpdateCounter(ilTxHnd)==0) )
+			{
+				CanIl_SendMsg(ilTxHnd);
+				// printf("Enter CanIl_SendMsg\r\n");
+			}
+		}while ( ilTxHnd != 0 );
+	}
+}
+
+static void CanIl_EventMsgCycTxPro(void)
+{
+    uint8_t i;
+
+    for (i=0; i<iBytesOfTxHandles; i++)
+    {
+    	if(iEventMsgInfo(i).Flag==TRUE)
+    	{
+    		iEventMsgInfo(i).Counter++;
+    		if(iEventMsgInfo(i).Counter >= CanIl_GetEventTx_Interval_Time())
+    		{
+    			ilTxState(i) |= iTxQuickStart;
+    			iEventMsgInfo(i).Counter = 0;
+    			iEventMsgInfo(i).Time++;
+    			if(iEventMsgInfo(i).Time >= CanIl_GetEventTx_Cnt())
+    			{
+    				iEventMsgInfo(i).Time = 0;
+    			    iEventMsgInfo(i).Flag = FALSE;
+    			}
+    		}
+    	}
+    }
+}
+
+void CanIl_TxTask(void)
+{
+	CanIl_TxStateTask();
+	CanIl_TxTimerTask();
+
+	CanIl_EventMsgCycTxPro();
+}
+
+void CanIl_SendEventMsg(uint8_t ilTxHnd)
+{
+    if ((CanIl_GetTxTypes(ilTxHnd)!=iTxCycSend)&&(iEventMsgInfo(ilTxHnd).Flag == FALSE))
+    {
+        iEventMsgInfo(ilTxHnd).Counter = 0;
+        iEventMsgInfo(ilTxHnd).Time = 0;
+        iEventMsgInfo(ilTxHnd).Flag = TRUE;
+    }
+}
+
+//void CanIl_EventMsgSend(uint8_t ilTxHnd)
+//{
+//	if((ilTxHnd >= 27) || (ilMessageSummaryTable[ilTxHnd] == 0xFFu))
+//	{
+//		return;
+//	}
+//	CanIl_SendEventMsg(ilMessageSummaryTable[ilTxHnd]);
+//}
+
+/*****************************************************************************
+**  Function:   CanBus Timeout Detect Handler
+**
+**  Parameter:  --
+**  Returncode: --
+**
+******************************************************************************/
+static void CanIl_CanBusDetectHandler(void)
+{
+	static uint16_t first_timeout = 0;
+	static uint16_t canbus_lostcnt = 0;
+	static uint16_t last_canbusLost_sts = FALSE;
+
+	if(CanIl_Rx_Enabled() == 0)
+	{
+		return;
+	}
+
+	if(TRUE == CanIl_GetCanBusSts())
+	{
+		CanIl_ClrCanBusSts();
+		canbus_lostcnt = 0;
+		CanIl_ClrCanBusLost();
+		if(last_canbusLost_sts != CanIl_GetCanBusLost())
+		{
+			last_canbusLost_sts = CanIl_GetCanBusLost();
+		}
+	}
+	else
+	{
+		if(first_timeout++ >= CAN_FIRST_BUSLOST_TIMEOUT)
+		{
+			first_timeout = CAN_FIRST_BUSLOST_TIMEOUT;
+			if(canbus_lostcnt == CAN_BUSLOST_TIMEOUT)
+			{
+				canbus_lostcnt = 0;
+
+				CanIl_SetCanBusLost();
+				if(last_canbusLost_sts != CanIl_GetCanBusLost())
+				{
+					last_canbusLost_sts = CanIl_GetCanBusLost();
+					//CANIL_PRINTF("Can Bus timeout->goto sleep\r\n");
+				}
+			}
+			else
+			{
+				canbus_lostcnt++;
+			}
+		}
+	}
+}
+
+int CanIl_CanUnpack_ProcessHandle(CanRxMessageConfig_t *CanMessageConfig_Table, uint16_t ConfigTableLength, uint32_t canId, size_t msgLen, const uint8_t *data)
+{
+	uint16_t u16MessageIndex = 0u;
+	uint8_t i = 0;
+
+    if(CanMessageConfig_Table == NULL)
+    {
+        return -1;
+    }
+
+	for (u16MessageIndex=0u; u16MessageIndex<ConfigTableLength; u16MessageIndex++)
+	{
+        const CanRxMessageConfig_t *pMessageConfig = &CanMessageConfig_Table[u16MessageIndex];
+
+    	if (pMessageConfig->canId == canId)
+    	{
+    		// if (NULL != pMessageConfig->pUnPackFunc)
+    		// {
+    		// 	pMessageConfig->pUnPackFunc(pMessageConfig->dstData, data, msgLen);
+    		// }
+
+			if(pMessageConfig->dstData != NULL)
+			{
+				for(i=0; i<(pMessageConfig->msgLen); i++)
+				{
+					pMessageConfig->dstData[i] = data[i];
+				}
+			}
+
+    		if(NULL != pMessageConfig->pMessageTimeoutConfig)
+    		{
+    		    if(NULL != pMessageConfig->pMessageTimeoutConfig->pMessageTimeFunc)
+    		    {
+    		    	pMessageConfig->pMessageTimeoutConfig->pMessageTimeFunc(pMessageConfig,TRUE);
+					if(pMessageConfig->pMessageTimeoutConfig->u8MessageFirstReceivedFlag != TRUE)
+					{
+						pMessageConfig->pMessageTimeoutConfig->u8MessageFirstReceivedFlag = TRUE;
+					}
+    		    }
+    		}
+
+			// if (NULL != pMessageConfig->pSignalTimeoutFunc)
+			// {
+			// 	pMessageConfig->pSignalTimeoutFunc(pMessageConfig->pSignalsConfigTable, pMessageConfig->u32SignalsConfigNum, TRUE);
+			// }
+
+			if (NULL != pMessageConfig->pApplCallbackFunc)
+			{
+				pMessageConfig->pApplCallbackFunc(data, msgLen);
+			}
+
+			return 0;
+		}
+	}
+
+	return -1;
+}
+
+static void CanIl_TimeoutDetect(CanRxMessageConfig_t *CanMessageConfig_Table, uint16_t ConfigTableLength)
+{
+	uint16_t u16MessageIndex = 0u;
+    if(CanMessageConfig_Table == NULL)
+    {
+        return -1;
+    }
+	for (u16MessageIndex=0u; u16MessageIndex<ConfigTableLength; u16MessageIndex++)
+	{
+	    //const CanRxMessageConfig_t *pMessageConfig = &CanMessageConfig_Table[u16MessageIndex];
+		const CanRxMessageConfig_t *pMessageConfig = &CanMessageConfig_Table[u16MessageIndex];
+	    if(NULL != pMessageConfig->pMessageTimeoutConfig)
+	    {
+	    	if(TRUE == pMessageConfig->pMessageTimeoutConfig->u8MessageReceiveflag)
+	    	{
+	    		pMessageConfig->pMessageTimeoutConfig->u8MessageReceiveflag = FALSE;
+	    		pMessageConfig->pMessageTimeoutConfig->u8MessageTimeoutcount = pMessageConfig->pMessageTimeoutConfig->u8MessageTimeoutMaxPeriod;
+	    	}
+	    	else
+	    	{
+	    		if(pMessageConfig->pMessageTimeoutConfig->u8MessageTimeoutcount != 0)
+	    		{
+	    			pMessageConfig->pMessageTimeoutConfig->u8MessageTimeoutcount--;
+	    		}
+	    	}
+	    	if((0 == pMessageConfig->pMessageTimeoutConfig->u8MessageTimeoutcount) && FALSE == pMessageConfig->pMessageTimeoutConfig->u8MessageTimeoutflag)
+	    	{
+	    		pMessageConfig->pMessageTimeoutConfig->u8MessageTimeoutflag = TRUE;
+	    		//CANIL_PRINTF("[0x%x]Message Timeout\r\n",pMessageConfig->canId);
+	    		if(NULL != pMessageConfig->pMessageTimeoutConfig->pMessageTimeoutFunc)
+	    		{
+	    			pMessageConfig->pMessageTimeoutConfig->pMessageTimeoutFunc();
+	    		}
+	    	}
+	    	else if((0 != pMessageConfig->pMessageTimeoutConfig->u8MessageTimeoutcount) && (TRUE == pMessageConfig->pMessageTimeoutConfig->u8MessageTimeoutflag))
+	    	{
+	    		pMessageConfig->pMessageTimeoutConfig->u8MessageTimeoutflag = FALSE;
+	    		//CANIL_PRINTF("[0x%x]Message Recover\r\n",pMessageConfig->canId);
+				if(NULL != pMessageConfig->pMessageTimeoutConfig->pMessageRecoverFunc)
+				{
+					pMessageConfig->pMessageTimeoutConfig->pMessageRecoverFunc();
+				}
+	    	}
+	    }
+	}
+}
+
+static void CanIl_TimeoutDetectHandler(void)
+{
+	uint8_t i = 0;
+	for(i = 0;i < 3; ++i)
+	{
+		if(ilRxTable[i] != NULL)
+		{
+			CanIl_TimeoutDetect(ilRxTable[i],iBytesOfRxHandles[i]);
+		}
+	}
+}
+
+void CanIl_RxIrqHandler(uint8_t instance, uint32_t canId, uint8_t msgLen, uint8_t *data)
+{
+	if(ilRxTable[instance] != NULL)
+	{
+		if(CanIl_CanUnpack_ProcessHandle(ilRxTable[instance],iBytesOfRxHandles[instance],canId, msgLen, data) >= 0)
+		{
+			// DebugMsg("[INFO] CanDbc Recv Id:%x, Len:%d, Data: %x %x %x %x %x %x %x %x\r\n",
+			//     canId, msgLen,
+			//     data[0], data[1], data[2], data[3], data[4], data[5], data[6], data[7]);
+		}
+		else
+		{
+			// DebugMsg("[INFO] CanDbc RecvNotMatch Id:%x, Len:%d, Data: %x %x %x %x %x %x %x %x\r\n",
+			//     canId, msgLen,
+			//     data[0], data[1], data[2], data[3], data[4], data[5], data[6], data[7]);
+		}
+	}
+}
+
+
+/*****************************************************************************
+**  Function:   Receive task
+**
+**  Parameter:  --
+**  Returncode: --
+**
+******************************************************************************/
+void CanIl_RxTask(void)
+{
+	static uint8_t timeout_detect_cnt = 0;
+	timeout_detect_cnt++;
+	if(timeout_detect_cnt == TIMEOUT_DETECT_CYCLE)
+	{
+		timeout_detect_cnt = 0;
+		CanIl_TimeoutDetectHandler();
+	}
+	CanIl_CanBusDetectHandler();
+}
+
+static void CanDrv_HLTxConfirm(uint16_t Index)
+{
+	uint16_t txHandle;
+
+	//txHandle = CurTxHandleIndex;
+	txHandle = Index;
+
+	if (CanGetApplConfirmationPtr(txHandle) != NULL)
+	{
+		(CanGetApplConfirmationPtr(txHandle))(txHandle);
+	}
+}
+
+uint8_t CanStartTransmission(uint8_t instance,uint32_t ID,uint8_t *pDataBuf, uint8_t dataLen)
+{
+	uint8_t res = 0;
+    if(instance == BCAN_CAN_INSTANCE)
+    {
+        if(CAN2_SendMsg(pDataBuf, ID, dataLen))
+        {
+            res = CAN_TRANSMIT_MSG_SUCCS;
+        }
+        else
+        {
+            res = CAN_TRANSMIT_MSG_FILED;
+        }
+
+		// printf("BCAN_SendMsg ID = 0x%x, dataLen = %d\r\n", ID, dataLen);
+    }
+    else if(instance == CCAN1_CAN_INSTANCE)
+    {
+        if(CAN_SendMsg(pDataBuf, ID, dataLen))
+        {
+            res = CAN_TRANSMIT_MSG_SUCCS;
+        }
+        else
+        {
+            res = CAN_TRANSMIT_MSG_FILED;
+        }
+		// printf("CCAN1_SendMsg ID = 0x%x, dataLen = %d\r\n", ID, dataLen);
+    }
+
+	return res;
+}
+
+static uint8_t CanCopyDataAndStartTransmission(uint16_t txHandle)
+{
+	uint8_t i;
+	uint8_t data[8];
+	uint8_t result;
+	uint32_t ID;
+	typedef struct _CAN_MSG_INFO
+	{
+		uint32_t    ID: 29;            ///< CAN identifier
+		uint32_t    RTR: 1;            ///< Remote transmission request frame
+		uint32_t    IDE: 1;            ///< Identifier Extension
+		uint32_t    DLC: 4;            ///< Data length code
+		uint8_t   Data[8];           ///< Data
+
+	} CAN_MSG_INFO;
+	static CAN_MSG_INFO g_sendCANMsgInfo;
+
+	ID = CanGetTxId(txHandle);
+	if(ID > 0x7FF)
+	{
+		g_sendCANMsgInfo.IDE = kCanIdTypeExt;
+	}
+	else
+	{
+		g_sendCANMsgInfo.IDE = kCanIdTypeStd;
+	}
+
+	if(CanGetDstData(txHandle) != NULL)
+	{
+		//CanPackFunc(txHandle)(g_sendCANMsgInfo.Data,CanGetDstData(txHandle),CanGetMsgLen(txHandle));
+
+		for(i=0; i<CanGetMsgLen(txHandle); i++)
+		{
+			g_sendCANMsgInfo.Data[i] = CanGetDstData(txHandle)[i];
+		}
+
+		g_sendCANMsgInfo.ID = ID;
+		g_sendCANMsgInfo.DLC =  CanGetMsgLen(txHandle);
+
+		//if(1)//(!CanHal_TxMsg(CanGetTxHwPort(txHandle),g_sendCANMsgInfo.ID, g_sendCANMsgInfo.IDE, g_sendCANMsgInfo.Data,g_sendCANMsgInfo.DLC))
+		if(!CanStartTransmission(CanGetTxHwPort(txHandle), g_sendCANMsgInfo.ID, g_sendCANMsgInfo.Data, g_sendCANMsgInfo.DLC))
+		{
+			result = CAN_SEND_MSG_SUCCS;
+		}
+		else
+		{
+			result = CAN_SEND_MSG_FILED;
+		}
+
+		return result;
+	}
+	else
+	{
+		return CAN_SEND_MSG_FILED;
+	}
+}
+
+static uint8_t CanDrvTransmit(uint16_t txHandle)
+{
+	uint32_t result = CAN_OK1;
+	static uint16_t idle = 0xFF;
+
+	//CurTxHandleIndex = txHandle;
+	result = CanCopyDataAndStartTransmission(txHandle);
+
+	if ((idle != txHandle)&& (result != CAN_OK1))
+	{
+		//DebugMsg("Can Tx Failed! %s\r\n",__FUNCTION__);
+	}
+
+	idle = txHandle;
+
+	if (result == CAN_OK1)
+	{
+    	idle = 0xFF;
+    	CanDrv_HLTxConfirm(txHandle);
+    	return CANTXOK;
+	}
+	else
+	{
+    	return CANTXFAILED;
+	}
+}

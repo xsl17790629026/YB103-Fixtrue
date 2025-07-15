@@ -1,0 +1,865 @@
+#include "main.h"
+
+#include "lcd12864_def.h"
+
+// 动态生成的 ITEM_MAX 宏定义
+#ifndef ITEM_MAX_DEFAULT
+#define ITEM_MAX_DEFAULT 32
+#endif
+
+char* Func[MENU_MAX] = {
+	"F1",
+	"F2",
+	"F3",
+	"F4",
+	"F5",
+	"F6",
+	"F7",
+	"F8",
+	"F9",
+	"F10",
+	"F11",
+	"F12",
+	"F13",
+	"F14",
+	"F15",
+	"F16",
+	"F17",
+	"F18",
+	"F19",
+	"F20",
+	"F21",
+	"F22",
+	"F23",
+	"F24",
+	"F25",
+	"F26",
+	"F27",
+	"F28",
+	"F29",
+	"F30",
+	"F31",
+	"F32",
+	"F33",
+	"F34",
+	"F35",
+	"F36",
+	"F37",
+	"F38",
+	"F39",
+	"F40",
+	"F41",
+	"F42",
+	"F43",
+	"F44",
+	"F45",
+	"F46",
+	"F47",
+	"F48",
+	"F49",
+	"F50",
+	"F51",
+	"F52",
+	"F53",
+	"F54",
+	"F55",
+	"F56",
+	"F57",
+	"F58",
+	"F59",
+	"F60",
+	"F61",
+	"F62",
+	"F63",
+	"F64",
+	"F65",
+	"F66",
+	"F67",
+	"F68",
+	"F69",
+	"F70",
+	"F71",
+	"F72",
+	"F73",
+	"F74",
+	"F75",
+	"F76",
+	"F77",
+	"F78"
+};
+
+//----------------------------------F1------------------------------//
+char* F1Item[F1_ITEM_MAX] = {
+		"ABS_VhSd",
+		"ABS_SpdV",
+		"ABS_TmOt",
+		"IC_DspVS",
+		"IC_DspVU"
+};
+char* F1Value[F1_ITEM_MAX][16] = {};
+uint16_t F1Max[F1_ITEM_MAX] = {
+		460,
+		2,
+		2,
+		2,
+		511,
+};
+uint16_t g_F1[F1_ITEM_MAX] = {0};
+
+//----------------------------------F2------------------------------//
+char* F2Item[F2_ITEM_MAX] = {
+		"EMS2_ES",
+		"EMS2_ESV",
+		"EMS2_TO"
+};
+char* F2Value[F2_ITEM_MAX][16] = {};
+uint16_t F2Max[F2_ITEM_MAX] = {
+		(0xFFFF/400),
+		2,
+		2,
+};
+uint16_t g_F2[F2_ITEM_MAX] = {0};
+
+//----------------------------------F3------------------------------//
+char* F3Item[F3_ITEM_MAX] = {
+		"ABS_VhSd",
+		"ABS_SpdV",
+		"ABS_TmOt",
+		"EMS2_ES",
+		"EMS2_ESV",
+		"EMS2_TO",
+		"IC_SrFuel",
+		"IC_SrFuelV",
+		"IC_FSgS2G",
+		"IC_FSgS2B",
+		"IC_FSgOp"
+};
+char* F3Value[F3_ITEM_MAX][16] = {};
+uint16_t F3Max[F3_ITEM_MAX] = {
+		460,
+		2,
+		2,
+		(0xFFFF/400),
+		2,
+		2,
+		0x65,
+		2,
+		2,
+		2,
+		2,
+};
+uint16_t g_F3[F3_ITEM_MAX] = {0};
+
+//----------------------------------F4------------------------------//
+char* F4Item[F4_ITEM_MAX] = {
+		"EMS4_ECTmp",
+		"EMS4_ECTpV",
+		"EMS4_TO"
+};
+char* F4Value[F4_ITEM_MAX][16] = {};
+uint16_t F4Max[F4_ITEM_MAX] = {
+		0xFF,
+		2,
+		2,
+};
+uint16_t g_F4[F4_ITEM_MAX] = {90/2, 0, 0};
+
+//----------------------------------F5------------------------------//
+char* F5Item[F5_ITEM_MAX] = {
+		"ABS_VhSd",
+		"ABS_SpdV",
+		"ABS_TmOt",
+		"IC_ODO"
+};
+char* F5Value[F5_ITEM_MAX][16] = {};
+uint32_t F5Max[F5_ITEM_MAX] = {
+		460,
+		2,
+		2,
+		0xF6950/10000,
+};
+uint32_t g_F5[F5_ITEM_MAX] = {0};
+
+//----------------------------------F6------------------------------//
+char* F6Item[F6_ITEM_MAX] = {
+		"ABS_VhSd",
+		"ABS_SpdV",
+		"ABS_TmOt",
+		"EMS2_ES",
+		"EMS2_ESV",
+		"EMS2_TO",
+		"EMS4_FC",
+		"EMS4_TO",
+		"IC_SrMlg"
+};
+char* F6Value[F6_ITEM_MAX][16] = {
+};
+uint16_t F6Max[F6_ITEM_MAX] = {
+		460,
+		2,
+		2,
+		(0xFFFF/400),
+		2,
+		2,
+		0xFF/5,
+		2,
+		0x44C / 100,         //0x3FF,
+};
+uint16_t g_F6[F6_ITEM_MAX] = {0};
+
+//----------------------------------F7------------------------------//
+char* F7Item[F7_ITEM_MAX] = {
+		"ABS_VhSd",
+		"ABS_SpdV",
+		"ABS_TmOt",
+		"EMS2_ES",
+		"EMS2_ESV",
+		"EMS2_TO",
+		"EMS4_FC",
+		"EMS4_TO",
+		"IC_LTAFC",
+		"IC_TAFCR"
+};
+char* F7Value[F7_ITEM_MAX][16] = {};
+uint16_t F7Max[F7_ITEM_MAX] = {
+		460,
+		2,
+		2,
+		(0xFFFF/400),
+		2,
+		2,
+		0xFF/5,
+		2,
+		0x12B / 10 + 1,
+		0x12B / 10 + 1,
+};
+uint16_t g_F7[F7_ITEM_MAX] = {0};
+
+//----------------------------------F8------------------------------//
+char* F8Item[F8_ITEM_MAX] = {
+		"TPMS_SSt",
+		"TPMS_TID",
+		"TPMS_SLost",
+		"TPMS_TLeak",
+		"TPMS_LSt",
+		"TPMS_TPS",
+		"TPMS_TP"
+};
+char* F8Value[F8_ITEM_MAX][16] = {};
+uint16_t F8Max[F8_ITEM_MAX] = {
+		4,
+		4,
+		2,
+		2,
+		4,
+		4,
+		0xFF / 15,
+};
+uint16_t g_F8[F8_ITEM_MAX] = {0};
+
+//----------------------------------F9------------------------------//
+char* F9Item[F9_ITEM_MAX] = {
+		"BCM1_FLDor",
+		"BCM1_FRDor",
+		"BCM1_RLDor",
+		"BCM1_RRDor",
+		"BCM1_TailG",
+		"BCM1_HoodS",
+		"BCM1_TO"
+};
+char* F9Value[F9_ITEM_MAX][16] = {};
+uint16_t F9Max[F9_ITEM_MAX] = {
+		2,
+		2,
+		2,
+		2,
+		2,
+		2,
+		2,
+};
+uint16_t g_F9[F9_ITEM_MAX] = {0};
+
+//----------------------------------F10------------------------------//
+char* F10Item[F10_ITEM_MAX] = {
+		"TCU3_TgtG",
+		"TCU3_TgtGV",
+		"TCU1_GSPos",
+		"TCU1_GSPoV",
+		"TCU1_TO",
+		"TCU3_TO"
+};
+char* F10Value[F10_ITEM_MAX][16] = {};
+uint16_t F10Max[F10_ITEM_MAX] = {
+		0x10,
+		2,
+		0x10,
+		2,
+		2,
+		2,
+};
+uint16_t g_F10[F10_ITEM_MAX] = {0};
+
+//----------------------------------F11------------------------------//
+char* F11Item[F11_ITEM_MAX] = {
+		"E1_RGreen",
+		"E1_RYellow",
+		"E1_FGreen",
+		"E1_FYellow",
+		"EDL1_TO"
+};
+char* F11Value[F11_ITEM_MAX][16] = {};
+uint16_t F11Max[F11_ITEM_MAX] = {
+		4,
+		4,
+		4,
+		4,
+		2,
+};
+uint16_t g_F11[F11_ITEM_MAX] = {0};
+
+//----------------------------------F12------------------------------//
+char* F12Item[F12_ITEM_MAX] = {
+		"AC2_OTempV",
+		"AC2_OTemp",
+		"AC2_TO"
+};
+char* F12Value[F12_ITEM_MAX][16] = {};
+uint16_t F12Max[F12_ITEM_MAX] = {
+		2,
+		0xFF,
+		2
+};
+uint16_t g_F12[F12_ITEM_MAX] = {0};
+
+//----------------------------------F13------------------------------//
+char* F13Item[F13_ITEM_MAX] = {
+	    "FCM_NLnID", "FCM_NLnCl", "FCM_NLnTp", "FCM_NLnHD", "FCM_NLnCv",
+	    "FCM_NRnID", "FCM_NRnCl", "FCM_NRnTp", "FCM_NRnHD", "FCM_NRnCv",
+	    "FCM6_RC", "FCM6_CS"
+
+};
+char* F13Value[F13_ITEM_MAX][16] = {};
+uint16_t F13Max[F13_ITEM_MAX] = {
+};
+uint16_t g_F13[F13_ITEM_MAX] = {0};
+
+//----------------------------------F14------------------------------//
+char* F14Item[F14_ITEM_MAX] = {
+};
+char* F14Value[F14_ITEM_MAX][16] = {};
+uint16_t F14Max[F14_ITEM_MAX] = {
+};
+uint16_t g_F14[F14_ITEM_MAX] = {0};
+
+//----------------------------------F15------------------------------//
+char* F15Item[F15_ITEM_MAX] = {
+};
+char* F15Value[F15_ITEM_MAX][16] = {};
+uint16_t F15Max[F15_ITEM_MAX] = {
+};
+uint16_t g_F15[F15_ITEM_MAX] = {0};
+
+//----------------------------------F16------------------------------//
+char* F16Item[F16_ITEM_MAX] = {
+};
+char* F16Value[F16_ITEM_MAX][16] = {};
+uint16_t F16Max[F16_ITEM_MAX] = {
+};
+uint16_t g_F16[F16_ITEM_MAX] = {0};
+
+//----------------------------------F17------------------------------//
+char* F17Item[F17_ITEM_MAX] = {
+};
+char* F17Value[F17_ITEM_MAX][16] = {};
+uint16_t F17Max[F17_ITEM_MAX] = {
+};
+uint16_t g_F17[F17_ITEM_MAX] = {0};
+
+//----------------------------------F18------------------------------//
+char* F18Item[F18_ITEM_MAX] = {
+};
+char* F18Value[F18_ITEM_MAX][16] = {};
+uint16_t F18Max[F18_ITEM_MAX] = {
+};
+uint16_t g_F18[F18_ITEM_MAX] = {0};
+
+//----------------------------------F19------------------------------//
+char* F19Item[F19_ITEM_MAX] = {
+};
+char* F19Value[F19_ITEM_MAX][16] = {};
+uint16_t F19Max[F19_ITEM_MAX] = {
+};
+uint16_t g_F19[F19_ITEM_MAX] = {0};
+
+//----------------------------------F20------------------------------//
+char* F20Item[F20_ITEM_MAX] = {
+};
+char* F20Value[F20_ITEM_MAX][16] = {};
+uint16_t F20Max[F20_ITEM_MAX] = {
+};
+uint16_t g_F20[F20_ITEM_MAX] = {0};
+
+//----------------------------------F21------------------------------//
+char* F21Item[F21_ITEM_MAX] = {
+};
+char* F21Value[F21_ITEM_MAX][16] = {};
+uint16_t F21Max[F21_ITEM_MAX] = {
+};
+uint16_t g_F21[F21_ITEM_MAX] = {0};
+
+//----------------------------------F22------------------------------//
+char* F22Item[F22_ITEM_MAX] = {
+};
+char* F22Value[F22_ITEM_MAX][16] = {};
+uint16_t F22Max[F22_ITEM_MAX] = {
+};
+uint16_t g_F22[F22_ITEM_MAX] = {0};
+
+//----------------------------------F23------------------------------//
+char* F23Item[F23_ITEM_MAX] = {
+};
+char* F23Value[F23_ITEM_MAX][16] = {};
+uint16_t F23Max[F23_ITEM_MAX] = {
+};
+uint16_t g_F23[F23_ITEM_MAX] = {0};
+
+//----------------------------------F24------------------------------//
+char* F24Item[F24_ITEM_MAX] = {
+};
+char* F24Value[F24_ITEM_MAX][16] = {};
+uint16_t F24Max[F24_ITEM_MAX] = {
+};
+uint16_t g_F24[F24_ITEM_MAX] = {0};
+
+//----------------------------------F25------------------------------//
+char* F25Item[F25_ITEM_MAX] = {
+};
+char* F25Value[F25_ITEM_MAX][16] = {};
+uint16_t F25Max[F25_ITEM_MAX] = {
+};
+uint16_t g_F25[F25_ITEM_MAX] = {0};
+
+//----------------------------------F26------------------------------//
+char* F26Item[F26_ITEM_MAX] = {
+};
+char* F26Value[F26_ITEM_MAX][16] = {};
+uint16_t F26Max[F26_ITEM_MAX] = {
+};
+uint16_t g_F26[F26_ITEM_MAX] = {0};
+
+//----------------------------------F27------------------------------//
+char* F27Item[F27_ITEM_MAX] = {
+};
+char* F27Value[F27_ITEM_MAX][16] = {};
+uint16_t F27Max[F27_ITEM_MAX] = {
+};
+uint16_t g_F27[F27_ITEM_MAX] = {0};
+
+//----------------------------------F28------------------------------//
+char* F28Item[F28_ITEM_MAX] = {
+};
+char* F28Value[F28_ITEM_MAX][16] = {};
+uint16_t F28Max[F28_ITEM_MAX] = {
+};
+uint16_t g_F28[F28_ITEM_MAX] = {0};
+
+//----------------------------------F29------------------------------//
+char* F29Item[F29_ITEM_MAX] = {
+};
+char* F29Value[F29_ITEM_MAX][16] = {};
+uint16_t F29Max[F29_ITEM_MAX] = {
+};
+uint16_t g_F29[F29_ITEM_MAX] = {0};
+
+//----------------------------------F30------------------------------//
+char* F30Item[F30_ITEM_MAX] = {
+};
+char* F30Value[F30_ITEM_MAX][16] = {};
+uint16_t F30Max[F30_ITEM_MAX] = {
+};
+uint16_t g_F30[F30_ITEM_MAX] = {0};
+
+//----------------------------------F31------------------------------//
+char* F31Item[F31_ITEM_MAX] = {
+};
+char* F31Value[F31_ITEM_MAX][16] = {};
+uint16_t F31Max[F31_ITEM_MAX] = {
+};
+uint16_t g_F31[F31_ITEM_MAX] = {0};
+
+//----------------------------------F32------------------------------//
+char* F32Item[F32_ITEM_MAX] = {
+};
+char* F32Value[F32_ITEM_MAX][16] = {};
+uint16_t F32Max[F32_ITEM_MAX] = {
+};
+uint16_t g_F32[F32_ITEM_MAX] = {0};
+
+//----------------------------------F33------------------------------//
+char* F33Item[F33_ITEM_MAX] = {
+};
+char* F33Value[F33_ITEM_MAX][16] = {};
+uint16_t F33Max[F33_ITEM_MAX] = {
+};
+uint16_t g_F33[F33_ITEM_MAX] = {0};
+
+//----------------------------------F34------------------------------//
+char* F34Item[F34_ITEM_MAX] = {
+};
+char* F34Value[F34_ITEM_MAX][16] = {};
+uint16_t F34Max[F34_ITEM_MAX] = {
+};
+uint16_t g_F34[F34_ITEM_MAX] = {0};
+
+//----------------------------------F35------------------------------//
+char* F35Item[F35_ITEM_MAX] = {
+};
+char* F35Value[F35_ITEM_MAX][16] = {};
+uint16_t F35Max[F35_ITEM_MAX] = {
+};
+uint16_t g_F35[F35_ITEM_MAX] = {0};
+
+//----------------------------------F36------------------------------//
+char* F36Item[F36_ITEM_MAX] = {
+};
+char* F36Value[F36_ITEM_MAX][16] = {};
+uint16_t F36Max[F36_ITEM_MAX] = {
+};
+uint16_t g_F36[F36_ITEM_MAX] = {0};
+
+//----------------------------------F37------------------------------//
+char* F37Item[F37_ITEM_MAX] = {
+};
+char* F37Value[F37_ITEM_MAX][16] = {};
+uint16_t F37Max[F37_ITEM_MAX] = {
+};
+uint16_t g_F37[F37_ITEM_MAX] = {0};
+
+//----------------------------------F38------------------------------//
+char* F38Item[F38_ITEM_MAX] = {
+};
+char* F38Value[F38_ITEM_MAX][16] = {};
+uint16_t F38Max[F38_ITEM_MAX] = {
+};
+uint16_t g_F38[F38_ITEM_MAX] = {0};
+
+//----------------------------------F39------------------------------//
+char* F39Item[F39_ITEM_MAX] = {
+};
+char* F39Value[F39_ITEM_MAX][16] = {};
+uint16_t F39Max[F39_ITEM_MAX] = {
+};
+uint16_t g_F39[F39_ITEM_MAX] = {0};
+
+//----------------------------------F40------------------------------//
+char* F40Item[F40_ITEM_MAX] = {
+};
+char* F40Value[F40_ITEM_MAX][16] = {};
+uint16_t F40Max[F40_ITEM_MAX] = {
+};
+uint16_t g_F40[F40_ITEM_MAX] = {0};
+
+//----------------------------------F41------------------------------//
+char* F41Item[F41_ITEM_MAX] = {
+};
+char* F41Value[F41_ITEM_MAX][16] = {};
+uint16_t F41Max[F41_ITEM_MAX] = {
+};
+uint16_t g_F41[F41_ITEM_MAX] = {0};
+
+//----------------------------------F42------------------------------//
+char* F42Item[F42_ITEM_MAX] = {
+};
+char* F42Value[F42_ITEM_MAX][16] = {};
+uint16_t F42Max[F42_ITEM_MAX] = {
+};
+uint16_t g_F42[F42_ITEM_MAX] = {0};
+
+//----------------------------------F43------------------------------//
+char* F43Item[F43_ITEM_MAX] = {
+};
+char* F43Value[F43_ITEM_MAX][16] = {};
+uint16_t F43Max[F43_ITEM_MAX] = {
+};
+uint16_t g_F43[F43_ITEM_MAX] = {0};
+
+//----------------------------------F44------------------------------//
+char* F44Item[F44_ITEM_MAX] = {
+};
+char* F44Value[F44_ITEM_MAX][16] = {};
+uint16_t F44Max[F44_ITEM_MAX] = {
+};
+uint16_t g_F44[F44_ITEM_MAX] = {0};
+
+//----------------------------------F45------------------------------//
+char* F45Item[F45_ITEM_MAX] = {
+};
+char* F45Value[F45_ITEM_MAX][16] = {};
+uint16_t F45Max[F45_ITEM_MAX] = {
+};
+uint16_t g_F45[F45_ITEM_MAX] = {0};
+
+//----------------------------------F46------------------------------//
+char* F46Item[F46_ITEM_MAX] = {
+};
+char* F46Value[F46_ITEM_MAX][16] = {};
+uint16_t F46Max[F46_ITEM_MAX] = {
+};
+uint16_t g_F46[F46_ITEM_MAX] = {0};
+
+//----------------------------------F47------------------------------//
+char* F47Item[F47_ITEM_MAX] = {
+};
+char* F47Value[F47_ITEM_MAX][16] = {};
+uint16_t F47Max[F47_ITEM_MAX] = {
+};
+uint16_t g_F47[F47_ITEM_MAX] = {0};
+
+//----------------------------------F48------------------------------//
+char* F48Item[F48_ITEM_MAX] = {
+};
+char* F48Value[F48_ITEM_MAX][16] = {};
+uint16_t F48Max[F48_ITEM_MAX] = {
+};
+uint16_t g_F48[F48_ITEM_MAX] = {0};
+
+//----------------------------------F49------------------------------//
+char* F49Item[F49_ITEM_MAX] = {
+};
+char* F49Value[F49_ITEM_MAX][16] = {};
+uint16_t F49Max[F49_ITEM_MAX] = {
+};
+uint16_t g_F49[F49_ITEM_MAX] = {0};
+
+//----------------------------------F50------------------------------//
+char* F50Item[F50_ITEM_MAX] = {
+};
+char* F50Value[F50_ITEM_MAX][16] = {};
+uint16_t F50Max[F50_ITEM_MAX] = {
+};
+uint16_t g_F50[F50_ITEM_MAX] = {0};
+
+//----------------------------------F51------------------------------//
+char* F51Item[F51_ITEM_MAX] = {
+};
+char* F51Value[F51_ITEM_MAX][16] = {};
+uint16_t F51Max[F51_ITEM_MAX] = {
+};
+uint16_t g_F51[F51_ITEM_MAX] = {0};
+
+//----------------------------------F52------------------------------//
+char* F52Item[F52_ITEM_MAX] = {
+};
+char* F52Value[F52_ITEM_MAX][16] = {};
+uint16_t F52Max[F52_ITEM_MAX] = {
+};
+uint16_t g_F52[F52_ITEM_MAX] = {0};
+
+//----------------------------------F53------------------------------//
+char* F53Item[F53_ITEM_MAX] = {
+};
+char* F53Value[F53_ITEM_MAX][16] = {};
+uint16_t F53Max[F53_ITEM_MAX] = {
+};
+uint16_t g_F53[F53_ITEM_MAX] = {0};
+
+//----------------------------------F54------------------------------//
+char* F54Item[F54_ITEM_MAX] = {
+};
+char* F54Value[F54_ITEM_MAX][16] = {};
+uint16_t F54Max[F54_ITEM_MAX] = {
+};
+uint16_t g_F54[F54_ITEM_MAX] = {0};
+
+//----------------------------------F55------------------------------//
+char* F55Item[F55_ITEM_MAX] = {
+};
+char* F55Value[F55_ITEM_MAX][16] = {};
+uint16_t F55Max[F55_ITEM_MAX] = {
+};
+uint16_t g_F55[F55_ITEM_MAX] = {0};
+
+//----------------------------------F56------------------------------//
+char* F56Item[F56_ITEM_MAX] = {
+};
+char* F56Value[F56_ITEM_MAX][16] = {};
+uint16_t F56Max[F56_ITEM_MAX] = {
+};
+uint16_t g_F56[F56_ITEM_MAX] = {0};
+
+//----------------------------------F57------------------------------//
+char* F57Item[F57_ITEM_MAX] = {
+};
+char* F57Value[F57_ITEM_MAX][16] = {};
+uint16_t F57Max[F57_ITEM_MAX] = {
+};
+uint16_t g_F57[F57_ITEM_MAX] = {0};
+
+//----------------------------------F58------------------------------//
+char* F58Item[F58_ITEM_MAX] = {
+};
+char* F58Value[F58_ITEM_MAX][16] = {};
+uint16_t F58Max[F58_ITEM_MAX] = {
+};
+uint16_t g_F58[F58_ITEM_MAX] = {0};
+
+//----------------------------------F59------------------------------//
+char* F59Item[F59_ITEM_MAX] = {
+};
+char* F59Value[F59_ITEM_MAX][16] = {};
+uint16_t F59Max[F59_ITEM_MAX] = {
+};
+uint16_t g_F59[F59_ITEM_MAX] = {0};
+
+//----------------------------------F60------------------------------//
+char* F60Item[F60_ITEM_MAX] = {
+};
+char* F60Value[F60_ITEM_MAX][16] = {};
+uint16_t F60Max[F60_ITEM_MAX] = {
+};
+uint16_t g_F60[F60_ITEM_MAX] = {0};
+
+//----------------------------------F61------------------------------//
+char* F61Item[F61_ITEM_MAX] = {
+};
+char* F61Value[F61_ITEM_MAX][16] = {};
+uint16_t F61Max[F61_ITEM_MAX] = {
+};
+uint16_t g_F61[F61_ITEM_MAX] = {0};
+
+//----------------------------------F62------------------------------//
+char* F62Item[F62_ITEM_MAX] = {
+};
+char* F62Value[F62_ITEM_MAX][16] = {};
+uint16_t F62Max[F62_ITEM_MAX] = {
+};
+uint16_t g_F62[F62_ITEM_MAX] = {0};
+
+//----------------------------------F63------------------------------//
+char* F63Item[F63_ITEM_MAX] = {
+};
+char* F63Value[F63_ITEM_MAX][16] = {};
+uint16_t F63Max[F63_ITEM_MAX] = {
+};
+uint16_t g_F63[F63_ITEM_MAX] = {0};
+
+//----------------------------------F64------------------------------//
+char* F64Item[F64_ITEM_MAX] = {
+};
+char* F64Value[F64_ITEM_MAX][16] = {};
+uint16_t F64Max[F64_ITEM_MAX] = {
+};
+uint16_t g_F64[F64_ITEM_MAX] = {0};
+
+//----------------------------------F65------------------------------//
+char* F65Item[F65_ITEM_MAX] = {
+};
+char* F65Value[F65_ITEM_MAX][16] = {};
+uint16_t F65Max[F65_ITEM_MAX] = {
+};
+uint16_t g_F65[F65_ITEM_MAX] = {0};
+
+//----------------------------------F66------------------------------//
+char* F66Item[F66_ITEM_MAX] = {
+};
+char* F66Value[F66_ITEM_MAX][16] = {};
+uint16_t F66Max[F66_ITEM_MAX] = {
+};
+uint16_t g_F66[F66_ITEM_MAX] = {0};
+
+//----------------------------------F67------------------------------//
+char* F67Item[F67_ITEM_MAX] = {
+};
+char* F67Value[F67_ITEM_MAX][16] = {};
+uint16_t F67Max[F67_ITEM_MAX] = {
+};
+uint16_t g_F67[F67_ITEM_MAX] = {0};
+
+//----------------------------------F68------------------------------//
+char* F68Item[F68_ITEM_MAX] = {
+};
+char* F68Value[F68_ITEM_MAX][16] = {};
+uint16_t F68Max[F68_ITEM_MAX] = {
+};
+uint16_t g_F68[F68_ITEM_MAX] = {0};
+
+//----------------------------------F69------------------------------//
+char* F69Item[F69_ITEM_MAX] = {
+};
+char* F69Value[F69_ITEM_MAX][16] = {};
+uint16_t F69Max[F69_ITEM_MAX] = {
+};
+uint16_t g_F69[F69_ITEM_MAX] = {0};
+
+//----------------------------------F70------------------------------//
+char* F70Item[F70_ITEM_MAX] = {
+};
+char* F70Value[F70_ITEM_MAX][16] = {};
+uint16_t F70Max[F70_ITEM_MAX] = {
+};
+uint16_t g_F70[F70_ITEM_MAX] = {0};
+
+//----------------------------------F71------------------------------//
+char* F71Item[F71_ITEM_MAX] = {
+};
+char* F71Value[F71_ITEM_MAX][16] = {};
+uint16_t F71Max[F71_ITEM_MAX] = {
+};
+uint16_t g_F71[F71_ITEM_MAX] = {0};
+
+//----------------------------------F72------------------------------//
+char* F72Item[F72_ITEM_MAX] = {
+};
+char* F72Value[F72_ITEM_MAX][16] = {};
+uint16_t F72Max[F72_ITEM_MAX] = {
+};
+uint16_t g_F72[F72_ITEM_MAX] = {0};
+
+//----------------------------------F73------------------------------//
+char* F73Item[F73_ITEM_MAX] = {
+};
+char* F73Value[F73_ITEM_MAX][16] = {};
+uint16_t F73Max[F73_ITEM_MAX] = {
+};
+uint16_t g_F73[F73_ITEM_MAX] = {0};
+
+//----------------------------------F74------------------------------//
+char* F74Item[F74_ITEM_MAX] = {
+};
+char* F74Value[F74_ITEM_MAX][16] = {};
+uint16_t F74Max[F74_ITEM_MAX] = {
+};
+uint16_t g_F74[F74_ITEM_MAX] = {0};
+
+//----------------------------------F75------------------------------//
+char* F75Item[F75_ITEM_MAX] = {
+};
+char* F75Value[F75_ITEM_MAX][16] = {};
+uint16_t F75Max[F75_ITEM_MAX] = {
+};
+uint16_t g_F75[F75_ITEM_MAX] = {0};
+
+//----------------------------------F76------------------------------//
+char* F76Item[F76_ITEM_MAX] = {
+};
+char* F76Value[F76_ITEM_MAX][16] = {};
+uint16_t F76Max[F76_ITEM_MAX] = {
+};
+uint16_t g_F76[F76_ITEM_MAX] = {0};
+
+//----------------------------------F77------------------------------//
+char* F77Item[F77_ITEM_MAX] = {
+};
+char* F77Value[F77_ITEM_MAX][16] = {};
+uint16_t F77Max[F77_ITEM_MAX] = {
+};
+uint16_t g_F77[F77_ITEM_MAX] = {0};
+
+//----------------------------------F78------------------------------//
+char* F78Item[F78_ITEM_MAX] = {
+};
+char* F78Value[F78_ITEM_MAX][16] = {};
+uint16_t F78Max[F78_ITEM_MAX] = {
+};
+uint16_t g_F78[F78_ITEM_MAX] = {0};
+

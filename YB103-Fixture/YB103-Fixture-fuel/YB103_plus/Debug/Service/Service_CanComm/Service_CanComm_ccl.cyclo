@@ -1,0 +1,4 @@
+../Service/Service_CanComm/Service_CanComm_ccl.c:26:13:CanCcl_InitPowerOn	1
+../Service/Service_CanComm/Service_CanComm_ccl.c:42:6:CanCcl_vPoweronInit	1
+../Service/Service_CanComm/Service_CanComm_ccl.c:53:6:CanCcl_vReset	1
+../Service/Service_CanComm/Service_CanComm_ccl.c:64:6:CanCcl_TickCntHnadler	1

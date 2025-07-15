@@ -1,0 +1,12 @@
+../Core/Src/freertos.c:205:6:StartDefaultTask	1
+../Core/Src/freertos.c:218:6:heartbeat_task	1
+../Core/Src/freertos.c:238:6:task0_task	1
+../Core/Src/freertos.c:254:6:task1_task	1
+../Core/Src/freertos.c:272:6:task2_task	4
+../Core/Src/freertos.c:298:6:task3_task	8
+../Core/Src/freertos.c:91:13:vApplicationTickHook	1
+../Core/Src/freertos.c:102:13:vApplicationStackOverflowHook	1
+../Core/Src/freertos.c:111:13:vApplicationMallocFailedHook	1
+../Core/Src/freertos.c:130:6:vApplicationGetIdleTaskMemory	1
+../Core/Src/freertos.c:144:6:MX_FREERTOS_Init	1
+../Core/Src/freertos.c:349:6:CanReceiveFunction	2

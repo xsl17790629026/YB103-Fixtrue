@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<item key="hasShownOverlayPopupBefore" value="true"/>
+	<item key="replaceBarOpen" value="true"/>
+	<list key="searchhistory">
+		<item value="GetFCM_8Value"/>
+		<item value="CanTx_SigSet_0x307_FCM_ACC_RightTargetVehicleSubTyp"/>
+		<item value="GetFCM_7Value"/>
+		<item value="GetFCM_6Value"/>
+		<item value="GetFCM_5Value"/>
+		<item value="F8va"/>
+		<item value="0x304"/>
+		<item value="AC_2_Timeout_Flag"/>
+		<item value="AC_2_OutsideTemperature"/>
+		<item value="TCU_3_Timeout_Flag1"/>
+		<item value="TCU_1_Timeout_Flag"/>
+		<item value="BCM_1_FrontLeftDoorSts"/>
+		<item value="F7V"/>
+		<item value="IC_LifeTimeAvgFuelConsRate"/>
+		<item value="EMS_4_FuelConsumption"/>
+	</list>
+	<list key="replacehistory">
+		<item value="GetF13Value"/>
+	</list>
+	<section name="org.eclipse.ui.texteditor.GotoLineAction$GotoLineDialog_dialogBounds">
+		<item key="DIALOG_X_ORIGIN" value="434"/>
+		<item key="DIALOG_Y_ORIGIN" value="291"/>
+	</section>
+</section>

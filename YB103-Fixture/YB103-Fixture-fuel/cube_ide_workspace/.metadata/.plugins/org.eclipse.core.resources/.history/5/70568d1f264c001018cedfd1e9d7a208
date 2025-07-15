@@ -1,0 +1,97 @@
+#ifndef _LCD12864_H_
+#define _LCD12864_H_
+
+#include "lcd12864_def.h"
+#include "lcd12864_enum.h"
+
+#define GET_MENU(x, max_value) ((x) >= max_value ? x-max_value : x)
+#define CHECK_VALUE(x, max_value) ((x) >= max_value ? max_value-1 : x)
+
+void LCD_IHU_3_item(uint8_t item, int16_t value);
+void LCD_IHU_6_item(uint8_t item, int16_t value);
+void LCD_IHU_10_item(uint8_t item, int16_t value);
+void LCD_GW_PC_2_item(uint8_t item, int16_t value);
+void LCD_GW_PC_7_item(uint8_t item, int16_t value);
+void LCD_PEPS_1_item(uint8_t item, int16_t value);
+void LCD_PEPS_3_item(uint8_t item, int16_t value);
+void LCD_IHU_1_item(uint8_t item, int16_t value);
+void LCD_FCM_3_item(uint8_t item, int16_t value);
+void LCD_FCM_4_item(uint8_t item, int16_t value);
+void LCD_FCM_5_item(uint8_t item, int16_t value);
+void LCD_FCM_6_item(uint8_t item, int16_t value);
+void LCD_FCM_7_item(uint8_t item, int16_t value);
+void LCD_FCM_8_item(uint8_t item, int16_t value);
+void LCD_BCM_5_item(uint8_t item, int16_t value);
+void LCD_TBOX_4_item(uint8_t item, int16_t value);
+void LCD_ACU_1_item(uint8_t item, int16_t value);
+void LCD_BCM_1_item(uint8_t item, int16_t value);
+void LCD_BCM_4_item(uint8_t item, int16_t value);
+void LCD_TPMS_1_item(uint8_t item, int16_t value);
+void LCD_IC_1_item(uint8_t item, int16_t value);
+void LCD_IC_2_item(uint8_t item, int16_t value);
+void LCD_GW_PC_4_item(uint8_t item, int16_t value);
+void LCD_GW_BD_14_item(uint8_t item, int16_t value);
+void LCD_IHU_4_item(uint8_t item, int16_t value);
+void LCD_IHU_5_item(uint8_t item, int16_t value);
+void LCD_GW_BD_29_item(uint8_t item, int16_t value);
+void LCD_IHU_2_item(uint8_t item, int16_t value);
+void LCD_IHU_7_item(uint8_t item, int16_t value);
+void LCD_IHU_8_item(uint8_t item, int16_t value);
+void LCD_IHU_9_item(uint8_t item, int16_t value);
+void LCD_TBOX_1_item(uint8_t item, int16_t value);
+void LCD_TBOX_2_item(uint8_t item, int16_t value);
+void LCD_GW_PC_1_item(uint8_t item, int16_t value);
+void LCD_GW_PC_6_item(uint8_t item, int16_t value);
+void LCD_ESP_2_item(uint8_t item, int16_t value);
+void LCD_BCM_3_item(uint8_t item, int16_t value);
+void LCD_GW_BD_9_item(uint8_t item, int16_t value);
+void LCD_GW_BD_24_item(uint8_t item, int16_t value);
+
+uint32_t GetItemValue(uint8_t menu, uint8_t item, uint8_t really_value);
+uint8_t GetItemMAXItem(uint8_t menu);
+uint32_t GetItemMAXValue(uint8_t menu, uint8_t item);
+void SaveItemValue(Pagedis_Func menu, uint8_t item, int16_t value);
+uint8_t ItemValueLimit(uint8_t menu, uint8_t item);
+uint32_t GetIHU_3Value(uint8_t item);
+uint32_t GetIHU_6Value(uint8_t item);
+uint32_t GetIHU_10Value(uint8_t item);
+uint32_t GetGW_PC_2Value(uint8_t item);
+uint32_t GetGW_PC_7Value(uint8_t item);
+uint32_t GetPEPS_1Value(uint8_t item);
+uint32_t GetPEPS_3Value(uint8_t item);
+uint32_t GetIHU_1Value(uint8_t item);
+uint32_t GetFCM_3Value(uint8_t item);
+uint32_t GetFCM_4Value(uint8_t item);
+uint32_t GetFCM_5Value(uint8_t item);
+uint32_t GetFCM_6Value(uint8_t item);
+uint32_t GetFCM_7Value(uint8_t item);
+uint32_t GetFCM_8Value(uint8_t item);
+uint32_t GetBCM_5Value(uint8_t item);
+uint32_t GetTBOX_4Value(uint8_t item);
+uint32_t GetACU_1Value(uint8_t item);
+uint32_t GetBCM_1Value(uint8_t item);
+uint32_t GetBCM_4Value(uint8_t item);
+uint32_t GetTPMS_1Value(uint8_t item);
+uint32_t GetIC_1Value(uint8_t item);
+uint32_t GetIC_2Value(uint8_t item);
+uint32_t GetGW_PC_4Value(uint8_t item);
+uint32_t GetGW_BD_14Value(uint8_t item);
+uint32_t GetIHU_4Value(uint8_t item);
+uint32_t GetIHU_5Value(uint8_t item);
+uint32_t GetGW_BD_29Value(uint8_t item);
+uint32_t GetIHU_2Value(uint8_t item);
+uint32_t GetIHU_7Value(uint8_t item);
+uint32_t GetIHU_8Value(uint8_t item);
+uint32_t GetIHU_9Value(uint8_t item);
+uint32_t GetTBOX_1Value(uint8_t item);
+uint32_t GetTBOX_2Value(uint8_t item);
+uint32_t GetGW_PC_1Value(uint8_t item);
+uint32_t GetGW_PC_6Value(uint8_t item);
+uint32_t GetESP_2Value(uint8_t item);
+uint32_t GetBCM_3Value(uint8_t item);
+uint32_t GetGW_BD_9Value(uint8_t item);
+uint32_t GetGW_BD_24Value(uint8_t item);
+
+extern void (*LCD_Display_Func[MENU_MAX])(uint8_t, int16_t);
+
+#endif // _LCD12864_H_

@@ -1,0 +1,1617 @@
+#include "main.h"
+
+#include "lcd12864_def.h"
+
+// 动态生成的 ITEM_MAX 宏定义
+#ifndef ITEM_MAX_DEFAULT
+#define ITEM_MAX_DEFAULT 32
+#endif
+
+char* Func[MENU_MAX] = {
+    "IHU3",
+    "IHU6",
+    "IHUX",
+    "GPC2",
+    "GPC7",
+    "PPS1",
+    "PPS3",
+    "IHU1",
+    "FCM3",
+    "FCM4",
+    "FCM5",
+    "FCM6",
+    "FCM7",
+    "FCM8",
+    "BCM5",
+    "TBX4",
+    "ACU1",
+    "BCM1",
+    "BCM4",
+    "TPS1",
+    "IC_1",
+    "IC_2",
+    "GPC4",
+    "GB14",
+    "IHU4",
+    "IHU5",
+    "GB29",
+    "IHU2",
+    "IHU7",
+    "IHU8",
+    "IHU9",
+    "TBX1",
+    "TBX2",
+    "GPC1",
+    "GPC6",
+    "ESP2",
+    "BCM3",
+    "GBD9",
+    "GB24",
+};
+
+char* IHU_3Item[IHU_3_ITEM_MAX] = {
+    "LDWVoSw", "FCWSw", "FCWSv", "AEBSw", "IHBCSw", "TSRSw", "LDWSv",
+    "LDWSw", "AutoWsh", "FltUnlk", "TSROvAc", "TSROvSw", "WinRmDn",
+    "HornVol", "SpdLock", "SrchCrWn", "WinAtUp", "RrMrrFld", "AsstLgt",
+    "FRStHt", "FLStHt", "FLStMM", "FLStML", "NzzlHt", "FrntWsHt", "ClsWinSd"
+};
+
+char* IHU_3Value[IHU_3_ITEM_MAX][16] = {
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+};
+
+uint16_t IHU_3Max[IHU_3_ITEM_MAX] = {
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    8,
+    8,
+    4,
+    4,
+    4,
+    4,
+    16,
+    16,
+    16,
+    8,
+    4,
+    4,
+    8,
+};
+
+uint16_t g_IHU_3[IHU_3_ITEM_MAX] = {0};
+
+// IHU_6Item (缩写后)
+char* IHU_6Item[IHU_6_ITEM_MAX] = {
+    "WinPosFL", "WinPosFR", "WinPosRL", "WinPosRR", "MrrFold", "Sunroof"
+};
+
+char* IHU_6Value[IHU_6_ITEM_MAX][16] = {
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+};
+
+uint16_t IHU_6Max[IHU_6_ITEM_MAX] = {
+    128,
+    128,
+    128,
+    128,
+    4,
+    16,
+};
+
+uint16_t g_IHU_6[IHU_6_ITEM_MAX] = {0};
+
+// IHU_10Item (缩写后)
+char* IHU_10Item[IHU_10_ITEM_MAX] = {
+    "AmbtLvl", "AmbtSw", "StrHtSw"
+};
+
+char* IHU_10Value[IHU_10_ITEM_MAX][16] = {
+    {""},
+    {""},
+    {""},
+};
+
+uint16_t IHU_10Max[IHU_10_ITEM_MAX] = {
+    16,
+    4,
+    4,
+};
+
+uint16_t g_IHU_10[IHU_10_ITEM_MAX] = {0};
+
+// GW_PC_2Item (缩写后)
+char* GW_PC_2Item[GW_PC_2_ITEM_MAX] = {
+    "ESP_HDC", "ESP_DVT", "ESP_TCSF", "ESP_ESPF", "ESP_TCSA", "ESP_ESPA",
+    "ESP_ESPO", "ABS_Act", "EPB_AtVl", "EPB_AtA", "EPB_ActL", "EPB_WrnL",
+    "EPB_AtS", "ESP_HDCF", "ABS_SpdV", "ABS_ABSF", "ABS_VhSd", "SAS_Cal",
+    "SAS_Fail", "SAS_AngV", "ABS_EBDF", "ABS_EBDA", "SAS_Ang", "EPB_Inh",
+    "SAS_TmOt", "ABS_TmOt", "EPB_TmOt", "ESP_TmOt"
+};
+
+char* GW_PC_2Value[GW_PC_2_ITEM_MAX][16] = {
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+};
+
+uint16_t GW_PC_2Max[GW_PC_2_ITEM_MAX] = {
+    4,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    4,
+    2,
+    2,
+    2,
+    2,
+    2,
+    8192,
+    2,
+    2,
+    2,
+    2,
+    2,
+    65536,
+    2,
+    2,
+    2,
+    2,
+    2,
+};
+
+uint16_t g_GW_PC_2[GW_PC_2_ITEM_MAX] = {0};
+
+// GW_PC_7Item (缩写后)
+char* GW_PC_7Item[GW_PC_7_ITEM_MAX] = {
+    "AWD_DgLp", "AWD_SfEF", "AWD_SfLw", "AWD_SfAF", "AWD_Mode", "AWD_4WDL",
+    "AWD_4WDK", "AWD_2WD", "AWD_CltF", "EDL_FrY", "EDL_FrG", "AWD_OpNt",
+    "EDL_StsN", "EDL_RrY", "EDL_RrG", "EDL_TmOt", "AWD_TmOt"
+};
+
+char* GW_PC_7Value[GW_PC_7_ITEM_MAX][16] = {
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+};
+
+uint16_t GW_PC_7Max[GW_PC_7_ITEM_MAX] = {
+    2,
+    2,
+    2,
+    2,
+    16,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    16,
+    16,
+    4,
+    4,
+    2,
+    2,
+};
+
+uint16_t g_GW_PC_7[GW_PC_7_ITEM_MAX] = {0};
+
+char* PEPS_1Item[PEPS_1_ITEM_MAX] = {
+    "PEPS_ESLr", "PEPS_ESFl", "PEPS_SSFl", "PEPS_PNLr", "PEPS_PwRF",
+    "PEPS_Fail", "PEPS_NoPW", "PEPS_ESNLW", "PEPS_ESNUW", "PEPS_LkOfW",
+    "PEPS_KyIW", "PEPS_KyBW", "PEPS_KyOW", "PEPS_NoKW", "PEPS_KyRm",
+    "PEPS_ClcW", "PEPS_BrkW"
+};
+
+char* PEPS_1Value[PEPS_1_ITEM_MAX][16] = {
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+};
+
+uint16_t PEPS_1Max[PEPS_1_ITEM_MAX] = {
+    4,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+};
+
+uint16_t g_PEPS_1[PEPS_1_ITEM_MAX] = {0};
+
+char* PEPS_3Item[PEPS_3_ITEM_MAX] = {
+    "PEPS_RCS", "PEPS3_RC", "PEPS3_CS"
+};
+
+char* PEPS_3Value[PEPS_3_ITEM_MAX][16] = {
+    {""},
+    {""},
+    {""},
+};
+
+uint16_t PEPS_3Max[PEPS_3_ITEM_MAX] = {
+    2,
+    16,
+    256,
+};
+
+uint16_t g_PEPS_3[PEPS_3_ITEM_MAX] = {0};
+
+char* IHU_1Item[IHU_1_ITEM_MAX] = {
+    "IHU_RrDfB", "IHU_FrDfB", "IHU_ACSCM", "IHU_EPMMd", "IHU_ACBtn",
+    "IHU_LvHmT", "IHU_FlwHT", "IHU_ACOff", "IHU_TmpAj", "IHU_IntLT",
+    "IHU_ArCMd", "IHU_ArDMd", "IHU_BlwSp", "IHU_AUPB", "IHU_AUTOB",
+    "IHU_PTCB", "IHU_DrvST", "IHU_DlBtn", "IHU_SS_Set", "IHU_PngST",
+    "IHU_WrlCS", "IHU_DrvMd"
+};
+
+char* IHU_1Value[IHU_1_ITEM_MAX][16] = {
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+};
+
+uint16_t IHU_1Max[IHU_1_ITEM_MAX] = {
+    4,
+    4,
+    4,
+    4,
+    4,
+    8,
+    8,
+    2,
+    16,
+    8,
+    4,
+    8,
+    8,
+    4,
+    4,
+    4,
+    64,
+    4,
+    4,
+    64,
+    4,
+    64,
+};
+
+uint16_t g_IHU_1[IHU_1_ITEM_MAX] = {0};
+
+char* FCM_3Item[FCM_3_ITEM_MAX] = {
+    "FCM_FCWOS", "FCM_AEBMd", "FCM_AEBOS", "FCM_FCWpW", "FCM_DstWn",
+    "FCM_FCWSv", "FCM_FCWMd", "FCM_ACCTO", "FCM_ACCMd", "FCM_TmGpS",
+    "FCM_ACCVS", "FCM_ACCTx", "FCM_AEBTx", "FCM_DVMod", "FCM_CamTx"
+};
+
+char* FCM_3Value[FCM_3_ITEM_MAX][16] = {
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+};
+
+uint16_t FCM_3Max[FCM_3_ITEM_MAX] = {
+    4,
+    8,
+    4,
+    2,
+    2,
+    4,
+    8,
+    2,
+    8,
+    8,
+    512,
+    16,
+    16,
+    4,
+    4,
+};
+
+uint16_t g_FCM_3[FCM_3_ITEM_MAX] = {0};
+
+char* FCM_4Item[FCM_4_ITEM_MAX] = {
+    "FCM_LKATp", "FCM_LDWSt", "FCM_LDWOS", "FCM_LDPVl", "FCM_LDPTR",
+    "FCM_LDWWM", "FCM_LDPSv", "FCM_TSRSt", "FCM_TSRAS", "FCM_TSROS",
+    "FCM_TSRON", "FCM_LDPVR", "FCM_TSRDp", "FCM_IHBCS", "FCM_IHBOS",
+    "FCM_TSRWS", "FCM_SLASU", "FCM_IHBTx", "FCM_TSRTx", "FCM_LDWTx",
+    "FCM_LDWVc"
+};
+
+char* FCM_4Value[FCM_4_ITEM_MAX][16] = {
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+};
+
+uint16_t FCM_4Max[FCM_4_ITEM_MAX] = {
+    4,
+    8,
+    4,
+    4,
+    4,
+    4,
+    4,
+    8,
+    2,
+    2,
+    2,
+    4,
+    256,
+    8,
+    4,
+    2,
+    4,
+    4,
+    4,
+    4,
+    2,
+};
+
+uint16_t g_FCM_4[FCM_4_ITEM_MAX] = {0};
+
+char* FCM_5Item[FCM_5_ITEM_MAX] = {
+    "FCM_ELnID", "FCM_ELnCl", "FCM_ELnTp", "FCM_ELnHD", "FCM_ELnCv",
+    "FCM_ERnID", "FCM_ERnCl", "FCM_ERnTp", "FCM_ERnHD", "FCM_ERnCv",
+    "FCM5_RC", "FCM5_CS"
+};
+
+char* FCM_5Value[FCM_5_ITEM_MAX][16] = {
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+};
+
+uint16_t FCM_5Max[FCM_5_ITEM_MAX] = {
+    2,
+    4,
+    4,
+    512,
+    1024,
+    2,
+    4,
+    4,
+    512,
+    1024,
+    16,
+    256,
+};
+
+uint16_t g_FCM_5[FCM_5_ITEM_MAX] = {0};
+
+char* FCM_6Item[FCM_6_ITEM_MAX] = {
+    "FCM_NLnID", "FCM_NLnCl", "FCM_NLnTp", "FCM_NLnHD", "FCM_NLnCv",
+    "FCM_NRnID", "FCM_NRnCl", "FCM_NRnTp", "FCM_NRnHD", "FCM_NRnCv",
+    "FCM6_RC", "FCM6_CS"
+};
+
+char* FCM_6Value[FCM_6_ITEM_MAX][16] = {
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+};
+
+uint16_t FCM_6Max[FCM_6_ITEM_MAX] = {
+    2,
+    4,
+    4,
+    512,
+    1024,
+    2,
+    4,
+    4,
+    512,
+    1024,
+    16,
+    256,
+};
+
+uint16_t g_FCM_6[FCM_6_ITEM_MAX] = {0};
+
+char* FCM_7Item[FCM_7_ITEM_MAX] = {
+    "FCM_ACCOI", "FCM_ACCO", "FCM_ACCTV", "FCM_dxTOC", "FCM_ACOLX",
+    "FCM_ACOHY", "FCM_FFOI", "FCM_FFOT", "FCM_FFOLX", "FCM_FFOHY",
+    "FCM7_RC", "FCM7_CS"
+};
+
+char* FCM_7Value[FCM_7_ITEM_MAX][16] = {
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+};
+
+uint16_t FCM_7Max[FCM_7_ITEM_MAX] = {
+    2,
+    8,
+    8,
+    8,
+    256,
+    1024,
+    2,
+    16,
+    256,
+    1024,
+    16,
+    256,
+};
+
+uint16_t g_FCM_7[FCM_7_ITEM_MAX] = {0};
+
+char* FCM_8Item[FCM_8_ITEM_MAX] = {
+    "FCM_RiOI", "FCM_LeOI", "FCM_LeOT", "FCM_ACCLV", "FCM_LeOLX",
+    "FCM_LeOHY", "FCM_RiOT", "FCM_ACCRV", "FCM_RiOLX", "FCM_RiOHY",
+    "FCM8_RC", "FCM8_CS"
+};
+
+char* FCM_8Value[FCM_8_ITEM_MAX][16] = {
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+};
+
+uint16_t FCM_8Max[FCM_8_ITEM_MAX] = {
+    2,
+    2,
+    8,
+    8,
+    256,
+    1024,
+    8,
+    8,
+    256,
+    1024,
+    16,
+    256,
+};
+
+uint16_t g_FCM_8[FCM_8_ITEM_MAX] = {0};
+
+char* BCM_5Item[BCM_5_ITEM_MAX] = {
+    "BCM_SRFPS", "BCM_SRFEF", "BCM_SRFMF", "BCM_SRFSF", "BCM_SRFIS",
+    "BCM_RLSRE", "BCM_RLSFL", "BCM_RLSFR", "BCM_SRFAl", "BCM_RLSVE"
+};
+
+char* BCM_5Value[BCM_5_ITEM_MAX][16] = {
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+};
+
+uint16_t BCM_5Max[BCM_5_ITEM_MAX] = {
+    16,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    4,
+};
+
+uint16_t g_BCM_5[BCM_5_ITEM_MAX] = {0};
+
+char* TBOX_4Item[TBOX_4_ITEM_MAX] = {
+    "TBOX_AMR"
+};
+
+char* TBOX_4Value[TBOX_4_ITEM_MAX][16] = {
+    {""},
+};
+
+uint16_t TBOX_4Max[TBOX_4_ITEM_MAX] = {
+    2,
+};
+
+uint16_t g_TBOX_4[TBOX_4_ITEM_MAX] = {0};
+
+char* ACU_1Item[ACU_1_ITEM_MAX] = {
+    "ACU_CrOS", "ACU_AgWS", "ACU_AgIW"
+};
+
+char* ACU_1Value[ACU_1_ITEM_MAX][16] = {
+    {""},
+    {""},
+    {""},
+};
+
+uint16_t ACU_1Max[ACU_1_ITEM_MAX] = {
+    256,
+    2,
+    2,
+};
+
+uint16_t g_ACU_1[ACU_1_ITEM_MAX] = {0};
+
+char* BCM_1Item[BCM_1_ITEM_MAX] = {
+    "BCM_LfTS", "BCM_EmLS", "BCM_RtTS"
+};
+
+char* BCM_1Value[BCM_1_ITEM_MAX][16] = {
+    {""},
+    {""},
+    {""},
+};
+
+uint16_t BCM_1Max[BCM_1_ITEM_MAX] = {
+    4,
+    4,
+    4,
+};
+
+uint16_t g_BCM_1[BCM_1_ITEM_MAX] = {0};
+
+char* BCM_4Item[BCM_4_ITEM_MAX] = {
+    "BCM_AsIL", "BCM_WRAD", "BCM_LvHmT", "BCM_FlwHT", "BCM_xRMAF",
+    "BCM_SpdLk", "BCM_IntLT", "BCM_AtWsh", "BCM_SrCWn", "BCM_WnAUL",
+    "BCM_HrnVl", "BCM_AmbtL", "BCM_AmbtS", "BCM_ClsWS", "BCM_FltUl",
+    "BCM_StrHt", "BCM_NzzlHt", "BCM_FrWsH", "BCM_AAL_OS", "BCM_AAL_PA",
+    "BCM_AAL_YA"
+};
+
+char* BCM_4Value[BCM_4_ITEM_MAX][16] = {
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+};
+
+uint16_t BCM_4Max[BCM_4_ITEM_MAX] = {
+    2,
+    2,
+    8,
+    8,
+    2,
+    8,
+    8,
+    4,
+    4,
+    2,
+    8,
+    16,
+    2,
+    4,
+    2,
+    2,
+    2,
+    2,
+    2,
+    256,
+    256,
+};
+
+uint16_t g_BCM_4[BCM_4_ITEM_MAX] = {0};
+
+char* TPMS_1Item[TPMS_1_ITEM_MAX] = {
+    "TPMS_LS", "TPMS_TLk", "TPMS_SL", "TPMS_TID", "TPMS_SS",
+    "TPMS_TBP", "TPMS_TTS", "TPMS_TPS", "TPMS_TP", "TPMS_TT",
+    "TPMS_TBPw"
+};
+
+char* TPMS_1Value[TPMS_1_ITEM_MAX][16] = {
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+};
+
+uint16_t TPMS_1Max[TPMS_1_ITEM_MAX] = {
+    4,
+    2,
+    2,
+    4,
+    4,
+    2,
+    2,
+    4,
+    256,
+    256,
+    256,
+};
+
+uint16_t g_TPMS_1[TPMS_1_ITEM_MAX] = {0};
+
+char* IC_1Item[IC_1_ITEM_MAX] = {
+    "IC_PBInd", "IC_SrFls", "IC_BrSFI", "IC_EngOL", "IC_FSgOp",
+    "IC_FSgSB", "IC_FSgSG", "IC_BrFLI", "IC_SrMlg", "IC_DrvSB",
+    "IC_PasSB", "IC_SrFVl", "IC_ODO", "IC_ICFlS", "IC_DspVS",
+    "IC_DspVU", "IC_AgIW"
+};
+
+char* IC_1Value[IC_1_ITEM_MAX][16] = {
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+};
+
+uint16_t IC_1Max[IC_1_ITEM_MAX] = {
+    2,
+    128,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    1024,
+    2,
+    2,
+    2,
+    1048576,
+    2,
+    512,
+    2,
+    4,
+};
+
+uint16_t g_IC_1[IC_1_ITEM_MAX] = {0};
+
+char* IC_2Item[IC_2_ITEM_MAX] = {
+    "IC_TAFCR", "IC_LTAFC"
+};
+
+char* IC_2Value[IC_2_ITEM_MAX][16] = {
+    {""},
+    {""},
+};
+
+uint16_t IC_2Max[IC_2_ITEM_MAX] = {
+    512,
+    512,
+};
+
+uint16_t g_IC_2[IC_2_ITEM_MAX] = {0};
+
+char* GW_PC_4Item[GW_PC_4_ITEM_MAX] = {
+    "SB1_FSYL", "SB1_FSGL", "EHPS1_FS", "SB1_StNt", "SB1_TmOt"
+};
+
+char* GW_PC_4Value[GW_PC_4_ITEM_MAX][16] = {
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+};
+
+uint16_t GW_PC_4Max[GW_PC_4_ITEM_MAX] = {
+    4,
+    4,
+    2,
+    16,
+    2,
+};
+
+uint16_t g_GW_PC_4[GW_PC_4_ITEM_MAX] = {0};
+
+char* GW_BD_14Item[GW_BD_14_ITEM_MAX] = {
+    "AC1_ACM", "AC1_ADM", "AC1_TL", "AC1_PTC", "AC1_ACSS",
+    "AC1_RDBS", "AC1_FDBS", "AC1_ACBS", "AC1_BSL", "AC1_RMS",
+    "AC1_BTS", "AC1_BSLR", "AC2_PST", "AC2_DST", "AC2_OT",
+    "AC1_ACSC", "AC2_DlBS", "AC2_AUPB", "AC2_AUTOB", "AC2_DlMd",
+    "AC2_OTV", "AC2_TmOt", "AC1_TmOt"
+};
+
+char* GW_BD_14Value[GW_BD_14_ITEM_MAX][16] = {
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+};
+
+uint16_t GW_BD_14Max[GW_BD_14_ITEM_MAX] = {
+    2,
+    8,
+    16,
+    2,
+    2,
+    2,
+    2,
+    2,
+    8,
+    2,
+    2,
+    4,
+    64,
+    64,
+    256,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+};
+
+uint16_t g_GW_BD_14[GW_BD_14_ITEM_MAX] = {0};
+
+char* IHU_4Item[IHU_4_ITEM_MAX] = {
+    "IHU_NvSL", "IHU_NvSS", "IHU_NvCR", "IHU_NvSU"
+};
+
+char* IHU_4Value[IHU_4_ITEM_MAX][16] = {
+    {""},
+    {""},
+    {""},
+    {""},
+};
+
+uint16_t IHU_4Max[IHU_4_ITEM_MAX] = {
+    64,
+    4,
+    16,
+    4,
+};
+
+uint16_t g_IHU_4[IHU_4_ITEM_MAX] = {0};
+
+char* IHU_5Item[IHU_5_ITEM_MAX] = {
+    "IHU_BrtLv", "IHU_VhPA", "IHU_VhRA", "IHU_GPSAT", "IHU_GPSSC",
+    "IHU_GPSE", "IHU_VidS", "IHU_DVS", "IHU_GPSSN", "IHU_USBTC",
+    "IHU_IHUFS", "IHU_AMSts"
+};
+
+char* IHU_5Value[IHU_5_ITEM_MAX][16] = {
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+};
+
+uint16_t IHU_5Max[IHU_5_ITEM_MAX] = {
+    16,
+    4096,
+    4096,
+    2,
+    2,
+    2,
+    2,
+    2,
+    256,
+    2,
+    2,
+    2,
+};
+
+uint16_t g_IHU_5[IHU_5_ITEM_MAX] = {0};
+
+char* GW_BD_29Item[GW_BD_29_ITEM_MAX] = {
+    "SCU1_FRS", "SCU1_FLS", "SCU1_FLM", "SCU1_FLL", "SCU1_FS",
+    "WCM1_WCS", "WCM1_FS", "WCM1_ChS", "EPM1_EPM", "WCM1_PhR",
+    "EPM1_TmO", "WCM1_TmO", "SCU1_TmO"
+};
+
+char* GW_BD_29Value[GW_BD_29_ITEM_MAX][16] = {
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+};
+
+uint16_t GW_BD_29Max[GW_BD_29_ITEM_MAX] = {
+    16,
+    16,
+    16,
+    8,
+    256,
+    4,
+    8,
+    4,
+    4,
+    2,
+    2,
+    2,
+    2,
+};
+
+uint16_t g_GW_BD_29[GW_BD_29_ITEM_MAX] = {0};
+
+char* IHU_2Item[IHU_2_ITEM_MAX] = {
+    "IHU_DateTimeSecond",
+    "IHU_DateTimeMinute",
+    "IHU_DateTimeHour",
+    "IHU_DateTimeDay",
+    "IHU_DateTimeMonth",
+    "IHU_DateTimeYear",
+};
+
+char* IHU_2Value[IHU_2_ITEM_MAX][16] = {
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+};
+
+uint16_t IHU_2Max[IHU_2_ITEM_MAX] = {
+    64,
+    64,
+    32,
+    32,
+    16,
+    128,
+};
+
+uint16_t g_IHU_2[IHU_2_ITEM_MAX] = {0};
+
+char* IHU_7Item[IHU_7_ITEM_MAX] = {
+    "IHU_GPSPositioningSts",
+    "IHU_GPSDataType",
+    "IHU_GPSDataGroup",
+    "IHU_GPSviaGALILEO",
+    "IHU_GPSviaGLONASS",
+    "IHU_GPSviaBeidou",
+    "IHU_GPSviaGPS",
+    "IHU_GPSAltitude",
+    "IHU_GPSLatitude",
+    "IHU_GPSLatitudeDirection",
+};
+
+char* IHU_7Value[IHU_7_ITEM_MAX][16] = {
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+};
+
+uint16_t IHU_7Max[IHU_7_ITEM_MAX] = {
+    4,
+    4,
+    16,
+    4,
+    4,
+    4,
+    4,
+    65536,
+    1073741824,
+    4,
+};
+
+uint16_t g_IHU_7[IHU_7_ITEM_MAX] = {0};
+
+char* IHU_8Item[IHU_8_ITEM_MAX] = {
+    "IHU_GPSLongitudeDirection",
+    "IHU_GPSDataType",
+    "IHU_GPSDataGroup",
+    "IHU_GPSLongitude",
+    "IHU_GPSVehicleDirection",
+    "IHU_GPSVehicleSpeed",
+};
+
+char* IHU_8Value[IHU_8_ITEM_MAX][16] = {
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+};
+
+uint16_t IHU_8Max[IHU_8_ITEM_MAX] = {
+    4,
+    4,
+    16,
+    1073741824,
+    512,
+    65536,
+};
+
+uint16_t g_IHU_8[IHU_8_ITEM_MAX] = {0};
+
+char* IHU_9Item[IHU_9_ITEM_MAX] = {
+    "IHU_GPSDataType",
+    "IHU_GPSDataGroup",
+    "IHU_GPSTime",
+};
+
+char* IHU_9Value[IHU_9_ITEM_MAX][16] = {
+    {""},
+    {""},
+    {""},
+};
+
+uint16_t IHU_9Max[IHU_9_ITEM_MAX] = {
+    4,
+    16,
+    0,
+};
+
+uint16_t g_IHU_9[IHU_9_ITEM_MAX] = {0};
+
+char* TBOX_1Item[TBOX_1_ITEM_MAX] = {
+    "TBOX_DateTimeSecond",
+    "TBOX_DateTimeMinute",
+    "TBOX_DateTimeHour",
+    "TBOX_DateTimeDay",
+    "TBOX_DateTimeMonth",
+    "TBOX_DateTimeYear",
+    "TBOX_GPSAntennaShortCircuit",
+    "TBOX_GPSErr",
+    "TBOX_SIMErr",
+    "TBOX_GSMErr",
+    "TBOX_BatteryUseUp",
+    "TBOX_PowerOverSuply",
+    "TBOX_BatteryErr",
+    "TBOX_CANErr",
+    "TBOX_TempretureHigh",
+    "TBOX_ExternalMemoryErr",
+    "TBOX_GPSAntennaTurnOff",
+};
+
+char* TBOX_1Value[TBOX_1_ITEM_MAX][16] = {
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+};
+
+uint16_t TBOX_1Max[TBOX_1_ITEM_MAX] = {
+    64,
+    64,
+    32,
+    32,
+    16,
+    128,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+};
+
+uint16_t g_TBOX_1[TBOX_1_ITEM_MAX] = {0};
+
+char* TBOX_2Item[TBOX_2_ITEM_MAX] = {
+    "TBOX_CommSignalVail",
+    "TBOX_EcallErr",
+    "TBOX_EcallStatus",
+};
+
+char* TBOX_2Value[TBOX_2_ITEM_MAX][16] = {
+    {""},
+    {""},
+    {""},
+};
+
+uint16_t TBOX_2Max[TBOX_2_ITEM_MAX] = {
+    256,
+    2,
+    2,
+};
+
+uint16_t g_TBOX_2[TBOX_2_ITEM_MAX] = {0};
+
+char* GW_PC_1Item[GW_PC_1_ITEM_MAX] = {
+    "EMS_2_EngineSpeed",
+    "EMS_3_SS_SetSts",
+    "TCU_1_TcuFaultLamp",
+    "EMS_3_SS_Fault_Lamp",
+    "EMS_3_SS_Active_Lamp",
+    "EMS_3_SS_Screen_tip",
+    "EMS_3_EngineReleaseSig",
+    "EMS_2_EngineSpeedValid",
+    "TCU_1_ActualGearValid",
+    "TCU_1_TransOilWrnLmpReq",
+    "TCU_3_Drivemode",
+    "TCU_1_ActualGear",
+    "TCU_1_ShiftRecommendation",
+    "TCU_1_GearShiftPositionValid",
+    "TCU_1_GearShiftPosition",
+    "TCU_1_IcInformaition",
+    "EMS_3_EngineStatus",
+    "TCU_3_Timeout_Flag",
+    "TCU_1_Timeout_Flag",
+    "EMS_3_Timeout_Flag",
+    "EMS_2_Timeout_Flag",
+};
+
+char* GW_PC_1Value[GW_PC_1_ITEM_MAX][16] = {
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+};
+
+uint16_t GW_PC_1Max[GW_PC_1_ITEM_MAX] = {
+    65536,
+    2,
+    2,
+    2,
+    2,
+    2,
+    4,
+    2,
+    2,
+    2,
+    64,
+    16,
+    4,
+    2,
+    16,
+    16,
+    4,
+    2,
+    2,
+    2,
+    2,
+};
+
+uint16_t g_GW_PC_1[GW_PC_1_ITEM_MAX] = {0};
+
+char* GW_PC_6Item[GW_PC_6_ITEM_MAX] = {
+    "EMS_4_EngineCoolantTemp",
+    "EMS_4_FuelConsumption",
+    "EMS_4_CruiseActiveStatus",
+    "EMS_4_EngineCoolantTempValid",
+    "EMS_4_CruiseControlStatus",
+    "EMS_4_MIL",
+    "EMS_4_SVS",
+    "TCU_3_TargetGearValid",
+    "EMS_4_CruiseMainLamp",
+    "EMS_4_CruiseTargetSpeed",
+    "TCU_3_TargetGear",
+    "TCU_3_DrivemodeOprationNotice",
+    "EMS_6_OilPressure",
+    "EMS_6_OilPressureLamp",
+    "EMS_6_GeneratorFaultLamp",
+    "EMS_6_GPFState",
+    "TCU_3_Timeout_Flag1",
+    "EMS_6_Timeout_Flag",
+    "EMS_4_Timeout_Flag",
+};
+
+char* GW_PC_6Value[GW_PC_6_ITEM_MAX][16] = {
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+};
+
+uint16_t GW_PC_6Max[GW_PC_6_ITEM_MAX] = {
+    256,
+    256,
+    2,
+    2,
+    16,
+    2,
+    2,
+    2,
+    2,
+    8192,
+    16,
+    16,
+    256,
+    2,
+    2,
+    8,
+    2,
+    2,
+    2,
+};
+
+uint16_t g_GW_PC_6[GW_PC_6_ITEM_MAX] = {0};
+
+char* ESP_2Item[ESP_2_ITEM_MAX] = {
+    "ESP_LongitAccel",
+    "ESP_LateralAccel",
+    "ESP_YawRate",
+    "ESP_YawRateSensorValid",
+    "ESP_LateralSensorValid",
+    "ESP_LongitSensorValid",
+};
+
+char* ESP_2Value[ESP_2_ITEM_MAX][16] = {
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+};
+
+uint16_t ESP_2Max[ESP_2_ITEM_MAX] = {
+    65536,
+    65536,
+    65536,
+    2,
+    2,
+    2,
+};
+
+uint16_t g_ESP_2[ESP_2_ITEM_MAX] = {0};
+
+char* BCM_3Item[BCM_3_ITEM_MAX] = {
+    "BCM_ConsoleBtn1TriggerSts",
+    "BCM_3_RollingCounter",
+    "BCM_3_Checksum",
+};
+
+char* BCM_3Value[BCM_3_ITEM_MAX][16] = {
+    {""},
+    {""},
+    {""},
+};
+
+uint16_t BCM_3Max[BCM_3_ITEM_MAX] = {
+    2,
+    16,
+    256,
+};
+
+uint16_t g_BCM_3[BCM_3_ITEM_MAX] = {0};
+
+char* GW_BD_9Item[GW_BD_9_ITEM_MAX] = {
+    "BCM_1_LeftTurnLightSts",
+    "BCM_1_HighBeamSts",
+    "BCM_1_LowBeamSts",
+    "BCM_1_PowerMode",
+    "BCM_1_RearFogLightSts",
+    "BCM_1_EmergencyLightSts",
+    "BCM_1_PositionLightSts",
+    "BCM_1_RightTurnLightSts",
+    "BCM_1_RearLeftDoorSts",
+    "BCM_1_FrontRightDoorSts",
+    "BCM_1_FrontLeftDoorSts",
+    "BCM_1_DaytimeRunningLightSts",
+    "BCM_1_FrontFogLightSts",
+    "BCM_1_ReverseGearInfo",
+    "BCM_1_ACRearFrostSts",
+    "BCM_1_TailGateOpenSts",
+    "BCM_1_RearRightDoorSts",
+    "TCM_1_FlashLightSWStsValid",
+    "TCM_1_FlashLightSWSts",
+    "TCM_1_HighBeamSWStsValid",
+    "TCM_1_HighBeamSWSts",
+    "BCM_1_BackMirrorFolderSts",
+    "BCM_1_HoodSts",
+    "TCM_1_LeftTurnLightSWSts",
+    "TCM_1_LeftTurnLightSWStsValid",
+    "TCM_1_RightTurnLightSWSts",
+    "TCM_1_RightTurnLightSWStsValid",
+    "TCM_1_Timeout_Flag",
+    "BCM_1_Timeout_Flag",
+};
+
+char* GW_BD_9Value[GW_BD_9_ITEM_MAX][16] = {
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+};
+
+uint16_t GW_BD_9Max[GW_BD_9_ITEM_MAX] = {
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    2,
+    2,
+    2,
+    4,
+    4,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+};
+
+uint16_t g_GW_BD_9[GW_BD_9_ITEM_MAX] = {0};
+
+char* GW_BD_24Item[GW_BD_24_ITEM_MAX] = {
+    "BCM_2_WindowRunningStatusRR",
+    "BCM_2_WindowRunningStatusRL",
+    "BCM_2_WindowRunningStatusFR",
+    "BCM_2_WindowRunningStatusFL",
+    "BCM_2_WindowPosFL",
+    "BCM_2_WindowPosFR",
+    "BCM_2_WindowPosRL",
+    "BCM_2_WindowPosRR",
+    "BCM_2_Timeout_Flag",
+};
+
+char* GW_BD_24Value[GW_BD_24_ITEM_MAX][16] = {
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+    {""},
+};
+
+uint16_t GW_BD_24Max[GW_BD_24_ITEM_MAX] = {
+    4,
+    4,
+    4,
+    4,
+    128,
+    128,
+    128,
+    128,
+    2,
+};
+
+uint16_t g_GW_BD_24[GW_BD_24_ITEM_MAX] = {0};
+

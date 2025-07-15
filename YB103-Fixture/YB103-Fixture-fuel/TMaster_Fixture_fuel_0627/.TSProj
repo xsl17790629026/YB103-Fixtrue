@@ -1,0 +1,9 @@
+﻿[Project]
+LoadCount=15
+GUID=FABE8E78-8550-4B6B-B040-5665AD3CA42D
+TSAppVersion=100
+
+[TSMaster]
+TSMasterVersion=2025.6.4.1464
+TSMasterArchitect=x64
+
